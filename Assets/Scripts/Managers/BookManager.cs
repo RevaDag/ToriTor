@@ -4,9 +4,11 @@ using UnityEngine.UI;
 
 public class BookManager : MonoBehaviour
 {
-    public GameObject[] objects;
-    public GameObject objectParent;
-    public float fadeDuration = 1.0f;
+    [SerializeField] private SwipeController swipeController;
+
+    [SerializeField] GameObject[] objects;
+    [SerializeField] GameObject objectParent;
+    [SerializeField] float fadeDuration = 1.0f;
 
     [SerializeField] private GameObject langFrame;
     [SerializeField] private GameObject hebrewButtonParent;
@@ -18,6 +20,18 @@ public class BookManager : MonoBehaviour
 
     private BookObject currentBookObject;
 
+    private void OnEnable ()
+    {
+        swipeController.OnSwipeLeft += HandleSwipeLeft;
+        swipeController.OnSwipeRight += HandleSwipeRight;
+    }
+
+    private void OnDisable ()
+    {
+        swipeController.OnSwipeLeft -= HandleSwipeLeft;
+        swipeController.OnSwipeRight -= HandleSwipeRight;
+    }
+
     void Start ()
     {
         pageCanvasGroup = objectParent.GetComponent<CanvasGroup>();
@@ -26,6 +40,16 @@ public class BookManager : MonoBehaviour
             DisplayPage(currentPageIndex);
             StartCoroutine(FadeIn(pageCanvasGroup));
         }
+    }
+
+    private void HandleSwipeLeft ()
+    {
+        PreviousPage();
+    }
+
+    private void HandleSwipeRight ()
+    {
+        NextPage();
     }
 
     public void NextPage ()
@@ -126,6 +150,11 @@ public class BookManager : MonoBehaviour
     public void SayTheWord ()
     {
         currentBookObject?.SayTheWord();
+    }
+
+    public void GoHome ()
+    {
+        SceneFader.Instance?.LoadScene("BookCatalog");
     }
 
 
