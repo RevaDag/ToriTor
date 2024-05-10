@@ -604,6 +604,11 @@ MonoBehaviour:
   - {fileID: 8293553415212733173, guid: c3e8df7a1266c1842a2ec96ef27d9680, type: 3}
   - {fileID: 6885709403527756758, guid: 48b816fd7bcfcaa4f91cc78d2be68513, type: 3}
   - {fileID: 6885709403527756758, guid: 16a79c78e2acc77458aa2546f5a12fa3, type: 3}
+  - {fileID: 6885709403527756758, guid: e7520433b2e246d47914d1bb3ccec77a, type: 3}
+  - {fileID: 6885709403527756758, guid: fc5133d3fd1ab224099080aa07165029, type: 3}
+  - {fileID: 6885709403527756758, guid: 7ecb5576ef1d91442a6bc69682878879, type: 3}
+  - {fileID: 6885709403527756758, guid: a57338ea1fdf4d945bd8d86e263ed420, type: 3}
+  - {fileID: 6885709403527756758, guid: 33d114584b90f1d4d9fa411f79276ccc, type: 3}
   objectParent: {fileID: 1344483236}
   fadeDuration: 0.5
   langFrame: {fileID: 1594753623}
