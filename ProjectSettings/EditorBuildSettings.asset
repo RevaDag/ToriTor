@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/BookCatalog.unity
+    path: Assets/Scenes/DictonaryCatalog.unity
     guid: 6137041d5dda9aa41aade9560356a085
   - enabled: 1
-    path: Assets/Scenes/Books/AnimalsBook.unity
+    path: Assets/Scenes/Dictonary/AnimalsBook.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Books/ColorsBook.unity
+    path: Assets/Scenes/Dictonary/ColorsBook.unity
     guid: 9e6f645798ace804da14cc297123f9b5
   m_configObjects: {}

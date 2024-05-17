@@ -12,6 +12,12 @@ public class BookObject : MonoBehaviour
 
     [SerializeField] private float fadeDuration = .5f;
     [SerializeField] private CanvasGroup wordCanvasGroup;
+    [SerializeField] private CanvasGroup imageCanvasGroup;
+
+    public void FadeInImage ()
+    {
+        StartCoroutine(FadeIn(imageCanvasGroup));
+    }
 
     public void ChangeLanguage ( int languageNumber )
     {
@@ -38,8 +44,6 @@ public class BookObject : MonoBehaviour
         }
 
         yield return StartCoroutine(FadeIn(wordCanvasGroup));
-
-
     }
 
     private IEnumerator FadeIn ( CanvasGroup canvasGroup )

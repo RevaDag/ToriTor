@@ -14,6 +14,8 @@ public class BookManager : MonoBehaviour
     [SerializeField] private GameObject hebrewButtonParent;
     [SerializeField] private GameObject englishButtonParent;
 
+    [SerializeField] private string homeSceneName = "DictonaryCatalog";
+
     private int currentPageIndex = 0;
     private CanvasGroup pageCanvasGroup;
     private int selectedLang = 0; // Default Hebrew
@@ -154,7 +156,7 @@ public class BookManager : MonoBehaviour
 
     public void GoHome ()
     {
-        SceneFader.Instance?.LoadScene("BookCatalog");
+        SceneFader.Instance?.LoadScene(homeSceneName);
     }
 
 
