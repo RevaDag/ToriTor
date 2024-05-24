@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Chest : MonoBehaviour
 {
-    [SerializeField] private Image chestLeadImage;
+    [SerializeField] private Image chestLidImage;
     [SerializeField] private float moveDistance = 100f;
     [SerializeField] private GameObject chestObjectPrefab;
 
@@ -18,9 +18,12 @@ public class Chest : MonoBehaviour
     private GameObject suitableKey;
     private GameObject chestObject;
     private Vector2[] keysInitialPositions;
+    private Vector2 chestLidInitialPosition;
 
     private void Start ()
     {
+        chestLidInitialPosition = chestLidImage.transform.position;
+
         StoreInitialKeyPositions();
         UpdateKeyPrefabs();
     }
@@ -69,6 +72,9 @@ public class Chest : MonoBehaviour
             chestKey.EnableDrag();
             chestKeys[i] = keyInstance;
 
+            CanvasGroup canvasGroup = keysParent.GetComponent<CanvasGroup>();
+            canvasGroup.alpha = 1f;
+
             if (i == suitableKeyIndex)
             {
                 suitableKey = keyInstance;
@@ -102,6 +108,11 @@ public class Chest : MonoBehaviour
         lockImage.SetNativeSize();
     }
 
+    private void ResetChestLidPosition ()
+    {
+        StartCoroutine(MoveAndFadeLidAndFadeOutKeys(chestLidImage.rectTransform, 1.0f, false));
+    }
+
     public bool TryUnlock ( GameObject key )
     {
         if (key == suitableKey)
@@ -114,34 +125,60 @@ public class Chest : MonoBehaviour
 
     public void OpenChest ()
     {
-        StartCoroutine(MoveLid(chestLeadImage.rectTransform, 1.0f));
+        StartCoroutine(MoveAndFadeLidAndFadeOutKeys(chestLidImage.rectTransform, 1.0f, true));
         ShowChestObject();
     }
 
-    private IEnumerator MoveLid ( RectTransform lid, float duration )
+    private IEnumerator MoveAndFadeLidAndFadeOutKeys ( RectTransform lid, float duration, bool isUp )
     {
+        CanvasGroup keysCanvasGroup = keysParent.GetComponent<CanvasGroup>();
+        CanvasGroup lidCanvasGroup = chestLidImage.GetComponent<CanvasGroup>();
+
         Vector3 startPosition = lid.localPosition;
-        Vector3 endPosition = new Vector3(lid.localPosition.x, lid.localPosition.y + moveDistance, lid.localPosition.z);
+        Vector3 endPosition;
+
+        if (isUp)
+            endPosition = new Vector3(startPosition.x, startPosition.y + moveDistance, startPosition.z);
+        else
+            endPosition = new Vector3(startPosition.x, startPosition.y + -moveDistance, startPosition.z);
+
         float elapsed = 0.0f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            lid.localPosition = Vector3.Lerp(startPosition, endPosition, elapsed / duration);
+            float t = elapsed / duration;
+
+            // Move the lid
+            lid.localPosition = Vector3.Lerp(startPosition, endPosition, t);
+
+            // Fade out the keys and the lid
+            float alpha;
+            if (isUp)
+                alpha = Mathf.Lerp(1f, 0f, t);
+            else
+                alpha = Mathf.Lerp(0f, 1f, t);
+
+            keysCanvasGroup.alpha = alpha;
+            lidCanvasGroup.alpha = alpha;
+
             yield return null;
         }
-
-        lid.localPosition = endPosition;
     }
+
 
     private void ShowChestObject ()
     {
+        if (chestObjectPrefab == null) return;
+
         chestObject = Instantiate(chestObjectPrefab, transform.position, Quaternion.identity, gameObject.transform);
+        chestObject.GetComponent<RectTransform>().SetAsFirstSibling();
+        chestObject.GetComponent<ChestObject>().SetChest(this);
     }
 
     public void ReloadChest ()
     {
-        Destroy(chestObject);
         UpdateKeyPrefabs();
+        ResetChestLidPosition();
     }
 }
