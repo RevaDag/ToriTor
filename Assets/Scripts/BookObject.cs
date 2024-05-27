@@ -14,6 +14,7 @@ public class BookObject : MonoBehaviour
     [SerializeField] private CanvasGroup wordCanvasGroup;
     [SerializeField] private CanvasGroup imageCanvasGroup;
 
+
     public void FadeInImage ()
     {
         StartCoroutine(FadeIn(imageCanvasGroup));
@@ -81,6 +82,8 @@ public class BookObject : MonoBehaviour
             wordAudioSource.Play();
             yield return null;
         }
+
     }
+
 
 }

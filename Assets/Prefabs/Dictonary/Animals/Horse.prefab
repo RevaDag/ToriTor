@@ -382,6 +382,10 @@ PrefabInstance:
       propertyPath: objectTextHeb
       value: 
       objectReference: {fileID: 6817294514976441498}
+    - target: {fileID: 1946061806555588256, guid: 55d57316e308adc4fa221cfffae13e82, type: 3}
+      propertyPath: collectibleObject.subject
+      value: Animals
+      objectReference: {fileID: 0}
     - target: {fileID: 2433081519535422519, guid: 55d57316e308adc4fa221cfffae13e82, type: 3}
       propertyPath: m_Name
       value: Horse

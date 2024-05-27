@@ -1,12 +1,17 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
+using System.Collections.Generic;
 
 public class BookManager : MonoBehaviour
 {
     [SerializeField] private SwipeController swipeController;
 
-    [SerializeField] GameObject[] objects;
+    [SerializeField] private bool loadFromCollection;
+    [SerializeField] List<CollectibleObject> objects = new List<CollectibleObject>();
+
+    [SerializeField] private TMP_Text subjectTitle;
     [SerializeField] GameObject objectParent;
     [SerializeField] float fadeDuration = 1.0f;
 
@@ -14,13 +19,13 @@ public class BookManager : MonoBehaviour
     [SerializeField] private GameObject hebrewButtonParent;
     [SerializeField] private GameObject englishButtonParent;
 
-    [SerializeField] private string homeSceneName = "DictonaryCatalog";
-
     private int currentPageIndex = 0;
     private CanvasGroup pageCanvasGroup;
     private int selectedLang = 0; // Default Hebrew
 
     private BookObject currentBookObject;
+    private CollectibleObject currentCollectibleObject;
+
 
     private void OnEnable ()
     {
@@ -37,11 +42,46 @@ public class BookManager : MonoBehaviour
     void Start ()
     {
         pageCanvasGroup = objectParent.GetComponent<CanvasGroup>();
-        if (objects.Length > 0)
+        if (objects.Count > 0)
         {
             DisplayPage(currentPageIndex);
             StartCoroutine(FadeIn(pageCanvasGroup));
         }
+
+        if (loadFromCollection)
+            LoadSubjectFromCollection();
+    }
+
+    private void LoadSubjectFromCollection ()
+    {
+        if (ObjectCollection.Instance != null)
+        {
+            ObjectCollection.Instance.SetBookManager(this);
+            ObjectCollection.Instance.LoadSubject();
+        }
+    }
+
+    public void SetObjects ( List<CollectibleObject> _objects )
+    {
+        objects = _objects;
+
+        currentPageIndex = 0;
+
+        foreach (Transform child in objectParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        if (objects.Count > 0)
+        {
+            DisplayPage(currentPageIndex);
+            StartCoroutine(FadeIn(pageCanvasGroup));
+        }
+    }
+
+    public void SetSubjectTitle ( string _subject )
+    {
+        subjectTitle.text = _subject;
     }
 
     private void HandleSwipeLeft ()
@@ -56,7 +96,7 @@ public class BookManager : MonoBehaviour
 
     public void NextPage ()
     {
-        currentPageIndex = (currentPageIndex + 1) % objects.Length;
+        currentPageIndex = (currentPageIndex + 1) % objects.Count;
         StartCoroutine(ChangePage(currentPageIndex));
     }
 
@@ -64,7 +104,7 @@ public class BookManager : MonoBehaviour
     {
         if (currentPageIndex == 0)
         {
-            currentPageIndex = objects.Length - 1;
+            currentPageIndex = objects.Count - 1;
         }
         else
         {
@@ -85,7 +125,8 @@ public class BookManager : MonoBehaviour
     {
         ClearPageContents();
 
-        GameObject currentObject = objects[index];
+        currentCollectibleObject = objects[index];
+        GameObject currentObject = objects[index].objectPrefab;
         foreach (Transform child in objectParent.transform)
         {
             Destroy(child.gameObject);
@@ -94,6 +135,7 @@ public class BookManager : MonoBehaviour
         currentBookObject = Instantiate(currentObject, objectParent.transform).GetComponent<BookObject>();
 
         SelectLanguage(selectedLang);
+        AddObjectToCollection();
     }
 
     private IEnumerator FadeIn ( CanvasGroup canvasGroup )
@@ -154,10 +196,14 @@ public class BookManager : MonoBehaviour
         currentBookObject?.SayTheWord();
     }
 
-    public void GoHome ()
+    public void AddObjectToCollection ()
     {
-        SceneFader.Instance?.LoadScene(homeSceneName);
+        if (ObjectCollection.Instance != null)
+        {
+            ObjectCollection.Instance.AddObject(currentCollectibleObject);
+        }
     }
+
 
 
 }

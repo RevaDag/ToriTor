@@ -12,4 +12,13 @@ public class SceneLoader : MonoBehaviour
             SceneFader.Instance.LoadScene(sceneName);
         }
     }
+
+
+    public void LoadPreviousScene ()
+    {
+        if (SceneFader.Instance != null)
+        {
+            LoadScene(SceneFader.Instance.previousScene);
+        }
+    }
 }

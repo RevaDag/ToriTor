@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WorldsMenu.unity
     guid: 65e110ed37a427a44a5f0e326a92f351
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BookCatalog_OLD.unity
     guid: 6137041d5dda9aa41aade9560356a085
   - enabled: 1
@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Worlds/MushroomGarden.unity
     guid: 109a5af5a5e16714a96b6019f46c80ac
+  - enabled: 1
+    path: Assets/Scenes/Books/Book.unity
+    guid: 8a734780712af7c40bceb1b1bb91412a
   m_configObjects: {}

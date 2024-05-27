@@ -517,6 +517,10 @@ PrefabInstance:
       propertyPath: objectTextHeb
       value: 
       objectReference: {fileID: 5401772421510284954}
+    - target: {fileID: 2088748394461874859, guid: f0a8389da93455047b811d8b58c2953d, type: 3}
+      propertyPath: collectibleObject.subject
+      value: Animals
+      objectReference: {fileID: 0}
     - target: {fileID: 2504081874395373004, guid: f0a8389da93455047b811d8b58c2953d, type: 3}
       propertyPath: m_audioClip
       value: 

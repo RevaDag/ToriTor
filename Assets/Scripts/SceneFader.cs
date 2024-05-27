@@ -10,6 +10,7 @@ public class SceneFader : MonoBehaviour
 
     [SerializeField] private Image faderImage;
     [SerializeField] private float fadeDuration = .5f;
+    public string previousScene { get; private set; }
 
     void Awake ()
     {
@@ -26,6 +27,7 @@ public class SceneFader : MonoBehaviour
 
     public void LoadScene ( string sceneName )
     {
+        previousScene = SceneManager.GetActiveScene().name;
         StartCoroutine(LoadSceneCoroutine(sceneName));
     }
 
@@ -65,4 +67,5 @@ public class SceneFader : MonoBehaviour
         }
         faderImage.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
     }
+
 }

@@ -226,6 +226,10 @@ PrefabInstance:
       propertyPath: englishWord
       value: 
       objectReference: {fileID: 8300000, guid: f65ef5f7ab087774682e831f4f5da7f8, type: 3}
+    - target: {fileID: 5322507935953258594, guid: c3e8df7a1266c1842a2ec96ef27d9680, type: 3}
+      propertyPath: collectibleObject.subject
+      value: Colors
+      objectReference: {fileID: 0}
     - target: {fileID: 5435723946522945355, guid: c3e8df7a1266c1842a2ec96ef27d9680, type: 3}
       propertyPath: m_margin.z
       value: 451.93314

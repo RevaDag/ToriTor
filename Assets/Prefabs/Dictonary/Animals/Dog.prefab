@@ -576,6 +576,10 @@ PrefabInstance:
       propertyPath: objectTextHeb
       value: 
       objectReference: {fileID: 2395090910911637363}
+    - target: {fileID: 400907979293147971, guid: c4e64553de6a2d44a80bf158ff87225b, type: 3}
+      propertyPath: collectibleObject.subject
+      value: Animals
+      objectReference: {fileID: 0}
     - target: {fileID: 2298120357756566173, guid: c4e64553de6a2d44a80bf158ff87225b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

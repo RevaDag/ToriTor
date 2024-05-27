@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: englishWord
       value: 
       objectReference: {fileID: 8300000, guid: 58ccb0abbb823f3448925706509b36ea, type: 3}
+    - target: {fileID: 7298982730549436737, guid: 48b816fd7bcfcaa4f91cc78d2be68513, type: 3}
+      propertyPath: collectibleObject.subject
+      value: Colors
+      objectReference: {fileID: 0}
     - target: {fileID: 8021400504182283141, guid: 48b816fd7bcfcaa4f91cc78d2be68513, type: 3}
       propertyPath: m_text
       value: "\u05D5\u05E8\u05D5\u05D3"

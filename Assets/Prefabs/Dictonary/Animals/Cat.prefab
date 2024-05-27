@@ -440,6 +440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b525d9fde7c5845b67033112d07ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleObject:
+    objectPrefab: {fileID: 4563705021575322068}
+    subject: Animals
   objectTextEng: {fileID: 2204323996252148162}
   objectTextHeb: {fileID: 7784509263552006928}
   hebrewWord: {fileID: 8300000, guid: 89519c1987966b64ca3d9800cfe23410, type: 3}
@@ -447,6 +450,7 @@ MonoBehaviour:
   wordAudioSource: {fileID: 8314555854970116408}
   fadeDuration: 0.5
   wordCanvasGroup: {fileID: 5397742176956935168}
+  imageCanvasGroup: {fileID: 0}
 --- !u!1 &6593031224198963616
 GameObject:
   m_ObjectHideFlags: 0
