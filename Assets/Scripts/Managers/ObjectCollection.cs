@@ -13,6 +13,8 @@ public class ObjectCollection : MonoBehaviour
     private string subjectToLoad;
     private string subjectTitle;
 
+    public List<CollectibleObject> tempObjects = new List<CollectibleObject>();
+
 
     void Awake ()
     {
@@ -147,14 +149,28 @@ public class ObjectCollection : MonoBehaviour
         subjectTitle = _subjectTitle;
     }
 
-    public void LoadSubject ()
+    public void LoadObjectListAndSubject ( List<CollectibleObject> collectibleObjectsToLoad )
+    {
+        if (bookManager == null) return;
+
+        bookManager.SetObjects(collectibleObjectsToLoad);
+        bookManager.SetSubjectTitle(subjectTitle);
+    }
+
+    public void LoadSubjectFromCollection ()
     {
         if (bookManager == null) return;
 
         List<CollectibleObject> collectibleObjectsToLoad = GetSubjectCollection(subjectToLoad);
-        bookManager.SetObjects(collectibleObjectsToLoad);
-        bookManager.SetSubjectTitle(subjectTitle);
+        LoadObjectListAndSubject(collectibleObjectsToLoad);
     }
+
+    public void SetTempObjects ( List<CollectibleObject> collectibleObjects )
+    {
+        tempObjects?.Clear();
+        tempObjects = collectibleObjects;
+    }
+
 
     [System.Serializable]
     private class SerializableList<T>

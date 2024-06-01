@@ -42,22 +42,29 @@ public class BookManager : MonoBehaviour
     void Start ()
     {
         pageCanvasGroup = objectParent.GetComponent<CanvasGroup>();
-        if (objects.Count > 0)
-        {
-            DisplayPage(currentPageIndex);
-            StartCoroutine(FadeIn(pageCanvasGroup));
-        }
 
         if (loadFromCollection)
             LoadSubjectFromCollection();
+        else
+            LoadTempObjects();
+
+        DisplayPage(currentPageIndex);
+        StartCoroutine(FadeIn(pageCanvasGroup));
     }
 
-    private void LoadSubjectFromCollection ()
+    private void LoadTempObjects ()
+    {
+        objects?.Clear();
+        objects = ObjectCollection.Instance.tempObjects;
+
+    }
+
+    public void LoadSubjectFromCollection ()
     {
         if (ObjectCollection.Instance != null)
         {
             ObjectCollection.Instance.SetBookManager(this);
-            ObjectCollection.Instance.LoadSubject();
+            ObjectCollection.Instance.LoadSubjectFromCollection();
         }
     }
 

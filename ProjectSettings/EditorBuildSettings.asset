@@ -15,12 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Books/AnimalsBook.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Books/ColorsBook.unity
+    path: Assets/Scenes/Books/Book.unity
     guid: 9e6f645798ace804da14cc297123f9b5
   - enabled: 1
     path: Assets/Scenes/Worlds/MushroomGarden.unity
     guid: 109a5af5a5e16714a96b6019f46c80ac
   - enabled: 1
-    path: Assets/Scenes/Books/Book.unity
+    path: Assets/Scenes/Books/CollectionBook.unity
     guid: 8a734780712af7c40bceb1b1bb91412a
   m_configObjects: {}

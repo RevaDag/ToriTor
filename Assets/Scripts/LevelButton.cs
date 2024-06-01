@@ -10,6 +10,8 @@ public class LevelButton : MonoBehaviour
     [SerializeField] private Sprite OpenLevelSprite;
     [SerializeField] private Sprite lockSprite;
 
+    [SerializeField] private List<CollectibleObject> collectibleObjects = new List<CollectibleObject>();
+
     private Button button;
 
     private void Awake ()
@@ -38,6 +40,12 @@ public class LevelButton : MonoBehaviour
         }
 
         levelButtonImage.SetNativeSize();
+    }
+
+    public void LoadObjectsToObjectCollection ()
+    {
+        if (ObjectCollection.Instance != null && collectibleObjects != null)
+            ObjectCollection.Instance.SetTempObjects(collectibleObjects);
     }
 
 }
