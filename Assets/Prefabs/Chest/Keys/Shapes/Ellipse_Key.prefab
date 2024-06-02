@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallelObject: {fileID: 3382073005429300018, guid: cfc01affe9f0c9840881f3f1ef3b033c, type: 3}
+  keyImage: {fileID: 7917623363839762905}
 --- !u!82 &8076614429398619544
 AudioSource:
   m_ObjectHideFlags: 0
