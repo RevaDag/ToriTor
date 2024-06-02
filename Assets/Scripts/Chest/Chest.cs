@@ -5,16 +5,27 @@ using UnityEngine.UI;
 
 public class Chest : MonoBehaviour
 {
+    public enum ChestType
+    {
+        Shapes,
+        Colors
+    }
+
+    [SerializeField] private ChestType type;
+
     [SerializeField] private Image chestLidImage;
     [SerializeField] private float moveDistance = 100f;
     [SerializeField] private GameObject chestObjectPrefab;
 
     [SerializeField] private RectTransform lockRectTransform;
+    [SerializeField] private Image lockBackground;
     [SerializeField] private Transform keysParent;
     [SerializeField] GameObject[] chestKeys;
     [SerializeField] private GameObject[] keyPrefabs;
+    [SerializeField] private Color[] colors;
 
     private Sprite suitableKeySprite;
+    private Color suitableKeyColor;
     private GameObject suitableKey;
     private GameObject chestObject;
     private Vector2[] keysInitialPositions;
@@ -25,7 +36,16 @@ public class Chest : MonoBehaviour
         chestLidInitialPosition = chestLidImage.transform.position;
 
         StoreInitialKeyPositions();
-        UpdateKeyPrefabs();
+        RestartGame();
+    }
+
+    private void RestartGame ()
+    {
+        if (type == ChestType.Shapes)
+            InstantiateKeys();
+
+        if (type == ChestType.Colors)
+            UpdateKeysColor();
     }
 
     private void StoreInitialKeyPositions ()
@@ -41,7 +61,7 @@ public class Chest : MonoBehaviour
         }
     }
 
-    public void UpdateKeyPrefabs ()
+    public void InstantiateKeys ()
     {
         if (keyPrefabs.Length < 3)
         {
@@ -68,23 +88,78 @@ public class Chest : MonoBehaviour
 
             ChestKey chestKey = keyInstance.GetComponent<ChestKey>();
 
-            chestKey.SetChest(this);
-            chestKey.EnableDrag();
+            InitiateChestKey(chestKey);
+
             chestKeys[i] = keyInstance;
 
             CanvasGroup canvasGroup = keysParent.GetComponent<CanvasGroup>();
             canvasGroup.alpha = 1f;
 
             if (i == suitableKeyIndex)
-            {
-                suitableKey = keyInstance;
-                suitableKeySprite = keyInstance.GetComponentInChildren<Image>().sprite;
-                chestKey.SetTarget(lockRectTransform);
-                chestObjectPrefab = chestKey.parallelObject;
-            }
+                SetSuitableKeyToChest(keyInstance);
         }
 
         UpdateLockImage();
+    }
+
+    private void UpdateKeysColor ()
+    {
+        List<Color> availableColors = new List<Color>(colors);
+        List<GameObject> availableKeys = new List<GameObject>(chestKeys);
+
+        foreach (GameObject key in chestKeys)
+        {
+            Color randomColor = GetRandomElement(availableColors);
+            availableColors.Remove(randomColor);
+
+            ChestKey chestKey = key.GetComponentInChildren<ChestKey>();
+            chestKey.keyImage.color = randomColor;
+            InitiateChestKey(chestKey);
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            availableKeys[i].transform.localScale = Vector3.one;
+            availableKeys[i].transform.SetParent(keysParent, false);
+            availableKeys[i].GetComponent<RectTransform>().anchoredPosition = keysInitialPositions[i];
+        }
+
+        GameObject correctKey = GetRandomElement(availableKeys);
+        availableKeys.Remove(correctKey);
+
+        Color correctColor = correctKey.GetComponentInChildren<ChestKey>().keyImage.color;
+        lockBackground.color = correctColor;
+
+        SetSuitableKeyToChest(correctKey);
+    }
+
+    private T GetRandomElement<T> ( List<T> list )
+    {
+        if (list == null || list.Count == 0)
+        {
+            Debug.LogWarning("The list is empty or not assigned.");
+            return default(T);
+        }
+
+        int randomIndex = Random.Range(0, list.Count);
+        return list[randomIndex];
+    }
+
+    private void SetSuitableKeyToChest ( GameObject keyInstance )
+    {
+        suitableKey = keyInstance;
+        suitableKeySprite = keyInstance.GetComponentInChildren<ChestKey>().keyImage.sprite;
+
+        ChestKey chestKey = keyInstance.GetComponentInChildren<ChestKey>();
+        chestKey.SetChest(this);
+        chestKey.SetTarget(lockRectTransform);
+        chestObjectPrefab = chestKey.parallelObject;
+    }
+
+    private void InitiateChestKey ( ChestKey chestKey )
+    {
+        chestKey.SetChest(this);
+        chestKey.EnableDrag();
     }
 
     private List<int> GetRandomUniqueIndices ( int count, int max )
@@ -178,7 +253,7 @@ public class Chest : MonoBehaviour
 
     public void ReloadChest ()
     {
-        UpdateKeyPrefabs();
+        RestartGame();
         ResetChestLidPosition();
     }
 }

@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ChestKey : MonoBehaviour
 {
     private Chest chest;
     public GameObject parallelObject;
+    public Image keyImage;
 
     private RectTransform target;
     private AudioSource audioSource;
