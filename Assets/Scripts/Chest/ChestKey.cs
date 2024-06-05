@@ -13,7 +13,7 @@ public class ChestKey : MonoBehaviour
     private RectTransform target;
     private AudioSource audioSource;
 
-    private void Start ()
+    private void Awake ()
     {
         audioSource = GetComponent<AudioSource>();
     }
@@ -26,6 +26,11 @@ public class ChestKey : MonoBehaviour
     public void SetTarget ( RectTransform target )
     {
         this.target = target;
+    }
+
+    public void SetParallelObject ( GameObject parallelObject )
+    {
+        this.parallelObject = parallelObject;
     }
 
     public void CheckTarget ( PointerEventData eventData )
@@ -54,6 +59,11 @@ public class ChestKey : MonoBehaviour
     {
         GetComponent<Draggable>().EnableDrag();
 
+    }
+
+    public void SetAudioClip ( AudioClip clip )
+    {
+        audioSource.clip = clip;
     }
 
     private void PlayAudioSource ()

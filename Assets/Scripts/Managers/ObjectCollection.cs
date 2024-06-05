@@ -7,13 +7,13 @@ public class ObjectCollection : MonoBehaviour
     public static ObjectCollection Instance { get; private set; }
 
     private BookManager bookManager;
-    public Dictionary<string, List<CollectibleObject>> collection;
+    public Dictionary<string, List<ToriObject>> collection;
     private List<string> subjects;
 
     private string subjectToLoad;
     private string subjectTitle;
 
-    public List<CollectibleObject> tempObjects = new List<CollectibleObject>();
+    public List<ToriObject> tempObjects = new List<ToriObject>();
 
 
     void Awake ()
@@ -31,17 +31,17 @@ public class ObjectCollection : MonoBehaviour
 
     void Start ()
     {
-        collection = new Dictionary<string, List<CollectibleObject>>();
+        collection = new Dictionary<string, List<ToriObject>>();
         subjects = new List<string>();
 
         LoadCollection();
     }
 
-    public void AddObject ( CollectibleObject obj )
+    public void AddObject ( ToriObject obj )
     {
         if (!collection.ContainsKey(obj.subject))
         {
-            collection[obj.subject] = new List<CollectibleObject>();
+            collection[obj.subject] = new List<ToriObject>();
             subjects.Add(obj.subject);
         }
 
@@ -60,7 +60,7 @@ public class ObjectCollection : MonoBehaviour
         SaveCollection();
     }
 
-    public List<CollectibleObject> GetSubjectCollection ( string subject )
+    public List<ToriObject> GetSubjectCollection ( string subject )
     {
         if (collection.ContainsKey(subject))
         {
@@ -88,7 +88,7 @@ public class ObjectCollection : MonoBehaviour
     {
         foreach (var subject in subjects)
         {
-            string json = JsonUtility.ToJson(new SerializableList<CollectibleObject>(collection[subject]));
+            string json = JsonUtility.ToJson(new SerializableList<ToriObject>(collection[subject]));
             PlayerPrefs.SetString(subject, json);
         }
 
@@ -116,7 +116,7 @@ public class ObjectCollection : MonoBehaviour
                 if (PlayerPrefs.HasKey(subject))
                 {
                     string json = PlayerPrefs.GetString(subject);
-                    SerializableList<CollectibleObject> objects = JsonUtility.FromJson<SerializableList<CollectibleObject>>(json);
+                    SerializableList<ToriObject> objects = JsonUtility.FromJson<SerializableList<ToriObject>>(json);
                     collection[subject] = objects.items;
                 }
             }
@@ -128,7 +128,7 @@ public class ObjectCollection : MonoBehaviour
         foreach (var kvp in collection)
         {
             string subject = kvp.Key;
-            List<CollectibleObject> objects = kvp.Value;
+            List<ToriObject> objects = kvp.Value;
 
             Debug.Log($"Subject: {subject}");
             foreach (var obj in objects)
@@ -149,7 +149,7 @@ public class ObjectCollection : MonoBehaviour
         subjectTitle = _subjectTitle;
     }
 
-    public void LoadObjectListAndSubject ( List<CollectibleObject> collectibleObjectsToLoad )
+    public void LoadObjectListAndSubject ( List<ToriObject> collectibleObjectsToLoad )
     {
         if (bookManager == null) return;
 
@@ -161,11 +161,11 @@ public class ObjectCollection : MonoBehaviour
     {
         if (bookManager == null) return;
 
-        List<CollectibleObject> collectibleObjectsToLoad = GetSubjectCollection(subjectToLoad);
+        List<ToriObject> collectibleObjectsToLoad = GetSubjectCollection(subjectToLoad);
         LoadObjectListAndSubject(collectibleObjectsToLoad);
     }
 
-    public void SetTempObjects ( List<CollectibleObject> collectibleObjects )
+    public void SetTempObjects ( List<ToriObject> collectibleObjects )
     {
         tempObjects?.Clear();
         tempObjects = collectibleObjects;

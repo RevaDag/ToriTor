@@ -9,7 +9,7 @@ public class BookManager : MonoBehaviour
     [SerializeField] private SwipeController swipeController;
 
     [SerializeField] private bool loadFromCollection;
-    [SerializeField] List<CollectibleObject> objects = new List<CollectibleObject>();
+    [SerializeField] List<ToriObject> objects = new List<ToriObject>();
 
     [SerializeField] private TMP_Text subjectTitle;
     [SerializeField] GameObject objectParent;
@@ -19,12 +19,23 @@ public class BookManager : MonoBehaviour
     [SerializeField] private GameObject hebrewButtonParent;
     [SerializeField] private GameObject englishButtonParent;
 
+    [SerializeField] private Button previousButton;
+    [SerializeField] private Button nextButton;
+
+    private Sprite leftArrowSprite;
+    [SerializeField] private Sprite checkSprite;
+
+    private Image previousArrowImage;
+    private Image nextArrowImage;
+    private Color transparentWhiteColor = new Color(1f, 1f, 1f, 0.5f);
+
+
     private int currentPageIndex = 0;
     private CanvasGroup pageCanvasGroup;
     private int selectedLang = 0; // Default Hebrew
 
     private BookObject currentBookObject;
-    private CollectibleObject currentCollectibleObject;
+    private ToriObject currentCollectibleObject;
 
 
     private void OnEnable ()
@@ -37,6 +48,13 @@ public class BookManager : MonoBehaviour
     {
         swipeController.OnSwipeLeft -= HandleSwipeLeft;
         swipeController.OnSwipeRight -= HandleSwipeRight;
+    }
+
+    private void Awake ()
+    {
+        previousArrowImage = previousButton.transform.GetChild(0).GetComponent<Image>();
+        nextArrowImage = nextButton.transform.GetChild(0).GetComponent<Image>();
+        leftArrowSprite = nextArrowImage.sprite;
     }
 
     void Start ()
@@ -68,7 +86,7 @@ public class BookManager : MonoBehaviour
         }
     }
 
-    public void SetObjects ( List<CollectibleObject> _objects )
+    public void SetObjects ( List<ToriObject> _objects )
     {
         objects = _objects;
 
@@ -103,7 +121,10 @@ public class BookManager : MonoBehaviour
 
     public void NextPage ()
     {
-        currentPageIndex = (currentPageIndex + 1) % objects.Count;
+        if (currentPageIndex == objects.Count - 1) return;
+
+        //currentPageIndex = (currentPageIndex + 1) % objects.Count;
+        currentPageIndex++;
         StartCoroutine(ChangePage(currentPageIndex));
     }
 
@@ -111,7 +132,8 @@ public class BookManager : MonoBehaviour
     {
         if (currentPageIndex == 0)
         {
-            currentPageIndex = objects.Count - 1;
+            //currentPageIndex = objects.Count - 1;
+            return;
         }
         else
         {
@@ -143,6 +165,32 @@ public class BookManager : MonoBehaviour
 
         SelectLanguage(selectedLang);
         AddObjectToCollection();
+
+        UpdatePreviousAndNextButtonState();
+    }
+
+    private void UpdateButtonState ( Button button, Image arrowImage, bool isActive )
+    {
+        button.interactable = isActive;
+        arrowImage.color = isActive ? Color.white : transparentWhiteColor;
+    }
+
+    private void ChangeNextButtonToCheck ()
+    {
+    }
+
+    private void UpdatePreviousAndNextButtonState ()
+    {
+        bool isAtFirstPage = currentPageIndex == 0;
+        bool isAtLastPage = currentPageIndex == objects.Count - 1;
+
+        //UpdateButtonState(nextButton, nextArrowImage, !isAtLastPage);
+        UpdateButtonState(previousButton, previousArrowImage, !isAtFirstPage);
+
+        if (isAtLastPage)
+            nextArrowImage.sprite = checkSprite;
+        else
+            nextArrowImage.sprite = leftArrowSprite;
     }
 
     private IEnumerator FadeIn ( CanvasGroup canvasGroup )

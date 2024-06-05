@@ -5,10 +5,8 @@ using System.Collections.Generic;
 [System.Serializable]
 public class PlayerProgress
 {
-    public int WorldCompleted;
-    public List<int> LevelsUnlocked = new List<int>();
-    public List<int> LevelsOpened = new List<int>();
-    public List<int> LevelsCompleted = new List<int>();
+    public int WorldCompleted; // Will be changes to a list of World classes
+    public List<Level> Levels;
 
     private static string SaveFilePath => Path.Combine(Application.persistentDataPath, "playerProgress.json");
 
@@ -48,9 +46,6 @@ public class PlayerProgress
     private void InitializeDefaultValues ()
     {
         WorldCompleted = 0;
-        LevelsUnlocked.Clear();
-        LevelsOpened.Clear();
-        LevelsCompleted.Clear();
-        LevelsUnlocked.Add(1); // Ensure level 1 is unlocked by default
+        Levels = GameManager.Instance.defaultLevels;
     }
 }

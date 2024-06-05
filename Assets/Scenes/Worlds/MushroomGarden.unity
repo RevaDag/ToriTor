@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 388522528}
   - component: {fileID: 388522529}
   m_Layer: 5
-  m_Name: LevelButton1
+  m_Name: LevelButton - Color Book
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -673,21 +673,9 @@ MonoBehaviour:
           m_StringArgument: Book
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1902919380}
-        m_TargetAssemblyTypeName: WorldLevelsManager, Assembly-CSharp
-        m_MethodName: OpenLevel
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 388522529}
         m_TargetAssemblyTypeName: LevelButton, Assembly-CSharp
-        m_MethodName: LoadObjectsToObjectCollection
+        m_MethodName: LoadLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -709,19 +697,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa28e3e5903abdc49bbb4a89f00ffb2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldLevelsUI: {fileID: 1902919380}
+  level:
+    Type: 0
+    LevelNumber: 1
+    IsUnlocked: 0
+    IsOpened: 0
+    IsCompleted: 0
   levelButtonImage: {fileID: 388522526}
   NewLevelSprite: {fileID: -2034661520, guid: 3caceab6eb458f849b590138f0060bce, type: 3}
   OpenLevelSprite: {fileID: 1281097091, guid: 3caceab6eb458f849b590138f0060bce, type: 3}
   lockSprite: {fileID: 21300000, guid: a7843bd7e85ade949b21b5bb2920c232, type: 3}
-  collectibleObjects:
-  - objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
-    subject: Colors
-  - objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
-    subject: Colors
-  - objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
-    subject: Colors
-  - objectPrefab: {fileID: 7788661536923755038, guid: a61a91bba9647874a992d5244a0ea3e8, type: 3}
-    subject: Colors
+  levelObjects:
+  - _objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
+    _parallelObject: {fileID: 0}
+    _subject: 
+    _color: {r: 0, g: 0, b: 0, a: 0}
+    _clip: {fileID: 0}
+  - _objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
+    _parallelObject: {fileID: 0}
+    _subject: 
+    _color: {r: 0, g: 0, b: 0, a: 0}
+    _clip: {fileID: 0}
+  - _objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
+    _parallelObject: {fileID: 0}
+    _subject: 
+    _color: {r: 0, g: 0, b: 0, a: 0}
+    _clip: {fileID: 0}
+  - _objectPrefab: {fileID: 7788661536923755038, guid: a61a91bba9647874a992d5244a0ea3e8, type: 3}
+    _parallelObject: {fileID: 0}
+    _subject: 
+    _color: {r: 0, g: 0, b: 0, a: 0}
+    _clip: {fileID: 0}
 --- !u!1 &392957002
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,11 +855,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa28e3e5903abdc49bbb4a89f00ffb2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldLevelsUI: {fileID: 1902919380}
+  level:
+    Type: 0
+    LevelNumber: 4
+    IsUnlocked: 0
+    IsOpened: 0
+    IsCompleted: 0
   levelButtonImage: {fileID: 428337661}
   NewLevelSprite: {fileID: -2034661520, guid: 3caceab6eb458f849b590138f0060bce, type: 3}
   OpenLevelSprite: {fileID: 1281097091, guid: 3caceab6eb458f849b590138f0060bce, type: 3}
   lockSprite: {fileID: 21300000, guid: a7843bd7e85ade949b21b5bb2920c232, type: 3}
-  collectibleObjects: []
+  levelObjects: []
 --- !u!114 &428337660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,10 +923,10 @@ MonoBehaviour:
           m_StringArgument: ColorsBook
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1902919380}
-        m_TargetAssemblyTypeName: WorldLevelsManager, Assembly-CSharp
-        m_MethodName: OpenLevel
-        m_Mode: 3
+      - m_Target: {fileID: 428337659}
+        m_TargetAssemblyTypeName: LevelButton, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1713,7 +1727,7 @@ GameObject:
   - component: {fileID: 1138798365}
   - component: {fileID: 1138798364}
   m_Layer: 5
-  m_Name: LevelButton1 (1)
+  m_Name: LevelButton1 - Color Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1750,11 +1764,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa28e3e5903abdc49bbb4a89f00ffb2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldLevelsUI: {fileID: 1902919380}
+  level:
+    Type: 0
+    LevelNumber: 2
+    IsUnlocked: 0
+    IsOpened: 0
+    IsCompleted: 0
   levelButtonImage: {fileID: 1138798366}
   NewLevelSprite: {fileID: -2034661520, guid: 3caceab6eb458f849b590138f0060bce, type: 3}
   OpenLevelSprite: {fileID: 1281097091, guid: 3caceab6eb458f849b590138f0060bce, type: 3}
   lockSprite: {fileID: 21300000, guid: a7843bd7e85ade949b21b5bb2920c232, type: 3}
-  collectibleObjects: []
+  levelObjects:
+  - _objectPrefab: {fileID: 0}
+    _parallelObject: {fileID: 3382073005429300018, guid: b95f27a72556c1b48b35caa06a456d41, type: 3}
+    _subject: 
+    _color: {r: 1, g: 0, b: 0, a: 1}
+    _clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
+  - _objectPrefab: {fileID: 0}
+    _parallelObject: {fileID: 3382073005429300018, guid: 735595ff8aa010d45b4226f99a83db86, type: 3}
+    _subject: 
+    _color: {r: 0, g: 0.028639317, b: 1, a: 1}
+    _clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
+  - _objectPrefab: {fileID: 0}
+    _parallelObject: {fileID: 3382073005429300018, guid: fd69252297ab79d40885175f0a4d1d8b, type: 3}
+    _subject: 
+    _color: {r: 0, g: 1, b: 0.1538353, a: 1}
+    _clip: {fileID: 8300000, guid: b4859006f745e24419338fb1bafa824a, type: 3}
+  - _objectPrefab: {fileID: 0}
+    _parallelObject: {fileID: 3382073005429300018, guid: 442db851fe820d54699d0befd83f406b, type: 3}
+    _subject: 
+    _color: {r: 1, g: 0.9577489, b: 0, a: 1}
+    _clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
 --- !u!114 &1138798365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1808,17 +1849,17 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ColorsBook
+          m_StringArgument: ColorsTreasure
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1902919380}
-        m_TargetAssemblyTypeName: WorldLevelsManager, Assembly-CSharp
-        m_MethodName: OpenLevel
-        m_Mode: 3
+      - m_Target: {fileID: 1138798364}
+        m_TargetAssemblyTypeName: LevelButton, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2183,11 +2224,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa28e3e5903abdc49bbb4a89f00ffb2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldLevelsUI: {fileID: 1902919380}
+  level:
+    Type: 0
+    LevelNumber: 3
+    IsUnlocked: 0
+    IsOpened: 0
+    IsCompleted: 0
   levelButtonImage: {fileID: 1612778850}
   NewLevelSprite: {fileID: -2034661520, guid: 3caceab6eb458f849b590138f0060bce, type: 3}
   OpenLevelSprite: {fileID: 1281097091, guid: 3caceab6eb458f849b590138f0060bce, type: 3}
   lockSprite: {fileID: 21300000, guid: a7843bd7e85ade949b21b5bb2920c232, type: 3}
-  collectibleObjects: []
+  levelObjects: []
 --- !u!114 &1612778849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2244,10 +2292,10 @@ MonoBehaviour:
           m_StringArgument: ColorsBook
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1902919380}
-        m_TargetAssemblyTypeName: WorldLevelsManager, Assembly-CSharp
-        m_MethodName: OpenLevel
-        m_Mode: 3
+      - m_Target: {fileID: 1612778848}
+        m_TargetAssemblyTypeName: LevelButton, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2506,23 +2554,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02baa54ee742755499f856fd5ed0d9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Levels:
-  - LevelNumber: 1
-    LevelButton: {fileID: 388522529}
-    IsOpened: 0
-    IsCompleted: 0
-  - LevelNumber: 2
-    LevelButton: {fileID: 1138798364}
-    IsOpened: 0
-    IsCompleted: 0
-  - LevelNumber: 3
-    LevelButton: {fileID: 1612778848}
-    IsOpened: 0
-    IsCompleted: 0
-  - LevelNumber: 4
-    LevelButton: {fileID: 428337659}
-    IsOpened: 0
-    IsCompleted: 0
+  levelButtons:
+  - {fileID: 388522529}
+  - {fileID: 1138798364}
+  - {fileID: 1612778848}
+  - {fileID: 428337659}
 --- !u!4 &1902919381
 Transform:
   m_ObjectHideFlags: 0

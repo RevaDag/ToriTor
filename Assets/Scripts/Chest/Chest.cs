@@ -12,35 +12,42 @@ public class Chest : MonoBehaviour
     }
 
     [SerializeField] private ChestType type;
+    [SerializeField] private LevelManager levelManager;
 
     [SerializeField] private Image chestLidImage;
     [SerializeField] private float moveDistance = 100f;
-    [SerializeField] private GameObject chestObjectPrefab;
+    [SerializeField] private GameObject parallelObjectPrefab;
 
     [SerializeField] private RectTransform lockRectTransform;
     [SerializeField] private Image lockBackground;
     [SerializeField] private Transform keysParent;
     [SerializeField] GameObject[] chestKeys;
-    [SerializeField] private GameObject[] keyPrefabs;
-    [SerializeField] private Color[] colors;
+    [SerializeField] private List<ToriObject> objects;
 
     private Sprite suitableKeySprite;
-    private Color suitableKeyColor;
     private GameObject suitableKey;
-    private GameObject chestObject;
+    private GameObject parallelObject;
     private Vector2[] keysInitialPositions;
-    private Vector2 chestLidInitialPosition;
+    private int chestOpenCounter;
 
     private void Start ()
     {
-        chestLidInitialPosition = chestLidImage.transform.position;
+        chestOpenCounter = 0;
 
         StoreInitialKeyPositions();
+        LoadTempObjects();
         RestartGame();
+    }
+
+    private void LoadTempObjects ()
+    {
+        objects?.Clear();
+        objects = ObjectCollection.Instance.tempObjects;
     }
 
     private void RestartGame ()
     {
+
         if (type == ChestType.Shapes)
             InstantiateKeys();
 
@@ -63,12 +70,6 @@ public class Chest : MonoBehaviour
 
     public void InstantiateKeys ()
     {
-        if (keyPrefabs.Length < 3)
-        {
-            Debug.LogError("Not enough key prefabs specified.");
-            return;
-        }
-
         // Clear previous keys
         foreach (GameObject key in chestKeys)
         {
@@ -77,12 +78,12 @@ public class Chest : MonoBehaviour
 
         chestKeys = new GameObject[3];
 
-        List<int> selectedIndices = GetRandomUniqueIndices(3, keyPrefabs.Length);
+        List<int> selectedIndices = GetRandomUniqueIndices(3, objects.Count);
         int suitableKeyIndex = Random.Range(0, 3);
 
         for (int i = 0; i < 3; i++)
         {
-            GameObject keyInstance = Instantiate(keyPrefabs[selectedIndices[i]], keysParent);
+            GameObject keyInstance = Instantiate(objects[selectedIndices[i]].objectPrefab, keysParent);
             RectTransform keyRectTransform = keyInstance.GetComponent<RectTransform>();
             keyRectTransform.anchoredPosition = keysInitialPositions[i];
 
@@ -104,16 +105,20 @@ public class Chest : MonoBehaviour
 
     private void UpdateKeysColor ()
     {
-        List<Color> availableColors = new List<Color>(colors);
+        List<ToriObject> availableColors = new List<ToriObject>(objects);
         List<GameObject> availableKeys = new List<GameObject>(chestKeys);
 
         foreach (GameObject key in chestKeys)
         {
-            Color randomColor = GetRandomElement(availableColors);
+            ChestKey chestKey = key.GetComponentInChildren<ChestKey>();
+            ResetKey(chestKey);
+
+            ToriObject randomColor = GetRandomObject(availableColors);
             availableColors.Remove(randomColor);
 
-            ChestKey chestKey = key.GetComponentInChildren<ChestKey>();
-            chestKey.keyImage.color = randomColor;
+            chestKey.keyImage.color = randomColor.color;
+            chestKey.SetParallelObject(randomColor.parallelObject);
+            chestKey.SetAudioClip(randomColor.clip);
             InitiateChestKey(chestKey);
         }
 
@@ -124,7 +129,7 @@ public class Chest : MonoBehaviour
             availableKeys[i].GetComponent<RectTransform>().anchoredPosition = keysInitialPositions[i];
         }
 
-        GameObject correctKey = GetRandomElement(availableKeys);
+        GameObject correctKey = GetRandomObject(availableKeys);
         availableKeys.Remove(correctKey);
 
         Color correctColor = correctKey.GetComponentInChildren<ChestKey>().keyImage.color;
@@ -133,12 +138,12 @@ public class Chest : MonoBehaviour
         SetSuitableKeyToChest(correctKey);
     }
 
-    private T GetRandomElement<T> ( List<T> list )
+    private ToriObject GetRandomObject<ToriObject> ( List<ToriObject> list )
     {
         if (list == null || list.Count == 0)
         {
             Debug.LogWarning("The list is empty or not assigned.");
-            return default(T);
+            return default(ToriObject);
         }
 
         int randomIndex = Random.Range(0, list.Count);
@@ -153,13 +158,15 @@ public class Chest : MonoBehaviour
         ChestKey chestKey = keyInstance.GetComponentInChildren<ChestKey>();
         chestKey.SetChest(this);
         chestKey.SetTarget(lockRectTransform);
-        chestObjectPrefab = chestKey.parallelObject;
+        parallelObjectPrefab = chestKey.parallelObject;
     }
 
     private void InitiateChestKey ( ChestKey chestKey )
     {
         chestKey.SetChest(this);
         chestKey.EnableDrag();
+
+
     }
 
     private List<int> GetRandomUniqueIndices ( int count, int max )
@@ -202,6 +209,8 @@ public class Chest : MonoBehaviour
     {
         StartCoroutine(MoveAndFadeLidAndFadeOutKeys(chestLidImage.rectTransform, 1.0f, true));
         ShowChestObject();
+        chestOpenCounter++;
+
     }
 
     private IEnumerator MoveAndFadeLidAndFadeOutKeys ( RectTransform lid, float duration, bool isUp )
@@ -244,16 +253,30 @@ public class Chest : MonoBehaviour
 
     private void ShowChestObject ()
     {
-        if (chestObjectPrefab == null) return;
+        if (parallelObjectPrefab == null) return;
 
-        chestObject = Instantiate(chestObjectPrefab, transform.position, Quaternion.identity, gameObject.transform);
-        chestObject.GetComponent<RectTransform>().SetAsFirstSibling();
-        chestObject.GetComponent<ChestObject>().SetChest(this);
+        parallelObject = Instantiate(parallelObjectPrefab, transform.position, Quaternion.identity, gameObject.transform);
+        parallelObject.GetComponent<RectTransform>().SetAsFirstSibling();
+        parallelObject.GetComponent<ChestObject>().SetChest(this);
     }
 
     public void ReloadChest ()
     {
+
+        if (chestOpenCounter == 3)
+        {
+            levelManager.CompleteLevel();
+            return;
+        }
+
         RestartGame();
         ResetChestLidPosition();
+    }
+
+    private void ResetKey ( ChestKey key )
+    {
+        key.SetTarget(null);
+        suitableKey = null;
+        suitableKeySprite = null;
     }
 }

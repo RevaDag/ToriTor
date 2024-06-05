@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
 {
+
+    [SerializeField] private WorldLevelsUI worldLevelsUI;
+    [SerializeField] private Level level;
+
     [SerializeField] private Image levelButtonImage;
     [SerializeField] private Sprite NewLevelSprite;
     [SerializeField] private Sprite OpenLevelSprite;
     [SerializeField] private Sprite lockSprite;
 
-    [SerializeField] private List<CollectibleObject> collectibleObjects = new List<CollectibleObject>();
+    [SerializeField] private List<ToriObject> levelObjects;
 
     private Button button;
 
@@ -44,8 +48,18 @@ public class LevelButton : MonoBehaviour
 
     public void LoadObjectsToObjectCollection ()
     {
-        if (ObjectCollection.Instance != null && collectibleObjects != null)
-            ObjectCollection.Instance.SetTempObjects(collectibleObjects);
+        if (ObjectCollection.Instance == null) return;
+
+        if (levelObjects != null)
+            ObjectCollection.Instance.SetTempObjects(levelObjects);
+
+    }
+
+    public void LoadLevel ()
+    {
+        LoadObjectsToObjectCollection();
+        GameManager.Instance.SetCurrentLevel(level);
+        worldLevelsUI.OpenLevel(level);
     }
 
 }

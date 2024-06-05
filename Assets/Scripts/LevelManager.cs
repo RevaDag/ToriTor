@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private int world;
-    [SerializeField] private int level;
+    private int world;
+    private Level level;
+
+    private void Start ()
+    {
+        level = GameManager.Instance.currentLevel;
+    }
 
     public void CompleteLevel ()
     {

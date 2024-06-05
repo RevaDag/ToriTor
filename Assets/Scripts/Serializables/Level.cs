@@ -4,16 +4,39 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Level
 {
+    public enum LevelType
+    {
+        Chest,
+        Book
+    }
+
+    public LevelType Type;
     public int LevelNumber;
-    public LevelButton LevelButton;
+    public bool IsUnlocked;
     public bool IsOpened;
     public bool IsCompleted;
 
-    public Level ( int levelNumber, LevelButton levelButton, bool isOpened, bool isCompleted )
+    public Level ( LevelType levelType, int levelNumber, LevelButton levelButton, bool isUnlocked, bool isOpened, bool isCompleted )
     {
+        Type = levelType;
         LevelNumber = levelNumber;
-        LevelButton = levelButton;
+        IsUnlocked = isUnlocked;
         IsOpened = isOpened;
         IsCompleted = isCompleted;
+    }
+
+    public void UnlockLevel ()
+    {
+        IsUnlocked = true;
+    }
+
+    public void OpenLevel ()
+    {
+        IsOpened = true;
+    }
+
+    public void CompleteLevel ()
+    {
+        IsCompleted = true;
     }
 }

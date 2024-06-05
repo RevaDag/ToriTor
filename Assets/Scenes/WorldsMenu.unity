@@ -5976,6 +5976,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a809443bdb98f44dbcb5a49841de335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultLevels:
+  - Type: 1
+    LevelNumber: 1
+    IsUnlocked: 1
+    IsOpened: 0
+    IsCompleted: 0
+  - Type: 0
+    LevelNumber: 2
+    IsUnlocked: 0
+    IsOpened: 0
+    IsCompleted: 0
+  - Type: 0
+    LevelNumber: 3
+    IsUnlocked: 0
+    IsOpened: 0
+    IsCompleted: 0
+  - Type: 0
+    LevelNumber: 4
+    IsUnlocked: 0
+    IsOpened: 0
+    IsCompleted: 0
 --- !u!4 &2037425472
 Transform:
   m_ObjectHideFlags: 0

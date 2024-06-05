@@ -49,7 +49,6 @@ public class ChestObject : MonoBehaviour
         yield return new WaitForSeconds(1);
         yield return ReverseMoveAndReposition();
         chest.ReloadChest();
-        //yield return Fade(canvasGroup, fadeDuration, 1, 0);
         Destroy(this.gameObject);
     }
 
