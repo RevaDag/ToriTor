@@ -1,6 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class ObjectCollection : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class ObjectCollection : MonoBehaviour
     private string subjectToLoad;
     private string subjectTitle;
 
-    public List<ToriObject> tempObjects = new List<ToriObject>();
+    //public List<ToriObject> tempObjects = new List<ToriObject>();
+
 
 
     void Awake ()
@@ -28,6 +30,7 @@ public class ObjectCollection : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
     void Start ()
     {
@@ -165,11 +168,11 @@ public class ObjectCollection : MonoBehaviour
         LoadObjectListAndSubject(collectibleObjectsToLoad);
     }
 
-    public void SetTempObjects ( List<ToriObject> collectibleObjects )
-    {
-        tempObjects?.Clear();
-        tempObjects = collectibleObjects;
-    }
+    /*    public void SetTempObjects ( List<ToriObject> collectibleObjects )
+        {
+            tempObjects?.Clear();
+            tempObjects = collectibleObjects;
+        }*/
 
 
     [System.Serializable]

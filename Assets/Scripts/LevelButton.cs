@@ -7,20 +7,26 @@ public class LevelButton : MonoBehaviour
 {
 
     [SerializeField] private WorldLevelsUI worldLevelsUI;
-    [SerializeField] private Level level;
 
     [SerializeField] private Image levelButtonImage;
     [SerializeField] private Sprite NewLevelSprite;
     [SerializeField] private Sprite OpenLevelSprite;
     [SerializeField] private Sprite lockSprite;
 
-    [SerializeField] private List<ToriObject> levelObjects;
+    private int levelNumber;
+
+    //[SerializeField] private List<ToriObject> levelObjects;
 
     private Button button;
 
     private void Awake ()
     {
         button = gameObject.GetComponent<Button>();
+    }
+
+    public void SetLevelNumber ( int levelNumber )
+    {
+        this.levelNumber = levelNumber;
     }
 
     public void SetLevelButtonState ( int state )
@@ -46,20 +52,12 @@ public class LevelButton : MonoBehaviour
         levelButtonImage.SetNativeSize();
     }
 
-    public void LoadObjectsToObjectCollection ()
-    {
-        if (ObjectCollection.Instance == null) return;
-
-        if (levelObjects != null)
-            ObjectCollection.Instance.SetTempObjects(levelObjects);
-
-    }
 
     public void LoadLevel ()
     {
-        LoadObjectsToObjectCollection();
-        GameManager.Instance.SetCurrentLevel(level);
-        worldLevelsUI.OpenLevel(level);
+        GameManager.Instance.SetCurrentLevelNumber(levelNumber);
+        GameManager.Instance.LoadLevelObjects(levelNumber);
+        worldLevelsUI.OpenLevel(levelNumber);
     }
 
 }

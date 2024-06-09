@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,13 +17,20 @@ public class Level
     public bool IsOpened;
     public bool IsCompleted;
 
-    public Level ( LevelType levelType, int levelNumber, LevelButton levelButton, bool isUnlocked, bool isOpened, bool isCompleted )
+    public string Subject;
+    public List<ToriObject> ToriObjects;
+    public int StepsNumber;
+
+    public Level ( LevelType levelType, int levelNumber, bool isUnlocked, bool isOpened, bool isCompleted, string subject, List<ToriObject> toriObjects, int stepsNumber )
     {
         Type = levelType;
         LevelNumber = levelNumber;
         IsUnlocked = isUnlocked;
         IsOpened = isOpened;
         IsCompleted = isCompleted;
+        Subject = subject;
+        ToriObjects = toriObjects;
+        StepsNumber = stepsNumber;
     }
 
     public void UnlockLevel ()

@@ -28,21 +28,21 @@ public class Chest : MonoBehaviour
     private GameObject suitableKey;
     private GameObject parallelObject;
     private Vector2[] keysInitialPositions;
-    private int chestOpenCounter;
+    //private int chestOpenCounter;
 
     private void Start ()
     {
-        chestOpenCounter = 0;
+        //chestOpenCounter = 0;
 
         StoreInitialKeyPositions();
-        LoadTempObjects();
+        LoadLevelObjects();
         RestartGame();
     }
 
-    private void LoadTempObjects ()
+    private void LoadLevelObjects ()
     {
         objects?.Clear();
-        objects = ObjectCollection.Instance.tempObjects;
+        objects = GameManager.Instance.currentLevelObjects;
     }
 
     private void RestartGame ()
@@ -209,8 +209,8 @@ public class Chest : MonoBehaviour
     {
         StartCoroutine(MoveAndFadeLidAndFadeOutKeys(chestLidImage.rectTransform, 1.0f, true));
         ShowChestObject();
-        chestOpenCounter++;
-
+        levelManager.NextStep();
+        //chestOpenCounter++;
     }
 
     private IEnumerator MoveAndFadeLidAndFadeOutKeys ( RectTransform lid, float duration, bool isUp )
@@ -262,15 +262,15 @@ public class Chest : MonoBehaviour
 
     public void ReloadChest ()
     {
+        ResetChestLidPosition();
 
-        if (chestOpenCounter == 3)
+        if (levelManager.stepper.currentStep >= GameManager.Instance.currentLevel.StepsNumber)
         {
             levelManager.CompleteLevel();
             return;
         }
 
         RestartGame();
-        ResetChestLidPosition();
     }
 
     private void ResetKey ( ChestKey key )

@@ -17,24 +17,26 @@ public class WorldLevelsUI : MonoBehaviour
 
         foreach (Level level in levels)
         {
+            levelButtons[level.LevelNumber - 1].SetLevelNumber(level.LevelNumber);
+
             if (level.IsCompleted)
             {
-                OpenLevel(level);
+                OpenLevel(level.LevelNumber);
                 Debug.Log($"Level {level.LevelNumber} is Complete.");
             }
             else if (level.IsOpened)
             {
-                OpenLevel(level);
+                OpenLevel(level.LevelNumber);
                 Debug.Log($"Level {level.LevelNumber} is Open.");
             }
             else if (level.IsUnlocked)
             {
-                UnlockLevel(level);
+                UnlockLevel(level.LevelNumber);
                 Debug.Log($"Level {level.LevelNumber} is Unlocked.");
             }
             else
             {
-                LockLevel(level);
+                LockLevel(level.LevelNumber);
                 Debug.Log($"Level {level.LevelNumber} is Locked.");
             }
         }
@@ -42,29 +44,29 @@ public class WorldLevelsUI : MonoBehaviour
 
 
 
-    public void LockLevel ( Level level )
+    public void LockLevel ( int levelNumber )
     {
-        if (level.LevelNumber > 0 && level.LevelNumber <= levelButtons.Count)
+        if (levelNumber > 0 && levelNumber <= levelButtons.Count)
         {
-            levelButtons[level.LevelNumber - 1].SetLevelButtonState(0); // Locked
+            levelButtons[levelNumber - 1].SetLevelButtonState(0); // Locked
         }
     }
 
-    public void UnlockLevel ( Level level )
+    public void UnlockLevel ( int levelNumber )
     {
-        if (level.LevelNumber > 0 && level.LevelNumber <= levelButtons.Count)
+        if (levelNumber > 0 && levelNumber <= levelButtons.Count)
         {
-            levelButtons[level.LevelNumber - 1].SetLevelButtonState(1); // Unlocked
-            GameManager.Instance.UnlockLevel(level);
+            levelButtons[levelNumber - 1].SetLevelButtonState(1); // Unlocked
+            GameManager.Instance.UnlockLevelByLevelNumber(levelNumber);
         }
     }
 
-    public void OpenLevel ( Level level )
+    public void OpenLevel ( int levelNumber )
     {
-        if (level.LevelNumber > 0 && level.LevelNumber <= levelButtons.Count)
+        if (levelNumber > 0 && levelNumber <= levelButtons.Count)
         {
-            levelButtons[level.LevelNumber - 1].SetLevelButtonState(2); // Open
-            GameManager.Instance.OpenLevel(level);
+            levelButtons[levelNumber - 1].SetLevelButtonState(2); // Open
+            GameManager.Instance.OpenLevelByLevelNumber(levelNumber);
         }
     }
 }

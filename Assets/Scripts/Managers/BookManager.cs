@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 public class BookManager : MonoBehaviour
 {
+    [SerializeField] private LevelManager levelManager;
+
     [SerializeField] private SwipeController swipeController;
 
     [SerializeField] private bool loadFromCollection;
@@ -64,16 +66,16 @@ public class BookManager : MonoBehaviour
         if (loadFromCollection)
             LoadSubjectFromCollection();
         else
-            LoadTempObjects();
+            LoadLevelObjects();
 
         DisplayPage(currentPageIndex);
         StartCoroutine(FadeIn(pageCanvasGroup));
     }
 
-    private void LoadTempObjects ()
+    private void LoadLevelObjects ()
     {
         objects?.Clear();
-        objects = ObjectCollection.Instance.tempObjects;
+        objects = GameManager.Instance.currentLevelObjects;
 
     }
 
@@ -166,7 +168,7 @@ public class BookManager : MonoBehaviour
         SelectLanguage(selectedLang);
         AddObjectToCollection();
 
-        UpdatePreviousAndNextButtonState();
+        UpdatePreviousAndNextButtons();
     }
 
     private void UpdateButtonState ( Button button, Image arrowImage, bool isActive )
@@ -175,22 +177,35 @@ public class BookManager : MonoBehaviour
         arrowImage.color = isActive ? Color.white : transparentWhiteColor;
     }
 
-    private void ChangeNextButtonToCheck ()
-    {
-    }
-
-    private void UpdatePreviousAndNextButtonState ()
+    private void UpdatePreviousAndNextButtons ()
     {
         bool isAtFirstPage = currentPageIndex == 0;
         bool isAtLastPage = currentPageIndex == objects.Count - 1;
 
-        //UpdateButtonState(nextButton, nextArrowImage, !isAtLastPage);
         UpdateButtonState(previousButton, previousArrowImage, !isAtFirstPage);
 
         if (isAtLastPage)
-            nextArrowImage.sprite = checkSprite;
+        {
+            if (loadFromCollection)
+            {
+                nextArrowImage.sprite = leftArrowSprite;
+                UpdateButtonState(nextButton, nextArrowImage, !isAtLastPage);
+            }
+            else
+            {
+                nextArrowImage.sprite = checkSprite;
+                nextButton.onClick.RemoveAllListeners();
+                nextButton.onClick.AddListener(levelManager.CompleteLevel);
+            }
+        }
+
         else
+        {
             nextArrowImage.sprite = leftArrowSprite;
+            nextButton.onClick.RemoveAllListeners();
+            UpdateButtonState(nextButton, nextArrowImage, !isAtLastPage);
+        }
+
     }
 
     private IEnumerator FadeIn ( CanvasGroup canvasGroup )

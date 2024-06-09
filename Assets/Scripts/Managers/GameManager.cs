@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public List<Level> defaultLevels;
 
+    public List<ToriObject> currentLevelObjects;
+
 
 
     void Awake ()
@@ -69,26 +71,35 @@ public class GameManager : MonoBehaviour
         Debug.Log("Progress has been reset.");
     }
 
-    public void SetCurrentLevel ( Level level )
+    public void SetCurrentLevelNumber ( int levelNumber )
     {
-        currentLevel = level;
+        currentLevel =
+            playerProgress.Levels.Find(l => l.LevelNumber == levelNumber);
     }
 
-    public void OpenLevel ( Level level )
+    public void LoadLevelObjects ( int levelNumber )
     {
-        playerProgress.Levels.Find(l => l.LevelNumber == level.LevelNumber).OpenLevel();
+        currentLevelObjects =
+            defaultLevels.Find(l => l.LevelNumber == levelNumber).ToriObjects;
+    }
+
+
+
+    public void OpenLevelByLevelNumber ( int levelNumber )
+    {
+        playerProgress.Levels.Find(l => l.LevelNumber == levelNumber).OpenLevel();
         SavePlayerProgress();
     }
 
-    public void UnlockLevel ( Level level )
+    public void UnlockLevelByLevelNumber ( int levelNumber )
     {
-        playerProgress.Levels.Find(l => l.LevelNumber == level.LevelNumber).UnlockLevel();
+        playerProgress.Levels.Find(l => l.LevelNumber == levelNumber).UnlockLevel();
         SavePlayerProgress();
     }
 
-    public void CompleteLevel ( Level level )
+    public void CompleteLevelByLevelNumber ( int levelNumber )
     {
-        playerProgress.Levels.Find(l => l.LevelNumber == level.LevelNumber).CompleteLevel();
+        playerProgress.Levels.Find(l => l.LevelNumber == levelNumber).CompleteLevel();
         SavePlayerProgress();
         Debug.Log("Level " + currentLevel.LevelNumber + " completed!");
 
