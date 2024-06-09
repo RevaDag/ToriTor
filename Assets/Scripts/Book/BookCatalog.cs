@@ -6,6 +6,11 @@ public class BookCatalog : MonoBehaviour
 {
     public List<SubjectButton> subjectButtons = new List<SubjectButton>();
 
+
+    private void Start ()
+    {
+        ShowHideSubjectButtons();
+    }
     public void ShowHideSubjectButtons ()
     {
         if (ObjectCollection.Instance == null) return;

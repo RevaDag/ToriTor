@@ -14,9 +14,6 @@ public class ObjectCollection : MonoBehaviour
     private string subjectToLoad;
     private string subjectTitle;
 
-    //public List<ToriObject> tempObjects = new List<ToriObject>();
-
-
 
     void Awake ()
     {

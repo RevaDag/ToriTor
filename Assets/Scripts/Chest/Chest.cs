@@ -28,12 +28,11 @@ public class Chest : MonoBehaviour
     private GameObject suitableKey;
     private GameObject parallelObject;
     private Vector2[] keysInitialPositions;
-    //private int chestOpenCounter;
+    private int currentSuitableKeyIndex = 0;
+
 
     private void Start ()
     {
-        //chestOpenCounter = 0;
-
         StoreInitialKeyPositions();
         LoadLevelObjects();
         RestartGame();
@@ -79,7 +78,9 @@ public class Chest : MonoBehaviour
         chestKeys = new GameObject[3];
 
         List<int> selectedIndices = GetRandomUniqueIndices(3, objects.Count);
-        int suitableKeyIndex = Random.Range(0, 3);
+        //int suitableKeyIndex = Random.Range(0, 3);
+        int suitableKeyIndex = currentSuitableKeyIndex % 3; // Use the currentSuitableKeyIndex to determine the suitable key
+
 
         for (int i = 0; i < 3; i++)
         {
@@ -101,6 +102,8 @@ public class Chest : MonoBehaviour
         }
 
         UpdateLockImage();
+
+        currentSuitableKeyIndex++;
     }
 
     private void UpdateKeysColor ()
@@ -108,35 +111,41 @@ public class Chest : MonoBehaviour
         List<ToriObject> availableColors = new List<ToriObject>(objects);
         List<GameObject> availableKeys = new List<GameObject>(chestKeys);
 
-        foreach (GameObject key in chestKeys)
+        for (int i = 0; i < chestKeys.Length; i++)
         {
-            ChestKey chestKey = key.GetComponentInChildren<ChestKey>();
+            ChestKey chestKey = chestKeys[i].GetComponentInChildren<ChestKey>();
             ResetKey(chestKey);
 
-            ToriObject randomColor = GetRandomObject(availableColors);
-            availableColors.Remove(randomColor);
+            if (i < availableColors.Count)
+            {
+                ToriObject colorObject = availableColors[i];
 
-            chestKey.keyImage.color = randomColor.color;
-            chestKey.SetParallelObject(randomColor.parallelObject);
-            chestKey.SetAudioClip(randomColor.clip);
-            InitiateChestKey(chestKey);
+                chestKey.keyImage.color = colorObject.color;
+                chestKey.SetParallelObject(colorObject.parallelObject);
+                chestKey.SetAudioClip(colorObject.clip);
+                InitiateChestKey(chestKey);
+            }
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < chestKeys.Length; i++)
         {
             availableKeys[i].transform.localScale = Vector3.one;
             availableKeys[i].transform.SetParent(keysParent, false);
             availableKeys[i].GetComponent<RectTransform>().anchoredPosition = keysInitialPositions[i];
         }
 
-        GameObject correctKey = GetRandomObject(availableKeys);
-        availableKeys.Remove(correctKey);
-
+        // Determine the suitable key based on the currentSuitableKeyIndex
+        GameObject correctKey = chestKeys[currentSuitableKeyIndex % chestKeys.Length];
         Color correctColor = correctKey.GetComponentInChildren<ChestKey>().keyImage.color;
         lockBackground.color = correctColor;
 
         SetSuitableKeyToChest(correctKey);
+
+        // Increment the currentSuitableKeyIndex for the next suitable key
+        currentSuitableKeyIndex++;
     }
+
+
 
     private ToriObject GetRandomObject<ToriObject> ( List<ToriObject> list )
     {
