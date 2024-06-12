@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
 
     public void NextStep ()
     {
-        stepper.activateNextStep();
+        stepper?.activateNextStep();
     }
 
     public void CompleteLevel ()

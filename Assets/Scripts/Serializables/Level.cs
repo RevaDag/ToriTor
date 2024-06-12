@@ -8,7 +8,8 @@ public class Level
     public enum LevelType
     {
         Chest,
-        Book
+        Book,
+        Speech
     }
 
     public LevelType Type;

@@ -67,6 +67,10 @@ public class Chest : MonoBehaviour
         }
     }
 
+
+    //Needs a refactor -
+    //use exsiting gameobjects as keys and change their params
+
     public void InstantiateKeys ()
     {
         // Clear previous keys
@@ -143,20 +147,6 @@ public class Chest : MonoBehaviour
 
         // Increment the currentSuitableKeyIndex for the next suitable key
         currentSuitableKeyIndex++;
-    }
-
-
-
-    private ToriObject GetRandomObject<ToriObject> ( List<ToriObject> list )
-    {
-        if (list == null || list.Count == 0)
-        {
-            Debug.LogWarning("The list is empty or not assigned.");
-            return default(ToriObject);
-        }
-
-        int randomIndex = Random.Range(0, list.Count);
-        return list[randomIndex];
     }
 
     private void SetSuitableKeyToChest ( GameObject keyInstance )

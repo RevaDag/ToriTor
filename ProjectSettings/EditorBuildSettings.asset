@@ -8,22 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WorldsMenu.unity
     guid: 65e110ed37a427a44a5f0e326a92f351
-  - enabled: 0
-    path: Assets/Scenes/Books/AnimalsBook.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Books/Book.unity
     guid: 9e6f645798ace804da14cc297123f9b5
   - enabled: 1
     path: Assets/Scenes/Worlds/MushroomGarden.unity
     guid: 109a5af5a5e16714a96b6019f46c80ac
-  - enabled: 0
-    path: Assets/Scenes/Books/CollectionBook_OLD.unity
-    guid: 8a734780712af7c40bceb1b1bb91412a
   - enabled: 1
     path: Assets/Scenes/Treasure/ColorsTreasure.unity
     guid: f954884889669b0498620b40f2aa8ad8
   - enabled: 1
     path: Assets/Scenes/Books/CollectionBook.unity
     guid: cd519da0ae210f24d804648c6dfd9201
+  - enabled: 1
+    path: Assets/Scenes/SpeechAndObject.unity
+    guid: e8584ef077133a34587af3aee1b8db7e
   m_configObjects: {}
