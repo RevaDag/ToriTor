@@ -5,12 +5,25 @@ using UnityEngine;
 public class AnswersManager : MonoBehaviour
 {
     [SerializeField] private LevelManager levelManager;
+    [SerializeField] private ToriTheCat toriTheCat;
+    [SerializeField] private FeedbackManager feedbackManager;
     [SerializeField] private QuestionBubble questionBubble;
     [SerializeField] private List<Answer> answers;
     [SerializeField] private Transform answersParent;
 
     private int currentToriObjectIndex;
     private List<ToriObject> toriObjects;
+
+    private void OnEnable ()
+    {
+        toriTheCat.OnBubbleClicked += OnToriBubbleClicked;
+    }
+
+    private void OnDisable ()
+    {
+        toriTheCat.OnBubbleClicked -= OnToriBubbleClicked;
+
+    }
 
     private void Start ()
     {
@@ -46,12 +59,18 @@ public class AnswersManager : MonoBehaviour
 
         questionBubble.SetQuestionBubble(correctAnswer.toriObject);
 
+        currentToriObjectIndex++;
     }
 
-    public void NextAnswer ()
+    public void CurrentAnswer ()
     {
-        currentToriObjectIndex++;
+        questionBubble.FadeOut();
+        feedbackManager.SendFeedback(0);
         levelManager.NextStep();
+    }
+
+    private void OnToriBubbleClicked ()
+    {
         SetAnswers();
     }
 }

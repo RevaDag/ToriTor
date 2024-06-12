@@ -909,6 +909,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1554496900}
+  toriTheCat: {fileID: 1582284799}
+  feedbackManager: {fileID: 1582284800}
   questionBubble: {fileID: 105135273}
   answers:
   - {fileID: 1164628028}
@@ -2979,6 +2981,7 @@ GameObject:
   - component: {fileID: 1582284797}
   - component: {fileID: 1582284796}
   - component: {fileID: 1582284799}
+  - component: {fileID: 1582284800}
   - component: {fileID: 1582284798}
   m_Layer: 5
   m_Name: ToriTheCat
@@ -3162,6 +3165,42 @@ MonoBehaviour:
   audioSource: {fileID: 1582284798}
   toriParentFader: {fileID: 1475270076}
   textBubbleFader: {fileID: 2000413978}
+--- !u!114 &1582284800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582284794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13da241af3416ed4da4fc957f356b7a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toriTheCat: {fileID: 1582284799}
+  positiveFeedback:
+  - text: "\u05DB\u05DC \u05D4\u05DB\u05D1\u05D5\u05D3! "
+    audioClip: {fileID: 0}
+  - text: "\u05E2\u05D1\u05D5\u05D3\u05D4 \u05DE\u05E6\u05D5\u05D9\u05E0\u05EA"
+    audioClip: {fileID: 0}
+  - text: "\u05D4\u05DE\u05E9\u05DA \u05DB\u05DA!"
+    audioClip: {fileID: 0}
+  - text: "\u05D6\u05D4 \u05D4\u05D9\u05D4 \u05DE\u05D3\u05D4\u05D9\u05DD!"
+    audioClip: {fileID: 0}
+  - text: "\u05D9\u05E4\u05D4 \u05DE\u05D0\u05D5\u05D3!"
+    audioClip: {fileID: 0}
+  encouragementFeedback:
+  - text: "\u05E0\u05E1\u05D4 \u05E9\u05D5\u05D1, \u05D6\u05D4 \u05D9\u05E6\u05DC\u05D9\u05D7!"
+    audioClip: {fileID: 0}
+  - text: "\u05DB\u05DE\u05E2\u05D8, \u05D1\u05D5\u05D0\u05D5 \u05E0\u05E0\u05E1\u05D4
+      \u05E9\u05D5\u05D1"
+    audioClip: {fileID: 0}
+  - text: "\u05D0\u05E0\u05D7\u05E0\u05D5 \u05D1\u05DB\u05D9\u05D5\u05D5\u05DF \u05D4\u05E0\u05DB\u05D5\u05DF..."
+    audioClip: {fileID: 0}
+  - text: "\u05DC\u05DE\u05D9\u05D3\u05D4 \u05D4\u05D9\u05D0 \u05D7\u05DC\u05E7 \u05DE\u05D4\u05DE\u05E9\u05D7\u05E7"
+    audioClip: {fileID: 0}
+  - text: "\u05D1\u05D5\u05D0\u05D5 \u05E0\u05E0\u05E1\u05D4 \u05E9\u05E0\u05D9\u05EA"
+    audioClip: {fileID: 0}
 --- !u!1 &1629147720
 GameObject:
   m_ObjectHideFlags: 0
@@ -4977,7 +5016,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1582284799}
         m_TargetAssemblyTypeName: ToriTheCat, Assembly-CSharp
-        m_MethodName: OnSpeechBubbleClick
+        m_MethodName: OnBubbleClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

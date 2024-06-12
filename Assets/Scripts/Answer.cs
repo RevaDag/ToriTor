@@ -44,7 +44,7 @@ public class Answer : MonoBehaviour
         if (isCorrect)
         {
             //FEEDBACK - TBD
-            answersManager.NextAnswer();
+            answersManager.CurrentAnswer();
             Debug.Log("CORRECT!");
         }
     }

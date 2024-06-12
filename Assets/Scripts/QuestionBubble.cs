@@ -23,12 +23,12 @@ public class QuestionBubble : MonoBehaviour
 
     #region Fader
 
-    public void FadeIn ( Fader fader )
+    public void FadeIn ()
     {
         fader?.FadeIn();
     }
 
-    public void FadeOut ( Fader fader )
+    public void FadeOut ()
     {
         fader?.FadeOut();
     }
@@ -39,7 +39,7 @@ public class QuestionBubble : MonoBehaviour
     {
         questionText.text = toriObject.objectName;
         audioSource.clip = toriObject.clip;
-        FadeIn(fader);
+        FadeIn();
     }
 
     public void OnClickQuestionBubble ()

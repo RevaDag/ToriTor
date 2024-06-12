@@ -6,15 +6,10 @@ using UnityEngine.UI;
 
 public class ToriTheCat : MonoBehaviour
 {
-    [System.Serializable]
-    public class Line
-    {
-        public string text;
-        public AudioClip audioClip;
-    }
+
 
     [SerializeField] private TMP_Text textBubble;
-    [SerializeField] private Line[] lines;
+    [SerializeField] private List<Line> lines;
     [SerializeField] private float delay = 0.1f;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Fader toriParentFader;
@@ -24,20 +19,17 @@ public class ToriTheCat : MonoBehaviour
     private bool isTyping = false;
     private Coroutine typingCoroutine;
 
+    public delegate void BubbleClickedEventHandler ();
+    public event BubbleClickedEventHandler OnBubbleClicked;
+
 
     private void Start ()
     {
         textBubble.text = "";
 
-        //StartTalking();
     }
 
-    private void StartTalking ()
-    {
-        FadeIn(toriParentFader);
-        FadeIn(textBubbleFader);
-        StartNextLine();
-    }
+
 
     #region Fader
 
@@ -53,9 +45,30 @@ public class ToriTheCat : MonoBehaviour
 
     #endregion
 
+    public void SetLineListAndPlay ( List<Line> lineList )
+    {
+        if (lineList == null || lineList.Count == 0)
+        {
+            Debug.LogWarning("Line list is empty or null.");
+            return;
+        }
+
+        lines = lineList;
+        currentLineIndex = 0;
+        StartTalking();
+    }
+
+    private void StartTalking ()
+    {
+        FadeIn(toriParentFader);
+        FadeIn(textBubbleFader);
+        StartNextLine();
+    }
+
+
     public void StartNextLine ()
     {
-        if (!isTyping && currentLineIndex < lines.Length)
+        if (!isTyping && currentLineIndex < lines.Count)
         {
             typingCoroutine = StartCoroutine(TypeText(lines[currentLineIndex]));
         }
@@ -79,7 +92,7 @@ public class ToriTheCat : MonoBehaviour
         currentLineIndex++;
     }
 
-    public void OnSpeechBubbleClick ()
+    public void OnBubbleClick ()
     {
         if (isTyping)
         {
@@ -89,15 +102,39 @@ public class ToriTheCat : MonoBehaviour
             isTyping = false;
             currentLineIndex++;
         }
-        else if (currentLineIndex < lines.Length)
+        else if (currentLineIndex < lines.Count)
         {
             // If not typing, start typing the next line
             StartNextLine();
         }
         else
         {
-            FadeOut(toriParentFader);
+            FadeOut(textBubbleFader);
         }
+
+        OnBubbleClicked?.Invoke();
     }
+
+    public void ShowFeedback ( Line feedback )
+    {
+        if (isTyping)
+        {
+            StopCoroutine(typingCoroutine);
+            isTyping = false;
+        }
+
+        textBubble.text = feedback.text;
+        audioSource.Stop(); // Stop any currently playing audio clip
+
+        if (feedback.audioClip != null)
+        {
+            audioSource.clip = feedback.audioClip;
+            audioSource.Play();
+        }
+
+        FadeIn(toriParentFader);
+        FadeIn(textBubbleFader);
+    }
+
 
 }
