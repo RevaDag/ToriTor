@@ -1,9 +1,17 @@
 using UnityEngine;
 
 [System.Serializable]
-    public class Line
+public class Line
+{
+    public enum Type
     {
-        public string text;
-        public AudioClip audioClip;
+        Dialog,
+        Feedback,
+        Question
     }
+
+    public Type type;
+    public string text;
+    public AudioClip audioClip;
+}
 

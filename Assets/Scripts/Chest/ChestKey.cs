@@ -6,17 +6,11 @@ using UnityEngine.UI;
 
 public class ChestKey : MonoBehaviour
 {
+    public Answer answer;
+
     private Chest chest;
-    public GameObject parallelObject;
-    public Image keyImage;
-
     private RectTransform target;
-    private AudioSource audioSource;
 
-    private void Awake ()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
 
     public void SetChest ( Chest chest )
     {
@@ -26,11 +20,6 @@ public class ChestKey : MonoBehaviour
     public void SetTarget ( RectTransform target )
     {
         this.target = target;
-    }
-
-    public void SetParallelObject ( GameObject parallelObject )
-    {
-        this.parallelObject = parallelObject;
     }
 
     public void CheckTarget ( PointerEventData eventData )
@@ -45,8 +34,8 @@ public class ChestKey : MonoBehaviour
 
     private void OpenLock ()
     {
+        answer.audioSource.Play();
         chest.OpenChest();
-        PlayAudioSource();
         DisableDrag();
     }
 
@@ -61,14 +50,6 @@ public class ChestKey : MonoBehaviour
 
     }
 
-    public void SetAudioClip ( AudioClip clip )
-    {
-        audioSource.clip = clip;
-    }
 
-    private void PlayAudioSource ()
-    {
-        audioSource.Play();
-    }
 
 }

@@ -11,6 +11,8 @@ public class Chest : MonoBehaviour
         Colors
     }
 
+    public AnswersManager answersManager;
+
     [SerializeField] private ChestType type;
     [SerializeField] private LevelManager levelManager;
 
@@ -20,173 +22,70 @@ public class Chest : MonoBehaviour
 
     [SerializeField] private RectTransform lockRectTransform;
     [SerializeField] private Image lockBackground;
-    [SerializeField] private Transform keysParent;
-    [SerializeField] GameObject[] chestKeys;
     [SerializeField] private List<ToriObject> objects;
 
     private Sprite suitableKeySprite;
-    private GameObject suitableKey;
+    private ChestKey suitableKey;
     private GameObject parallelObject;
-    private Vector2[] keysInitialPositions;
-    private int currentSuitableKeyIndex = 0;
 
 
-    private void Start ()
+    private void OnEnable ()
     {
-        StoreInitialKeyPositions();
-        LoadLevelObjects();
-        RestartGame();
+        answersManager.OnAnswersManagerReady += OnAnswersManagerReady;
     }
 
-    private void LoadLevelObjects ()
+    private void OnDisable ()
     {
-        objects?.Clear();
-        objects = GameManager.Instance.currentLevelObjects;
+        answersManager.OnAnswersManagerReady -= OnAnswersManagerReady;
+
     }
 
-    private void RestartGame ()
+    private void OnAnswersManagerReady ()
     {
-
-        if (type == ChestType.Shapes)
-            InstantiateKeys();
-
-        if (type == ChestType.Colors)
-            UpdateKeysColor();
-    }
-
-    private void StoreInitialKeyPositions ()
-    {
-        keysInitialPositions = new Vector2[keysParent.childCount];
-        for (int i = 0; i < keysParent.childCount; i++)
-        {
-            RectTransform keyRectTransform = keysParent.GetChild(i).GetComponent<RectTransform>();
-            if (keyRectTransform != null)
-            {
-                keysInitialPositions[i] = keyRectTransform.anchoredPosition;
-            }
-        }
+        ResetKeysAndLock();
     }
 
 
-    //Needs a refactor -
-    //use exsiting gameobjects as keys and change their params
-
-    public void InstantiateKeys ()
+    private void ResetKeysAndLock ()
     {
-        // Clear previous keys
-        foreach (GameObject key in chestKeys)
-        {
-            Destroy(key);
-        }
-
-        chestKeys = new GameObject[3];
-
-        List<int> selectedIndices = GetRandomUniqueIndices(3, objects.Count);
-        //int suitableKeyIndex = Random.Range(0, 3);
-        int suitableKeyIndex = currentSuitableKeyIndex % 3; // Use the currentSuitableKeyIndex to determine the suitable key
-
-
-        for (int i = 0; i < 3; i++)
-        {
-            GameObject keyInstance = Instantiate(objects[selectedIndices[i]].objectPrefab, keysParent);
-            RectTransform keyRectTransform = keyInstance.GetComponent<RectTransform>();
-            keyRectTransform.anchoredPosition = keysInitialPositions[i];
-
-            ChestKey chestKey = keyInstance.GetComponent<ChestKey>();
-
-            InitiateChestKey(chestKey);
-
-            chestKeys[i] = keyInstance;
-
-            CanvasGroup canvasGroup = keysParent.GetComponent<CanvasGroup>();
-            canvasGroup.alpha = 1f;
-
-            if (i == suitableKeyIndex)
-                SetSuitableKeyToChest(keyInstance);
-        }
-
+        UpdateKeys();
         UpdateLockImage();
-
-        currentSuitableKeyIndex++;
     }
 
-    private void UpdateKeysColor ()
+
+    private void UpdateKeys ()
     {
-        List<ToriObject> availableColors = new List<ToriObject>(objects);
-        List<GameObject> availableKeys = new List<GameObject>(chestKeys);
+        List<Answer> allAnswers = answersManager.GetAnswerList();
 
-        for (int i = 0; i < chestKeys.Length; i++)
+        foreach (Answer answer in allAnswers)
         {
-            ChestKey chestKey = chestKeys[i].GetComponentInChildren<ChestKey>();
-            ResetKey(chestKey);
-
-            if (i < availableColors.Count)
-            {
-                ToriObject colorObject = availableColors[i];
-
-                chestKey.keyImage.color = colorObject.color;
-                chestKey.SetParallelObject(colorObject.parallelObject);
-                chestKey.SetAudioClip(colorObject.clip);
-                InitiateChestKey(chestKey);
-            }
+            ResetKey(answer.GetComponent<ChestKey>());
         }
 
-        for (int i = 0; i < chestKeys.Length; i++)
-        {
-            availableKeys[i].transform.localScale = Vector3.one;
-            availableKeys[i].transform.SetParent(keysParent, false);
-            availableKeys[i].GetComponent<RectTransform>().anchoredPosition = keysInitialPositions[i];
-        }
-
-        // Determine the suitable key based on the currentSuitableKeyIndex
-        GameObject correctKey = chestKeys[currentSuitableKeyIndex % chestKeys.Length];
-        Color correctColor = correctKey.GetComponentInChildren<ChestKey>().keyImage.color;
-        lockBackground.color = correctColor;
-
-        SetSuitableKeyToChest(correctKey);
-
-        // Increment the currentSuitableKeyIndex for the next suitable key
-        currentSuitableKeyIndex++;
+        ChestKey correctChestKey = answersManager.currentCorrectAnswer.GetComponent<ChestKey>();
+        SetSuitableKeyToChest(correctChestKey);
     }
 
-    private void SetSuitableKeyToChest ( GameObject keyInstance )
+    private void SetSuitableKeyToChest ( ChestKey chestKey )
     {
-        suitableKey = keyInstance;
-        suitableKeySprite = keyInstance.GetComponentInChildren<ChestKey>().keyImage.sprite;
+        suitableKey = chestKey;
+        suitableKeySprite = chestKey.answer.toriObject.sprite;
 
-        ChestKey chestKey = keyInstance.GetComponentInChildren<ChestKey>();
+
         chestKey.SetChest(this);
         chestKey.SetTarget(lockRectTransform);
-        parallelObjectPrefab = chestKey.parallelObject;
+        parallelObjectPrefab = chestKey.answer.toriObject.parallelObject;
     }
 
-    private void InitiateChestKey ( ChestKey chestKey )
-    {
-        chestKey.SetChest(this);
-        chestKey.EnableDrag();
-
-
-    }
-
-    private List<int> GetRandomUniqueIndices ( int count, int max )
-    {
-        List<int> indices = new List<int>();
-        while (indices.Count < count)
-        {
-            int randomIndex = Random.Range(0, max);
-            if (!indices.Contains(randomIndex))
-            {
-                indices.Add(randomIndex);
-            }
-        }
-        return indices;
-    }
 
     private void UpdateLockImage ()
     {
         Image lockImage = lockRectTransform.GetComponent<Image>();
         lockImage.sprite = suitableKeySprite;
         lockImage.SetNativeSize();
+
+        Color correctColor = answersManager.currentCorrectAnswer.toriObject.color;
+        lockBackground.color = correctColor;
     }
 
     private void ResetChestLidPosition ()
@@ -208,13 +107,12 @@ public class Chest : MonoBehaviour
     {
         StartCoroutine(MoveAndFadeLidAndFadeOutKeys(chestLidImage.rectTransform, 1.0f, true));
         ShowChestObject();
-        levelManager.NextStep();
-        //chestOpenCounter++;
+        //levelManager.NextStep();
     }
 
     private IEnumerator MoveAndFadeLidAndFadeOutKeys ( RectTransform lid, float duration, bool isUp )
     {
-        CanvasGroup keysCanvasGroup = keysParent.GetComponent<CanvasGroup>();
+        CanvasGroup keysCanvasGroup = answersManager.GetComponent<CanvasGroup>();
         CanvasGroup lidCanvasGroup = chestLidImage.GetComponent<CanvasGroup>();
 
         Vector3 startPosition = lid.localPosition;
@@ -259,22 +157,23 @@ public class Chest : MonoBehaviour
         parallelObject.GetComponent<ChestObject>().SetChest(this);
     }
 
+    public void PositiveFeedbackRequest ()
+    {
+        answersManager.feedbackManager.SendFeedback(0);
+    }
+
     public void ReloadChest ()
     {
         ResetChestLidPosition();
+        answersManager.SetAnswers();
 
-        if (levelManager.stepper.currentStep >= GameManager.Instance.currentLevel.StepsNumber)
-        {
-            levelManager.CompleteLevel();
-            return;
-        }
-
-        RestartGame();
+        ResetKeysAndLock();
     }
 
     private void ResetKey ( ChestKey key )
     {
         key.SetTarget(null);
+        key.EnableDrag();
         suitableKey = null;
         suitableKeySprite = null;
     }

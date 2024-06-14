@@ -28,4 +28,12 @@ public class LevelManager : MonoBehaviour
             levelSummary.ShowSummary();
         }
     }
+
+    public bool IsLastStep ()
+    {
+        if (stepper.currentStep == stepper.steps.Count)
+            return true;
+        else
+            return false;
+    }
 }

@@ -125,7 +125,6 @@ public class BookManager : MonoBehaviour
     {
         if (currentPageIndex == objects.Count - 1) return;
 
-        //currentPageIndex = (currentPageIndex + 1) % objects.Count;
         currentPageIndex++;
         StartCoroutine(ChangePage(currentPageIndex));
     }
@@ -134,7 +133,6 @@ public class BookManager : MonoBehaviour
     {
         if (currentPageIndex == 0)
         {
-            //currentPageIndex = objects.Count - 1;
             return;
         }
         else

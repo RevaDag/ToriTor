@@ -8,14 +8,18 @@ public class Stepper : MonoBehaviour
     [SerializeField] private GameObject stepPrefab;
     [SerializeField] private Sprite activeStepSprite;
 
-    private List<GameObject> steps = new List<GameObject>();
+    public List<GameObject> steps { get; private set; }
     public int currentStep { get; private set; }
 
+    private void Awake ()
+    {
+        steps = new List<GameObject>();
+    }
 
     private void Start ()
     {
         GetSteps();
-        activateNextStep();
+        //activateNextStep();
     }
 
     private void GetSteps ()
@@ -31,6 +35,8 @@ public class Stepper : MonoBehaviour
 
     public void activateNextStep ()
     {
+        if (currentStep >= steps.Count) return;
+
         steps[currentStep].GetComponent<Image>().sprite = activeStepSprite;
         currentStep++;
     }

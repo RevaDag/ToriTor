@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class FeedbackManager : MonoBehaviour
 {
-    [SerializeField] private ToriTheCat toriTheCat;
+    [SerializeField] private DialogManager dialogManager;
 
     [SerializeField] private List<Line> positiveFeedback;
     [SerializeField] private List<Line> encouragementFeedback;
 
     private int previousFeedbackIndex = -1;
+
 
     private Line RandomFeedback ( List<Line> feedbackList )
     {
@@ -25,9 +26,12 @@ public class FeedbackManager : MonoBehaviour
             newIndex = Random.Range(0, feedbackList.Count);
         } while (newIndex == previousFeedbackIndex && feedbackList.Count > 1);
 
-        Debug.Log($"Selected feedback index: {newIndex} (previous: {previousFeedbackIndex})");
+        //Debug.Log($"Selected feedback index: {newIndex} (previous: {previousFeedbackIndex})");
 
         previousFeedbackIndex = newIndex;
+
+        feedbackList[newIndex].type = Line.Type.Feedback;
+
         return feedbackList[newIndex];
     }
 
@@ -51,7 +55,8 @@ public class FeedbackManager : MonoBehaviour
         if (feedback != null)
         {
             List<Line> lineList = new List<Line> { feedback };
-            toriTheCat.SetLineListAndPlay(lineList);
+            dialogManager.SetLineListAndPlay(lineList);
         }
     }
+
 }

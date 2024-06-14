@@ -47,6 +47,7 @@ public class ChestObject : MonoBehaviour
     {
         audioSource.Play();
         yield return new WaitForSeconds(1);
+        chest.answersManager.CorrectAnswer();
         yield return ReverseMoveAndReposition();
         chest.ReloadChest();
         Destroy(this.gameObject);

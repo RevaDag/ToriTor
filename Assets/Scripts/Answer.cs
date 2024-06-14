@@ -11,21 +11,26 @@ public class Answer : MonoBehaviour
     private Vector3 initialScale;
     private Vector2 initialPosition;
     private Transform initialParent;
+    private RectTransform rectTransform;
+
 
     public ToriObject toriObject { get; private set; }
     private AnswersManager answersManager;
 
     private void Awake ()
     {
-        initialPosition = transform.position;
-        initialScale = transform.localScale;
+        rectTransform = GetComponent<RectTransform>();
+
         initialParent = transform.parent;
+        initialScale = rectTransform.localScale;
+        initialPosition = rectTransform.anchoredPosition;
     }
 
     public void SetAnswer ( ToriObject _toriObject )
     {
         toriObject = _toriObject;
         image.sprite = _toriObject.sprite;
+        image.color = _toriObject.color;
         audioSource.clip = _toriObject.clip;
     }
 
@@ -43,18 +48,22 @@ public class Answer : MonoBehaviour
 
         if (isCorrect)
         {
-            //FEEDBACK - TBD
-            answersManager.CurrentAnswer();
+            answersManager.CorrectAnswer();
             Debug.Log("CORRECT!");
+        }
+        else
+        {
+            answersManager.WrongAnswer();
+            Debug.Log("WRONG!");
         }
     }
 
     public void ResetAnswer ()
     {
         isCorrect = false;
-        transform.localScale = initialScale;
-        transform.position = initialPosition;
         transform.SetParent(initialParent);
+        rectTransform.localScale = initialScale;
+        rectTransform.anchoredPosition = initialPosition;
     }
 
 }

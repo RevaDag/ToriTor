@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class AnswersManager : MonoBehaviour
 {
-    [SerializeField] private LevelManager levelManager;
-    [SerializeField] private ToriTheCat toriTheCat;
-    [SerializeField] private FeedbackManager feedbackManager;
-    [SerializeField] private QuestionBubble questionBubble;
+    public FeedbackManager feedbackManager;
+    public LevelManager levelManager;
+    public DialogManager dialogManager;
+
     [SerializeField] private List<Answer> answers;
     [SerializeField] private Transform answersParent;
+    [SerializeField] private bool isToriAskQuestions;
 
-    private int currentToriObjectIndex;
+    public Answer currentCorrectAnswer { get; private set; }
     private List<ToriObject> toriObjects;
+    private bool isAnswerCorrect;
+
+    public delegate void AnswersManagerEventHandler ();
+    public event AnswersManagerEventHandler OnAnswersManagerReady;
+
 
     private void OnEnable ()
     {
-        toriTheCat.OnBubbleClicked += OnToriBubbleClicked;
+        dialogManager.OnFeedbackClicked += FeedbackClicked;
     }
 
     private void OnDisable ()
     {
-        toriTheCat.OnBubbleClicked -= OnToriBubbleClicked;
-
+        dialogManager.OnFeedbackClicked -= FeedbackClicked;
     }
+
 
     private void Start ()
     {
@@ -54,23 +60,68 @@ public class AnswersManager : MonoBehaviour
             }
         }
 
-        Answer correctAnswer = answers[currentToriObjectIndex % answers.Count];
-        correctAnswer.SetAsCorrect();
+        currentCorrectAnswer = answers[levelManager.stepper.currentStep % answers.Count];
 
-        questionBubble.SetQuestionBubble(correctAnswer.toriObject);
+        currentCorrectAnswer.SetAsCorrect();
 
-        currentToriObjectIndex++;
+        SendToriQuestion(currentCorrectAnswer);
+
+        OnAnswersManagerReady?.Invoke();
     }
 
-    public void CurrentAnswer ()
+    private void SendToriQuestion ( Answer correctAnswer )
     {
-        questionBubble.FadeOut();
+        if (!isToriAskQuestions) return;
+
+        Line questionLine = new Line();
+        questionLine.text = correctAnswer.toriObject.objectName;
+        questionLine.audioClip = correctAnswer.toriObject.clip;
+        questionLine.type = Line.Type.Question;
+
+        List<Line> lines = new List<Line>();
+        lines.Add(questionLine);
+
+        dialogManager.SetLineListAndPlay(lines);
+    }
+
+    public void CorrectAnswer ()
+    {
+        isAnswerCorrect = true;
+        dialogManager.FadeOut();
         feedbackManager.SendFeedback(0);
         levelManager.NextStep();
     }
 
-    private void OnToriBubbleClicked ()
+    public void WrongAnswer ()
     {
-        SetAnswers();
+        isAnswerCorrect = false;
+        dialogManager.FadeOut();
+        feedbackManager.SendFeedback(1);
     }
+
+    private void FeedbackClicked ()
+    {
+        if (isAnswerCorrect)
+        {
+            if (levelManager.IsLastStep())
+            {
+                levelManager.CompleteLevel();
+                return;
+            }
+
+            SetAnswers();
+        }
+        else
+        {
+            SendToriQuestion(currentCorrectAnswer);
+        }
+        Debug.Log("isanswercorrect = " + isAnswerCorrect);
+    }
+
+    public List<Answer> GetAnswerList ()
+    {
+        return answers;
+    }
+
+
 }
