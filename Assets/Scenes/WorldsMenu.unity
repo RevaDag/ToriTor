@@ -5986,28 +5986,31 @@ MonoBehaviour:
     IsCompleted: 0
     Subject: "\u05E6\u05D1\u05E2\u05D9\u05DD"
     ToriObjects:
-    - _objectName: "\u05D0\u05D3\u05D5\u05DD"
-      _objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
-      _parallelObject: {fileID: 3382073005429300018, guid: b95f27a72556c1b48b35caa06a456d41, type: 3}
-      _subject: Colors
-      _color: {r: 1, g: 0, b: 0, a: 1}
-      _clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
-      _sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
-    - _objectName: "\u05DB\u05D7\u05D5\u05DC"
-      _objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
-      _parallelObject: {fileID: 3382073005429300018, guid: 735595ff8aa010d45b4226f99a83db86, type: 3}
-      _subject: Colors
-      _color: {r: 0, g: 0.07363939, b: 1, a: 1}
-      _clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
-      _sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
-    - _objectName: "\u05E6\u05D4\u05D5\u05D1"
-      _objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
-      _parallelObject: {fileID: 3382073005429300018, guid: 442db851fe820d54699d0befd83f406b, type: 3}
-      _subject: Colors
-      _color: {r: 0.9052297, g: 1, b: 0, a: 1}
-      _clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
-      _sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
-    StepsNumber: 10
+    - objectName: "\u05D0\u05D3\u05D5\u05DD"
+      objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
+      parallelObject: {fileID: 0}
+      subject: Colors
+      color: {r: 1, g: 0, b: 0, a: 1}
+      clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
+      sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
+      summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
+    - objectName: "\u05DB\u05D7\u05D5\u05DC"
+      objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
+      parallelObject: {fileID: 0}
+      subject: Colors
+      color: {r: 0, g: 0.07144785, b: 1, a: 1}
+      clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
+      sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
+      summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
+    - objectName: "\u05E6\u05D4\u05D5\u05D1"
+      objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
+      parallelObject: {fileID: 0}
+      subject: Colors
+      color: {r: 0.96055627, g: 1, b: 0, a: 1}
+      clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
+      sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
+      summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
+    StepsNumber: 3
   - Type: 0
     LevelNumber: 2
     IsUnlocked: 0
@@ -6015,27 +6018,30 @@ MonoBehaviour:
     IsCompleted: 0
     Subject: "\u05E6\u05D1\u05E2\u05D9\u05DD"
     ToriObjects:
-    - _objectName: "\u05D0\u05D3\u05D5\u05DD"
-      _objectPrefab: {fileID: 0}
-      _parallelObject: {fileID: 3382073005429300018, guid: b95f27a72556c1b48b35caa06a456d41, type: 3}
-      _subject: Colors
-      _color: {r: 1, g: 0, b: 0, a: 1}
-      _clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
-      _sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
-    - _objectName: "\u05DB\u05D7\u05D5\u05DC"
-      _objectPrefab: {fileID: 0}
-      _parallelObject: {fileID: 3382073005429300018, guid: 735595ff8aa010d45b4226f99a83db86, type: 3}
-      _subject: Colors
-      _color: {r: 0, g: 0.07450981, b: 1, a: 1}
-      _clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
-      _sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
-    - _objectName: "\u05E6\u05D4\u05D5\u05D1"
-      _objectPrefab: {fileID: 0}
-      _parallelObject: {fileID: 3382073005429300018, guid: 442db851fe820d54699d0befd83f406b, type: 3}
-      _subject: Colors
-      _color: {r: 0.9058824, g: 1, b: 0, a: 1}
-      _clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
-      _sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
+    - objectName: "\u05D0\u05D3\u05D5\u05DD"
+      objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
+      parallelObject: {fileID: 3382073005429300018, guid: b95f27a72556c1b48b35caa06a456d41, type: 3}
+      subject: Colors
+      color: {r: 1, g: 0, b: 0, a: 1}
+      clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
+      sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
+      summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
+    - objectName: "\u05DB\u05D7\u05D5\u05DC"
+      objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
+      parallelObject: {fileID: 3382073005429300018, guid: 735595ff8aa010d45b4226f99a83db86, type: 3}
+      subject: Colors
+      color: {r: 0, g: 0.07144785, b: 1, a: 1}
+      clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
+      sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
+      summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
+    - objectName: "\u05E6\u05D4\u05D5\u05D1"
+      objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
+      parallelObject: {fileID: 3382073005429300018, guid: 442db851fe820d54699d0befd83f406b, type: 3}
+      subject: Colors
+      color: {r: 0.96055627, g: 1, b: 0, a: 1}
+      clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
+      sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
+      summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
     StepsNumber: 3
   - Type: 2
     LevelNumber: 3
@@ -6044,27 +6050,30 @@ MonoBehaviour:
     IsCompleted: 0
     Subject: "\u05E6\u05D1\u05E2\u05D9\u05DD"
     ToriObjects:
-    - _objectName: "\u05D0\u05D3\u05D5\u05DD"
-      _objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
-      _parallelObject: {fileID: 0}
-      _subject: Colors
-      _color: {r: 1, g: 0, b: 0, a: 1}
-      _clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
-      _sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
-    - _objectName: "\u05DB\u05D7\u05D5\u05DC"
-      _objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
-      _parallelObject: {fileID: 0}
-      _subject: Colors
-      _color: {r: 0, g: 0.07450981, b: 1, a: 1}
-      _clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
-      _sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
-    - _objectName: "\u05E6\u05D4\u05D5\u05D1"
-      _objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
-      _parallelObject: {fileID: 0}
-      _subject: Colors
-      _color: {r: 0.9058824, g: 1, b: 0, a: 1}
-      _clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
-      _sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
+    - objectName: "\u05D0\u05D3\u05D5\u05DD"
+      objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
+      parallelObject: {fileID: 0}
+      subject: Colors
+      color: {r: 1, g: 0, b: 0, a: 1}
+      clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
+      sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
+      summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
+    - objectName: "\u05DB\u05D7\u05D5\u05DC"
+      objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
+      parallelObject: {fileID: 0}
+      subject: Colors
+      color: {r: 0, g: 0.07144785, b: 1, a: 1}
+      clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
+      sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
+      summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
+    - objectName: "\u05E6\u05D4\u05D5\u05D1"
+      objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
+      parallelObject: {fileID: 0}
+      subject: Colors
+      color: {r: 0.96055627, g: 1, b: 0, a: 1}
+      clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
+      sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
+      summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
     StepsNumber: 3
   - Type: 0
     LevelNumber: 4

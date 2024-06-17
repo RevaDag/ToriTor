@@ -1,14 +1,18 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.GraphicsBuffer;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    //[SerializeField] private ChestKey chestKey;
+    [SerializeField] private Answer answer;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Canvas canvas;
     private bool isDraggable = true;
+    private RectTransform target;
 
-    [SerializeField] private ChestKey chestKey;
+
 
     void Awake ()
     {
@@ -50,11 +54,29 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         canvasGroup.blocksRaycasts = true;
 
 
-        if (chestKey)
+        if (answer)
         {
-            chestKey.CheckTarget(eventData);
+            CheckTarget(eventData);
         }
     }
+
+
+    public void SetTarget ( RectTransform target )
+    {
+        this.target = target;
+    }
+
+    public void CheckTarget ( PointerEventData eventData )
+    {
+        if (RectTransformUtility.RectangleContainsScreenPoint(target, Input.mousePosition, null))
+        {
+            this.transform.SetParent(target);
+            this.transform.localPosition = Vector3.zero;
+            answer.answersManager.CorrectDraggableTarget();
+            DisableDrag();
+        }
+    }
+
 
     public void DisableDrag ()
     {

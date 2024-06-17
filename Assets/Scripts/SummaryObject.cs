@@ -27,7 +27,7 @@ public class SummaryObject : MonoBehaviour
     {
         if (toriObject != null)
         {
-            objectImage.sprite = toriObject.sprite;
+            objectImage.sprite = toriObject.summarySprite;
             objectText.text = toriObject.objectName;
             audioSource.clip = toriObject.clip;
 

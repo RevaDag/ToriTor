@@ -477,8 +477,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3fd67c1c47ad04c82214df3a369b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toriImage: {fileID: 1753961214406539896}
   animator: {fileID: 2795658501162467487}
   toriFader: {fileID: 1607859348712477085}
+  toriEmotions:
+  - EmotionName: Like
+    Sprite: {fileID: 21300000, guid: 01d40cde5d44e0b4b91ead71a4f4d282, type: 3}
+  - EmotionName: Default
+    Sprite: {fileID: 21300000, guid: ffb1400bbc563af4bb4cb52a1e1df08f, type: 3}
+  - EmotionName: Question
+    Sprite: {fileID: 21300000, guid: 3205e5f45e1920d4bb0b863c451dbf68, type: 3}
+  - EmotionName: Celebrate
+    Sprite: {fileID: 21300000, guid: b55ddccb56e02874488a6c5b1720faef, type: 3}
 --- !u!1 &5085443119527101257
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1df779c4d406547ad173245f54f469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toriTheCat: {fileID: 1442280707206122165}
   dialogText: {fileID: 878729023775835378}
   dialogArrowImage: {fileID: 342446611323673988}
   delay: 0.1
@@ -669,6 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogManager: {fileID: 7092467041644464657}
+  toriTheCat: {fileID: 1442280707206122165}
   positiveFeedback:
   - type: 0
     text: "\u05DB\u05DC \u05D4\u05DB\u05D1\u05D5\u05D3! "

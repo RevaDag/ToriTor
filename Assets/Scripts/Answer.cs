@@ -7,6 +7,7 @@ public class Answer : MonoBehaviour
 {
     public Image image;
     public AudioSource audioSource;
+    public Draggable draggable;
     private bool isCorrect;
     private Vector3 initialScale;
     private Vector2 initialPosition;
@@ -15,7 +16,7 @@ public class Answer : MonoBehaviour
 
 
     public ToriObject toriObject { get; private set; }
-    private AnswersManager answersManager;
+    public AnswersManager answersManager { get; private set; }
 
     private void Awake ()
     {

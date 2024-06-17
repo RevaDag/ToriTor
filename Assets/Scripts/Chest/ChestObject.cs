@@ -49,7 +49,7 @@ public class ChestObject : MonoBehaviour
         yield return new WaitForSeconds(1);
         chest.answersManager.CorrectAnswer();
         yield return ReverseMoveAndReposition();
-        chest.ReloadChest();
+        //chest.ReloadChest();
         Destroy(this.gameObject);
     }
 

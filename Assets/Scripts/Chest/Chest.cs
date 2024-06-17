@@ -25,19 +25,22 @@ public class Chest : MonoBehaviour
     [SerializeField] private List<ToriObject> objects;
 
     private Sprite suitableKeySprite;
-    private ChestKey suitableKey;
+    //private ChestKey suitableKey;
     private GameObject parallelObject;
 
 
     private void OnEnable ()
     {
         answersManager.OnAnswersManagerReady += OnAnswersManagerReady;
+        answersManager.dialogManager.OnFeedbackClicked += ReloadChest;
+        answersManager.OnCorrectDraggableTarget += OpenChest;
     }
 
     private void OnDisable ()
     {
         answersManager.OnAnswersManagerReady -= OnAnswersManagerReady;
-
+        answersManager.dialogManager.OnFeedbackClicked -= ReloadChest;
+        answersManager.OnCorrectDraggableTarget -= OpenChest;
     }
 
     private void OnAnswersManagerReady ()
@@ -59,22 +62,22 @@ public class Chest : MonoBehaviour
 
         foreach (Answer answer in allAnswers)
         {
-            ResetKey(answer.GetComponent<ChestKey>());
+            ResetKey(answer);
         }
 
-        ChestKey correctChestKey = answersManager.currentCorrectAnswer.GetComponent<ChestKey>();
-        SetSuitableKeyToChest(correctChestKey);
+        //ChestKey correctChestKey = answersManager.currentCorrectAnswer.GetComponent<ChestKey>();
+        SetSuitableKeyToChest(answersManager.currentCorrectAnswer);
     }
 
-    private void SetSuitableKeyToChest ( ChestKey chestKey )
+    private void SetSuitableKeyToChest ( Answer answer )
     {
-        suitableKey = chestKey;
-        suitableKeySprite = chestKey.answer.toriObject.sprite;
+        //suitableKey = chestKey;
+        suitableKeySprite = answer.toriObject.sprite;
 
 
-        chestKey.SetChest(this);
-        chestKey.SetTarget(lockRectTransform);
-        parallelObjectPrefab = chestKey.answer.toriObject.parallelObject;
+        //answer.draggable.SetChest(this);
+        answer.draggable.SetTarget(lockRectTransform);
+        parallelObjectPrefab = answer.toriObject.parallelObject;
     }
 
 
@@ -93,21 +96,20 @@ public class Chest : MonoBehaviour
         StartCoroutine(MoveAndFadeLidAndFadeOutKeys(chestLidImage.rectTransform, 1.0f, false));
     }
 
-    public bool TryUnlock ( GameObject key )
-    {
-        if (key == suitableKey)
+    /*    public bool TryUnlock ( GameObject key )
         {
-            OpenChest();
-            return true;
-        }
-        return false;
-    }
+            if (key == suitableKey)
+            {
+                OpenChest();
+                return true;
+            }
+            return false;
+        }*/
 
     public void OpenChest ()
     {
         StartCoroutine(MoveAndFadeLidAndFadeOutKeys(chestLidImage.rectTransform, 1.0f, true));
         ShowChestObject();
-        //levelManager.NextStep();
     }
 
     private IEnumerator MoveAndFadeLidAndFadeOutKeys ( RectTransform lid, float duration, bool isUp )
@@ -164,17 +166,19 @@ public class Chest : MonoBehaviour
 
     public void ReloadChest ()
     {
+        if (levelManager.IsLastStep()) { return; }
+
         ResetChestLidPosition();
         answersManager.SetAnswers();
 
         ResetKeysAndLock();
     }
 
-    private void ResetKey ( ChestKey key )
+    private void ResetKey ( Answer answer )
     {
-        key.SetTarget(null);
-        key.EnableDrag();
-        suitableKey = null;
+        answer.draggable.SetTarget(null);
+        answer.draggable.EnableDrag();
+        //suitableKey = null;
         suitableKeySprite = null;
     }
 }
