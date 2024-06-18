@@ -25,7 +25,6 @@ public class Chest : MonoBehaviour
     [SerializeField] private List<ToriObject> objects;
 
     private Sprite suitableKeySprite;
-    //private ChestKey suitableKey;
     private GameObject parallelObject;
 
 
@@ -65,17 +64,13 @@ public class Chest : MonoBehaviour
             ResetKey(answer);
         }
 
-        //ChestKey correctChestKey = answersManager.currentCorrectAnswer.GetComponent<ChestKey>();
         SetSuitableKeyToChest(answersManager.currentCorrectAnswer);
     }
 
     private void SetSuitableKeyToChest ( Answer answer )
     {
-        //suitableKey = chestKey;
         suitableKeySprite = answer.toriObject.sprite;
 
-
-        //answer.draggable.SetChest(this);
         answer.draggable.SetTarget(lockRectTransform);
         parallelObjectPrefab = answer.toriObject.parallelObject;
     }
@@ -95,16 +90,6 @@ public class Chest : MonoBehaviour
     {
         StartCoroutine(MoveAndFadeLidAndFadeOutKeys(chestLidImage.rectTransform, 1.0f, false));
     }
-
-    /*    public bool TryUnlock ( GameObject key )
-        {
-            if (key == suitableKey)
-            {
-                OpenChest();
-                return true;
-            }
-            return false;
-        }*/
 
     public void OpenChest ()
     {
@@ -178,7 +163,6 @@ public class Chest : MonoBehaviour
     {
         answer.draggable.SetTarget(null);
         answer.draggable.EnableDrag();
-        //suitableKey = null;
         suitableKeySprite = null;
     }
 }
