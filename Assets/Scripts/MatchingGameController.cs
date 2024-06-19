@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class MatchingGameController : MonoBehaviour
 {
     [SerializeField] private AnswersManager answersManager;
-    [SerializeField] private List<Question> questionList;
+    [SerializeField] private Question question;
 
     private List<Answer> answerList;
+    private int currentAnswerIndex = 0;
 
     private Dictionary<Answer, Question> answerToQuestionMap;
 
@@ -16,11 +17,14 @@ public class MatchingGameController : MonoBehaviour
     private void OnEnable ()
     {
         answersManager.OnAnswersManagerReady += OnAnswersManagerReady;
+        answersManager.OnCorrectDraggableTarget += OnCorrectAnswer;
     }
 
     private void OnDisable ()
     {
         answersManager.OnAnswersManagerReady -= OnAnswersManagerReady;
+        answersManager.OnCorrectDraggableTarget -= OnCorrectAnswer;
+
     }
 
     private void OnAnswersManagerReady ()
@@ -37,33 +41,29 @@ public class MatchingGameController : MonoBehaviour
 
     private void DeployQuestionsAndAnswers ()
     {
-        // Shuffle the answers list
-        System.Random rng = new System.Random();
-        int n = answerList.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = rng.Next(n + 1);
-            Answer value = answerList[k];
-            answerList[k] = answerList[n];
-            answerList[n] = value;
-        }
-
-        // Initialize the dictionary
         answerToQuestionMap = new Dictionary<Answer, Question>();
 
-        // Deploy each answer to a question
-        for (int i = 0; i < questionList.Count; i++)
-        {
-            if (i < answerList.Count)
-            {
-                Answer answer = answerList[i];
-                Question question = questionList[i];
+        Answer lastSelectedAnswer = null;
 
-                //DeployAnswer(toriObject, answer);
-                SetQuestionAndAssignToAnswer(answer, question);
-            }
+        if (currentAnswerIndex >= answerList.Count)
+        {
+            currentAnswerIndex = 0;
         }
+
+        Answer currentAnswer = answerList[currentAnswerIndex];
+
+        if (currentAnswer == lastSelectedAnswer)
+        {
+            // Select the next answer in the list
+            currentAnswerIndex = (currentAnswerIndex + 1) % answerList.Count;
+            currentAnswer = answerList[currentAnswerIndex];
+        }
+
+        lastSelectedAnswer = currentAnswer;
+
+        SetQuestionAndAssignToAnswer(currentAnswer, question);
+
+        currentAnswerIndex = (currentAnswerIndex + 1) % answerList.Count;
     }
 
 
@@ -72,5 +72,10 @@ public class MatchingGameController : MonoBehaviour
         question.SetQuestion(answer.toriObject);
         answer.draggable?.SetTarget(question.target);
         answerToQuestionMap[answer] = question;
+    }
+
+    private void OnCorrectAnswer ()
+    {
+        answersManager.CorrectAnswer();
     }
 }

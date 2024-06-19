@@ -31,6 +31,7 @@ public class Answer : MonoBehaviour
     {
         toriObject = _toriObject;
         image.sprite = _toriObject.sprite;
+        image.SetNativeSize();
         image.color = _toriObject.color;
         audioSource.clip = _toriObject.clip;
     }
@@ -65,6 +66,12 @@ public class Answer : MonoBehaviour
         transform.SetParent(initialParent);
         rectTransform.localScale = initialScale;
         rectTransform.anchoredPosition = initialPosition;
+
+        if (draggable)
+        {
+            draggable.SetTarget(null);
+            draggable.EnableDrag();
+        }
     }
 
 }

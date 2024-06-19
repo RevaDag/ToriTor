@@ -4,7 +4,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    //[SerializeField] private ChestKey chestKey;
     [SerializeField] private Answer answer;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;

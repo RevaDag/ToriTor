@@ -5979,8 +5979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultLevels:
-  - Type: 1
-    LevelNumber: 1
+  - LevelNumber: 1
     IsUnlocked: 1
     IsOpened: 0
     IsCompleted: 0
@@ -6017,8 +6016,7 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
       summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
     StepsNumber: 3
-  - Type: 0
-    LevelNumber: 2
+  - LevelNumber: 2
     IsUnlocked: 0
     IsOpened: 0
     IsCompleted: 0
@@ -6055,8 +6053,7 @@ MonoBehaviour:
       sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
       summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
     StepsNumber: 3
-  - Type: 2
-    LevelNumber: 3
+  - LevelNumber: 3
     IsUnlocked: 0
     IsOpened: 0
     IsCompleted: 0
@@ -6068,7 +6065,7 @@ MonoBehaviour:
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
       subject: Colors
-      color: {r: 1, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
       sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
       summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
@@ -6078,7 +6075,7 @@ MonoBehaviour:
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
       subject: Colors
-      color: {r: 0, g: 0.07144785, b: 1, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
       sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
       summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
@@ -6088,13 +6085,12 @@ MonoBehaviour:
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
       subject: Colors
-      color: {r: 0.96055627, g: 1, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
       sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
       summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
     StepsNumber: 3
-  - Type: 0
-    LevelNumber: 4
+  - LevelNumber: 4
     IsUnlocked: 0
     IsOpened: 0
     IsCompleted: 0
@@ -6106,7 +6102,7 @@ MonoBehaviour:
       parallelObjectSprite: {fileID: 21300000, guid: 88c423508b9d75241a8bc45816d73ec1, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: cd459827c8cdeba4fafc2792f1c0b290, type: 3}
       subject: Colors
-      color: {r: 1, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
       sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
       summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
@@ -6116,7 +6112,7 @@ MonoBehaviour:
       parallelObjectSprite: {fileID: 21300000, guid: a5fc075174099a647981ab467adba3c9, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: df82c7f62ce39a648969294fb29a86b6, type: 3}
       subject: Colors
-      color: {r: 0, g: 0.07144785, b: 1, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
       sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
       summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
@@ -6126,11 +6122,11 @@ MonoBehaviour:
       parallelObjectSprite: {fileID: 21300000, guid: 49f31e1949ff5d74abb1a0cf0a65e138, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
       subject: Colors
-      color: {r: 0.96055627, g: 1, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
       sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
       summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
-    StepsNumber: 0
+    StepsNumber: 3
   currentLevelObjects: []
 --- !u!4 &2037425472
 Transform:

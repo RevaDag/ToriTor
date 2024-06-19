@@ -161,8 +161,10 @@ public class Chest : MonoBehaviour
 
     private void ResetKey ( Answer answer )
     {
-        answer.draggable.SetTarget(null);
-        answer.draggable.EnableDrag();
+        /*answer.draggable?.SetTarget(null);
+        answer.draggable?.EnableDrag();*/
+
+        answer.ResetAnswer();
         suitableKeySprite = null;
     }
 }

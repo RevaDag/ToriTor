@@ -19,7 +19,6 @@ public class Stepper : MonoBehaviour
     private void Start ()
     {
         GetSteps();
-        //activateNextStep();
     }
 
     private void GetSteps ()

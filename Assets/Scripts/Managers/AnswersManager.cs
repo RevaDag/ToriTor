@@ -81,7 +81,8 @@ public class AnswersManager : MonoBehaviour
 
     public void CorrectDraggableTarget ()
     {
-        OnCorrectDraggableTarget.Invoke();
+        OnCorrectDraggableTarget?.Invoke();
+        currentCorrectAnswer.audioSource.Play();
     }
 
     public void CorrectAnswer ()
@@ -90,6 +91,11 @@ public class AnswersManager : MonoBehaviour
         dialogManager.FadeOut();
         levelManager.NextStep();
 
+        SendFeedback();
+    }
+
+    private void SendFeedback ()
+    {
         if (levelManager.IsLastStep())
             feedbackManager.SendFeedback(2);
         else
