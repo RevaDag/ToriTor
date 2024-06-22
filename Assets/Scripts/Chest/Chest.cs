@@ -5,15 +5,8 @@ using UnityEngine.UI;
 
 public class Chest : MonoBehaviour
 {
-    public enum ChestType
-    {
-        Shapes,
-        Colors
-    }
-
     public AnswersManager answersManager;
 
-    [SerializeField] private ChestType type;
     [SerializeField] private LevelManager levelManager;
 
     [SerializeField] private Image chestLidImage;
@@ -161,9 +154,6 @@ public class Chest : MonoBehaviour
 
     private void ResetKey ( Answer answer )
     {
-        /*answer.draggable?.SetTarget(null);
-        answer.draggable?.EnableDrag();*/
-
         answer.ResetAnswer();
         suitableKeySprite = null;
     }

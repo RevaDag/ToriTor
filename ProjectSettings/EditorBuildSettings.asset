@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Games/MatchingGame.unity
     guid: 132bb151194973348bdf4016b539c7ad
+  - enabled: 1
+    path: Assets/Scenes/Subjects/ColorsSelection.unity
+    guid: bbe382a8a6190ef46934018adaf443e3
+  - enabled: 1
+    path: Assets/Scenes/SubjectSelection.unity
+    guid: 9d9cfd81464874843b44ba58909b6d0e
   m_configObjects: {}
