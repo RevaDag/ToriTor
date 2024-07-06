@@ -9,11 +9,15 @@ public class SelectedObjectsUI : MonoBehaviour
 {
     public Subject subject;
 
+    [SerializeField] private SubjectObjectsManager subjectObjectsManager;
+
     [SerializeField] private List<Transform> objectTransforms;
 
     [SerializeField] private SelectedObject selectedObjectPrefab;
 
     private List<ToriObject> selectedObjects = new List<ToriObject>();
+
+
 
     public void AddObjectUI ( ToriObject toriObject )
     {
@@ -41,6 +45,37 @@ public class SelectedObjectsUI : MonoBehaviour
         // Add the ToriObject to the selectedObjects list
         selectedObjects.Add(toriObject);
 
-        selectedObject.SetObjectUI(toriObject);
+        selectedObject.SetObjectUI(toriObject, this);
+    }
+
+    public void RemoveObjectUI ( ToriObject toriObject )
+    {
+        // Find the UI element associated with the ToriObject
+        SelectedObject selectedObjectToRemove = null;
+        foreach (Transform position in objectTransforms)
+        {
+            if (position.childCount > 0)
+            {
+                SelectedObject selectedObject = position.GetChild(0).GetComponent<SelectedObject>();
+                if (selectedObject != null && selectedObject.GetToriObject() == toriObject)
+                {
+                    selectedObjectToRemove = selectedObject;
+                    break;
+                }
+            }
+        }
+
+        // If the UI element is found, remove the ToriObject and destroy the UI element
+        if (selectedObjectToRemove != null)
+        {
+            subjectObjectsManager.RemoveObject(toriObject);
+            selectedObjects.Remove(toriObject);
+            Destroy(selectedObjectToRemove.gameObject);
+        }
+        else
+        {
+            Debug.LogWarning("Object not found in UI: " + toriObject.objectName);
+        }
     }
 }
+

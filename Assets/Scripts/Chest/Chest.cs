@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Chest : MonoBehaviour
 {
-    public AnswersManager answersManager;
+    public QuestionAnswerManager answersManager;
 
     [SerializeField] private LevelManager levelManager;
 
@@ -24,14 +24,14 @@ public class Chest : MonoBehaviour
     private void OnEnable ()
     {
         answersManager.OnAnswersManagerReady += OnAnswersManagerReady;
-        answersManager.dialogManager.OnFeedbackClicked += ReloadChest;
+        //answersManager.dialogManager.OnFeedbackClicked += ReloadChest;
         answersManager.OnCorrectDraggableTarget += OpenChest;
     }
 
     private void OnDisable ()
     {
         answersManager.OnAnswersManagerReady -= OnAnswersManagerReady;
-        answersManager.dialogManager.OnFeedbackClicked -= ReloadChest;
+        //answersManager.dialogManager.OnFeedbackClicked -= ReloadChest;
         answersManager.OnCorrectDraggableTarget -= OpenChest;
     }
 
@@ -62,7 +62,7 @@ public class Chest : MonoBehaviour
 
     private void SetSuitableKeyToChest ( Answer answer )
     {
-        suitableKeySprite = answer.toriObject.sprite;
+        suitableKeySprite = answer.toriObject.chestSprite;
 
         answer.draggable.SetTarget(lockRectTransform);
         parallelObjectPrefab = answer.toriObject.parallelObject;

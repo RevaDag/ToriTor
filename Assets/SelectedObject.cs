@@ -10,21 +10,35 @@ public class SelectedObject : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private AudioSource audioSource;
 
-    public void SetObjectUI ( ToriObject toriObject )
+
+    private ToriObject toriObject;
+    private SelectedObjectsUI selectedObjectsUI;
+
+    public void SetObjectUI ( ToriObject _toriObject, SelectedObjectsUI _selectedObjectsUI )
     {
-        audioSource.clip = toriObject.clip;
+        selectedObjectsUI = _selectedObjectsUI;
+        toriObject = _toriObject;
+
 
         switch (subject)
         {
             case Subject.Colors:
-                image.color = toriObject.color;
+                image.color = _toriObject.color;
                 break;
         }
+
+        audioSource.clip = _toriObject.clip;
+    }
+
+    public ToriObject GetToriObject ()
+    {
+        return toriObject;
     }
 
     public void OnSelectedObjectClicked ()
     {
         audioSource.Play();
 
+        selectedObjectsUI.RemoveObjectUI(toriObject);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MatchingGameController : MonoBehaviour
 {
-    [SerializeField] private AnswersManager answersManager;
+    [SerializeField] private QuestionAnswerManager answersManager;
     [SerializeField] private Question question;
 
     private List<Answer> answerList;
@@ -69,7 +69,7 @@ public class MatchingGameController : MonoBehaviour
 
     private void SetQuestionAndAssignToAnswer ( Answer answer, Question question )
     {
-        question.SetQuestion(answer.toriObject);
+        //question.SetQuestion(answer.toriObject);
         answer.draggable?.SetTarget(question.target);
         answerToQuestionMap[answer] = question;
     }

@@ -301,7 +301,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313919416}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.26455027, w: 0.9643719}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
@@ -312,10 +312,10 @@ RectTransform:
   - {fileID: 285635853}
   - {fileID: 1071319675}
   m_Father: {fileID: 816188656}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.68}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: -82.6}
+  m_AnchoredPosition: {x: 1.0000153, y: -49.8}
   m_SizeDelta: {x: 748, y: 646}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &313919418
@@ -369,6 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subject: 0
+  subjectObjectsManager: {fileID: 1746383682}
   objectTransforms:
   - {fileID: 659485796}
   - {fileID: 1075949256}
@@ -884,15 +885,15 @@ RectTransform:
   m_GameObject: {fileID: 622791750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 816188656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
-  m_SizeDelta: {x: 5008, y: 2504}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 775, y: -532}
+  m_SizeDelta: {x: 262, y: 148}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &622791752
 MonoBehaviour:
@@ -914,7 +915,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8e8360ae6db90784f90c8b1374ce4db1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8209766df75f5b9439750eccf2ddeca6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1139,7 +1140,7 @@ GameObject:
   - component: {fileID: 816188654}
   - component: {fileID: 816188653}
   m_Layer: 5
-  m_Name: Canvas UI
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1221,6 +1222,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 622791751}
+  - {fileID: 2055772529}
   - {fileID: 59412409}
   - {fileID: 428423453}
   - {fileID: 313919417}
@@ -1625,7 +1627,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1636,20 +1638,32 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 937f2f3b9a166ac46b53cff85b180f17, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 23098089a3e31ba4ea0bce66505a3b8e, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1403432996}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1746383682}
+        m_TargetAssemblyTypeName: SubjectObjectsManager, Assembly-CSharp
+        m_MethodName: OnStartClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1403432996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1995,10 +2009,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subject: 0
+  nextSceneName: GenericLevel
   optionPrefab: {fileID: 2204565192232450881, guid: a408a94bb4d4f7a448066f024f54ea82, type: 3}
   optionsParent: {fileID: 1539626881}
   selectedObjectsUI: {fileID: 313919420}
   maxOptions: 5
+  startButton: {fileID: 1403432995}
+  sceneLoader: {fileID: 692049262}
 --- !u!4 &1746383683
 Transform:
   m_ObjectHideFlags: 0
@@ -2612,6 +2629,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
       sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
       summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
+      chestSprite: {fileID: 0}
     - objectName: "\u05DB\u05D7\u05D5\u05DC"
       objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
       parallelObject: {fileID: 0}
@@ -2622,6 +2640,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
       sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
       summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
+      chestSprite: {fileID: 0}
     - objectName: "\u05E6\u05D4\u05D5\u05D1"
       objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
       parallelObject: {fileID: 0}
@@ -2632,6 +2651,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
       sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
       summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
+      chestSprite: {fileID: 0}
     StepsNumber: 3
   - LevelNumber: 2
     IsUnlocked: 0
@@ -2649,6 +2669,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
       sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
       summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
+      chestSprite: {fileID: 0}
     - objectName: "\u05DB\u05D7\u05D5\u05DC"
       objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
       parallelObject: {fileID: 3382073005429300018, guid: 735595ff8aa010d45b4226f99a83db86, type: 3}
@@ -2659,6 +2680,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
       sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
       summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
+      chestSprite: {fileID: 0}
     - objectName: "\u05E6\u05D4\u05D5\u05D1"
       objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
       parallelObject: {fileID: 3382073005429300018, guid: 442db851fe820d54699d0befd83f406b, type: 3}
@@ -2669,6 +2691,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
       sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
       summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
+      chestSprite: {fileID: 0}
     StepsNumber: 3
   - LevelNumber: 3
     IsUnlocked: 0
@@ -2686,6 +2709,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
       sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
       summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
+      chestSprite: {fileID: 0}
     - objectName: "\u05DB\u05D7\u05D5\u05DC"
       objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
       parallelObject: {fileID: 0}
@@ -2696,6 +2720,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
       sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
       summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
+      chestSprite: {fileID: 0}
     - objectName: "\u05E6\u05D4\u05D5\u05D1"
       objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
       parallelObject: {fileID: 0}
@@ -2706,6 +2731,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
       sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
       summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
+      chestSprite: {fileID: 0}
     StepsNumber: 3
   - LevelNumber: 4
     IsUnlocked: 0
@@ -2723,6 +2749,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
       sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
       summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
+      chestSprite: {fileID: 0}
     - objectName: "\u05DB\u05D7\u05D5\u05DC"
       objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
       parallelObject: {fileID: 3382073005429300018, guid: 735595ff8aa010d45b4226f99a83db86, type: 3}
@@ -2733,6 +2760,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
       sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
       summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
+      chestSprite: {fileID: 0}
     - objectName: "\u05E6\u05D4\u05D5\u05D1"
       objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
       parallelObject: {fileID: 3382073005429300018, guid: 442db851fe820d54699d0befd83f406b, type: 3}
@@ -2743,8 +2771,10 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
       sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
       summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
+      chestSprite: {fileID: 0}
     StepsNumber: 3
-  currentLevelObjects: []
+  selectedObjects: []
+  currentSubject: 0
 --- !u!4 &2037425472
 Transform:
   m_ObjectHideFlags: 0
@@ -2760,6 +2790,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2055772528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2055772529}
+  - component: {fileID: 2055772531}
+  - component: {fileID: 2055772530}
+  m_Layer: 5
+  m_Name: PaintBoard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2055772529
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055772528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 816188656}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -273, y: -242.29}
+  m_SizeDelta: {x: 684, y: 1042}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2055772530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055772528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 327a86800578d2b4584ce61df3c4b521, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2055772531
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055772528}
+  m_CullTransparentMesh: 1
 --- !u!1 &2082498725
 GameObject:
   m_ObjectHideFlags: 0

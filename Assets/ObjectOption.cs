@@ -9,6 +9,7 @@ public class ObjectOption : MonoBehaviour
     public Subject subject;
 
     [SerializeField] private Image image;
+    [SerializeField] private Button button;
 
     private SubjectObjectsManager subjectObjectsManager;
     private ToriObject toriObject;
@@ -20,6 +21,11 @@ public class ObjectOption : MonoBehaviour
         this.subjectObjectsManager = subjectObjectsManager;
 
         InitializeOption();
+    }
+
+    public ToriObject GetToriObject ()
+    {
+        return toriObject;
     }
 
     private void InitializeOption ()
@@ -43,5 +49,11 @@ public class ObjectOption : MonoBehaviour
     public void OnOptionClicked ()
     {
         subjectObjectsManager.SelectObject(toriObject);
+        SetButtonActive(false);
+    }
+
+    public void SetButtonActive ( bool isActive )
+    {
+        button.interactable = isActive;
     }
 }

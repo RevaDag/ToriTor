@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static SubjectsManager;
 
 public class SubjectObjectsManager : MonoBehaviour
 {
     [SerializeField] private Subject subject;
+    [SerializeField] private string nextSceneName;
 
     [SerializeField] private ObjectOption optionPrefab;
     [SerializeField] private Transform optionsParent;
@@ -14,8 +16,11 @@ public class SubjectObjectsManager : MonoBehaviour
 
     private List<ToriObject> allSubjectObjects;
     private List<ToriObject> selectedObjects = new List<ToriObject>();
+    private List<ObjectOption> objectOptions = new List<ObjectOption>();
 
-    [SerializeField] private int maxOptions;
+    [SerializeField] private int maxOptions = 5;
+    [SerializeField] private Button startButton;
+    [SerializeField] private SceneLoader sceneLoader;
 
     private void Start ()
     {
@@ -34,29 +39,83 @@ public class SubjectObjectsManager : MonoBehaviour
         {
             ObjectOption objectOption = Instantiate(optionPrefab, optionsParent);
             objectOption.SetOption(toriObject, this);
+            objectOptions.Add(objectOption);
         }
     }
 
     public void SelectObject ( ToriObject obj )
     {
-        if (!selectedObjects.Contains(obj))
+        if (selectedObjects.Count < maxOptions)
         {
-            selectedObjects.Add(obj);
-            selectedObjectsUI.AddObjectUI(obj);
+            if (!selectedObjects.Contains(obj))
+            {
+                selectedObjects.Add(obj);
+                selectedObjectsUI.AddObjectUI(obj);
+                UpdateObjectOptionState(obj, false);
+                CheckAndDisableAllOptions();
+                UpdateStartButtonState();
+            }
+            else
+            {
+                Debug.LogWarning("Object already selected: " + obj.objectName);
+            }
         }
         else
         {
-            Debug.LogWarning("Object already selected: " + obj.objectName);
+            Debug.LogWarning("Maximum number of options selected.");
         }
     }
 
     public void RemoveObject ( ToriObject obj )
     {
-        selectedObjects.Remove(obj);
+        if (selectedObjects.Remove(obj))
+        {
+            selectedObjectsUI.RemoveObjectUI(obj);
+            UpdateObjectOptionState(obj, true);
+            CheckAndDisableAllOptions();
+            UpdateStartButtonState();
+        }
+        else
+        {
+            Debug.LogWarning("Object not found in selected list: " + obj.objectName);
+        }
+    }
+
+    private void UpdateObjectOptionState ( ToriObject obj, bool isActive )
+    {
+        foreach (ObjectOption objectOption in objectOptions)
+        {
+            if (objectOption.GetToriObject() == obj)
+            {
+                objectOption.SetButtonActive(isActive);
+                break;
+            }
+        }
+    }
+
+    private void CheckAndDisableAllOptions ()
+    {
+        bool disableAll = selectedObjects.Count >= maxOptions;
+        foreach (ObjectOption objectOption in objectOptions)
+        {
+            if (!selectedObjects.Contains(objectOption.GetToriObject()))
+            {
+                objectOption.SetButtonActive(!disableAll);
+            }
+        }
+    }
+
+    private void UpdateStartButtonState ()
+    {
+        startButton.interactable = selectedObjects.Count >= 3;
     }
 
     public void OnStartClick ()
     {
+        GameManager.Instance.selectedObjects = selectedObjects;
+        GameManager.Instance.currentSubject = subject;
 
+        sceneLoader.LoadScene(nextSceneName);
     }
+
 }

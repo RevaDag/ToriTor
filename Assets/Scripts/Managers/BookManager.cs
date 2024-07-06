@@ -75,7 +75,7 @@ public class BookManager : MonoBehaviour
     private void LoadLevelObjects ()
     {
         objects?.Clear();
-        objects = GameManager.Instance.currentLevelObjects;
+        objects = GameManager.Instance.selectedObjects;
 
     }
 

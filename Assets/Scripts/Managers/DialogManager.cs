@@ -8,20 +8,21 @@ public class DialogManager : MonoBehaviour
 {
     public ToriTheCat toriTheCat;
 
+    [SerializeField] private QuizManager quizManager;
     [SerializeField] private TMP_Text dialogText;
     [SerializeField] private Image dialogArrowImage;
     [SerializeField] private float delay = 0.1f;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Fader dialogFader;
+    [SerializeField] private Button dialogBoxButton;
 
     private List<Line> lines;
-    private int currentLineIndex = 0;
-    private bool isTyping = false;
+    private int currentLineIndex;
+    private bool isTyping;
     private Coroutine typingCoroutine;
 
     #region Events
     public delegate void DialogClickedEventHandler ();
-    public event DialogClickedEventHandler OnFeedbackClicked;
     public event DialogClickedEventHandler OnQuestionClicked;
     #endregion
 
@@ -46,16 +47,14 @@ public class DialogManager : MonoBehaviour
 
     public void SetAnswerAndPlay ( Answer correctAnswer )
     {
+        var questionLine = new Line
+        {
+            text = correctAnswer.toriObject.objectName,
+            audioClip = correctAnswer.toriObject.clip,
+            type = Line.Type.Question
+        };
 
-        Line questionLine = new Line();
-        questionLine.text = correctAnswer.toriObject.objectName;
-        questionLine.audioClip = correctAnswer.toriObject.clip;
-        questionLine.type = Line.Type.Question;
-
-        List<Line> newLines = new List<Line>();
-        newLines.Add(questionLine);
-
-        SetLinesAndPlay(newLines);
+        SetLinesAndPlay(new List<Line> { questionLine });
     }
 
     public void SetLinesAndPlay ( List<Line> lineList )
@@ -71,16 +70,15 @@ public class DialogManager : MonoBehaviour
         StartTalking();
     }
 
-    private void StartTalking ()
+    public void StartTalking ()
     {
         dialogFader.FadeIn();
-        SayNextLine();
+        SayCurrentLine();
     }
 
-
-    public void SayNextLine ()
+    public void SayCurrentLine ()
     {
-        if (!isTyping)
+        if (!isTyping && currentLineIndex < lines.Count)
         {
             typingCoroutine = StartCoroutine(TypeText(lines[currentLineIndex]));
         }
@@ -88,10 +86,7 @@ public class DialogManager : MonoBehaviour
 
     private void SayPreviousLine ()
     {
-        if (!isTyping)
-        {
-            typingCoroutine = StartCoroutine(TypeText(lines[currentLineIndex - 1]));
-        }
+        typingCoroutine = StartCoroutine(TypeText(lines[currentLineIndex - 1]));
     }
 
     private IEnumerator TypeText ( Line line )
@@ -100,7 +95,6 @@ public class DialogManager : MonoBehaviour
         isTyping = true;
         audioSource.clip = line.audioClip;
         audioSource.Play();
-
         dialogText.text = "";
 
         foreach (char letter in line.text.ToCharArray())
@@ -112,9 +106,12 @@ public class DialogManager : MonoBehaviour
         isTyping = false;
         dialogArrowImage.enabled = true;
 
-        currentLineIndex++;
-    }
+        if (currentLineIndex < lines.Count)
+        {
+            currentLineIndex++;
+        }
 
+    }
     public void OnDialogBoxClick ()
     {
         if (isTyping)
@@ -124,13 +121,21 @@ public class DialogManager : MonoBehaviour
             StopCoroutine(typingCoroutine);
             dialogText.text = lines[currentLineIndex].text;
             currentLineIndex++;
-            return;
         }
         else if (currentLineIndex < lines.Count)
         {
-            SayNextLine();
+            SayCurrentLine();
+            currentLineIndex++;
         }
         else
+        {
+            HandleCurrentLineType();
+        }
+    }
+
+    private void HandleCurrentLineType ()
+    {
+        if (currentLineIndex - 1 >= 0)
         {
             switch (lines[currentLineIndex - 1].type)
             {
@@ -139,19 +144,31 @@ public class DialogManager : MonoBehaviour
                     break;
 
                 case Line.Type.Feedback:
-                    OnFeedbackClicked?.Invoke();
                     dialogFader.FadeOut();
+                    FeedbackClicked();
                     break;
 
                 case Line.Type.Question:
                     SayPreviousLine();
-                    OnQuestionClicked?.Invoke();
+                    //OnQuestionClicked?.Invoke();
                     break;
             }
         }
-
-        OnFeedbackClicked?.Invoke();
     }
 
+    private void FeedbackClicked ()
+    {
+        quizManager.OnFeedbackClicked();
+    }
 
+    public void ClearDialog ()
+    {
+        StopAllCoroutines();
+        dialogText.ClearMesh();
+    }
+
+    public void ActivateDialogButton ( bool isActive )
+    {
+        dialogBoxButton.enabled = isActive;
+    }
 }

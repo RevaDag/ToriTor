@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
 {
-
+    [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private WorldLevelsUI worldLevelsUI;
 
     [SerializeField] private Image levelButtonImage;
@@ -52,12 +52,18 @@ public class LevelButton : MonoBehaviour
         levelButtonImage.SetNativeSize();
     }
 
+    /*
+        public void LoadLevel ()
+        {
+            GameManager.Instance.SetCurrentLevelNumber(levelNumber);
+            GameManager.Instance.LoadLevelObjects(levelNumber);
+            worldLevelsUI.OpenLevel(levelNumber);
+        }*/
 
-    public void LoadLevel ()
+    public void LoadScene ( string sceneName )
     {
-        GameManager.Instance.SetCurrentLevelNumber(levelNumber);
-        GameManager.Instance.LoadLevelObjects(levelNumber);
         worldLevelsUI.OpenLevel(levelNumber);
+        sceneLoader.LoadScene(sceneName);
     }
 
 }

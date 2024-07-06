@@ -67,4 +67,9 @@ public class FeedbackManager : MonoBehaviour
         }
     }
 
+    public void ClearDialog ()
+    {
+        dialogManager.ClearDialog();
+    }
+
 }

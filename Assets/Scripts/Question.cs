@@ -1,27 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Question : MonoBehaviour
 {
+    [SerializeField] private DialogManager dialogManager;
+
     public RectTransform target;
 
-    private Image image;
-    private AudioSource audioSource;
+    [SerializeField] private Image image;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private TMP_Text tmpText;
 
-
-    private void Awake ()
+    public void SetAudioClip ( ToriObject toriObject )
     {
-        audioSource = GetComponent<AudioSource>();
-        image = GetComponent<Image>();
+        audioSource.clip = toriObject.parallelObjectClip;
     }
 
-    public void SetQuestion ( ToriObject toriObject )
+    public void SetImage ( ToriObject toriObject )
     {
         image.sprite = toriObject.parallelObjectSprite;
         image.SetNativeSize();
+    }
 
-        audioSource.clip = toriObject.parallelObjectClip;
+    public void SetDialogLine ( ToriObject toriObject )
+    {
+        List<Line> lines = new List<Line>();
+        Line line = new Line();
+
+        line.text = toriObject.objectName;
+        line.audioClip = toriObject.clip;
+        line.type = Line.Type.Question;
+
+        lines.Add(line);
+
+        dialogManager.SetLinesAndPlay(lines);
     }
 }

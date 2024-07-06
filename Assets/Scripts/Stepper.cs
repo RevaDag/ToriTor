@@ -23,8 +23,7 @@ public class Stepper : MonoBehaviour
 
     private void GetSteps ()
     {
-        // Assuming `GameManager.Instance.currentLevel.StepsNumber` returns an integer representing the number of steps
-        int stepsNumber = GameManager.Instance.currentLevel.StepsNumber;
+        int stepsNumber = GameManager.Instance.selectedObjects.Count;
 
         for (int i = 0; i < stepsNumber; i++)
         {

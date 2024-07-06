@@ -4182,7 +4182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   answersManager: {fileID: 8588732214329843108}
-  type: 1
   levelManager: {fileID: 1554496900}
   chestLidImage: {fileID: 8506342808971049451}
   moveDistance: 500
@@ -4422,6 +4421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dbbe63ff1b0d04b8e1b36f5f4b45e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameType: 1
   feedbackManager: {fileID: 1362692096}
   levelManager: {fileID: 1554496900}
   dialogManager: {fileID: 1362692095}

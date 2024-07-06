@@ -5,41 +5,52 @@ using UnityEngine.UI;
 
 public class Answer : MonoBehaviour
 {
+
     public Image image;
     public AudioSource audioSource;
     public Draggable draggable;
+    public RectTransform target;
     private bool isCorrect;
     private Vector3 initialScale;
     private Vector2 initialPosition;
     private Transform initialParent;
     private RectTransform rectTransform;
 
+    private Fader fader;
 
     public ToriObject toriObject { get; private set; }
-    public AnswersManager answersManager { get; private set; }
+    public QuizManager quizManager { get; private set; }
 
     private void Awake ()
     {
         rectTransform = GetComponent<RectTransform>();
+        fader = GetComponent<Fader>();
 
         initialParent = transform.parent;
         initialScale = rectTransform.localScale;
         initialPosition = rectTransform.anchoredPosition;
     }
 
-    public void SetAnswer ( ToriObject _toriObject )
+    public void SetAudioClip ( ToriObject toriObject )
     {
-        toriObject = _toriObject;
-        image.sprite = _toriObject.sprite;
-        image.SetNativeSize();
-        image.color = _toriObject.color;
-        audioSource.clip = _toriObject.clip;
+        audioSource.clip = toriObject.clip;
     }
 
-    public void SetAnswersManager ( AnswersManager _answersManager )
+    public void SetImage ( ToriObject toriObject )
     {
-        if (answersManager == null)
-            answersManager = _answersManager;
+        image.sprite = toriObject.sprite;
+        image.SetNativeSize();
+    }
+
+    public void SetColor ( ToriObject toriObject )
+    {
+        image.color = toriObject.color;
+    }
+
+    public void SetQuizManager ( QuizManager _quizManager )
+    {
+        if (quizManager == null)
+            quizManager = _quizManager;
     }
 
     public void SetAsCorrect () { isCorrect = true; }
@@ -50,12 +61,12 @@ public class Answer : MonoBehaviour
 
         if (isCorrect)
         {
-            answersManager.CorrectAnswer();
+            quizManager.CorrectAnswer();
             Debug.Log("CORRECT!");
         }
         else
         {
-            answersManager.WrongAnswer();
+            quizManager.WrongAnswer();
             Debug.Log("WRONG!");
         }
     }
@@ -72,6 +83,21 @@ public class Answer : MonoBehaviour
             draggable.SetTarget(null);
             draggable.EnableDrag();
         }
+    }
+
+    public ToriObject GetToriObject ()
+    {
+        return toriObject;
+    }
+
+    public void FadeIn ()
+    {
+        fader?.FadeIn();
+    }
+
+    public void FadeOut ()
+    {
+        fader?.FadeOut();
     }
 
 }

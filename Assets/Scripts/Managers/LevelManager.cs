@@ -6,14 +6,14 @@ public class LevelManager : MonoBehaviour
 {
     private int world;
     private Level level;
-    [SerializeField] private LevelSummary levelSummary;
+    [SerializeField] private QuizSummary levelSummary;
     public Stepper stepper;
 
-
-    private void Start ()
-    {
-        level = GameManager.Instance.currentLevel;
-    }
+    /*
+        private void Start ()
+        {
+            level = GameManager.Instance.currentLevel;
+        }*/
 
     public void NextStep ()
     {
@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
 
     public void CompleteLevel ()
     {
-        GameManager.Instance.SaveCompletedLevel(level);
+        // GameManager.Instance.SaveCompletedLevel(level);
         if (levelSummary != null)
         {
             levelSummary.ShowSummary();

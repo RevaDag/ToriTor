@@ -13,5 +13,5 @@ public class ToriObject
     public AudioClip clip;
     public Sprite sprite;
     public Sprite summarySprite;
-
+    public Sprite chestSprite;
 }

@@ -7,29 +7,29 @@ public class WorldsManager : MonoBehaviour
     public List<World> Worlds = new List<World>();
     [SerializeField] private Color lockedWorldColor;
 
-    private void Start ()
-    {
-        UpdateWorldsUI();
-    }
-
-    public void UpdateWorldsUI ()
-    {
-        PlayerProgress playerProgress = GameManager.Instance.playerProgress;
-
-        foreach (World world in Worlds)
+    /*    private void Start ()
         {
-            if (playerProgress.WorldCompleted + 1 >= world.WorldNumber)
-            {
-                UnlockWorld(world.WorldNumber - 1);
-                Debug.Log($"World {world.WorldNumber} is Unlcked.");
-            }
-            else
-            {
-                LockWorld(world.WorldNumber - 1);
-                Debug.Log($"World {world.WorldNumber} is Locked.");
-            }
+            UpdateWorldsUI();
         }
-    }
+
+        public void UpdateWorldsUI ()
+        {
+            PlayerProgress playerProgress = GameManager.Instance.playerProgress;
+
+            foreach (World world in Worlds)
+            {
+                if (playerProgress.WorldCompleted + 1 >= world.WorldNumber)
+                {
+                    UnlockWorld(world.WorldNumber - 1);
+                    Debug.Log($"World {world.WorldNumber} is Unlcked.");
+                }
+                else
+                {
+                    LockWorld(world.WorldNumber - 1);
+                    Debug.Log($"World {world.WorldNumber} is Locked.");
+                }
+            }
+        }*/
 
     public void LockWorld ( int worldNumber )
     {

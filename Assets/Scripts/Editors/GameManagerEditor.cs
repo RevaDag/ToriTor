@@ -11,7 +11,7 @@ public class GameManagerEditor : Editor
         GameManager gameManager = (GameManager)target;
         if (GUILayout.Button("Reset Progress"))
         {
-            gameManager.ResetProgress();
+            //gameManager.ResetProgress();
         }
     }
 }

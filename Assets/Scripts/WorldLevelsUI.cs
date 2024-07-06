@@ -8,40 +8,40 @@ public class WorldLevelsUI : MonoBehaviour
 
     private void Start ()
     {
-        UpdateWorldsUI();
+        //UpdateWorldsUI();
     }
 
-    public void UpdateWorldsUI ()
-    {
-        List<Level> levels = GameManager.Instance.playerProgress.Levels;
+    /*   public void UpdateWorldsUI ()
+       {
+           List<Level> levels = GameManager.Instance.playerProgress.Levels;
 
-        foreach (Level level in levels)
-        {
-            levelButtons[level.LevelNumber - 1].SetLevelNumber(level.LevelNumber);
+           foreach (Level level in levels)
+           {
+               levelButtons[level.LevelNumber - 1].SetLevelNumber(level.LevelNumber);
 
-            if (level.IsCompleted)
-            {
-                OpenLevel(level.LevelNumber);
-                Debug.Log($"Level {level.LevelNumber} is Complete.");
-            }
-            else if (level.IsOpened)
-            {
-                OpenLevel(level.LevelNumber);
-                Debug.Log($"Level {level.LevelNumber} is Open.");
-            }
-            else if (level.IsUnlocked)
-            {
-                UnlockLevel(level.LevelNumber);
-                Debug.Log($"Level {level.LevelNumber} is Unlocked.");
-            }
-            else
-            {
-                LockLevel(level.LevelNumber);
-                Debug.Log($"Level {level.LevelNumber} is Locked.");
-            }
-        }
-    }
-
+               if (level.IsCompleted)
+               {
+                   OpenLevel(level.LevelNumber);
+                   Debug.Log($"Level {level.LevelNumber} is Complete.");
+               }
+               else if (level.IsOpened)
+               {
+                   OpenLevel(level.LevelNumber);
+                   Debug.Log($"Level {level.LevelNumber} is Open.");
+               }
+               else if (level.IsUnlocked)
+               {
+                   UnlockLevel(level.LevelNumber);
+                   Debug.Log($"Level {level.LevelNumber} is Unlocked.");
+               }
+               else
+               {
+                   LockLevel(level.LevelNumber);
+                   Debug.Log($"Level {level.LevelNumber} is Locked.");
+               }
+           }
+       }
+   */
 
 
     public void LockLevel ( int levelNumber )
@@ -57,7 +57,7 @@ public class WorldLevelsUI : MonoBehaviour
         if (levelNumber > 0 && levelNumber <= levelButtons.Count)
         {
             levelButtons[levelNumber - 1].SetLevelButtonState(1); // Unlocked
-            GameManager.Instance.UnlockLevelByLevelNumber(levelNumber);
+            //GameManager.Instance.UnlockLevelByLevelNumber(levelNumber);
         }
     }
 
@@ -66,7 +66,7 @@ public class WorldLevelsUI : MonoBehaviour
         if (levelNumber > 0 && levelNumber <= levelButtons.Count)
         {
             levelButtons[levelNumber - 1].SetLevelButtonState(2); // Open
-            GameManager.Instance.OpenLevelByLevelNumber(levelNumber);
+            //GameManager.Instance.OpenLevelByLevelNumber(levelNumber);
         }
     }
 }
