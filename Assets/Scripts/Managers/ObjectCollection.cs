@@ -46,15 +46,15 @@ public class ObjectCollection : MonoBehaviour
         }
 
         // Ensure the object isn't already in the collection by checking InstanceID
-        if (!collection[obj.subject].Exists(o => o.objectPrefab.GetInstanceID() == obj.objectPrefab.GetInstanceID()))
-        {
-            collection[obj.subject].Add(obj);
-        }
-        else
-        {
-            Debug.Log($"Object '{obj.objectPrefab.name}' is already in the collection under subject '{obj.subject}'.");
-        }
-
+        /* if (!collection[obj.subject].Exists(o => o.objectPrefab.GetInstanceID() == obj.objectPrefab.GetInstanceID()))
+         {
+             collection[obj.subject].Add(obj);
+         }
+         else
+         {
+             Debug.Log($"Object '{obj.objectPrefab.name}' is already in the collection under subject '{obj.subject}'.");
+         }
+ */
         //DEBUG
         DebugLogCollection();
         SaveCollection();
@@ -133,7 +133,7 @@ public class ObjectCollection : MonoBehaviour
             Debug.Log($"Subject: {subject}");
             foreach (var obj in objects)
             {
-                Debug.Log($"  Object Name: {obj.objectPrefab.name}");
+                // Debug.Log($"  Object Name: {obj.objectPrefab.name}");
             }
         }
     }
@@ -153,8 +153,8 @@ public class ObjectCollection : MonoBehaviour
     {
         if (bookManager == null) return;
 
-        bookManager.SetObjects(collectibleObjectsToLoad);
-        bookManager.SetSubjectTitle(subjectTitle);
+        //bookManager.SetObjects(collectibleObjectsToLoad);
+        //bookManager.SetSubjectTitle(subjectTitle);
     }
 
     public void LoadSubjectFromCollection ()

@@ -6,8 +6,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public List<Level> defaultLevels;
-
     public List<ToriObject> selectedObjects;
 
     public Subject currentSubject;

@@ -1,11 +1,11 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Chest : MonoBehaviour
 {
-    public QuestionAnswerManager answersManager;
+    //public QuestionAnswerManager answersManager;
 
     [SerializeField] private LevelManager levelManager;
 
@@ -20,20 +20,6 @@ public class Chest : MonoBehaviour
     private Sprite suitableKeySprite;
     private GameObject parallelObject;
 
-
-    private void OnEnable ()
-    {
-        answersManager.OnAnswersManagerReady += OnAnswersManagerReady;
-        //answersManager.dialogManager.OnFeedbackClicked += ReloadChest;
-        answersManager.OnCorrectDraggableTarget += OpenChest;
-    }
-
-    private void OnDisable ()
-    {
-        answersManager.OnAnswersManagerReady -= OnAnswersManagerReady;
-        //answersManager.dialogManager.OnFeedbackClicked -= ReloadChest;
-        answersManager.OnCorrectDraggableTarget -= OpenChest;
-    }
 
     private void OnAnswersManagerReady ()
     {
@@ -158,3 +144,4 @@ public class Chest : MonoBehaviour
         suitableKeySprite = null;
     }
 }
+*/

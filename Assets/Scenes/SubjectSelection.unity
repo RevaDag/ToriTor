@@ -2627,103 +2627,85 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Colors:
   - objectName: "\u05D0\u05D3\u05D5\u05DD"
-    objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
-    parallelObject: {fileID: 3382073005429300018, guid: b95f27a72556c1b48b35caa06a456d41, type: 3}
     parallelObjectSprite: {fileID: 21300000, guid: 88c423508b9d75241a8bc45816d73ec1, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: cd459827c8cdeba4fafc2792f1c0b290, type: 3}
+    objectSoundClip: {fileID: 0}
     subject: Colors
     color: {r: 1, g: 0, b: 0, a: 1}
     clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
-    sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
-    summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
     chestSprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
   - objectName: "\u05DB\u05D7\u05D5\u05DC"
-    objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
-    parallelObject: {fileID: 3382073005429300018, guid: 735595ff8aa010d45b4226f99a83db86, type: 3}
     parallelObjectSprite: {fileID: 21300000, guid: a5fc075174099a647981ab467adba3c9, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: df82c7f62ce39a648969294fb29a86b6, type: 3}
+    objectSoundClip: {fileID: 0}
     subject: Colors
     color: {r: 0, g: 0.004989147, b: 1, a: 1}
     clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
-    sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
-    summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
     chestSprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
   - objectName: "\u05E6\u05D4\u05D5\u05D1"
-    objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
-    parallelObject: {fileID: 3382073005429300018, guid: 442db851fe820d54699d0befd83f406b, type: 3}
     parallelObjectSprite: {fileID: 21300000, guid: 49f31e1949ff5d74abb1a0cf0a65e138, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
+    objectSoundClip: {fileID: 0}
     subject: Colors
     color: {r: 0.9433962, g: 0.8957994, b: 0.022249907, a: 1}
     clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
-    sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
-    summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
     chestSprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
   - objectName: "\u05D9\u05E8\u05D5\u05E7"
-    objectPrefab: {fileID: 7788661536923755038, guid: a61a91bba9647874a992d5244a0ea3e8, type: 3}
-    parallelObject: {fileID: 3382073005429300018, guid: fd69252297ab79d40885175f0a4d1d8b, type: 3}
     parallelObjectSprite: {fileID: 21300000, guid: c00762070adf2614ea87237a2e801fda, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
+    objectSoundClip: {fileID: 0}
     subject: Colors
     color: {r: 0.017627195, g: 0.6792453, b: 0, a: 1}
     clip: {fileID: 8300000, guid: b4859006f745e24419338fb1bafa824a, type: 3}
-    sprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
-    summarySprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
     chestSprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
   - objectName: "\u05DB\u05EA\u05D5\u05DD"
-    objectPrefab: {fileID: 7788661536923755038, guid: a61a91bba9647874a992d5244a0ea3e8, type: 3}
-    parallelObject: {fileID: 3382073005429300018, guid: fd69252297ab79d40885175f0a4d1d8b, type: 3}
     parallelObjectSprite: {fileID: 21300000, guid: c00762070adf2614ea87237a2e801fda, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
+    objectSoundClip: {fileID: 0}
     subject: Colors
     color: {r: 1, g: 0.5589785, b: 0, a: 1}
     clip: {fileID: 8300000, guid: c60cef973c3f64840ae47bb05d472abd, type: 3}
-    sprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
-    summarySprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
     chestSprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
   - objectName: "\u05E1\u05D2\u05D5\u05DC"
-    objectPrefab: {fileID: 7788661536923755038, guid: a61a91bba9647874a992d5244a0ea3e8, type: 3}
-    parallelObject: {fileID: 3382073005429300018, guid: fd69252297ab79d40885175f0a4d1d8b, type: 3}
     parallelObjectSprite: {fileID: 21300000, guid: c00762070adf2614ea87237a2e801fda, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
+    objectSoundClip: {fileID: 0}
     subject: Colors
     color: {r: 0.59720945, g: 0, b: 1, a: 1}
     clip: {fileID: 8300000, guid: e23f8697c4d7b77449435ed13826fa25, type: 3}
-    sprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
-    summarySprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
     chestSprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
   - objectName: "\u05D5\u05E8\u05D5\u05D3"
-    objectPrefab: {fileID: 7788661536923755038, guid: a61a91bba9647874a992d5244a0ea3e8, type: 3}
-    parallelObject: {fileID: 3382073005429300018, guid: fd69252297ab79d40885175f0a4d1d8b, type: 3}
     parallelObjectSprite: {fileID: 21300000, guid: c00762070adf2614ea87237a2e801fda, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
+    objectSoundClip: {fileID: 0}
     subject: Colors
     color: {r: 1, g: 0, b: 0.79022217, a: 1}
     clip: {fileID: 8300000, guid: 5a451e4700a83e4409bf8fedba25c0b4, type: 3}
-    sprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
-    summarySprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
     chestSprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
   - objectName: "\u05E9\u05D7\u05D5\u05E8"
-    objectPrefab: {fileID: 7788661536923755038, guid: a61a91bba9647874a992d5244a0ea3e8, type: 3}
-    parallelObject: {fileID: 3382073005429300018, guid: fd69252297ab79d40885175f0a4d1d8b, type: 3}
     parallelObjectSprite: {fileID: 21300000, guid: c00762070adf2614ea87237a2e801fda, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
+    objectSoundClip: {fileID: 0}
     subject: Colors
     color: {r: 0, g: 0, b: 0, a: 1}
     clip: {fileID: 8300000, guid: d97351f2461e2c34f8cd6b5da9c07cfd, type: 3}
-    sprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
-    summarySprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
     chestSprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
   - objectName: "\u05DC\u05D1\u05DF"
-    objectPrefab: {fileID: 7788661536923755038, guid: a61a91bba9647874a992d5244a0ea3e8, type: 3}
-    parallelObject: {fileID: 3382073005429300018, guid: fd69252297ab79d40885175f0a4d1d8b, type: 3}
     parallelObjectSprite: {fileID: 21300000, guid: c00762070adf2614ea87237a2e801fda, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
+    objectSoundClip: {fileID: 0}
     subject: Colors
     color: {r: 1, g: 1, b: 1, a: 1}
     clip: {fileID: 8300000, guid: 298e4d01171d79049ad4071227ebc486, type: 3}
-    sprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
-    summarySprite: {fileID: 21300000, guid: 6f8f679404a8a2748ba5218341271cb3, type: 3}
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
     chestSprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
   Animals: []
   Shapes: []
@@ -4403,37 +4385,31 @@ MonoBehaviour:
     Subject: "\u05E6\u05D1\u05E2\u05D9\u05DD"
     ToriObjects:
     - objectName: "\u05D0\u05D3\u05D5\u05DD"
-      objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
-      parallelObject: {fileID: 0}
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 1, g: 0, b: 0, a: 1}
       clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
       sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
-      summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
       chestSprite: {fileID: 0}
     - objectName: "\u05DB\u05D7\u05D5\u05DC"
-      objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
-      parallelObject: {fileID: 0}
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 0, g: 0.07144785, b: 1, a: 1}
       clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
       sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
-      summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
       chestSprite: {fileID: 0}
     - objectName: "\u05E6\u05D4\u05D5\u05D1"
-      objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
-      parallelObject: {fileID: 0}
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 0.96055627, g: 1, b: 0, a: 1}
       clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
       sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
-      summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
       chestSprite: {fileID: 0}
     StepsNumber: 3
   - LevelNumber: 2
@@ -4443,37 +4419,31 @@ MonoBehaviour:
     Subject: "\u05E6\u05D1\u05E2\u05D9\u05DD"
     ToriObjects:
     - objectName: "\u05D0\u05D3\u05D5\u05DD"
-      objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
-      parallelObject: {fileID: 3382073005429300018, guid: b95f27a72556c1b48b35caa06a456d41, type: 3}
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 1, g: 0, b: 0, a: 1}
       clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
       sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
-      summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
       chestSprite: {fileID: 0}
     - objectName: "\u05DB\u05D7\u05D5\u05DC"
-      objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
-      parallelObject: {fileID: 3382073005429300018, guid: 735595ff8aa010d45b4226f99a83db86, type: 3}
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 0, g: 0.07144785, b: 1, a: 1}
       clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
       sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
-      summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
       chestSprite: {fileID: 0}
     - objectName: "\u05E6\u05D4\u05D5\u05D1"
-      objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
-      parallelObject: {fileID: 3382073005429300018, guid: 442db851fe820d54699d0befd83f406b, type: 3}
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 0.96055627, g: 1, b: 0, a: 1}
       clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
       sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
-      summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
       chestSprite: {fileID: 0}
     StepsNumber: 3
   - LevelNumber: 3
@@ -4483,37 +4453,31 @@ MonoBehaviour:
     Subject: "\u05E6\u05D1\u05E2\u05D9\u05DD"
     ToriObjects:
     - objectName: "\u05D0\u05D3\u05D5\u05DD"
-      objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
-      parallelObject: {fileID: 0}
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
       sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
-      summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
       chestSprite: {fileID: 0}
     - objectName: "\u05DB\u05D7\u05D5\u05DC"
-      objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
-      parallelObject: {fileID: 0}
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
       sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
-      summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
       chestSprite: {fileID: 0}
     - objectName: "\u05E6\u05D4\u05D5\u05D1"
-      objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
-      parallelObject: {fileID: 0}
       parallelObjectSprite: {fileID: 0}
       parallelObjectClip: {fileID: 0}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
       sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
-      summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
       chestSprite: {fileID: 0}
     StepsNumber: 3
   - LevelNumber: 4
@@ -4523,37 +4487,31 @@ MonoBehaviour:
     Subject: 
     ToriObjects:
     - objectName: "\u05D0\u05D3\u05D5\u05DD"
-      objectPrefab: {fileID: 7788661536923755038, guid: 440b01bcaa2ae0a47b120a93f499e88b, type: 3}
-      parallelObject: {fileID: 3382073005429300018, guid: b95f27a72556c1b48b35caa06a456d41, type: 3}
       parallelObjectSprite: {fileID: 21300000, guid: 88c423508b9d75241a8bc45816d73ec1, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: cd459827c8cdeba4fafc2792f1c0b290, type: 3}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
       sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
-      summarySprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
       chestSprite: {fileID: 0}
     - objectName: "\u05DB\u05D7\u05D5\u05DC"
-      objectPrefab: {fileID: 4647865162399451965, guid: a0242181a35264b4f83bc482dba39ca8, type: 3}
-      parallelObject: {fileID: 3382073005429300018, guid: 735595ff8aa010d45b4226f99a83db86, type: 3}
       parallelObjectSprite: {fileID: 21300000, guid: a5fc075174099a647981ab467adba3c9, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: df82c7f62ce39a648969294fb29a86b6, type: 3}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
       sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
-      summarySprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
       chestSprite: {fileID: 0}
     - objectName: "\u05E6\u05D4\u05D5\u05D1"
-      objectPrefab: {fileID: 7788661536923755038, guid: 45895d10c8c6b184f8e49947139c3d30, type: 3}
-      parallelObject: {fileID: 3382073005429300018, guid: 442db851fe820d54699d0befd83f406b, type: 3}
       parallelObjectSprite: {fileID: 21300000, guid: 49f31e1949ff5d74abb1a0cf0a65e138, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
+      objectSoundClip: {fileID: 0}
       subject: Colors
       color: {r: 1, g: 1, b: 1, a: 1}
       clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
       sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
-      summarySprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
       chestSprite: {fileID: 0}
     StepsNumber: 3
   selectedObjects: []

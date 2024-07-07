@@ -21,11 +21,6 @@ public class DialogManager : MonoBehaviour
     private bool isTyping;
     private Coroutine typingCoroutine;
 
-    #region Events
-    public delegate void DialogClickedEventHandler ();
-    public event DialogClickedEventHandler OnQuestionClicked;
-    #endregion
-
     #region Fader
 
     public void FadeIn ()
@@ -150,7 +145,6 @@ public class DialogManager : MonoBehaviour
 
                 case Line.Type.Question:
                     SayPreviousLine();
-                    //OnQuestionClicked?.Invoke();
                     break;
             }
         }
