@@ -262,7 +262,7 @@ RectTransform:
   m_GameObject: {fileID: 172472553}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1705170586}
@@ -270,7 +270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 333, y: -216}
+  m_AnchoredPosition: {x: 266.8, y: -271.5}
   m_SizeDelta: {x: 441, y: 391}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &172472555
@@ -473,7 +473,7 @@ RectTransform:
   m_GameObject: {fileID: 287647672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 642561335}
@@ -482,7 +482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: 77}
+  m_AnchoredPosition: {x: 2, y: -195.7}
   m_SizeDelta: {x: 446, y: 494}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &287647675
@@ -1582,7 +1582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8209766df75f5b9439750eccf2ddeca6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2fcd48a0acd4a9d4b90a387a3e1ec67e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2284,6 +2284,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913745136}
   m_CullTransparentMesh: 1
+--- !u!1 &933979302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 933979303}
+  - component: {fileID: 933979305}
+  - component: {fileID: 933979304}
+  m_Layer: 5
+  m_Name: PirateIsland
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &933979303
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933979302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1849136722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &933979304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933979302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6095d867094b4c641951af27e0681ad8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &933979305
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933979302}
+  m_CullTransparentMesh: 1
 --- !u!1 &949508850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,6 +2440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ac1f0556f34044d8f4529969c7dc95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  subjectTitle: 
 --- !u!114 &949508855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3786,7 +3862,7 @@ RectTransform:
   m_GameObject: {fileID: 1667863358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 398018213}
@@ -3794,7 +3870,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -322, y: -184}
+  m_AnchoredPosition: {x: -223.6, y: -275.6}
   m_SizeDelta: {x: 429, y: 484}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1667863360
@@ -4290,6 +4366,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 622791751}
+  - {fileID: 933979303}
   - {fileID: 287647673}
   - {fileID: 1667863359}
   - {fileID: 172472554}
@@ -4377,143 +4454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a809443bdb98f44dbcb5a49841de335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultLevels:
-  - LevelNumber: 1
-    IsUnlocked: 1
-    IsOpened: 0
-    IsCompleted: 0
-    Subject: "\u05E6\u05D1\u05E2\u05D9\u05DD"
-    ToriObjects:
-    - objectName: "\u05D0\u05D3\u05D5\u05DD"
-      parallelObjectSprite: {fileID: 0}
-      parallelObjectClip: {fileID: 0}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 1, g: 0, b: 0, a: 1}
-      clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
-      sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
-      chestSprite: {fileID: 0}
-    - objectName: "\u05DB\u05D7\u05D5\u05DC"
-      parallelObjectSprite: {fileID: 0}
-      parallelObjectClip: {fileID: 0}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 0, g: 0.07144785, b: 1, a: 1}
-      clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
-      sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
-      chestSprite: {fileID: 0}
-    - objectName: "\u05E6\u05D4\u05D5\u05D1"
-      parallelObjectSprite: {fileID: 0}
-      parallelObjectClip: {fileID: 0}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 0.96055627, g: 1, b: 0, a: 1}
-      clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
-      sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
-      chestSprite: {fileID: 0}
-    StepsNumber: 3
-  - LevelNumber: 2
-    IsUnlocked: 0
-    IsOpened: 0
-    IsCompleted: 0
-    Subject: "\u05E6\u05D1\u05E2\u05D9\u05DD"
-    ToriObjects:
-    - objectName: "\u05D0\u05D3\u05D5\u05DD"
-      parallelObjectSprite: {fileID: 0}
-      parallelObjectClip: {fileID: 0}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 1, g: 0, b: 0, a: 1}
-      clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
-      sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
-      chestSprite: {fileID: 0}
-    - objectName: "\u05DB\u05D7\u05D5\u05DC"
-      parallelObjectSprite: {fileID: 0}
-      parallelObjectClip: {fileID: 0}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 0, g: 0.07144785, b: 1, a: 1}
-      clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
-      sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
-      chestSprite: {fileID: 0}
-    - objectName: "\u05E6\u05D4\u05D5\u05D1"
-      parallelObjectSprite: {fileID: 0}
-      parallelObjectClip: {fileID: 0}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 0.96055627, g: 1, b: 0, a: 1}
-      clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
-      sprite: {fileID: -2413806693520163455, guid: 33159e0345ecfd5489b5055bfccfe7f7, type: 3}
-      chestSprite: {fileID: 0}
-    StepsNumber: 3
-  - LevelNumber: 3
-    IsUnlocked: 0
-    IsOpened: 0
-    IsCompleted: 0
-    Subject: "\u05E6\u05D1\u05E2\u05D9\u05DD"
-    ToriObjects:
-    - objectName: "\u05D0\u05D3\u05D5\u05DD"
-      parallelObjectSprite: {fileID: 0}
-      parallelObjectClip: {fileID: 0}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 1, g: 1, b: 1, a: 1}
-      clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
-      sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
-      chestSprite: {fileID: 0}
-    - objectName: "\u05DB\u05D7\u05D5\u05DC"
-      parallelObjectSprite: {fileID: 0}
-      parallelObjectClip: {fileID: 0}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 1, g: 1, b: 1, a: 1}
-      clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
-      sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
-      chestSprite: {fileID: 0}
-    - objectName: "\u05E6\u05D4\u05D5\u05D1"
-      parallelObjectSprite: {fileID: 0}
-      parallelObjectClip: {fileID: 0}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 1, g: 1, b: 1, a: 1}
-      clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
-      sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
-      chestSprite: {fileID: 0}
-    StepsNumber: 3
-  - LevelNumber: 4
-    IsUnlocked: 0
-    IsOpened: 0
-    IsCompleted: 0
-    Subject: 
-    ToriObjects:
-    - objectName: "\u05D0\u05D3\u05D5\u05DD"
-      parallelObjectSprite: {fileID: 21300000, guid: 88c423508b9d75241a8bc45816d73ec1, type: 3}
-      parallelObjectClip: {fileID: 8300000, guid: cd459827c8cdeba4fafc2792f1c0b290, type: 3}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 1, g: 1, b: 1, a: 1}
-      clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
-      sprite: {fileID: 21300000, guid: 98e0323f5608c784b8331147eea763f9, type: 3}
-      chestSprite: {fileID: 0}
-    - objectName: "\u05DB\u05D7\u05D5\u05DC"
-      parallelObjectSprite: {fileID: 21300000, guid: a5fc075174099a647981ab467adba3c9, type: 3}
-      parallelObjectClip: {fileID: 8300000, guid: df82c7f62ce39a648969294fb29a86b6, type: 3}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 1, g: 1, b: 1, a: 1}
-      clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
-      sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
-      chestSprite: {fileID: 0}
-    - objectName: "\u05E6\u05D4\u05D5\u05D1"
-      parallelObjectSprite: {fileID: 21300000, guid: 49f31e1949ff5d74abb1a0cf0a65e138, type: 3}
-      parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
-      objectSoundClip: {fileID: 0}
-      subject: Colors
-      color: {r: 1, g: 1, b: 1, a: 1}
-      clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
-      sprite: {fileID: 21300000, guid: 0e23eea9380774d4c92de5a83f6249f9, type: 3}
-      chestSprite: {fileID: 0}
-    StepsNumber: 3
   selectedObjects: []
   currentSubject: 0
 --- !u!4 &2037425472
