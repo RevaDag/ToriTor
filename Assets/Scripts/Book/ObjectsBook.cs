@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BookManager : MonoBehaviour
+public class ObjectsBook : MonoBehaviour
 {
     [SerializeField] private TMP_Text objectText;
     [SerializeField] private Image image;
@@ -18,6 +18,8 @@ public class BookManager : MonoBehaviour
     [SerializeField] private Button nextButton;
 
     [SerializeField] private Sprite checkIconSprite;
+
+    [SerializeField] private QuizSummary quizSummary;
     private Sprite nextIconSprite;
 
     private CanvasGroup rightButtonCanvasGroup;
@@ -131,7 +133,16 @@ public class BookManager : MonoBehaviour
 
     private void CompleteLevel ()
     {
+        quizSummary.ShowSummary();
         Debug.Log("COMPLETE!");
+    }
+
+    public void ResetBook ()
+    {
+        currentObjectIndex = 0;
+        SetBookObject(objects[currentObjectIndex]);
+        UpdateNextAndPreviousButtons();
+        quizSummary.HideSummary();
     }
 
 }

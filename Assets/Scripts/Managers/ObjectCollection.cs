@@ -7,7 +7,7 @@ public class ObjectCollection : MonoBehaviour
 {
     public static ObjectCollection Instance { get; private set; }
 
-    private BookManager bookManager;
+    //private BookManager bookManager;
     public Dictionary<string, List<ToriObject>> collection;
     private List<string> subjects;
 
@@ -138,10 +138,10 @@ public class ObjectCollection : MonoBehaviour
         }
     }
 
-    public void SetBookManager ( BookManager _bookManager )
-    {
-        this.bookManager = _bookManager;
-    }
+    /*  public void SetBookManager ( BookManager _bookManager )
+      {
+          this.bookManager = _bookManager;
+      }*/
 
     public void SetSubjectToLoad ( string _subject, string _subjectTitle )
     {
@@ -151,7 +151,7 @@ public class ObjectCollection : MonoBehaviour
 
     public void LoadObjectListAndSubject ( List<ToriObject> collectibleObjectsToLoad )
     {
-        if (bookManager == null) return;
+        //if (bookManager == null) return;
 
         //bookManager.SetObjects(collectibleObjectsToLoad);
         //bookManager.SetSubjectTitle(subjectTitle);
@@ -159,7 +159,7 @@ public class ObjectCollection : MonoBehaviour
 
     public void LoadSubjectFromCollection ()
     {
-        if (bookManager == null) return;
+        //if (bookManager == null) return;
 
         List<ToriObject> collectibleObjectsToLoad = GetSubjectCollection(subjectToLoad);
         LoadObjectListAndSubject(collectibleObjectsToLoad);
