@@ -11,6 +11,9 @@ public class SubjectObjectsManager : MonoBehaviour
 
     [SerializeField] private ObjectOption optionPrefab;
     [SerializeField] private Transform optionsParent;
+    [SerializeField] private ScrollRect scrollRect;
+
+    [SerializeField] private float scrollStep = 0.1f;
 
     [SerializeField] private SelectedObjectsUI selectedObjectsUI;
 
@@ -41,6 +44,30 @@ public class SubjectObjectsManager : MonoBehaviour
             objectOption.SetOption(toriObject, this);
             objectOptions.Add(objectOption);
         }
+
+        // Force the layout to update
+        LayoutRebuilder.ForceRebuildLayoutImmediate(optionsParent.GetComponent<RectTransform>());
+
+        // Set scroll position to the top in the next frame
+        StartCoroutine(SetScrollPositionNextFrame());
+    }
+
+    private IEnumerator SetScrollPositionNextFrame ()
+    {
+        yield return null; // Wait for the next frame
+        scrollRect.verticalNormalizedPosition = 1f;
+    }
+
+    public void ScrollUp ()
+    {
+        float newPosition = scrollRect.verticalNormalizedPosition + scrollStep;
+        scrollRect.verticalNormalizedPosition = Mathf.Clamp(newPosition, 0f, 1f);
+    }
+
+    public void ScrollDown ()
+    {
+        float newPosition = scrollRect.verticalNormalizedPosition - scrollStep;
+        scrollRect.verticalNormalizedPosition = Mathf.Clamp(newPosition, 0f, 1f);
     }
 
     public void SelectObject ( ToriObject obj )
