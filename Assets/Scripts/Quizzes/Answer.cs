@@ -55,20 +55,22 @@ public class Answer : MonoBehaviour
 
     public void SetAsCorrect () { isCorrect = true; }
 
+    public void SetTarget ( RectTransform target )
+    {
+        draggable.SetTarget(target);
+    }
+
     public void OnClickAnswer ()
     {
         audioSource.Play();
 
-        if (isCorrect)
-        {
-            quizManager.CorrectAnswer();
-            Debug.Log("CORRECT!");
-        }
-        else
-        {
-            quizManager.WrongAnswer();
-            Debug.Log("WRONG!");
-        }
+        quizManager.AnswerClicked(isCorrect);
+    }
+
+    public void PlayerAnswerCorrect ()
+    {
+        audioSource.Play();
+        quizManager.CorrectAnswer();
     }
 
     public void ResetAnswer ()

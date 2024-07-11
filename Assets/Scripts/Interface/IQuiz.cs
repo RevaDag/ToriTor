@@ -11,6 +11,7 @@ public interface IQuiz
     void SetAnswers ( List<Answer> answerList );
     void LoadCurrentQuestion ();
     void DeployQuestion ( ToriObject toriObject );
+    void AnswerClicked ( bool isCorrect );
     void NextQuestion ();
     void DeployAnswers ();
     void CorrectAnswer ();

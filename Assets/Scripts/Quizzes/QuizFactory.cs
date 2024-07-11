@@ -9,6 +9,8 @@ public class QuizFactory : IQuizFactory
             case GameType.Speech:
                 return new SpeechQuiz();
             // Add other cases for different quiz types
+            case GameType.Matching:
+                return new MatchQuiz();
             default:
                 throw new System.ArgumentException("Invalid game type");
         }

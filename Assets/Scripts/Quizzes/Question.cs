@@ -14,9 +14,9 @@ public class Question : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private TMP_Text tmpText;
 
-    public void SetAudioClip ( ToriObject toriObject )
+    public void SetAudioClip ( AudioClip _clip )
     {
-        audioSource.clip = toriObject.parallelObjectClip;
+        audioSource.clip = _clip;
     }
 
     public void SetImage ( ToriObject toriObject )

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SpeechQuiz : IQuiz
+public class MatchQuiz : IQuiz
 {
     private Question currentQuestion;
     private List<Answer> answers = new List<Answer>();
@@ -40,25 +40,10 @@ public class SpeechQuiz : IQuiz
 
     public void DeployQuestion ( ToriObject toriObject )
     {
-        quizManager.feedbackManager.ClearDialog();
-        currentQuestion.SetAudioClip(toriObject.clip);
-        currentQuestion.SetDialogLine(toriObject);
-        quizManager.dialogManager.FadeIn();
+        currentQuestion.SetImage(toriObject);
+        currentQuestion.SetAudioClip(toriObject.parallelObjectClip);
     }
 
-    public void AnswerClicked ( bool isCorrect )
-    {
-        if (isCorrect)
-        {
-            quizManager.CorrectAnswer();
-            Debug.Log("CORRECT!");
-        }
-        else
-        {
-            quizManager.WrongAnswer();
-            Debug.Log("WRONG!");
-        }
-    }
 
     public void NextQuestion ()
     {
@@ -85,6 +70,7 @@ public class SpeechQuiz : IQuiz
         Answer correctAnswer = shuffledAnswers[correctAnswerIndex];
         DeployAnswer(correctAnswer, correctObject);
         correctAnswer.SetAsCorrect();
+        correctAnswer.SetTarget(currentQuestion.target);
 
         // Deploy wrong answers to the remaining positions
         int wrongObjectIndex = 0;
@@ -112,14 +98,19 @@ public class SpeechQuiz : IQuiz
 
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
+        answer.SetImage(toriObject);
         answer.SetColor(toriObject);
         answer.SetAudioClip(toriObject);
+    }
+
+    public void AnswerClicked ( bool isCorrect )
+    {
+
     }
 
 
     public void CorrectAnswer ()
     {
-        ResetAnswers();
         quizManager.feedbackManager.SendFeedback(0);
         FadeOutAnswers();
         quizManager.stepper.activateNextStep();
@@ -140,6 +131,8 @@ public class SpeechQuiz : IQuiz
 
     public void CorrectFeedbackClicked ()
     {
+        ResetAnswers();
+
         quizManager.ResetUnusedAnswersList();
         quizManager.MoveToNextObject();
         InitiateQuiz();

@@ -132,6 +132,11 @@ public class QuizManager : MonoBehaviour
         currentQuestionState = QuestionState.Pending;
     }
 
+    public void AnswerClicked ( bool isCorrect )
+    {
+        quiz.AnswerClicked(isCorrect);
+    }
+
     public void OnFeedbackClicked ()
     {
         switch (currentQuestionState)

@@ -71,7 +71,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             this.transform.SetParent(target);
             this.transform.localPosition = Vector3.zero;
-            // answer.answersManager.CorrectDraggableTarget();
+            answer.PlayerAnswerCorrect();
             DisableDrag();
         }
     }
