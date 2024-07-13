@@ -40,7 +40,7 @@ public class MatchQuiz : IQuiz
 
     public void DeployQuestion ( ToriObject toriObject )
     {
-        currentQuestion.SetImage(toriObject);
+        currentQuestion.SetImage(toriObject.parallelObjectSprite);
         currentQuestion.SetAudioClip(toriObject.parallelObjectClip);
     }
 

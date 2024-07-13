@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public Subject currentSubject;
 
+    public int currentLevel;
+
     public enum GameType
     {
         Book,
@@ -40,6 +42,16 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    public void ProgressToNextLevel ()
+    {
+        currentLevel++;
+    }
+
+    public void ResetProgress ()
+    {
+        currentLevel = 0;
     }
 
 

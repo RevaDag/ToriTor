@@ -16,4 +16,9 @@ public class QuizSummary : MonoBehaviour
     {
         SummaryCanvasFader.FadeOut();
     }
+
+    public void NextLevel ()
+    {
+        GameManager.Instance.ProgressToNextLevel();
+    }
 }

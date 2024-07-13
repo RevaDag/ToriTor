@@ -145,7 +145,7 @@ public class QuizManager : MonoBehaviour
                 if (usedObjects.Count < selectedObjects.Count)
                     quiz.CorrectFeedbackClicked();
                 else
-                    quizSummary.ShowSummary();
+                    CompleteQuiz();
                 break;
 
             case QuestionState.Wrong:
@@ -157,6 +157,11 @@ public class QuizManager : MonoBehaviour
                 break;
 
         }
+    }
+
+    private void CompleteQuiz ()
+    {
+        quizSummary.ShowSummary();
     }
 
     private void ResetToriEmoji ()

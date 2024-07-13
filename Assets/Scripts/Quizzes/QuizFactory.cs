@@ -11,6 +11,8 @@ public class QuizFactory : IQuizFactory
             // Add other cases for different quiz types
             case GameType.Matching:
                 return new MatchQuiz();
+            case GameType.Chest:
+                return new ChestQuiz();
             default:
                 throw new System.ArgumentException("Invalid game type");
         }

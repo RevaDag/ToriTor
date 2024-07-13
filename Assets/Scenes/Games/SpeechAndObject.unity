@@ -2862,6 +2862,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1107072673}
+        m_TargetAssemblyTypeName: QuizSummary, Assembly-CSharp
+        m_MethodName: NextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1368323340}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: LoadPreviousScene
@@ -4028,7 +4040,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogManager: {fileID: 1816727808}
   target: {fileID: 0}
-  image: {fileID: 0}
+  imageSprite: {fileID: 0}
+  imageToColor: {fileID: 0}
   audioSource: {fileID: 6322503291433268014}
   tmpText: {fileID: 0}
 --- !u!114 &6322503291433268017 stripped

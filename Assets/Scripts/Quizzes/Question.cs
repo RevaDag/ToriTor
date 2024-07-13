@@ -10,7 +10,8 @@ public class Question : MonoBehaviour
 
     public RectTransform target;
 
-    [SerializeField] private Image image;
+    [SerializeField] private Image imageSprite;
+    [SerializeField] private Image imageToColor;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private TMP_Text tmpText;
 
@@ -19,10 +20,15 @@ public class Question : MonoBehaviour
         audioSource.clip = _clip;
     }
 
-    public void SetImage ( ToriObject toriObject )
+    public void SetImage ( Sprite _sprite )
     {
-        image.sprite = toriObject.parallelObjectSprite;
-        image.SetNativeSize();
+        imageSprite.sprite = _sprite;
+        imageSprite.SetNativeSize();
+    }
+
+    public void ColorImage ( Color _color )
+    {
+        imageToColor.color = _color;
     }
 
     public void SetDialogLine ( ToriObject toriObject )
