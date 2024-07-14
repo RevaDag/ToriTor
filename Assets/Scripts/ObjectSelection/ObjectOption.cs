@@ -44,6 +44,8 @@ public class ObjectOption : MonoBehaviour
                 image.sprite = toriObject.sprite;
                 break;
         }
+
+        image.SetNativeSize();
     }
 
     public void OnOptionClicked ()

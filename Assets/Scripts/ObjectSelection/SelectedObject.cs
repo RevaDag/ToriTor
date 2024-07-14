@@ -25,6 +25,10 @@ public class SelectedObject : MonoBehaviour
             case Subject.Colors:
                 image.color = _toriObject.color;
                 break;
+            case Subject.Shapes:
+                image.sprite = _toriObject.sprite;
+                image.SetNativeSize();
+                break;
         }
 
         audioSource.clip = _toriObject.clip;

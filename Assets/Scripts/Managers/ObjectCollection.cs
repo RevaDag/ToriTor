@@ -36,29 +36,29 @@ public class ObjectCollection : MonoBehaviour
 
         LoadCollection();
     }
-
-    public void AddObject ( ToriObject obj )
-    {
-        if (!collection.ContainsKey(obj.subject))
+    /*
+        public void AddObject ( ToriObject obj )
         {
-            collection[obj.subject] = new List<ToriObject>();
-            subjects.Add(obj.subject);
-        }
+            if (!collection.ContainsKey(obj.subject))
+            {
+                collection[obj.subject] = new List<ToriObject>();
+                subjects.Add(obj.subject);
+            }
 
-        // Ensure the object isn't already in the collection by checking InstanceID
-        /* if (!collection[obj.subject].Exists(o => o.objectPrefab.GetInstanceID() == obj.objectPrefab.GetInstanceID()))
-         {
-             collection[obj.subject].Add(obj);
-         }
-         else
-         {
-             Debug.Log($"Object '{obj.objectPrefab.name}' is already in the collection under subject '{obj.subject}'.");
-         }
- */
-        //DEBUG
-        DebugLogCollection();
-        SaveCollection();
-    }
+            // Ensure the object isn't already in the collection by checking InstanceID
+            *//* if (!collection[obj.subject].Exists(o => o.objectPrefab.GetInstanceID() == obj.objectPrefab.GetInstanceID()))
+             {
+                 collection[obj.subject].Add(obj);
+             }
+             else
+             {
+                 Debug.Log($"Object '{obj.objectPrefab.name}' is already in the collection under subject '{obj.subject}'.");
+             }
+     *//*
+            //DEBUG
+            DebugLogCollection();
+            SaveCollection();
+        }*/
 
     public List<ToriObject> GetSubjectCollection ( string subject )
     {

@@ -4,12 +4,10 @@ using UnityEngine;
 public class ToriObject
 {
     public string objectName;
+    public Sprite sprite;
+    public AudioClip clip;
+    public AudioClip objectSoundClip;
+    public Color color;
     public Sprite parallelObjectSprite;
     public AudioClip parallelObjectClip;
-    public AudioClip objectSoundClip;
-    public string subject;
-    public Color color;
-    public AudioClip clip;
-    public Sprite sprite;
-    public Sprite chestSprite;
 }
