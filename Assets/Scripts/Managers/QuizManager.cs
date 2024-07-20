@@ -201,6 +201,7 @@ public class QuizManager : MonoBehaviour
                 quizSummary.SetObjects(selectedObjects);
 
             quizSummary.InstantiateStickers();
+            GameManager.Instance.SaveProgress();
         }
     }
 

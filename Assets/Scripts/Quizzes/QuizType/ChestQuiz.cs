@@ -117,12 +117,12 @@ public class ChestQuiz : IQuiz
 
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
-        switch (subject)
+        switch (subject.name)
         {
-            case Subject.Colors:
+            case "Colors":
                 answer.SetColor(toriObject);
                 break;
-            case Subject.Shapes:
+            case "Shapes":
                 answer.SetImage(toriObject);
                 break;
 

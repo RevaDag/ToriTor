@@ -238,7 +238,7 @@ MonoBehaviour:
   - {fileID: 1102528086}
   - {fileID: 7567822209332183399}
   chestLidAnimator: {fileID: 8506342808971049453}
-  isTest: 1
+  isTest: 0
   quizTester: {fileID: 1982093221}
 --- !u!4 &295099226
 Transform:
@@ -987,6 +987,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766024086}
   m_CullTransparentMesh: 1
+--- !u!1 &777335339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 777335341}
+  - component: {fileID: 777335340}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &777335340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777335339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a809443bdb98f44dbcb5a49841de335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObjects:
+  - objectName: "\u05D0\u05D3\u05D5\u05DD"
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
+    clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
+    objectSoundClip: {fileID: 0}
+    color: {r: 1, g: 0, b: 0, a: 1}
+    parallelObjectSprite: {fileID: 21300000, guid: 88c423508b9d75241a8bc45816d73ec1, type: 3}
+    parallelObjectClip: {fileID: 8300000, guid: cd459827c8cdeba4fafc2792f1c0b290, type: 3}
+  - objectName: "\u05DB\u05D7\u05D5\u05DC"
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
+    clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
+    objectSoundClip: {fileID: 0}
+    color: {r: 0, g: 0.004989147, b: 1, a: 1}
+    parallelObjectSprite: {fileID: 21300000, guid: a5fc075174099a647981ab467adba3c9, type: 3}
+    parallelObjectClip: {fileID: 8300000, guid: df82c7f62ce39a648969294fb29a86b6, type: 3}
+  - objectName: "\u05E6\u05D4\u05D5\u05D1"
+    sprite: {fileID: 21300000, guid: a242dbe295bb670468f37f18644da415, type: 3}
+    clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
+    objectSoundClip: {fileID: 0}
+    color: {r: 0.9433962, g: 0.8957994, b: 0.022249907, a: 1}
+    parallelObjectSprite: {fileID: 21300000, guid: 49f31e1949ff5d74abb1a0cf0a65e138, type: 3}
+    parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
+  currentSubject:
+    name: 
+    hebrewName: 
+    sprite: {fileID: 0}
+    toriObjects: []
+  currentLevel: 0
+--- !u!4 &777335341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777335339}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &781433564
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,7 +3091,11 @@ MonoBehaviour:
     color: {r: 0.9433962, g: 0.8957994, b: 0.022249907, a: 1}
     parallelObjectSprite: {fileID: 21300000, guid: 49f31e1949ff5d74abb1a0cf0a65e138, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
-  subject: 0
+  subject:
+    name: Colors
+    hebrewName: 
+    sprite: {fileID: 0}
+    toriObjects: []
 --- !u!4 &1982093222
 Transform:
   m_ObjectHideFlags: 0
@@ -4150,3 +4226,4 @@ SceneRoots:
   - {fileID: 1368323341}
   - {fileID: 295099226}
   - {fileID: 1982093222}
+  - {fileID: 777335341}

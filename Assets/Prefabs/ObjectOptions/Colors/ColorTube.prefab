@@ -243,7 +243,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7a257c8f85acd4babe6e8e289f58d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subject: 0
+  subject:
+    name: Colors
+    hebrewName: 
+    toriObjects: []
+    sprite: {fileID: 0}
   image: {fileID: 5496480148150289178}
   button: {fileID: 7416237489573942146}
 --- !u!114 &7416237489573942146

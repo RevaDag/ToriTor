@@ -211,7 +211,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8a372c79e974e4785b512d3e8df881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subject: 0
+  subject:
+    name: Colors
+    hebrewName: 
+    toriObjects: []
+    sprite: {fileID: 0}
   image: {fileID: 715283427041110436}
   audioSource: {fileID: 2893830705961212093}
 --- !u!82 &2893830705961212093

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ public class Sticker : MonoBehaviour
 {
     [SerializeField] private Image image;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private TMP_Text text;
+    [SerializeField] private CanvasGroup canvasGroup;
 
     public void SetImage ( Sprite sprite )
     {
@@ -22,5 +25,16 @@ public class Sticker : MonoBehaviour
     public void SetColor ( Color color )
     {
         image.color = color;
+    }
+
+    public void SetText ( string _text )
+    {
+        text.text = _text;
+    }
+
+    public void ActivateGroupCanvas ( bool isActive )
+    {
+        canvasGroup.interactable = isActive;
+        canvasGroup.alpha = isActive ? 1f : 0.5f;
     }
 }

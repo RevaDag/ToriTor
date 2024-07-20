@@ -33,7 +33,7 @@ public class SubjectObjectsManager : MonoBehaviour
 
     private void GetSubjectObjects ()
     {
-        allSubjectObjects = SubjectsManager.Instance.GetSubject(subject);
+        allSubjectObjects = SubjectsManager.Instance.GetSubject(subject.name);
     }
 
     private void SetSubjectOptions ()

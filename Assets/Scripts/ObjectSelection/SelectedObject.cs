@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static SubjectsManager;
 
 public class SelectedObject : MonoBehaviour
 {
@@ -20,12 +19,12 @@ public class SelectedObject : MonoBehaviour
         toriObject = _toriObject;
 
 
-        switch (subject)
+        switch (subject.name)
         {
-            case Subject.Colors:
+            case "Colors":
                 image.color = _toriObject.color;
                 break;
-            case Subject.Shapes:
+            case "Shapes":
                 image.sprite = _toriObject.sprite;
                 image.SetNativeSize();
                 break;

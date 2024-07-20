@@ -1,21 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SubjectsManager : MonoBehaviour
 {
-    public enum Subject
-    {
-        Colors,
-        Shapes,
-        Animals
-    }
+    [Header("Subjects")]
+    [SerializeField] private List<Subject> subjects;
 
-    [SerializeField] private List<ToriObject> Colors;
-    [SerializeField] private List<ToriObject> Animals;
-    [SerializeField] private List<ToriObject> Shapes;
 
-    private Dictionary<Subject, List<ToriObject>> subjectsDictionary;
+    private Dictionary<string, Subject> subjectDictionary;
 
     public static SubjectsManager Instance { get; private set; }
 
@@ -32,24 +24,34 @@ public class SubjectsManager : MonoBehaviour
             return;
         }
 
-        subjectsDictionary = new Dictionary<Subject, List<ToriObject>>
-        {
-            { Subject.Colors, Colors },
-            { Subject.Animals, Animals },
-            { Subject.Shapes, Shapes }
-        };
+        InitiateSubjectDictionary();
     }
 
-    public List<ToriObject> GetSubject ( Subject subject )
+    private void InitiateSubjectDictionary ()
     {
-        if (subjectsDictionary.TryGetValue(subject, out List<ToriObject> subjectList))
+        subjectDictionary = new Dictionary<string, Subject>();
+
+        foreach (var subject in subjects)
         {
-            return subjectList;
+            subjectDictionary[subject.name] = subject;
+        }
+    }
+
+    public List<ToriObject> GetSubject ( string subjectName )
+    {
+        if (subjectDictionary.TryGetValue(subjectName, out Subject subject))
+        {
+            return subject.toriObjects;
         }
         else
         {
-            Debug.LogWarning("Subject not found: " + subject);
+            Debug.LogWarning("Subject not found: " + subjectName);
             return null;
         }
+    }
+
+    public List<Subject> GetAllSubjects ()
+    {
+        return subjects;
     }
 }

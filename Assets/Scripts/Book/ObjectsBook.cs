@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ObjectsBook : MonoBehaviour
+public class ObjectsBook : MonoBehaviour, IBook
 {
     [SerializeField] private TMP_Text objectText;
     [SerializeField] private Image image;
@@ -14,103 +14,41 @@ public class ObjectsBook : MonoBehaviour
 
     [SerializeField] private Fader fader;
 
-    [SerializeField] private Button previousButton;
-    [SerializeField] private Button nextButton;
+    [SerializeField] private BookPagesController bookPagesController;
 
     [SerializeField] private Sprite checkIconSprite;
 
     [SerializeField] private QuizSummary quizSummary;
-    private Sprite nextIconSprite;
 
-    private CanvasGroup rightButtonCanvasGroup;
-    private Image nextIconImage;
+    public List<ToriObject> objects { get; set; }
+    public List<Subject> allSubjects { get; set; }
 
-    private List<ToriObject> objects;
-    private int currentObjectIndex;
     private void Start ()
     {
         objects = GameManager.Instance.selectedObjects;
 
-        rightButtonCanvasGroup = previousButton.GetComponent<CanvasGroup>();
-
-        nextIconImage = nextButton.transform.GetChild(0).GetComponent<Image>();
-        nextIconSprite = nextIconImage.sprite;
-
-        SetBookObject(objects[currentObjectIndex]);
-    }
-
-    public void LeftButtonClicked ()
-    {
-        if (currentObjectIndex == objects.Count - 1)
-        {
-            CompleteLevel();
-        }
-        else
-        {
-            NextWord();
-        }
-
-    }
-
-    private void NextWord ()
-    {
-        currentObjectIndex++;
-        SetBookObject(objects[currentObjectIndex]);
-        UpdateNextAndPreviousButtons();
-
-    }
-
-    public void PreviousWord ()
-    {
-        currentObjectIndex--;
-        SetBookObject(objects[currentObjectIndex]);
-        UpdateNextAndPreviousButtons();
-    }
-
-    private void UpdateNextAndPreviousButtons ()
-    {
-        if (currentObjectIndex == objects.Count - 1)
-        {
-            nextIconImage.sprite = checkIconSprite;
-            nextIconImage.SetNativeSize();
-        }
-        else
-        {
-            if (nextIconImage.sprite == checkIconSprite)
-            {
-                nextIconImage.sprite = nextIconSprite;
-                nextIconImage.SetNativeSize();
-            }
-        }
-
-
-
-        if (currentObjectIndex == 0)
-        {
-            rightButtonCanvasGroup.interactable = false;
-            rightButtonCanvasGroup.alpha = .5f;
-        }
-        else
-        {
-            rightButtonCanvasGroup.interactable = true;
-            rightButtonCanvasGroup.alpha = 1f;
-        }
+        bookPagesController.SetBook(this);
+        SetBookPage(0);
     }
 
 
-    private void SetBookObject ( ToriObject toriObject )
+
+
+    public void SetBookPage ( int objectNumber )
     {
         fader.FadeOut();
 
-        objectText.text = toriObject.objectName;
-        image.sprite = toriObject.sprite;
-        image.SetNativeSize();
-        image.color = toriObject.color;
-        objectWordAudioSource.clip = toriObject.clip;
+        ToriObject obj = objects[objectNumber];
 
-        if (toriObject.objectSoundClip != null)
+        objectText.text = obj.objectName;
+        image.sprite = obj.sprite;
+        image.SetNativeSize();
+        image.color = obj.color;
+        objectWordAudioSource.clip = obj.clip;
+
+        if (obj.objectSoundClip != null)
         {
-            objectSoundAudioSource.clip = toriObject.objectSoundClip;
+            objectSoundAudioSource.clip = obj.objectSoundClip;
             objectImageButton.interactable = true;
         }
         else
@@ -132,17 +70,15 @@ public class ObjectsBook : MonoBehaviour
         objectSoundAudioSource.Play();
     }
 
-    private void CompleteLevel ()
+    public void Complete ()
     {
         quizSummary.ShowSummary();
-        Debug.Log("COMPLETE!");
     }
 
     public void ResetBook ()
     {
-        currentObjectIndex = 0;
-        SetBookObject(objects[currentObjectIndex]);
-        UpdateNextAndPreviousButtons();
+        SetBookPage(0);
+        bookPagesController.ResetPages();
         quizSummary.HideSummary();
     }
 

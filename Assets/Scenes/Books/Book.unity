@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -174,6 +173,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SummaryCanvasFader: {fileID: 85273376}
+  stickerPrefab: {fileID: 0}
+  stickersParent: {fileID: 0}
 --- !u!114 &784295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,9 +689,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2066633014}
-        m_TargetAssemblyTypeName: ObjectsBook, Assembly-CSharp
-        m_MethodName: PreviousWord
+      - m_Target: {fileID: 1662875948}
+        m_TargetAssemblyTypeName: BookPagesController, Assembly-CSharp
+        m_MethodName: PreviousPage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1029,8 +1030,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2066633014}
-        m_TargetAssemblyTypeName: ObjectsBook, Assembly-CSharp
+      - m_Target: {fileID: 1662875948}
+        m_TargetAssemblyTypeName: BookPagesController, Assembly-CSharp
         m_MethodName: LeftButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -1154,12 +1155,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2153,6 +2154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1662875947}
+  - component: {fileID: 1662875948}
   m_Layer: 5
   m_Name: Arrows
   m_TagString: Untagged
@@ -2181,6 +2183,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -145.33334}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1662875948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662875946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fc453adfca7124a8c86a1123591c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStickerBook: 0
+  objectsPerPage: 1
+  previousButton: {fileID: 235752001}
+  nextButton: {fileID: 439088842}
+  rightButtonCanvasGroup: {fileID: 235752002}
+  leftButtonCanvasGroup: {fileID: 439088843}
+  checkIconSprite: {fileID: 21300000, guid: 61768b4246eb8434ab16dbd360f14dc0, type: 3}
 --- !u!1 &1737029127
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,8 +2611,7 @@ MonoBehaviour:
   objectSoundAudioSource: {fileID: 1963462909136359294}
   objectImageButton: {fileID: 5656794990948999629}
   fader: {fileID: 1344483240}
-  previousButton: {fileID: 235752001}
-  nextButton: {fileID: 439088842}
+  bookPagesController: {fileID: 1662875948}
   checkIconSprite: {fileID: 21300000, guid: 61768b4246eb8434ab16dbd360f14dc0, type: 3}
   quizSummary: {fileID: 784294}
 --- !u!1 &2072543211

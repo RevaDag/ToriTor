@@ -30,17 +30,17 @@ public class ObjectOption : MonoBehaviour
 
     private void InitializeOption ()
     {
-        switch (subject)
+        switch (subject.name)
         {
-            case Subject.Colors:
+            case "Colors":
                 image.color = toriObject.color;
                 break;
 
-            case Subject.Shapes:
+            case "Shapes":
                 image.sprite = toriObject.sprite;
                 break;
 
-            case Subject.Animals:
+            case "Animals":
                 image.sprite = toriObject.sprite;
                 break;
         }
