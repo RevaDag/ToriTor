@@ -1,4 +1,5 @@
 using static GameManager;
+using static SubjectsManager;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ public class QuizManager : MonoBehaviour
     public QuizSummary quizSummary;
 
     [SerializeField] private GameType gameType;
+    private Subject subject;
     [SerializeField] private Question question;
     [SerializeField] private List<Answer> answers;
 
@@ -30,19 +32,47 @@ public class QuizManager : MonoBehaviour
     private List<ToriObject> usedObjects;
     private int currentObjectIndex;
 
+    public Animator chestLidAnimator;
+
+    [Header("Test")]
+    public bool isTest;
+    public QuizTester quizTester;
+
     void Start ()
     {
         quizFactory = new QuizFactory();
-        selectedObjects = GameManager.Instance.selectedObjects;
-        unusedAnswers = new List<Answer>(answers);
-        usedObjects = new List<ToriObject>();
         quiz = quizFactory.CreateQuiz(gameType);
 
+        LoadObjectsAndSubject();
+
+        unusedAnswers = new List<Answer>(answers);
+        usedObjects = new List<ToriObject>();
+
+        InitiateQuiz();
+        SetAnswersQuizManager();
+    }
+
+    private void InitiateQuiz ()
+    {
         quiz.SetQuizManager(this);
+        quiz.SetSubject(subject);
         quiz.SetQuestion(question);
         quiz.SetAnswers(answers);
-        SetAnswersQuizManager();
         quiz.InitiateQuiz();
+    }
+
+    private void LoadObjectsAndSubject ()
+    {
+        if (isTest)
+        {
+            selectedObjects = quizTester.testObjects;
+            subject = quizTester.subject;
+        }
+        else
+        {
+            selectedObjects = GameManager.Instance.selectedObjects;
+            subject = GameManager.Instance.currentSubject;
+        }
     }
 
     private void SetAnswersQuizManager ()
@@ -162,6 +192,16 @@ public class QuizManager : MonoBehaviour
     private void CompleteQuiz ()
     {
         quizSummary.ShowSummary();
+
+        if (gameType == GameType.Chest)
+        {
+            if (isTest)
+                quizSummary.SetObjects(quizTester.testObjects);
+            else
+                quizSummary.SetObjects(selectedObjects);
+
+            quizSummary.InstantiateStickers();
+        }
     }
 
     private void ResetToriEmoji ()
@@ -176,6 +216,7 @@ public class QuizManager : MonoBehaviour
         currentObjectIndex = 0;
         ResetQuestionState();
         quiz.InitiateQuiz();
+        quizSummary.ResetStickers();
         quizSummary.HideSummary();
     }
 

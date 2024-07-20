@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static GameManager;
+using static SubjectsManager;
 
 public interface IQuiz
 {
     void InitiateQuiz ();
     void SetQuizManager ( QuizManager quizManager );
+    void SetSubject ( Subject subject );
     void SetQuestion ( Question question );
     void SetAnswers ( List<Answer> answerList );
     void LoadCurrentQuestion ();

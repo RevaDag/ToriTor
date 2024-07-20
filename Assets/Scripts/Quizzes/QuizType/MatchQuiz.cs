@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static SubjectsManager;
 
 public class MatchQuiz : IQuiz
 {
@@ -9,6 +10,7 @@ public class MatchQuiz : IQuiz
     private List<Answer> answers = new List<Answer>();
     private QuizManager quizManager;
     private ToriObject currentToriObject;
+    private Subject subject;
 
     public void InitiateQuiz ()
     {
@@ -20,6 +22,11 @@ public class MatchQuiz : IQuiz
     public void SetQuizManager ( QuizManager _quizManager )
     {
         this.quizManager = _quizManager;
+    }
+
+    public void SetSubject ( Subject _subject )
+    {
+        subject = _subject;
     }
 
     public void SetQuestion ( Question question )

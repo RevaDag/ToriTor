@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static SubjectsManager;
 
 public class SpeechQuiz : IQuiz
 {
@@ -20,6 +21,11 @@ public class SpeechQuiz : IQuiz
     public void SetQuizManager ( QuizManager _quizManager )
     {
         this.quizManager = _quizManager;
+    }
+
+    public void SetSubject(Subject subject)
+    {
+
     }
 
     public void SetQuestion ( Question question )
@@ -112,6 +118,7 @@ public class SpeechQuiz : IQuiz
 
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
+        answer.SetImage(toriObject);
         answer.SetColor(toriObject);
         answer.SetAudioClip(toriObject);
     }

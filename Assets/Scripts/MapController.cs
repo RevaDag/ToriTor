@@ -26,4 +26,9 @@ public class MapController : MonoBehaviour
             }
         }
     }
+
+    public void ResetMap ()
+    {
+        GameManager.Instance.ResetProgress();
+    }
 }

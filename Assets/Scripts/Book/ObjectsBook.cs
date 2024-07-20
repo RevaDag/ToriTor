@@ -104,6 +104,7 @@ public class ObjectsBook : MonoBehaviour
 
         objectText.text = toriObject.objectName;
         image.sprite = toriObject.sprite;
+        image.SetNativeSize();
         image.color = toriObject.color;
         objectWordAudioSource.clip = toriObject.clip;
 

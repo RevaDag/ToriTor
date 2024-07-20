@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static SubjectsManager;
 
 public class ChestQuiz : IQuiz
 {
@@ -9,9 +10,14 @@ public class ChestQuiz : IQuiz
     private List<Answer> answers = new List<Answer>();
     private QuizManager quizManager;
     private ToriObject currentToriObject;
+    private Animator animator;
+
+    private Subject subject;
+
 
     public void InitiateQuiz ()
     {
+        ResetAnswers();
         LoadCurrentQuestion();
         DeployAnswers();
         FadeInAnswers();
@@ -20,6 +26,12 @@ public class ChestQuiz : IQuiz
     public void SetQuizManager ( QuizManager _quizManager )
     {
         this.quizManager = _quizManager;
+        animator = quizManager.chestLidAnimator;
+    }
+
+    public void SetSubject ( Subject _subject )
+    {
+        subject = _subject;
     }
 
     public void SetQuestion ( Question question )
@@ -35,12 +47,14 @@ public class ChestQuiz : IQuiz
     public void LoadCurrentQuestion ()
     {
         currentToriObject = quizManager.GetCurrentObject();
+        animator.SetBool("isOpen", false);
         DeployQuestion(currentToriObject);
     }
 
     public void DeployQuestion ( ToriObject toriObject )
     {
         currentQuestion.ColorImage(toriObject.color);
+
     }
 
     public void AnswerClicked ( bool isCorrect )
@@ -51,6 +65,7 @@ public class ChestQuiz : IQuiz
     public void NextQuestion ()
     {
         LoadCurrentQuestion();
+
     }
 
     public void DeployAnswers ()
@@ -102,7 +117,17 @@ public class ChestQuiz : IQuiz
 
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
-        answer.SetColor(toriObject);
+        switch (subject)
+        {
+            case Subject.Colors:
+                answer.SetColor(toriObject);
+                break;
+            case Subject.Shapes:
+                answer.SetImage(toriObject);
+                break;
+
+        }
+
         answer.SetAudioClip(toriObject);
     }
 
@@ -110,6 +135,7 @@ public class ChestQuiz : IQuiz
     public void CorrectAnswer ()
     {
         quizManager.feedbackManager.SendFeedback(0);
+        animator.SetBool("isOpen", true);
         FadeOutAnswers();
         quizManager.stepper.activateNextStep();
     }
