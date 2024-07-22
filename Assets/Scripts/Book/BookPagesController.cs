@@ -6,9 +6,26 @@ using UnityEngine.UI;
 public class BookPagesController : MonoBehaviour
 {
 
+    public enum BookType
+    {
+        Subjects,
+        Stickers,
+        Objects
+    }
+
+    private BookType currentBookType;
+
     private int currentPage;
 
     private IBook book;
+
+    [SerializeField] private SceneLoader sceneLoader;
+
+    [SerializeField] private StickerSubjectBook stickerSubjectBook;
+    [SerializeField] private StickerObjectBook stickerObjectBook;
+    [SerializeField] private ObjectsBook objectsBook;
+    public LearnedSubject selectedLearnedSubject { get; private set; }
+
 
     [SerializeField] private bool isStickerBook;
 
@@ -36,6 +53,11 @@ public class BookPagesController : MonoBehaviour
     public void SetBook ( IBook book )
     {
         this.book = book;
+    }
+
+    public void SetSelectedSubject ( LearnedSubject subject )
+    {
+        selectedLearnedSubject = subject;
     }
 
 
@@ -103,4 +125,49 @@ public class BookPagesController : MonoBehaviour
         canvasGroup.alpha = isActive ? 1f : 0.5f;
     }
 
+    public void ShowBook ( BookType bookType )
+    {
+        book.FadeOut();
+
+        currentBookType = bookType;
+
+        switch (bookType)
+        {
+            case BookType.Subjects:
+                book = stickerSubjectBook;
+                break;
+
+            case BookType.Stickers:
+                book = stickerObjectBook;
+                break;
+
+            case BookType.Objects:
+                book = objectsBook;
+                break;
+        }
+
+
+        book.FadeIn();
+        book.InitiateBook();
+        book.SetBookPageController();
+    }
+
+    public void OnRedPreviousButtonClicked ()
+    {
+        switch (currentBookType)
+        {
+            case BookType.Subjects:
+                sceneLoader.LoadPreviousScene();
+                break;
+
+            case BookType.Stickers:
+                ShowBook(BookType.Subjects);
+                break;
+
+            case BookType.Objects:
+                ShowBook(BookType.Stickers);
+                break;
+        }
+
+    }
 }

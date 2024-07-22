@@ -8,4 +8,8 @@ public interface IBook
     public int objectsPerPage { get; set; }
     void Complete ();
     void SetBookPage ( int objectNumber );
+    void FadeIn ();
+    void FadeOut ();
+    void InitiateBook ();
+    void SetBookPageController ();
 }

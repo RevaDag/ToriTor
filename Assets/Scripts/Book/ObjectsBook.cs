@@ -27,11 +27,23 @@ public class ObjectsBook : MonoBehaviour, IBook
 
     private void Start ()
     {
+        InitiateBook();
+    }
+
+    public void InitiateBook ()
+    {
         objects = GameManager.Instance.selectedObjects;
         bookItems = objects.Count;
 
         bookPagesController.SetBook(this);
         SetBookPage(0);
+    }
+
+
+    public void SetBookPageController ()
+    {
+        bookPagesController.SetBook(this);
+        bookPagesController.UpdateNextAndPreviousButtons();
     }
 
 
@@ -83,6 +95,16 @@ public class ObjectsBook : MonoBehaviour, IBook
         SetBookPage(0);
         bookPagesController.ResetPages();
         quizSummary.HideSummary();
+    }
+
+    public void FadeIn ()
+    {
+        fader?.FadeIn();
+    }
+
+    public void FadeOut ()
+    {
+        fader?.FadeOut();
     }
 
 }

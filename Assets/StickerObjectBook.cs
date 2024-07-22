@@ -15,9 +15,11 @@ public class StickerObjectBook : MonoBehaviour, IBook
 
     public int bookItems { get; set; }
 
-    public void InitiateBook ( Subject subject )
+    public void InitiateBook ()
     {
-        objects = GameManager.Instance.GetLearnedObjectsBySubject(subject);
+        objects = GameManager.Instance.GetLearnedObjectsBySubject
+            (bookPagesController.selectedLearnedSubject);
+
         bookItems = objects.Count;
 
         SetBookPage(currentPage);
@@ -73,6 +75,7 @@ public class StickerObjectBook : MonoBehaviour, IBook
     {
         if (obj == null) { return; }
 
+        sticker.SetToriObject(obj);
         sticker.SetText(obj.objectName);
         sticker.SetImage(obj.sprite);
         sticker.SetColor(obj.color);

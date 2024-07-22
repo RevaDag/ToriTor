@@ -3597,6 +3597,7 @@ GameObject:
   - component: {fileID: 357495877434140470}
   - component: {fileID: 7147844384627067493}
   - component: {fileID: 997914265879930297}
+  - component: {fileID: 8818320912172307868}
   - component: {fileID: 7351906749823009007}
   - component: {fileID: 8818320912172307866}
   - component: {fileID: 8818320912172307867}
@@ -4329,7 +4330,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a5fc075174099a647981ab467adba3c9, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4383,9 +4384,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChestObject, Assembly-CSharp
-        m_MethodName: ReloadChest
+      - m_Target: {fileID: 8818320912172307866}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5029,6 +5030,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8818320912172307868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3016592278445111445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520faa3b7b9dcd345ac73e349350defd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 7147844384627067493}
+  audioSource: {fileID: 8818320912172307866}
+  text: {fileID: 0}
+  canvasGroup: {fileID: 0}
 --- !u!114 &8946834185761823245
 MonoBehaviour:
   m_ObjectHideFlags: 0

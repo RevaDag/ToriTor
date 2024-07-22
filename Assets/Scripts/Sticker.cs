@@ -6,10 +6,18 @@ using UnityEngine.UI;
 
 public class Sticker : MonoBehaviour
 {
+
     [SerializeField] private Image image;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private TMP_Text text;
     [SerializeField] private CanvasGroup canvasGroup;
+
+    private ToriObject toriObject;
+
+    public void SetToriObject ( ToriObject _toriObject )
+    {
+        toriObject = _toriObject;
+    }
 
     public void SetImage ( Sprite sprite )
     {

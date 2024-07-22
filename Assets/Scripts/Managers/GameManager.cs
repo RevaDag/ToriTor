@@ -146,9 +146,9 @@ public class GameManager : MonoBehaviour
         return allToriObjects.FirstOrDefault(obj => obj.objectName == name);
     }
 
-    public List<ToriObject> GetLearnedObjectsBySubject ( Subject subject )
+    public List<ToriObject> GetLearnedObjectsBySubject ( LearnedSubject _learnedSubject )
     {
-        var learnedSubject = learnedSubjects.FirstOrDefault(ls => ls.subject.name == subject.name);
+        var learnedSubject = learnedSubjects.FirstOrDefault(ls => ls.subject.name == _learnedSubject.subject.name);
         return learnedSubject?.learnedObjects ?? new List<ToriObject>();
     }
 }

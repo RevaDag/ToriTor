@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static BookPagesController;
 
 public class StickerSubjectBook : MonoBehaviour, IBook
 {
@@ -11,7 +12,6 @@ public class StickerSubjectBook : MonoBehaviour, IBook
 
 
     [SerializeField] private BookPagesController bookPagesController;
-    [SerializeField] private StickerObjectBook stickerObjectBook;
     [SerializeField] private Fader fader;
 
     private List<LearnedSubject> learnedSubjects;
@@ -23,18 +23,30 @@ public class StickerSubjectBook : MonoBehaviour, IBook
     private List<Subject> allSubjects;
     public int bookItems { get; set; }
 
+    private void Start ()
+    {
+        InitiateBook();
+    }
 
-    void Start ()
+
+    public void InitiateBook ()
     {
         allSubjects = SubjectsManager.Instance.GetAllSubjects();
         bookItems = allSubjects.Count;
 
         learnedSubjects = GameManager.Instance.learnedSubjects;
 
-        bookPagesController.SetBook(this);
+        SetBookPageController();
 
         SetBookPage(currentPage);
     }
+
+    public void SetBookPageController ()
+    {
+        bookPagesController.SetBook(this);
+        bookPagesController.UpdateNextAndPreviousButtons();
+    }
+
 
 
     public void Complete ()
@@ -96,9 +108,8 @@ public class StickerSubjectBook : MonoBehaviour, IBook
         int index = currentPage * objectsPerPage + (isRightPage ? 0 : 1);
         if (index < allSubjects.Count)
         {
-            fader.FadeOut();
-            LearnedSubject selectedLearnedSubject = learnedSubjects[index];
-            ShowStickerObjectBook(selectedLearnedSubject);
+            bookPagesController.SetSelectedSubject(learnedSubjects[index]);
+            bookPagesController.ShowBook(BookType.Stickers);
         }
     }
 
@@ -116,10 +127,14 @@ public class StickerSubjectBook : MonoBehaviour, IBook
         }
     }
 
-    private void ShowStickerObjectBook ( LearnedSubject selectedLearnedSubject )
+
+    public void FadeIn ()
     {
-        stickerObjectBook.FadeIn();
-        stickerObjectBook.InitiateBook(selectedLearnedSubject.subject);
-        stickerObjectBook.SetBookPageController();
+        fader?.FadeIn();
+    }
+
+    public void FadeOut ()
+    {
+        fader?.FadeOut();
     }
 }
