@@ -8,15 +8,12 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public List<ToriObject> selectedObjects;
-
     public Subject currentSubject;
-
     public int currentLevel;
 
     [Header("Player Progress")]
     private string saveFilePath;
-    public List<Subject> learnedSubjects { get; private set; }
-    public List<ToriObject> learnedObjects { get; private set; }
+    public List<LearnedSubject> learnedSubjects { get; private set; }
 
     private Dictionary<string, Subject> subjectDictionary;
 
@@ -39,8 +36,7 @@ public class GameManager : MonoBehaviour
             saveFilePath = Path.Combine(Application.persistentDataPath, "playerProgress.json");
 
             InitializeSubjectDictionary();
-            learnedSubjects = new List<Subject>();
-            learnedObjects = new List<ToriObject>();
+            learnedSubjects = new List<LearnedSubject>();
         }
         else
         {
@@ -55,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void InitializeSubjectDictionary ()
     {
-        subjectDictionary = SubjectsManager.Instance.GetAllSubjects().ToDictionary(sub => sub.name, sub => sub);
+        subjectDictionary = SubjectsManager.Instance?.GetAllSubjects().ToDictionary(sub => sub.name, sub => sub);
     }
 
     public void ProgressToNextLevel ()
@@ -63,40 +59,34 @@ public class GameManager : MonoBehaviour
         currentLevel++;
     }
 
-    public void ResetProgress ()
-    {
-        currentLevel = 0;
-    }
-
-    #region Save & Load
+    #region Progress
     public void SaveProgress ()
     {
-        // Add selected objects to learned objects if not already present
+        // Find the learned subject
+        var learnedSubject = learnedSubjects.FirstOrDefault(ls => ls.GetSubject().name == currentSubject.name);
+        if (learnedSubject == null)
+        {
+            learnedSubject = new LearnedSubject(currentSubject);
+            learnedSubjects.Add(learnedSubject);
+        }
+
+        // Add selected objects to learned objects within the current subject
         foreach (var obj in selectedObjects)
         {
-            if (!learnedObjects.Contains(obj))
+            if (!learnedSubject.learnedObjects.Contains(obj))
             {
-                learnedObjects.Add(obj);
+                learnedSubject.learnedObjects.Add(obj);
             }
         }
 
-        // Add current subject to learned subjects if not already present
-        if (!learnedSubjects.Contains(currentSubject))
-        {
-            learnedSubjects.Add(currentSubject);
-        }
-
-        // Get the names of the learned objects
-        List<string> learnedObjectNames = learnedObjects.Select(obj => obj.objectName).ToList();
-
-        // Get the names of the learned subjects
-        List<string> learnedSubjectNames = learnedSubjects.Select(sub => sub.name).ToList();
-
-        // Create a progress data object
+        // Create progress data object
         ProgressData progressData = new ProgressData
         {
-            learnedObjects = learnedObjectNames,
-            learnedSubjects = learnedSubjectNames
+            learnedSubjects = learnedSubjects.Select(ls => new LearnedSubjectData
+            {
+                subjectName = ls.GetSubject().name,
+                learnedObjectNames = ls.learnedObjects.Select(obj => obj.objectName).ToList()
+            }).ToList()
         };
 
         // Serialize the progress data to JSON
@@ -116,39 +106,64 @@ public class GameManager : MonoBehaviour
             // Deserialize the JSON to a progress data object
             ProgressData progressData = JsonUtility.FromJson<ProgressData>(json);
 
-            // Load the learned objects
-            learnedObjects = progressData.learnedObjects.Select(name => FindToriObjectByName(name)).ToList();
+            // Load the learned subjects and their objects
+            learnedSubjects = new List<LearnedSubject>();
 
-            // Load the learned subjects
-            learnedSubjects = progressData.learnedSubjects.Select(name => FindSubjectByName(name)).ToList();
+            foreach (var learnedSubjectData in progressData.learnedSubjects)
+            {
+                if (subjectDictionary.TryGetValue(learnedSubjectData.subjectName, out var subject))
+                {
+                    var learnedSubject = new LearnedSubject(subject);
+                    learnedSubject.learnedObjects = learnedSubjectData.learnedObjectNames
+                        .Select(name => FindToriObjectByName(name))
+                        .Where(obj => obj != null)
+                        .ToList();
+                    learnedSubjects.Add(learnedSubject);
+                }
+            }
         }
+    }
+
+    public void ResetLevel ()
+    {
+        currentLevel = 0;
+    }
+
+    [ContextMenu("Reset Progress")]
+    public void ResetProgress ()
+    {
+        currentLevel = 0;
+        learnedSubjects.Clear();
+        SaveProgress();
+        LoadProgress();
     }
     #endregion
 
     private ToriObject FindToriObjectByName ( string name )
     {
-        // Implement the logic to find and return the ToriObject by name
-        return selectedObjects.Concat(learnedObjects).FirstOrDefault(obj => obj.objectName == name);
+        // Search through all ToriObjects managed by SubjectsManager
+        var allToriObjects = SubjectsManager.Instance.GetAllToriObjects();
+        return allToriObjects.FirstOrDefault(obj => obj.objectName == name);
     }
 
-    private Subject FindSubjectByName ( string name )
+    public List<ToriObject> GetLearnedObjectsBySubject ( Subject subject )
     {
-        if (subjectDictionary.TryGetValue(name, out var subject))
-        {
-            return subject;
-        }
-
-        else return null;
-
+        var learnedSubject = learnedSubjects.FirstOrDefault(ls => ls.subject.name == subject.name);
+        return learnedSubject?.learnedObjects ?? new List<ToriObject>();
     }
-
-
 }
+
 
 [System.Serializable]
 public class ProgressData
 {
-    public List<string> learnedObjects;
-    public List<string> learnedSubjects;
+    public List<LearnedSubjectData> learnedSubjects;
+}
+
+[System.Serializable]
+public class LearnedSubjectData
+{
+    public string subjectName;
+    public List<string> learnedObjectNames;
 }
 

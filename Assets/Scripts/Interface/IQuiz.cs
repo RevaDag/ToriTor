@@ -19,4 +19,5 @@ public interface IQuiz
     void WrongAnswer ();
     void CorrectFeedbackClicked ();
     void WrongFeedbackClicked ();
+    void CompleteQuiz ();
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static SubjectsManager;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class ChestQuiz : IQuiz
 {
@@ -10,9 +12,13 @@ public class ChestQuiz : IQuiz
     private List<Answer> answers = new List<Answer>();
     private QuizManager quizManager;
     private ToriObject currentToriObject;
-    private Animator animator;
+    private Animator lidAnimator;
+    private Animator parallelObjectAnimator;
+    private Sticker parallelObjectSticker;
 
     private Subject subject;
+    private Color transparent;
+
 
 
     public void InitiateQuiz ()
@@ -26,7 +32,11 @@ public class ChestQuiz : IQuiz
     public void SetQuizManager ( QuizManager _quizManager )
     {
         this.quizManager = _quizManager;
-        animator = quizManager.chestLidAnimator;
+        lidAnimator = quizManager.chestLidAnimator;
+        parallelObjectAnimator = quizManager.parallelObjectAnimator;
+        parallelObjectSticker = parallelObjectAnimator.GetComponent<Sticker>();
+
+        transparent = parallelObjectSticker.GetColor();
     }
 
     public void SetSubject ( Subject _subject )
@@ -47,14 +57,20 @@ public class ChestQuiz : IQuiz
     public void LoadCurrentQuestion ()
     {
         currentToriObject = quizManager.GetCurrentObject();
-        animator.SetBool("isOpen", false);
+        lidAnimator.SetBool("isOpen", false);
+
         DeployQuestion(currentToriObject);
     }
 
     public void DeployQuestion ( ToriObject toriObject )
     {
         currentQuestion.ColorImage(toriObject.color);
+    }
 
+    private void DeployParallelObjectSticker ( ToriObject toriObject )
+    {
+        parallelObjectSticker.SetImage(toriObject.parallelObjectSprite);
+        parallelObjectSticker.SetAudio(toriObject.parallelObjectClip);
     }
 
     public void AnswerClicked ( bool isCorrect )
@@ -135,9 +151,18 @@ public class ChestQuiz : IQuiz
     public void CorrectAnswer ()
     {
         quizManager.feedbackManager.SendFeedback(0);
-        animator.SetBool("isOpen", true);
+        lidAnimator.SetBool("isOpen", true);
+
+        ParallelObjectAnimation(true);
         FadeOutAnswers();
         quizManager.stepper.activateNextStep();
+    }
+
+    public void ParallelObjectAnimation ( bool isOut )
+    {
+        DeployParallelObjectSticker(currentToriObject);
+
+        parallelObjectAnimator.SetBool("isOut", isOut);
     }
 
 
@@ -158,6 +183,7 @@ public class ChestQuiz : IQuiz
     {
         ResetAnswers();
 
+        ParallelObjectAnimation(false);
         quizManager.ResetUnusedAnswersList();
         quizManager.MoveToNextObject();
         InitiateQuiz();
@@ -166,6 +192,19 @@ public class ChestQuiz : IQuiz
     public void WrongFeedbackClicked ()
     {
         DeployQuestion(currentToriObject);
+    }
+
+    public void CompleteQuiz ()
+    {
+        ParallelObjectAnimation(false);
+
+        if (quizManager.isTest)
+            quizManager.quizSummary.SetObjects(quizManager.quizTester.testObjects);
+        else
+            quizManager.quizSummary.SetObjects(quizManager.selectedObjects);
+
+        quizManager.quizSummary.InstantiateStickers();
+        GameManager.Instance.SaveProgress();
     }
 
     public void FadeInAnswers ()

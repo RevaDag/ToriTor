@@ -4,9 +4,8 @@ using UnityEngine;
 
 public interface IBook
 {
-    public List<ToriObject> objects { get; set; }
-    public List<Subject> allSubjects { get; set; }
-
+    public int bookItems { get; set; }
+    public int objectsPerPage { get; set; }
     void Complete ();
     void SetBookPage ( int objectNumber );
 }

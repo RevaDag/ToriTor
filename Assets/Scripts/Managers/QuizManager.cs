@@ -27,12 +27,13 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private Question question;
     [SerializeField] private List<Answer> answers;
 
-    private List<ToriObject> selectedObjects;
+    public List<ToriObject> selectedObjects { get; private set; }
     private List<Answer> unusedAnswers;
     private List<ToriObject> usedObjects;
     private int currentObjectIndex;
 
     public Animator chestLidAnimator;
+    public Animator parallelObjectAnimator;
 
     [Header("Test")]
     public bool isTest;
@@ -192,16 +193,11 @@ public class QuizManager : MonoBehaviour
     private void CompleteQuiz ()
     {
         quizSummary.ShowSummary();
+        quiz.CompleteQuiz();
 
         if (gameType == GameType.Chest)
         {
-            if (isTest)
-                quizSummary.SetObjects(quizTester.testObjects);
-            else
-                quizSummary.SetObjects(selectedObjects);
 
-            quizSummary.InstantiateStickers();
-            GameManager.Instance.SaveProgress();
         }
     }
 

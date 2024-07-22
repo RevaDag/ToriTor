@@ -20,12 +20,15 @@ public class ObjectsBook : MonoBehaviour, IBook
 
     [SerializeField] private QuizSummary quizSummary;
 
-    public List<ToriObject> objects { get; set; }
-    public List<Subject> allSubjects { get; set; }
+    private List<ToriObject> objects;
+    public int bookItems { get; set; }
+    public int objectsPerPage { get; set; } = 1;
+
 
     private void Start ()
     {
         objects = GameManager.Instance.selectedObjects;
+        bookItems = objects.Count;
 
         bookPagesController.SetBook(this);
         SetBookPage(0);

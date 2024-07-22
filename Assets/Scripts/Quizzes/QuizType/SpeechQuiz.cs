@@ -157,6 +157,11 @@ public class SpeechQuiz : IQuiz
         DeployQuestion(currentToriObject);
     }
 
+    public void CompleteQuiz()
+    {
+
+    }
+
     public void FadeInAnswers ()
     {
         foreach (Answer answer in answers)

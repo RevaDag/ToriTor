@@ -54,4 +54,14 @@ public class SubjectsManager : MonoBehaviour
     {
         return subjects;
     }
+    public List<ToriObject> GetAllToriObjects ()
+    {
+        var allObjects = new List<ToriObject>();
+        foreach (var subject in subjects)
+        {
+            allObjects.AddRange(subject.toriObjects);
+        }
+        return allObjects;
+    }
+
 }
