@@ -25,8 +25,8 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private GameType gameType;
     private Subject subject;
     [SerializeField] private Question question;
-    //[SerializeField] private List<Answer> staticAnswers;
-    [SerializeField] private AnswersManager answersManager;
+
+    public AnswersManager answersManager;
 
     public List<ToriObject> selectedObjects { get; private set; }
     private List<ToriObject> usedObjects;
@@ -65,8 +65,10 @@ public class QuizManager : MonoBehaviour
 
     private void InitializeAnswers ()
     {
-        List<Answer> activeAnswers = answersManager.InitializeAnswers();
-        quiz.SetAnswers(activeAnswers);
+        /*List<Answer> activeAnswers = */
+        answersManager.InitializeAnswers();
+
+        //quiz.SetAnswers(activeAnswers);
     }
 
     private void LoadObjectsAndSubject ()

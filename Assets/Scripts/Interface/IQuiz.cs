@@ -9,7 +9,6 @@ public interface IQuiz
     void SetQuizManager ( QuizManager quizManager );
     void SetSubject ( Subject subject );
     void SetQuestion ( Question question );
-    void SetAnswers ( List<Answer> answerList );
     void LoadCurrentQuestion ();
     void DeployQuestion ( ToriObject toriObject );
     void AnswerClicked ( bool isCorrect );

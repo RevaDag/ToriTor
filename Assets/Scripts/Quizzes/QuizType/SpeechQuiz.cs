@@ -7,7 +7,6 @@ using static SubjectsManager;
 public class SpeechQuiz : IQuiz
 {
     private Question currentQuestion;
-    private List<Answer> answers = new List<Answer>();
     private QuizManager quizManager;
     private ToriObject currentToriObject;
 
@@ -23,7 +22,7 @@ public class SpeechQuiz : IQuiz
         this.quizManager = _quizManager;
     }
 
-    public void SetSubject(Subject subject)
+    public void SetSubject ( Subject subject )
     {
 
     }
@@ -31,11 +30,6 @@ public class SpeechQuiz : IQuiz
     public void SetQuestion ( Question question )
     {
         currentQuestion = question;
-    }
-
-    public void SetAnswers ( List<Answer> _answers )
-    {
-        answers = _answers;
     }
 
     public void LoadCurrentQuestion ()
@@ -73,6 +67,9 @@ public class SpeechQuiz : IQuiz
 
     public void DeployAnswers ()
     {
+        List<Answer> answers = quizManager.answersManager.GetAnswers();
+
+
         if (answers == null || answers.Count < 3)
         {
             Debug.LogError("Insufficient number of answers available.");
@@ -139,10 +136,7 @@ public class SpeechQuiz : IQuiz
 
     private void ResetAnswers ()
     {
-        foreach (Answer answer in answers)
-        {
-            answer.ResetAnswer();
-        }
+        quizManager.answersManager.ResetAnswers();
     }
 
     public void CorrectFeedbackClicked ()
@@ -157,25 +151,19 @@ public class SpeechQuiz : IQuiz
         DeployQuestion(currentToriObject);
     }
 
-    public void CompleteQuiz()
+    public void CompleteQuiz ()
     {
 
     }
 
     public void FadeInAnswers ()
     {
-        foreach (Answer answer in answers)
-        {
-            answer.FadeIn();
-        }
+        quizManager.answersManager.FadeInAnswers();
     }
 
     public void FadeOutAnswers ()
     {
-        foreach (Answer answer in answers)
-        {
-            answer.FadeOut();
-        }
+        quizManager.answersManager.FadeInAnswers();
     }
 
 }

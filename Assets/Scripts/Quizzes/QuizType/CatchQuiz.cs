@@ -5,7 +5,7 @@ using UnityEngine;
 public class CatchQuiz : IQuiz
 {
     private Question currentQuestion;
-    private List<Answer> answers = new List<Answer>();
+    //private List<Answer> answers = new List<Answer>();
     private QuizManager quizManager;
     private ToriObject currentToriObject;
     private Animator lidAnimator;
@@ -45,10 +45,10 @@ public class CatchQuiz : IQuiz
         currentQuestion = question;
     }
 
-    public void SetAnswers ( List<Answer> _answers )
-    {
-        answers = _answers;
-    }
+    /*   public void SetAnswers ( List<Answer> _answers )
+       {
+           answers = _answers;
+       }*/
 
     public void LoadCurrentQuestion ()
     {
@@ -92,6 +92,9 @@ public class CatchQuiz : IQuiz
 
     public void DeployAnswers ()
     {
+        List<Answer> answers = quizManager.answersManager.GetAnswers();
+
+
         if (answers == null || answers.Count < 3)
         {
             Debug.LogError("Insufficient number of answers available.");
@@ -179,10 +182,7 @@ public class CatchQuiz : IQuiz
 
     private void ResetAnswers ()
     {
-        foreach (Answer answer in answers)
-        {
-            answer.ResetAnswer();
-        }
+        quizManager.answersManager.ResetAnswers();
     }
 
     public void CorrectFeedbackClicked ()
@@ -215,18 +215,12 @@ public class CatchQuiz : IQuiz
 
     public void FadeInAnswers ()
     {
-        foreach (Answer answer in answers)
-        {
-            answer.FadeIn();
-        }
+        quizManager.answersManager.FadeInAnswers();
     }
 
     public void FadeOutAnswers ()
     {
-        foreach (Answer answer in answers)
-        {
-            answer.FadeOut();
-        }
+        quizManager.answersManager.FadeOutAnswers();
     }
 
 }

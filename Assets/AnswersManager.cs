@@ -19,6 +19,11 @@ public class AnswersManager : MonoBehaviour
         return activeAnswers;
     }
 
+    public List<Answer> GetAnswers ()
+    {
+        return answers;
+    }
+
     public Answer GetUnusedAnswer ()
     {
         if (unusedAnswers.Count == 0)
@@ -30,6 +35,14 @@ public class AnswersManager : MonoBehaviour
         Answer answer = unusedAnswers[randomIndex];
         unusedAnswers.RemoveAt(randomIndex);
         return answer;
+    }
+
+    public void ResetAnswers ()
+    {
+        foreach (Answer answer in answers)
+        {
+            answer.ResetAnswer();
+        }
     }
 
     public void ResetUnusedAnswersList ()
@@ -97,6 +110,22 @@ public class AnswersManager : MonoBehaviour
         float randomY = Random.Range(-canvasHeight / 2 + prefabHeight / 2, canvasHeight / 2 - prefabHeight / 2);
 
         return new Vector2(randomX, randomY);
+    }
+
+    public void FadeInAnswers ()
+    {
+        foreach (Answer answer in answers)
+        {
+            answer.FadeIn();
+        }
+    }
+
+    public void FadeOutAnswers ()
+    {
+        foreach (Answer answer in answers)
+        {
+            answer.FadeOut();
+        }
     }
 
     public List<Answer> GetActiveAnswers ()
