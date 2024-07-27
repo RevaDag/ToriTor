@@ -6,14 +6,19 @@ using static SubjectsManager;
 
 public class ObjectOption : MonoBehaviour
 {
-    public Subject subject;
 
     [SerializeField] private Image image;
     [SerializeField] private Button button;
 
     private SubjectObjectsManager subjectObjectsManager;
     private ToriObject toriObject;
+    private Subject subject;
 
+
+    public void SetSubject ( Subject _subject )
+    {
+        subject = _subject;
+    }
 
     public void SetOption ( ToriObject toriObject, SubjectObjectsManager subjectObjectsManager )
     {

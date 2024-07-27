@@ -2195,8 +2195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92fc453adfca7124a8c86a1123591c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneLoader: {fileID: 0}
+  stickerSubjectBook: {fileID: 0}
+  stickerObjectBook: {fileID: 0}
+  objectsBook: {fileID: 0}
   isStickerBook: 0
-  objectsPerPage: 1
   previousButton: {fileID: 235752001}
   nextButton: {fileID: 439088842}
   rightButtonCanvasGroup: {fileID: 235752002}
@@ -2614,6 +2617,7 @@ MonoBehaviour:
   bookPagesController: {fileID: 1662875948}
   checkIconSprite: {fileID: 21300000, guid: 61768b4246eb8434ab16dbd360f14dc0, type: 3}
   quizSummary: {fileID: 784294}
+  isLevel: 1
 --- !u!1 &2072543211
 GameObject:
   m_ObjectHideFlags: 0
@@ -3292,7 +3296,7 @@ RectTransform:
   m_GameObject: {fileID: 2645161271536477507}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1344483237}

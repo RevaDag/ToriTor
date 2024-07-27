@@ -445,8 +445,8 @@ MonoBehaviour:
   subject:
     name: 
     hebrewName: 
-    toriObjects: []
     sprite: {fileID: 0}
+    toriObjects: []
   subjectObjectsManager: {fileID: 1746383682}
   objectTransforms:
   - {fileID: 659485796}
@@ -2146,10 +2146,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 692049262}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: LoadPreviousScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2450,8 +2450,8 @@ MonoBehaviour:
   subject:
     name: Colors
     hebrewName: 
-    toriObjects: []
     sprite: {fileID: 0}
+    toriObjects: []
   nextSceneName: TreasureMap
   optionPrefab: {fileID: 2204565192232450881, guid: a408a94bb4d4f7a448066f024f54ea82, type: 3}
   optionsParent: {fileID: 1539626881}
@@ -2986,8 +2986,8 @@ MonoBehaviour:
   currentSubject:
     name: 
     hebrewName: 
-    toriObjects: []
     sprite: {fileID: 0}
+    toriObjects: []
   currentLevel: 0
 --- !u!4 &2037425472
 Transform:

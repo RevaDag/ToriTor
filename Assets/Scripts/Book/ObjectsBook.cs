@@ -20,23 +20,28 @@ public class ObjectsBook : MonoBehaviour, IBook
 
     [SerializeField] private QuizSummary quizSummary;
 
+    [SerializeField] private bool isLevel;
+
     private List<ToriObject> objects;
+    private ToriObject currentObject;
+
     public int bookItems { get; set; }
     public int objectsPerPage { get; set; } = 1;
 
 
     private void Start ()
     {
-        InitiateBook();
+        if (isLevel)
+        {
+            GetSelectedObjectsFromGameManager();
+            InitiateBook();
+            SetBookPage(0);
+        }
     }
 
     public void InitiateBook ()
     {
-        objects = GameManager.Instance.selectedObjects;
-        bookItems = objects.Count;
-
         bookPagesController.SetBook(this);
-        SetBookPage(0);
     }
 
 
@@ -46,8 +51,46 @@ public class ObjectsBook : MonoBehaviour, IBook
         bookPagesController.UpdateNextAndPreviousButtons();
     }
 
+    public void GetSelectedObjectsFromGameManager ()
+    {
+        objects = GameManager.Instance.selectedObjects;
+        bookItems = objects.Count;
+    }
 
+    public void GetLearnedObjectsFromGameManager ()
+    {
+        objects = GameManager.Instance.GetLearnedObjectsBySubject
+(bookPagesController.selectedLearnedSubject);
+        bookItems = objects.Count;
 
+    }
+
+    public void SetCurrentObject ( ToriObject toriObject )
+    {
+        currentObject = toriObject;
+        FindAndSetCurrentObjectPage();
+    }
+
+    public void FindAndSetCurrentObjectPage ()
+    {
+        if (currentObject == null || objects == null || objects.Count == 0)
+        {
+            Debug.LogWarning("Current object or objects list is null or empty.");
+            return;
+        }
+
+        int currentObjectIndex = objects.IndexOf(currentObject);
+
+        if (currentObjectIndex != -1)
+        {
+            SetBookPage(currentObjectIndex);
+            bookPagesController.SetCurrentPage(currentObjectIndex);
+        }
+        else
+        {
+            Debug.LogWarning("Current object not found in the objects list.");
+        }
+    }
 
     public void SetBookPage ( int objectNumber )
     {

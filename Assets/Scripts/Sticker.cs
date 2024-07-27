@@ -12,6 +12,8 @@ public class Sticker : MonoBehaviour
     [SerializeField] private TMP_Text text;
     [SerializeField] private CanvasGroup canvasGroup;
 
+    [SerializeField] private BookPagesController bookController;
+
     private ToriObject toriObject;
 
     public void SetToriObject ( ToriObject _toriObject )
@@ -49,5 +51,11 @@ public class Sticker : MonoBehaviour
     {
         canvasGroup.interactable = isActive;
         canvasGroup.alpha = isActive ? 1f : 0.5f;
+    }
+
+    public void OnStickerClicked ()
+    {
+        bookController.SetSelectedObject(toriObject);
+        bookController.ShowBook(BookPagesController.BookType.Objects);
     }
 }

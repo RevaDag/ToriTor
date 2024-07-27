@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static SubjectsManager;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class ChestQuiz : IQuiz
 {
@@ -64,7 +60,17 @@ public class ChestQuiz : IQuiz
 
     public void DeployQuestion ( ToriObject toriObject )
     {
-        currentQuestion.ColorImage(toriObject.color);
+        switch (subject.name)
+        {
+            case "Colors":
+                currentQuestion.ColorImage(toriObject.color);
+                break;
+            case "Shapes":
+                currentQuestion.SetImage(toriObject.sprite);
+                break;
+
+
+        }
     }
 
     private void DeployParallelObjectSticker ( ToriObject toriObject )
@@ -199,7 +205,7 @@ public class ChestQuiz : IQuiz
         ParallelObjectAnimation(false);
 
         if (quizManager.isTest)
-            quizManager.quizSummary.SetObjects(quizManager.quizTester.testObjects);
+            quizManager.quizSummary.SetObjects(quizManager.quizTester.subject.toriObjects);
         else
             quizManager.quizSummary.SetObjects(quizManager.selectedObjects);
 

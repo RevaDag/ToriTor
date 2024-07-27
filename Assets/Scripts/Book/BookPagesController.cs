@@ -21,8 +21,8 @@ public class BookPagesController : MonoBehaviour
 
     [SerializeField] private SceneLoader sceneLoader;
 
-    [SerializeField] private StickerSubjectBook stickerSubjectBook;
-    [SerializeField] private StickerObjectBook stickerObjectBook;
+    [SerializeField] private SubjectStickerBook stickerSubjectBook;
+    [SerializeField] private ObjectStickerBook stickerObjectBook;
     [SerializeField] private ObjectsBook objectsBook;
     public LearnedSubject selectedLearnedSubject { get; private set; }
 
@@ -60,6 +60,15 @@ public class BookPagesController : MonoBehaviour
         selectedLearnedSubject = subject;
     }
 
+    public void SetSelectedObject ( ToriObject toriObject )
+    {
+        objectsBook.SetCurrentObject(toriObject);
+    }
+
+    public void SetCurrentPage ( int pageIndex )
+    {
+        currentPage = pageIndex;
+    }
 
     public void LeftButtonClicked ()
     {
@@ -125,6 +134,7 @@ public class BookPagesController : MonoBehaviour
         canvasGroup.alpha = isActive ? 1f : 0.5f;
     }
 
+
     public void ShowBook ( BookType bookType )
     {
         book.FadeOut();
@@ -139,6 +149,7 @@ public class BookPagesController : MonoBehaviour
 
             case BookType.Stickers:
                 book = stickerObjectBook;
+                objectsBook.GetLearnedObjectsFromGameManager();
                 break;
 
             case BookType.Objects:

@@ -149,7 +149,7 @@ RectTransform:
   m_GameObject: {fileID: 56894464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2076117203}
@@ -157,7 +157,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 199, y: 191}
+  m_SizeDelta: {x: 607, y: 592}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &56894466
 MonoBehaviour:
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1217787343, guid: e58e413896a94c64495923ea94c6c804, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -224,7 +224,7 @@ RectTransform:
   m_GameObject: {fileID: 215668295}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 775727097}
@@ -232,7 +232,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 199, y: 191}
+  m_SizeDelta: {x: 607, y: 592}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215668297
 MonoBehaviour:
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1217787343, guid: e58e413896a94c64495923ea94c6c804, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1084,9 +1084,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775727096}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &804149668
 GameObject:
@@ -1557,6 +1557,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SummaryCanvasFader: {fileID: 391324121}
+  stickerPrefab: {fileID: 0}
+  stickersParent: {fileID: 0}
 --- !u!114 &1107072674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1821,9 +1823,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164628025}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &1164628033
 MonoBehaviour:
@@ -2096,6 +2098,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4723161992995784320, guid: 36ced1574b4e986488dc3c261772442f, type: 3}
   m_PrefabInstance: {fileID: 6322503291433268012}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1475648909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1475648911}
+  - component: {fileID: 1475648910}
+  m_Layer: 0
+  m_Name: AnswersManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1475648910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475648909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70c0c59e97a7e745ad21b8a62905de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answers:
+  - {fileID: 1164628028}
+  - {fileID: 775727100}
+  - {fileID: 2076117206}
+  answerPrefab: {fileID: 0}
+  canvas: {fileID: 2000166967}
+  desiredAnswerCount: 5
+--- !u!4 &1475648911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475648909}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1477949976
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,7 +2631,7 @@ RectTransform:
   m_GameObject: {fileID: 1747639460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1164628026}
@@ -2586,7 +2639,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 199, y: 191}
+  m_SizeDelta: {x: 607, y: 592}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1747639462
 MonoBehaviour:
@@ -2608,7 +2661,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1217787343, guid: e58e413896a94c64495923ea94c6c804, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2970,10 +3023,11 @@ MonoBehaviour:
   quizSummary: {fileID: 1107072673}
   gameType: 2
   question: {fileID: 6322503291433268016}
-  answers:
-  - {fileID: 1164628028}
-  - {fileID: 775727100}
-  - {fileID: 2076117206}
+  answersManager: {fileID: 1475648910}
+  chestLidAnimator: {fileID: 0}
+  parallelObjectAnimator: {fileID: 0}
+  isTest: 0
+  quizTester: {fileID: 0}
 --- !u!4 &1866450626
 Transform:
   m_ObjectHideFlags: 0
@@ -3629,9 +3683,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076117202}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &2076117209
 MonoBehaviour:
@@ -3835,3 +3889,4 @@ SceneRoots:
   - {fileID: 2106908292}
   - {fileID: 1368323341}
   - {fileID: 1866450626}
+  - {fileID: 1475648911}

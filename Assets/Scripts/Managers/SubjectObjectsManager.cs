@@ -27,6 +27,7 @@ public class SubjectObjectsManager : MonoBehaviour
 
     private void Start ()
     {
+        selectedObjectsUI.SetSubject(subject);
         GetSubjectObjects();
         SetSubjectOptions();
     }
@@ -41,6 +42,7 @@ public class SubjectObjectsManager : MonoBehaviour
         foreach (ToriObject toriObject in allSubjectObjects)
         {
             ObjectOption objectOption = Instantiate(optionPrefab, optionsParent);
+            objectOption.SetSubject(subject);
             objectOption.SetOption(toriObject, this);
             objectOptions.Add(objectOption);
         }

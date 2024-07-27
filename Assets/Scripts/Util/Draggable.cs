@@ -11,6 +11,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private bool isDraggable = true;
     private RectTransform target;
 
+    [SerializeField] private RandomMoveUI randomMoveUI;
+
 
 
     void Awake ()
@@ -26,6 +28,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
+
+        if (randomMoveUI != null)
+        {
+            randomMoveUI.PauseMovement();
+        }
     }
 
     public void OnDrag ( PointerEventData eventData )
@@ -57,6 +64,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             CheckTarget(eventData);
         }
+
+        if (randomMoveUI != null && isDraggable)
+        {
+            randomMoveUI.ResumeMovement();
+        }
     }
 
 
@@ -81,11 +93,21 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         isDraggable = false;
         canvasGroup.blocksRaycasts = false;
+
+        if (randomMoveUI != null)
+        {
+            randomMoveUI.PauseMovement();
+        }
     }
 
     public void EnableDrag ()
     {
         isDraggable = true;
         canvasGroup.blocksRaycasts = true;
+
+        if (randomMoveUI != null)
+        {
+            randomMoveUI.ResumeMovement();
+        }
     }
 }

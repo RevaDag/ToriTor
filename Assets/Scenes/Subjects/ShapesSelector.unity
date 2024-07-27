@@ -1320,7 +1320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6019234bc4002f84daeb8b7e3e2dd971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subject: 1
   subjectObjectsManager: {fileID: 1746383682}
   objectTransforms:
   - {fileID: 659485796}
@@ -2098,10 +2097,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 692049262}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: LoadPreviousScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2203,7 +2202,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 0
+  m_Spacing: 15
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -2399,7 +2398,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a648c2ea695bd4595f079540276a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subject: 1
+  subject:
+    name: Shapes
+    hebrewName: "\u05E6\u05D5\u05E8\u05D5\u05EA"
+    sprite: {fileID: 1405673573, guid: 5882df7efe929d042ad21db83629bc40, type: 3}
+    toriObjects:
+    - objectName: "\u05E8\u05D9\u05D1\u05D5\u05E2"
+      sprite: {fileID: -709152903, guid: 5882df7efe929d042ad21db83629bc40, type: 3}
+      clip: {fileID: 8300000, guid: 23280cc77023dff4f96488a29d224698, type: 3}
+      objectSoundClip: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      parallelObjectSprite: {fileID: 21300000, guid: 913e6cee03e8a154ca54bb01b5a608e4, type: 3}
+      parallelObjectClip: {fileID: 8300000, guid: 2be9f7432bd57ef49a3c1de08ed6b7f4, type: 3}
+    - objectName: "\u05DE\u05E9\u05D5\u05DC\u05E9"
+      sprite: {fileID: 1679316673, guid: 5882df7efe929d042ad21db83629bc40, type: 3}
+      clip: {fileID: 8300000, guid: 06fec2b86644520419c85f590b013640, type: 3}
+      objectSoundClip: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      parallelObjectSprite: {fileID: 21300000, guid: a790352215f663a43a735514e847d481, type: 3}
+      parallelObjectClip: {fileID: 8300000, guid: 2721fc6399d8abc4d8053853ff8890d1, type: 3}
+    - objectName: "\u05E2\u05D9\u05D2\u05D5\u05DC"
+      sprite: {fileID: -183577644, guid: 5882df7efe929d042ad21db83629bc40, type: 3}
+      clip: {fileID: 8300000, guid: d7050097f4e67624681e23caa5439098, type: 3}
+      objectSoundClip: {fileID: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      parallelObjectSprite: {fileID: 21300000, guid: c418aa13ecd8ee343979025e45d306c4, type: 3}
+      parallelObjectClip: {fileID: 8300000, guid: 7b8f6212181ff2542af46ad9e6bdf0f6, type: 3}
   nextSceneName: TreasureMap
   optionPrefab: {fileID: 3033312467594602951, guid: 5e4b8c41d6ad0174486ebdf97b0a6208, type: 3}
   optionsParent: {fileID: 1539626881}
@@ -2931,7 +2955,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedObjects: []
-  currentSubject: 0
+  currentSubject:
+    name: 
+    hebrewName: 
+    sprite: {fileID: 0}
+    toriObjects: []
   currentLevel: 0
 --- !u!4 &2037425472
 Transform:

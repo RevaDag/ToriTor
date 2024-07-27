@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Answer : MonoBehaviour
 {
-
     public Image image;
     public AudioSource audioSource;
     public Draggable draggable;

@@ -7,7 +7,6 @@ using static SubjectsManager;
 
 public class SelectedObjectsUI : MonoBehaviour
 {
-    public Subject subject;
 
     [SerializeField] private SubjectObjectsManager subjectObjectsManager;
 
@@ -16,7 +15,12 @@ public class SelectedObjectsUI : MonoBehaviour
     [SerializeField] private SelectedObject selectedObjectPrefab;
 
     private List<ToriObject> selectedObjects = new List<ToriObject>();
+    private Subject subject;
 
+    public void SetSubject ( Subject _subject )
+    {
+        subject = _subject;
+    }
 
 
     public void AddObjectUI ( ToriObject toriObject )
@@ -45,6 +49,7 @@ public class SelectedObjectsUI : MonoBehaviour
         // Add the ToriObject to the selectedObjects list
         selectedObjects.Add(toriObject);
 
+        selectedObject.SetSubject(subject);
         selectedObject.SetObjectUI(toriObject, this);
     }
 
