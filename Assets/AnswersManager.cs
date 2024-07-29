@@ -1,15 +1,20 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnswersManager : MonoBehaviour
 {
     [SerializeField] private List<Answer> answers;
     [SerializeField] private Answer answerPrefab;
     [SerializeField] private Canvas canvas;
-    [SerializeField] private int desiredAnswerCount = 5;
+    [SerializeField] private int desiredAnswerCount = 10;
 
     private List<Answer> activeAnswers = new List<Answer>();
     private List<Answer> unusedAnswers = new List<Answer>();
+
+    public Answer currentAnswer { get; private set; }
 
     public List<Answer> InitializeAnswers ()
     {
@@ -18,6 +23,12 @@ public class AnswersManager : MonoBehaviour
 
         return activeAnswers;
     }
+
+    public void SetCurrentAnswer ( Answer _currentAnswer )
+    {
+        currentAnswer = _currentAnswer;
+    }
+
 
     public List<Answer> GetAnswers ()
     {
@@ -57,60 +68,50 @@ public class AnswersManager : MonoBehaviour
             activeAnswers.Remove(answerToDestroy);
             unusedAnswers.Remove(answerToDestroy);
             Destroy(answerToDestroy.gameObject);
-            MaintainAnswerCount();
         }
     }
 
-    private void MaintainAnswerCount ()
+
+    public async Task InstantiateAnswersAsync ()
     {
         while (activeAnswers.Count < desiredAnswerCount)
         {
             Answer newAnswer = InstantiateAnswer();
             if (newAnswer != null)
             {
+                answers.Add(newAnswer);
                 activeAnswers.Add(newAnswer);
                 unusedAnswers.Add(newAnswer);
             }
+            await Task.Delay(100); // Small delay between instantiations, similar to yield return new WaitForSeconds(0.1f)
         }
+
+        // Force a rebuild of the Canvas
+        LayoutRebuilder.ForceRebuildLayoutImmediate(canvas.GetComponent<RectTransform>());
     }
 
     private Answer InstantiateAnswer ()
     {
-        if (answerPrefab == null)
-        {
-            Debug.LogError("Answer prefab is not assigned!");
-            return null;
-        }
-
         Answer answerInstance = Instantiate(answerPrefab, canvas.transform);
         RectTransform rectTransform = answerInstance.GetComponent<RectTransform>();
-
-        if (rectTransform == null)
-        {
-            Debug.LogError("RectTransform component not found on the answer prefab!");
-            return answerInstance;
-        }
-
         Vector2 randomPosition = GetRandomPositionOnScreen(rectTransform);
-        rectTransform.anchorMin = rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-        rectTransform.anchoredPosition = randomPosition;
+
+        // Set the position directly in world space
+        rectTransform.position = canvas.transform.TransformPoint(new Vector3(randomPosition.x, randomPosition.y, 0));
 
         return answerInstance;
     }
 
     private Vector2 GetRandomPositionOnScreen ( RectTransform rectTransform )
     {
-        float canvasWidth = canvas.GetComponent<RectTransform>().rect.width;
-        float canvasHeight = canvas.GetComponent<RectTransform>().rect.height;
-
-        float prefabWidth = rectTransform.rect.width;
-        float prefabHeight = rectTransform.rect.height;
-
-        float randomX = Random.Range(-canvasWidth / 2 + prefabWidth / 2, canvasWidth / 2 - prefabWidth / 2);
-        float randomY = Random.Range(-canvasHeight / 2 + prefabHeight / 2, canvasHeight / 2 - prefabHeight / 2);
-
-        return new Vector2(randomX, randomY);
+        Vector2 canvasSize = canvas.GetComponent<RectTransform>().rect.size;
+        float randomX = Random.Range(0, canvasSize.x) - canvasSize.x / 2;
+        float randomY = Random.Range(0, canvasSize.y) - canvasSize.y / 2;
+        Vector2 randomPosition = new Vector2(randomX, randomY);
+        return randomPosition;
     }
+
+    #region Fade In & Out
 
     public void FadeInAnswers ()
     {
@@ -127,6 +128,14 @@ public class AnswersManager : MonoBehaviour
             answer.FadeOut();
         }
     }
+
+    public void FadeOutAnswer ( Answer answer )
+    { answer.FadeOut(); }
+
+    public void FadeInAnswer ( Answer answer )
+    { answer.FadeIn(); }
+
+    #endregion
 
     public List<Answer> GetActiveAnswers ()
     {

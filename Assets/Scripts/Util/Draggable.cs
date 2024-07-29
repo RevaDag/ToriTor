@@ -5,8 +5,8 @@ using static UnityEngine.GraphicsBuffer;
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private Answer answer;
+    [SerializeField] private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
-    private CanvasGroup canvasGroup;
     private Canvas canvas;
     private bool isDraggable = true;
     private RectTransform target;
@@ -18,7 +18,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     void Awake ()
     {
         rectTransform = GetComponent<RectTransform>();
-        canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
+        if (canvasGroup == null)
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
         canvas = GetComponentInParent<Canvas>();
     }
 

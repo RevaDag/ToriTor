@@ -1,43 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static QuizManager;
 
 public class CatchQuiz : IQuiz
 {
     private Question currentQuestion;
-    //private List<Answer> answers = new List<Answer>();
     private QuizManager quizManager;
     private ToriObject currentToriObject;
-    private Animator lidAnimator;
-    private Animator parallelObjectAnimator;
-    private Sticker parallelObjectSticker;
 
     private Subject subject;
-    private Color transparent;
+    private int correctAnswersCounter;
 
+    private int levelNumber = 2;
 
 
     public void InitiateQuiz ()
     {
+        InitiateQuizCoroutine();
+    }
+
+    private async void InitiateQuizCoroutine ()
+    {
+        LoadObjects();
+        GetSubjectFromManager();
+
+        await quizManager.answersManager.InstantiateAnswersAsync();
+
+        quizManager.SetAnswersQuizManager();
         ResetAnswers();
         LoadCurrentQuestion();
         DeployAnswers();
+
+
+
         FadeInAnswers();
+    }
+
+    private void LoadObjects ()
+    {
+        quizManager.LoadObjects(levelNumber);
     }
 
     public void SetQuizManager ( QuizManager _quizManager )
     {
         this.quizManager = _quizManager;
-        lidAnimator = quizManager.chestLidAnimator;
-        parallelObjectAnimator = quizManager.parallelObjectAnimator;
-        parallelObjectSticker = parallelObjectAnimator.GetComponent<Sticker>();
-
-        transparent = parallelObjectSticker.GetColor();
     }
 
-    public void SetSubject ( Subject _subject )
+    private void GetSubjectFromManager ()
     {
-        subject = _subject;
+        subject = SubjectsManager.Instance.selectedSubject;
     }
 
     public void SetQuestion ( Question question )
@@ -45,15 +57,10 @@ public class CatchQuiz : IQuiz
         currentQuestion = question;
     }
 
-    /*   public void SetAnswers ( List<Answer> _answers )
-       {
-           answers = _answers;
-       }*/
 
     public void LoadCurrentQuestion ()
     {
         currentToriObject = quizManager.GetCurrentObject();
-        lidAnimator.SetBool("isOpen", false);
 
         DeployQuestion(currentToriObject);
     }
@@ -73,11 +80,6 @@ public class CatchQuiz : IQuiz
         }
     }
 
-    private void DeployParallelObjectSticker ( ToriObject toriObject )
-    {
-        parallelObjectSticker.SetImage(toriObject.parallelObjectSprite);
-        parallelObjectSticker.SetAudio(toriObject.parallelObjectClip);
-    }
 
     public void AnswerClicked ( bool isCorrect )
     {
@@ -94,38 +96,51 @@ public class CatchQuiz : IQuiz
     {
         List<Answer> answers = quizManager.answersManager.GetAnswers();
 
-
-        if (answers == null || answers.Count < 3)
+        if (answers == null || answers.Count < 10)
         {
             Debug.LogError("Insufficient number of answers available.");
             return;
         }
 
         ToriObject correctObject = quizManager.GetCurrentObject();
-        List<ToriObject> wrongObjects = quizManager.GetRandomObjects(2, correctObject);
+        List<ToriObject> allObjects = new List<ToriObject>(quizManager.GetAllSubjectObjects());
+        Debug.Log(allObjects.Count);
+        allObjects.Remove(correctObject);
 
-        // Shuffle the answers list to randomize the position of the correct answer
+        List<ToriObject> wrongObjects = GetRandomObjects(allObjects, 7);
+
+        List<ToriObject> answerObjects = new List<ToriObject> { correctObject, correctObject, correctObject };
+        answerObjects.AddRange(wrongObjects);
+
         List<Answer> shuffledAnswers = new List<Answer>(answers);
         ShuffleList(shuffledAnswers);
 
-        // Deploy the correct answer to a random position
-        int correctAnswerIndex = Random.Range(0, shuffledAnswers.Count);
-        Answer correctAnswer = shuffledAnswers[correctAnswerIndex];
-        DeployAnswer(correctAnswer, correctObject);
-
-        correctAnswer.SetAsCorrect();
-        correctAnswer.SetTarget(currentQuestion.target);
-
-        // Deploy wrong answers to the remaining positions
-        int wrongObjectIndex = 0;
         for (int i = 0; i < shuffledAnswers.Count; i++)
         {
-            if (i != correctAnswerIndex)
+            bool isCorrect = i < 3;
+            Answer answer = shuffledAnswers[i];
+            ToriObject toriObject = answerObjects[i];
+
+            DeployAnswer(answer, toriObject);
+            if (isCorrect)
             {
-                DeployAnswer(shuffledAnswers[i], wrongObjects[wrongObjectIndex]);
-                wrongObjectIndex++;
+                answer.SetAsCorrect();
+                answer.SetTarget(currentQuestion.target);
             }
         }
+    }
+
+    private List<ToriObject> GetRandomObjects ( List<ToriObject> objects, int count )
+    {
+        List<ToriObject> randomObjects = new List<ToriObject>();
+
+        for (int i = 0; i < count; i++)
+        {
+            int randomIndex = Random.Range(0, objects.Count);
+            randomObjects.Add(objects[randomIndex]);
+        }
+
+        return randomObjects;
     }
 
     private void ShuffleList<T> ( List<T> list )
@@ -145,34 +160,34 @@ public class CatchQuiz : IQuiz
         switch (subject.name)
         {
             case "Colors":
-                answer.SetColor(toriObject);
+                answer.SetColor(toriObject.color);
                 break;
             case "Shapes":
-                answer.SetImage(toriObject);
+                answer.SetImage(toriObject.sprite);
                 break;
 
         }
 
-        answer.SetAudioClip(toriObject);
+        answer.SetAudioClip(toriObject.clip);
     }
 
 
     public void CorrectAnswer ()
     {
-        quizManager.feedbackManager.SendFeedback(0);
-        lidAnimator.SetBool("isOpen", true);
+        Answer currentAnswer = quizManager.answersManager.currentAnswer;
+        quizManager.answersManager.FadeOutAnswer(currentAnswer);
 
-        ParallelObjectAnimation(true);
-        FadeOutAnswers();
-        quizManager.stepper.activateNextStep();
+        if (correctAnswersCounter == 2)
+        {
+            quizManager.SetQuestionState(QuestionState.Correct);
+            quizManager.feedbackManager.SendFeedback(0);
+            correctAnswersCounter = 0;
+        }
+        else
+            correctAnswersCounter++;
+
     }
 
-    public void ParallelObjectAnimation ( bool isOut )
-    {
-        DeployParallelObjectSticker(currentToriObject);
-
-        parallelObjectAnimator.SetBool("isOut", isOut);
-    }
 
 
     public void WrongAnswer ()
@@ -189,7 +204,6 @@ public class CatchQuiz : IQuiz
     {
         ResetAnswers();
 
-        ParallelObjectAnimation(false);
         quizManager.ResetUnusedAnswersList();
         quizManager.MoveToNextObject();
         InitiateQuiz();
@@ -202,14 +216,7 @@ public class CatchQuiz : IQuiz
 
     public void CompleteQuiz ()
     {
-        ParallelObjectAnimation(false);
-
-        if (quizManager.isTest)
-            quizManager.quizSummary.SetObjects(quizManager.quizTester.subject.toriObjects);
-        else
-            quizManager.quizSummary.SetObjects(quizManager.selectedObjects);
-
-        quizManager.quizSummary.InstantiateStickers();
+        FadeOutAnswers();
         GameManager.Instance.SaveProgress();
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static SubjectsManager;
+using static QuizManager;
 
 public class MatchQuiz : IQuiz
 {
@@ -14,6 +14,7 @@ public class MatchQuiz : IQuiz
     public void InitiateQuiz ()
     {
         LoadCurrentQuestion();
+        InitializeAnswers();
         DeployAnswers();
         FadeInAnswers();
     }
@@ -45,6 +46,10 @@ public class MatchQuiz : IQuiz
         currentQuestion.SetAudioClip(toriObject.parallelObjectClip);
     }
 
+    private void InitializeAnswers ()
+    {
+        quizManager.answersManager.InitializeAnswers();
+    }
 
     public void NextQuestion ()
     {
@@ -101,9 +106,9 @@ public class MatchQuiz : IQuiz
 
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
-        answer.SetImage(toriObject);
-        answer.SetColor(toriObject);
-        answer.SetAudioClip(toriObject);
+        answer.SetImage(toriObject.sprite);
+        answer.SetColor(toriObject.color);
+        answer.SetAudioClip(toriObject.clip);
     }
 
     public void AnswerClicked ( bool isCorrect )
@@ -115,6 +120,7 @@ public class MatchQuiz : IQuiz
     public void CorrectAnswer ()
     {
         quizManager.feedbackManager.SendFeedback(0);
+        quizManager.SetQuestionState(QuestionState.Correct);
         FadeOutAnswers();
         quizManager.stepper.activateNextStep();
     }

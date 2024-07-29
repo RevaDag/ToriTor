@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
         Book,
         Chest,
         Speech,
-        Matching
+        Matching,
+        Catch,
+        Find
     }
 
     void Awake ()
@@ -52,6 +54,11 @@ public class GameManager : MonoBehaviour
     private void InitializeSubjectDictionary ()
     {
         subjectDictionary = SubjectsManager.Instance?.GetAllSubjects().ToDictionary(sub => sub.name, sub => sub);
+    }
+
+    public void SetCurrentSubject ( Subject subject )
+    {
+        currentSubject = subject;
     }
 
     public void ProgressToNextLevel ()

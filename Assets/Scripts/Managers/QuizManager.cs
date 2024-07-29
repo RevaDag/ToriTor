@@ -28,7 +28,7 @@ public class QuizManager : MonoBehaviour
 
     public AnswersManager answersManager;
 
-    public List<ToriObject> selectedObjects { get; private set; }
+    public List<ToriObject> currentObjects { get; private set; }
     private List<ToriObject> usedObjects;
     private int currentObjectIndex;
 
@@ -44,8 +44,6 @@ public class QuizManager : MonoBehaviour
         quizFactory = new QuizFactory();
         quiz = quizFactory.CreateQuiz(gameType);
 
-        LoadObjectsAndSubject();
-
         usedObjects = new List<ToriObject>();
 
         InitiateQuiz();
@@ -55,37 +53,18 @@ public class QuizManager : MonoBehaviour
     private void InitiateQuiz ()
     {
         quiz.SetQuizManager(this);
-        quiz.SetSubject(subject);
         quiz.SetQuestion(question);
-
-        InitializeAnswers();
 
         quiz.InitiateQuiz();
     }
 
-    private void InitializeAnswers ()
+    public void LoadObjects ( int listNumber )
     {
-        /*List<Answer> activeAnswers = */
-        answersManager.InitializeAnswers();
-
-        //quiz.SetAnswers(activeAnswers);
+        currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(listNumber);
     }
 
-    private void LoadObjectsAndSubject ()
-    {
-        if (isTest)
-        {
-            selectedObjects = quizTester.subject.toriObjects;
-            subject = quizTester.subject;
-        }
-        else
-        {
-            selectedObjects = GameManager.Instance.selectedObjects;
-            subject = GameManager.Instance.currentSubject;
-        }
-    }
 
-    private void SetAnswersQuizManager ()
+    public void SetAnswersQuizManager ()
     {
         foreach (var answer in answersManager.GetActiveAnswers())
         {
@@ -93,9 +72,14 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    public List<ToriObject> GetAllSubjectObjects ()
+    {
+        return SubjectsManager.Instance.selectedSubject.toriObjects;
+    }
+
     public ToriObject GetCurrentObject ()
     {
-        ToriObject obj = selectedObjects[currentObjectIndex];
+        ToriObject obj = currentObjects[currentObjectIndex];
         AddObjectToUsuedObjectList(obj);
         return obj;
     }
@@ -114,10 +98,6 @@ public class QuizManager : MonoBehaviour
         usedObjects.Add(usedObject);
     }
 
-    public Answer GetUnusedAnswer ()
-    {
-        return answersManager.GetUnusedAnswer();
-    }
 
     public void ResetUnusedAnswersList ()
     {
@@ -127,20 +107,22 @@ public class QuizManager : MonoBehaviour
 
     public List<ToriObject> GetRandomObjects ( int numberOfObjects, ToriObject exceptThisObject )
     {
-        // Create a copy of the selectedObjects list
-        List<ToriObject> tempObjects = new List<ToriObject>(selectedObjects);
-
-        // Remove the specified object from the temp list
+        List<ToriObject> tempObjects = new List<ToriObject>(currentObjects);
         tempObjects.Remove(exceptThisObject);
 
-        // Create a new list to store the random objects
+        if (tempObjects.Count < numberOfObjects)
+        {
+            Debug.LogError("Not enough objects to select from.");
+            return tempObjects;
+        }
+
         List<ToriObject> objList = new List<ToriObject>();
 
         for (int i = 0; i < numberOfObjects; i++)
         {
             int randomIndex = Random.Range(0, tempObjects.Count);
             objList.Add(tempObjects[randomIndex]);
-            tempObjects.RemoveAt(randomIndex);  // Remove the selected object to avoid duplicates
+            tempObjects.RemoveAt(randomIndex);
         }
 
         return objList;
@@ -148,19 +130,23 @@ public class QuizManager : MonoBehaviour
 
     public void CorrectAnswer ()
     {
-        currentQuestionState = QuestionState.Correct;
         quiz.CorrectAnswer();
     }
 
     public void WrongAnswer ()
     {
-        currentQuestionState = QuestionState.Wrong;
+        SetQuestionState(QuestionState.Wrong);
         quiz.WrongAnswer();
     }
 
     public void ResetQuestionState ()
     {
-        currentQuestionState = QuestionState.Pending;
+        SetQuestionState(QuestionState.Pending);
+    }
+
+    public void SetQuestionState ( QuestionState questionState )
+    {
+        currentQuestionState = questionState;
     }
 
     public void AnswerClicked ( bool isCorrect )
@@ -173,7 +159,7 @@ public class QuizManager : MonoBehaviour
         switch (currentQuestionState)
         {
             case QuestionState.Correct:
-                if (usedObjects.Count < selectedObjects.Count)
+                if (usedObjects.Count < currentObjects.Count)
                     quiz.CorrectFeedbackClicked();
                 else
                     CompleteQuiz();

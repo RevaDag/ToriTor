@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static QuizManager;
 using static SubjectsManager;
 
 public class SpeechQuiz : IQuiz
@@ -13,6 +14,7 @@ public class SpeechQuiz : IQuiz
     public void InitiateQuiz ()
     {
         LoadCurrentQuestion();
+        InitializeAnswers();
         DeployAnswers();
         FadeInAnswers();
     }
@@ -44,6 +46,11 @@ public class SpeechQuiz : IQuiz
         currentQuestion.SetAudioClip(toriObject.clip);
         currentQuestion.SetDialogLine(toriObject);
         quizManager.dialogManager.FadeIn();
+    }
+
+    private void InitializeAnswers ()
+    {
+        quizManager.answersManager.InitializeAnswers();
     }
 
     public void AnswerClicked ( bool isCorrect )
@@ -115,9 +122,9 @@ public class SpeechQuiz : IQuiz
 
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
-        answer.SetImage(toriObject);
-        answer.SetColor(toriObject);
-        answer.SetAudioClip(toriObject);
+        answer.SetImage(toriObject.sprite);
+        answer.SetColor(toriObject.color);
+        answer.SetAudioClip(toriObject.clip);
     }
 
 
@@ -125,6 +132,7 @@ public class SpeechQuiz : IQuiz
     {
         ResetAnswers();
         quizManager.feedbackManager.SendFeedback(0);
+        quizManager.SetQuestionState(QuestionState.Correct);
         FadeOutAnswers();
         quizManager.stepper.activateNextStep();
     }
@@ -153,7 +161,8 @@ public class SpeechQuiz : IQuiz
 
     public void CompleteQuiz ()
     {
-
+        FadeOutAnswers();
+        GameManager.Instance.SaveProgress();
     }
 
     public void FadeInAnswers ()

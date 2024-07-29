@@ -13,6 +13,10 @@ public class QuizFactory : IQuizFactory
                 return new MatchQuiz();
             case GameType.Chest:
                 return new ChestQuiz();
+            case GameType.Catch:
+                return new CatchQuiz();
+            case GameType.Find:
+                return new FindQuiz();
             default:
                 throw new System.ArgumentException("Invalid game type");
         }

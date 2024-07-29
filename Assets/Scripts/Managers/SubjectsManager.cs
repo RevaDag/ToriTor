@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SubjectsManager : MonoBehaviour
@@ -8,6 +9,14 @@ public class SubjectsManager : MonoBehaviour
 
 
     private Dictionary<string, Subject> subjectDictionary;
+
+    public Subject selectedSubject { get; private set; }
+
+    public List<ToriObject> toriObjects1;
+    public List<ToriObject> toriObjects2;
+    public List<ToriObject> toriObjects3;
+    public List<ToriObject> toriObjects4;
+
 
     public static SubjectsManager Instance { get; private set; }
 
@@ -37,6 +46,8 @@ public class SubjectsManager : MonoBehaviour
         }
     }
 
+    #region Getters
+
     public List<ToriObject> GetSubject ( string subjectName )
     {
         if (subjectDictionary.TryGetValue(subjectName, out Subject subject))
@@ -64,4 +75,106 @@ public class SubjectsManager : MonoBehaviour
         return allObjects;
     }
 
+    public List<ToriObject> GetObjectsByListNumber ( int listNumber )
+    {
+        switch (listNumber)
+        {
+            case 0:
+                return null;
+            case 1:
+                return toriObjects1;
+            case 2:
+                return toriObjects2;
+            case 3:
+                return toriObjects3;
+            case 4:
+                return toriObjects4;
+            default:
+                return null;
+        }
+    }
+
+    #endregion
+
+    public void SelectSubjectByName ( string subjectName )
+    {
+        if (subjectDictionary.TryGetValue(subjectName, out Subject subject))
+        {
+            selectedSubject = subject;
+        }
+        else
+        {
+            Debug.LogWarning("Subject not found: " + subjectName);
+            selectedSubject = null;
+        }
+
+        SplitToriObjects();
+    }
+
+    public void SplitToriObjects ()
+    {
+        if (selectedSubject == null || selectedSubject.toriObjects == null || selectedSubject.toriObjects.Count == 0)
+        {
+            Debug.LogWarning("No selected subject or tori objects to split.");
+            return;
+        }
+
+        toriObjects1.Clear();
+        toriObjects2.Clear();
+        toriObjects3.Clear();
+        toriObjects4.Clear();
+
+        // Create a list to hold the indices
+        List<int> indices = Enumerable.Range(0, selectedSubject.toriObjects.Count).ToList();
+
+        // Shuffle the indices
+        indices = indices.OrderBy(x => Random.value).ToList();
+
+        // Distribute tori objects into the lists
+        for (int i = 0; i < indices.Count; i++)
+        {
+            int targetList = i % 5;
+            ToriObject toriObject = selectedSubject.toriObjects[indices[i]];
+
+            switch (targetList)
+            {
+                case 0:
+                    toriObjects1.Add(toriObject);
+                    break;
+                case 1:
+                    toriObjects2.Add(toriObject);
+                    break;
+                case 2:
+                    toriObjects3.Add(toriObject);
+                    break;
+                case 3:
+                    toriObjects4.Add(toriObject);
+                    break;
+            }
+        }
+
+        // Ensure each list has at least 3 items by repeating items if necessary
+        EnsureMinimumItems(toriObjects1);
+        EnsureMinimumItems(toriObjects2);
+        EnsureMinimumItems(toriObjects3);
+        EnsureMinimumItems(toriObjects4);
+    }
+
+    private void EnsureMinimumItems ( List<ToriObject> toriObjectsList )
+    {
+        int attempts = 0;
+        while (toriObjectsList.Count < 3 && attempts < selectedSubject.toriObjects.Count)
+        {
+            foreach (var toriObject in selectedSubject.toriObjects)
+            {
+                if (!toriObjectsList.Contains(toriObject))
+                {
+                    toriObjectsList.Add(toriObject);
+                    if (toriObjectsList.Count >= 3)
+                        break;
+                }
+                attempts++;
+            }
+        }
+    }
 }

@@ -53,6 +53,11 @@ public class Sticker : MonoBehaviour
         canvasGroup.alpha = isActive ? 1f : 0.5f;
     }
 
+    public void PlayAudio ()
+    {
+        audioSource.Play();
+    }
+
     public void OnStickerClicked ()
     {
         bookController.SetSelectedObject(toriObject);

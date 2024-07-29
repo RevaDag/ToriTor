@@ -19,6 +19,7 @@ public class Answer : MonoBehaviour
 
     public ToriObject toriObject { get; private set; }
     public QuizManager quizManager { get; private set; }
+    private AnswersManager answersManager;
 
     private void Awake ()
     {
@@ -30,26 +31,28 @@ public class Answer : MonoBehaviour
         initialPosition = rectTransform.anchoredPosition;
     }
 
-    public void SetAudioClip ( ToriObject toriObject )
+    public void SetAudioClip ( AudioClip _clip )
     {
-        audioSource.clip = toriObject.clip;
+        audioSource.clip = _clip;
     }
 
-    public void SetImage ( ToriObject toriObject )
+    public void SetImage ( Sprite _sprite )
     {
-        image.sprite = toriObject.sprite;
+        image.sprite = _sprite;
         image.SetNativeSize();
     }
 
-    public void SetColor ( ToriObject toriObject )
+    public void SetColor ( Color _color )
     {
-        image.color = toriObject.color;
+        image.color = _color;
     }
 
     public void SetQuizManager ( QuizManager _quizManager )
     {
         if (quizManager == null)
             quizManager = _quizManager;
+
+        answersManager = _quizManager.answersManager;
     }
 
     public void SetAsCorrect () { isCorrect = true; }
@@ -64,11 +67,13 @@ public class Answer : MonoBehaviour
         audioSource.Play();
 
         quizManager.AnswerClicked(isCorrect);
+
     }
 
     public void PlayerAnswerCorrect ()
     {
         audioSource.Play();
+        answersManager.SetCurrentAnswer(this);
         quizManager.CorrectAnswer();
     }
 

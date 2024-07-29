@@ -8,36 +8,51 @@ public class QuizSummary : MonoBehaviour
     [SerializeField] private Fader SummaryCanvasFader;
     [SerializeField] private Sticker stickerPrefab;
     [SerializeField] private Transform stickersParent;
+    [SerializeField] private int levelNumber;
+    [SerializeField] private SceneLoader sceneLoader;
+    [SerializeField] private List<Sticker> stickers;
 
-    private List<Sticker> stickerList = new List<Sticker>();
-    private List<ToriObject> toriObjects;
-
-
-    public void SetObjects ( List<ToriObject> objects )
+    private void Start ()
     {
-        toriObjects = objects;
+        SetStickers();
     }
 
-    public void InstantiateStickers ()
+    public void SetStickers ()
     {
-        foreach (var toriObject in toriObjects)
-        {
-            Sticker sticker = Instantiate(stickerPrefab, stickersParent);
-            sticker.SetImage(toriObject.sprite);
-            sticker.SetAudio(toriObject.clip);
-            sticker.SetColor(toriObject.color);
+        List<ToriObject> toriObjects = SubjectsManager.Instance.GetObjectsByListNumber(levelNumber);
 
-            stickerList.Add(sticker);
+        for (int i = 0; i < toriObjects.Count; i++)
+        {
+            Sticker sticker;
+            if (i < stickers.Count)
+            {
+                sticker = stickers[i];
+                sticker.gameObject.SetActive(true); // Make sure the sticker is active
+            }
+            else
+            {
+                sticker = Instantiate(stickerPrefab, stickersParent);
+                stickers.Add(sticker);
+            }
+
+            sticker.SetImage(toriObjects[i].sprite);
+            sticker.SetAudio(toriObjects[i].clip);
+            sticker.SetColor(toriObjects[i].color);
+        }
+
+        // Deactivate any extra stickers
+        for (int i = toriObjects.Count; i < stickers.Count; i++)
+        {
+            stickers[i].gameObject.SetActive(false);
         }
     }
 
     public void ResetStickers ()
     {
-        for (int i = stickerList.Count - 1; i >= 0; i--)
+        for (int i = stickers.Count - 1; i >= 0; i--)
         {
-            Destroy(stickerList[i].gameObject);
+            stickers[i].gameObject.SetActive(false); // Deactivate instead of destroy
         }
-        stickerList.Clear();
     }
 
     public void ShowSummary ()
@@ -50,8 +65,9 @@ public class QuizSummary : MonoBehaviour
         SummaryCanvasFader.FadeOut();
     }
 
-    public void NextLevel ()
+    public void OnCheckButtonClicked ()
     {
         GameManager.Instance.ProgressToNextLevel();
+        sceneLoader.LoadPreviousScene();
     }
 }
