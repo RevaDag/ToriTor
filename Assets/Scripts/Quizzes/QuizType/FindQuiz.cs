@@ -95,11 +95,6 @@ public class FindQuiz : IQuiz
         }
     }
 
-    public void NextQuestion ()
-    {
-        LoadCurrentQuestion();
-
-    }
 
     public void DeployAnswers ()
     {

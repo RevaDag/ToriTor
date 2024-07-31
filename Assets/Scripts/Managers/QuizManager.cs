@@ -142,7 +142,7 @@ public class QuizManager : MonoBehaviour
     {
         quiz.CorrectAnswer();
 
-        if (currentObjectIndex + 1 >= currentObjects.Count)
+        if (currentObjectIndex >= currentObjects.Count)
             CompleteQuiz();
     }
 

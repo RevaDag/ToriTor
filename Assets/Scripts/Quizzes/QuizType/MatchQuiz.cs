@@ -51,10 +51,7 @@ public class MatchQuiz : IQuiz
         quizManager.answersManager.InitializeAnswers();
     }
 
-    public void NextQuestion ()
-    {
-        LoadCurrentQuestion();
-    }
+
 
     public void DeployAnswers ()
     {

@@ -98,12 +98,6 @@ public class CatchQuiz : IQuiz
 
     }
 
-    public void NextQuestion ()
-    {
-        LoadCurrentQuestion();
-
-    }
-
     public void DeployAnswers ()
     {
         List<Answer> answers = quizManager.answersManager.GetAnswers();
@@ -195,7 +189,6 @@ public class CatchQuiz : IQuiz
 
     public void CorrectAnswer ()
     {
-
         Answer currentAnswer = quizManager.answersManager.currentAnswer;
         quizManager.answersManager.FadeOutAnswer(currentAnswer);
 
@@ -206,8 +199,7 @@ public class CatchQuiz : IQuiz
             quizManager.SetQuestionState(QuestionState.Correct);
             quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
             correctAnswersCounter = 0;
-            quizManager.Nex
-
+            NextQuestion();
         }
         else
         {

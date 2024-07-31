@@ -15,7 +15,6 @@ public interface IQuiz
     void DeployAnswers ();
     void CorrectAnswer ();
     void WrongAnswer ();
-    void NextQuestion ();
     void WrongFeedbackClicked ();
     void CompleteQuiz ();
 }

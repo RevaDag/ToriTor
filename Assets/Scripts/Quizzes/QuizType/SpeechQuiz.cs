@@ -64,11 +64,7 @@ public class SpeechQuiz : IQuiz
         }
     }
 
-    public void NextQuestion ()
-    {
-        LoadCurrentQuestion();
-    }
-
+ 
     public void DeployAnswers ()
     {
         List<Answer> answers = quizManager.answersManager.GetAnswers();
