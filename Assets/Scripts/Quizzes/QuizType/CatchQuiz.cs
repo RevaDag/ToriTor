@@ -123,6 +123,7 @@ public class CatchQuiz : IQuiz
 
         List<Answer> shuffledAnswers = new List<Answer>(answers);
         ShuffleList(shuffledAnswers);
+        SetAnswerAsTutorial(shuffledAnswers[0]);
 
         for (int i = 0; i < shuffledAnswers.Count; i++)
         {
@@ -131,12 +132,19 @@ public class CatchQuiz : IQuiz
             ToriObject toriObject = answerObjects[i];
 
             DeployAnswer(answer, toriObject);
+
             if (isCorrect)
             {
                 answer.SetAsCorrect();
                 answer.SetTarget(currentQuestion.target);
             }
         }
+    }
+
+    private void SetAnswerAsTutorial ( Answer answer )
+    {
+        _ = quizManager.draggingTutorial.SetAnswerAndPlay
+            (answer.GetComponent<RectTransform>());
     }
 
     private void AddWrongAnswers ( List<ToriObject> allObjects, List<ToriObject> answerObjects )
@@ -192,14 +200,14 @@ public class CatchQuiz : IQuiz
         Answer currentAnswer = quizManager.answersManager.currentAnswer;
         quizManager.answersManager.FadeOutAnswer(currentAnswer);
 
+        if (correctAnswersCounter == 0)
+        {
+            quizManager.draggingTutorial.StopMoving();
+        }
+
         if (correctAnswersCounter == 2)
         {
-            quizManager.clampController.CloseClamp();
-            quizManager.answersManager.DestroyAllAnswers();
-            quizManager.SetQuestionState(QuestionState.Correct);
-            quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
-            correctAnswersCounter = 0;
-            NextQuestion();
+            _ = CelebrateAsync();
         }
         else
         {
@@ -208,7 +216,23 @@ public class CatchQuiz : IQuiz
 
     }
 
+    private async Task CelebrateAsync ()
+    {
+        quizManager.answersManager.DestroyAllAnswers();
+        quizManager.clampController.CloseClamp();
+        quizManager.SetQuestionState(QuestionState.Correct);
+        quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
+        correctAnswersCounter = 0;
+        await Task.Delay(3000);
 
+        // If all objects shown
+        if (quizManager.currentObjectIndex + 1 >= quizManager.currentObjects.Count)
+        {
+            quizManager.CompleteQuiz();
+        }
+        else
+            NextQuestion();
+    }
 
     public void WrongAnswer ()
     {

@@ -39,6 +39,7 @@ public class QuizManager : MonoBehaviour
 
     [Header("Catch")]
     public ClampController clampController;
+    public DraggingTutorial draggingTutorial;
 
     [Header("Test")]
     public bool isTest;
@@ -141,9 +142,6 @@ public class QuizManager : MonoBehaviour
     public void CorrectAnswer ()
     {
         quiz.CorrectAnswer();
-
-        if (currentObjectIndex >= currentObjects.Count)
-            CompleteQuiz();
     }
 
     public void WrongAnswer ()
@@ -168,7 +166,7 @@ public class QuizManager : MonoBehaviour
     }
 
 
-    private void CompleteQuiz ()
+    public void CompleteQuiz ()
     {
         quizSummary.ShowSummary();
         quiz.CompleteQuiz();

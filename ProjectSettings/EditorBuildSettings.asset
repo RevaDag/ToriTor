@@ -33,21 +33,21 @@ EditorBuildSettings:
     path: Assets/_Scenes/OLD/Books/StickerBook.unity
     guid: 9a815c3d87b3caa4081d17a1d322b94a
   - enabled: 1
-    path: Assets/_Scenes/NEW/PirateIsland.unity
+    path: Assets/_Scenes/PirateIsland.unity
     guid: 7bb274a4eb9682644958e17dfc518903
   - enabled: 1
-    path: Assets/_Scenes/NEW/TreasureMap_Colors.unity
+    path: Assets/_Scenes/TreasureMap_Colors.unity
     guid: 06bb02dd1d9484046bff603850b8348e
   - enabled: 1
-    path: Assets/_Scenes/NEW/Levels/Cards.unity
+    path: Assets/_Scenes/Levels/Cards.unity
     guid: 234173266b36f7943add38dc10e02123
   - enabled: 1
-    path: Assets/_Scenes/NEW/Levels/Catch.unity
+    path: Assets/_Scenes/Levels/Catch.unity
     guid: 14b5a6ed1938d6d47a05877915ba261a
   - enabled: 1
-    path: Assets/_Scenes/NEW/Levels/Chest.unity
+    path: Assets/_Scenes/Levels/Chest.unity
     guid: b15833d06e55de1408746be5ed8d05e8
   - enabled: 1
-    path: Assets/_Scenes/NEW/Levels/Find.unity
+    path: Assets/_Scenes/Levels/Find.unity
     guid: 1bd90a8b5915cd441ba51f1dd17b6ba9
   m_configObjects: {}

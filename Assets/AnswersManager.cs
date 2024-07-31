@@ -6,9 +6,11 @@ using UnityEngine.UI;
 
 public class AnswersManager : MonoBehaviour
 {
+
     [SerializeField] private List<Answer> answers;
     [SerializeField] private Answer answerPrefab;
     [SerializeField] private Canvas canvas;
+    [SerializeField] private RectTransform pearlsParent;
     [SerializeField] private RectTransform target;
 
     private List<Answer> activeAnswers = new List<Answer>();
@@ -107,25 +109,12 @@ public class AnswersManager : MonoBehaviour
 
     private Answer InstantiateAnswer ()
     {
-        Answer answerInstance = Instantiate(answerPrefab, canvas.transform);
+        Answer answerInstance = Instantiate(answerPrefab, pearlsParent);
         RectTransform rectTransform = answerInstance.GetComponent<RectTransform>();
 
-        //Vector2 randomPosition = GetRandomPositionOnScreen(rectTransform);
-
-        // Set the position directly in world space
-        //rectTransform.position = canvas.transform.TransformPoint(new Vector3(randomPosition.x, randomPosition.y, 0));
         rectTransform.position = target.position;
 
         return answerInstance;
-    }
-
-    private Vector2 GetRandomPositionOnScreen ( RectTransform rectTransform )
-    {
-        Vector2 canvasSize = canvas.GetComponent<RectTransform>().rect.size;
-        float randomX = Random.Range(0, canvasSize.x) - canvasSize.x / 2;
-        float randomY = Random.Range(0, canvasSize.y) - canvasSize.y / 2;
-        Vector2 randomPosition = new Vector2(randomX, randomY);
-        return randomPosition;
     }
 
     #region Fade In & Out

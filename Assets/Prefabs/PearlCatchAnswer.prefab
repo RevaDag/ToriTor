@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiElement: {fileID: 8979503261800604773}
-  moveInterval: 1
-  maxMoveSpeed: 100
+  moveInterval: 2
+  maxMoveSpeed: 150
 --- !u!114 &2636192247756132441
 MonoBehaviour:
   m_ObjectHideFlags: 0
