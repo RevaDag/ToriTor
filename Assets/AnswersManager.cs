@@ -9,7 +9,7 @@ public class AnswersManager : MonoBehaviour
     [SerializeField] private List<Answer> answers;
     [SerializeField] private Answer answerPrefab;
     [SerializeField] private Canvas canvas;
-    [SerializeField] private int desiredAnswerCount = 10;
+    [SerializeField] private RectTransform target;
 
     private List<Answer> activeAnswers = new List<Answer>();
     private List<Answer> unusedAnswers = new List<Answer>();
@@ -67,12 +67,27 @@ public class AnswersManager : MonoBehaviour
         {
             activeAnswers.Remove(answerToDestroy);
             unusedAnswers.Remove(answerToDestroy);
+            answers.Remove(answerToDestroy);
             Destroy(answerToDestroy.gameObject);
         }
     }
 
+    public void DestroyAllAnswers ()
+    {
+        List<Answer> answersToDestroy = new List<Answer>(activeAnswers);
 
-    public async Task InstantiateAnswersAsync ()
+        foreach (Answer answer in answersToDestroy)
+        {
+            answer.FadeOut();
+        }
+
+        foreach (Answer answer in answersToDestroy)
+        {
+            DestroyAnswer(answer);
+        }
+    }
+
+    public async Task InstantiateAnswersAsync ( int desiredAnswerCount )
     {
         while (activeAnswers.Count < desiredAnswerCount)
         {
@@ -94,10 +109,12 @@ public class AnswersManager : MonoBehaviour
     {
         Answer answerInstance = Instantiate(answerPrefab, canvas.transform);
         RectTransform rectTransform = answerInstance.GetComponent<RectTransform>();
-        Vector2 randomPosition = GetRandomPositionOnScreen(rectTransform);
+
+        //Vector2 randomPosition = GetRandomPositionOnScreen(rectTransform);
 
         // Set the position directly in world space
-        rectTransform.position = canvas.transform.TransformPoint(new Vector3(randomPosition.x, randomPosition.y, 0));
+        //rectTransform.position = canvas.transform.TransformPoint(new Vector3(randomPosition.x, randomPosition.y, 0));
+        rectTransform.position = target.position;
 
         return answerInstance;
     }

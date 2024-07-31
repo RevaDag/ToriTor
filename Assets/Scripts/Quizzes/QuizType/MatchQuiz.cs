@@ -119,7 +119,7 @@ public class MatchQuiz : IQuiz
 
     public void CorrectAnswer ()
     {
-        quizManager.feedbackManager.SendFeedback(0);
+        quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         quizManager.SetQuestionState(QuestionState.Correct);
         FadeOutAnswers();
         quizManager.stepper.activateNextStep();
@@ -127,7 +127,7 @@ public class MatchQuiz : IQuiz
 
     public void WrongAnswer ()
     {
-        quizManager.feedbackManager.SendFeedback(1);
+        quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Wrong);
     }
 
     private void ResetAnswers ()
@@ -135,7 +135,7 @@ public class MatchQuiz : IQuiz
         quizManager.answersManager.ResetAnswers();
     }
 
-    public void CorrectFeedbackClicked ()
+    public void NextQuestion ()
     {
         ResetAnswers();
 

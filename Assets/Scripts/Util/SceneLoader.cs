@@ -1,24 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
 
     public void LoadScene ( string sceneName )
     {
-        if (SceneFader.Instance != null)
-        {
-            SceneFader.Instance.LoadScene(sceneName);
-        }
+        LoadingScreen.Instance.LoadScene(sceneName);
     }
 
 
     public void LoadPreviousScene ()
     {
-        if (SceneFader.Instance != null)
-        {
-            LoadScene(SceneFader.Instance.previousScene);
-        }
+        LoadingScreen.Instance.LoadPreviousScene();
     }
 }

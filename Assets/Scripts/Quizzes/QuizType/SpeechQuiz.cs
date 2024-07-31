@@ -42,10 +42,7 @@ public class SpeechQuiz : IQuiz
 
     public void DeployQuestion ( ToriObject toriObject )
     {
-        quizManager.feedbackManager.ClearDialog();
         currentQuestion.SetAudioClip(toriObject.clip);
-        currentQuestion.SetDialogLine(toriObject);
-        quizManager.dialogManager.FadeIn();
     }
 
     private void InitializeAnswers ()
@@ -131,7 +128,7 @@ public class SpeechQuiz : IQuiz
     public void CorrectAnswer ()
     {
         ResetAnswers();
-        quizManager.feedbackManager.SendFeedback(0);
+        quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         quizManager.SetQuestionState(QuestionState.Correct);
         FadeOutAnswers();
         quizManager.stepper.activateNextStep();
@@ -139,7 +136,7 @@ public class SpeechQuiz : IQuiz
 
     public void WrongAnswer ()
     {
-        quizManager.feedbackManager.SendFeedback(1);
+        quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Wrong);
     }
 
     private void ResetAnswers ()
@@ -147,7 +144,7 @@ public class SpeechQuiz : IQuiz
         quizManager.answersManager.ResetAnswers();
     }
 
-    public void CorrectFeedbackClicked ()
+    public void NextQuestion ()
     {
         quizManager.ResetUnusedAnswersList();
         quizManager.MoveToNextObject();

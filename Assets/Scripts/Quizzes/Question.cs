@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class Question : MonoBehaviour
 {
-    [SerializeField] private DialogManager dialogManager;
-
     public RectTransform target;
 
     [SerializeField] private Image imageSprite;
@@ -31,17 +29,4 @@ public class Question : MonoBehaviour
         imageToColor.color = _color;
     }
 
-    public void SetDialogLine ( ToriObject toriObject )
-    {
-        List<Line> lines = new List<Line>();
-        Line line = new Line();
-
-        line.text = toriObject.objectName;
-        line.audioClip = toriObject.clip;
-        line.type = Line.Type.Question;
-
-        lines.Add(line);
-
-        dialogManager.SetLinesAndPlay(lines);
-    }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using static QuizManager;
 
@@ -25,16 +26,24 @@ public class CatchQuiz : IQuiz
         LoadObjects();
         GetSubjectFromManager();
 
-        await quizManager.answersManager.InstantiateAnswersAsync();
+        await InstantiateAnswers();
 
         quizManager.SetAnswersQuizManager();
         ResetAnswers();
         LoadCurrentQuestion();
         DeployAnswers();
 
-
-
+        quizManager.clampController.OpenClamp();
         FadeInAnswers();
+    }
+
+    private async Task InstantiateAnswers ()
+    {
+        // If this is a tutorial 
+        if (quizManager.currentObjectIndex == 0)
+            await quizManager.answersManager.InstantiateAnswersAsync(3);
+        else
+            await quizManager.answersManager.InstantiateAnswersAsync(8);
     }
 
     private void LoadObjects ()
@@ -49,7 +58,10 @@ public class CatchQuiz : IQuiz
 
     private void GetSubjectFromManager ()
     {
-        subject = SubjectsManager.Instance.selectedSubject;
+        if (quizManager.isTest)
+            subject = quizManager.quizTester.subject;
+        else
+            subject = SubjectsManager.Instance.selectedSubject;
     }
 
     public void SetQuestion ( Question question )
@@ -96,7 +108,7 @@ public class CatchQuiz : IQuiz
     {
         List<Answer> answers = quizManager.answersManager.GetAnswers();
 
-        if (answers == null || answers.Count < 10)
+        if (answers == null || answers.Count < 3)
         {
             Debug.LogError("Insufficient number of answers available.");
             return;
@@ -104,13 +116,16 @@ public class CatchQuiz : IQuiz
 
         ToriObject correctObject = quizManager.GetCurrentObject();
         List<ToriObject> allObjects = new List<ToriObject>(quizManager.GetAllSubjectObjects());
-        Debug.Log(allObjects.Count);
         allObjects.Remove(correctObject);
 
-        List<ToriObject> wrongObjects = GetRandomObjects(allObjects, 7);
-
         List<ToriObject> answerObjects = new List<ToriObject> { correctObject, correctObject, correctObject };
-        answerObjects.AddRange(wrongObjects);
+
+        // If this is not a tutorial 
+        if (quizManager.currentObjectIndex > 0)
+        {
+            AddWrongAnswers(allObjects, answerObjects);
+        }
+
 
         List<Answer> shuffledAnswers = new List<Answer>(answers);
         ShuffleList(shuffledAnswers);
@@ -128,6 +143,12 @@ public class CatchQuiz : IQuiz
                 answer.SetTarget(currentQuestion.target);
             }
         }
+    }
+
+    private void AddWrongAnswers ( List<ToriObject> allObjects, List<ToriObject> answerObjects )
+    {
+        List<ToriObject> wrongObjects = GetRandomObjects(allObjects, 7);
+        answerObjects.AddRange(wrongObjects);
     }
 
     private List<ToriObject> GetRandomObjects ( List<ToriObject> objects, int count )
@@ -174,17 +195,24 @@ public class CatchQuiz : IQuiz
 
     public void CorrectAnswer ()
     {
+
         Answer currentAnswer = quizManager.answersManager.currentAnswer;
         quizManager.answersManager.FadeOutAnswer(currentAnswer);
 
         if (correctAnswersCounter == 2)
         {
+            quizManager.clampController.CloseClamp();
+            quizManager.answersManager.DestroyAllAnswers();
             quizManager.SetQuestionState(QuestionState.Correct);
-            quizManager.feedbackManager.SendFeedback(0);
+            quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
             correctAnswersCounter = 0;
+            quizManager.Nex
+
         }
         else
+        {
             correctAnswersCounter++;
+        }
 
     }
 
@@ -192,7 +220,7 @@ public class CatchQuiz : IQuiz
 
     public void WrongAnswer ()
     {
-        quizManager.feedbackManager.SendFeedback(1);
+        quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Wrong);
     }
 
     private void ResetAnswers ()
@@ -200,7 +228,7 @@ public class CatchQuiz : IQuiz
         quizManager.answersManager.ResetAnswers();
     }
 
-    public void CorrectFeedbackClicked ()
+    public void NextQuestion ()
     {
         ResetAnswers();
 

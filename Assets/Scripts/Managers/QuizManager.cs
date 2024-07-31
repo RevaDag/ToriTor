@@ -18,7 +18,6 @@ public class QuizManager : MonoBehaviour
     public QuestionState currentQuestionState;
 
     public FeedbackManager feedbackManager;
-    public DialogManager dialogManager;
     public Stepper stepper;
     public QuizSummary quizSummary;
 
@@ -30,10 +29,16 @@ public class QuizManager : MonoBehaviour
 
     public List<ToriObject> currentObjects { get; private set; }
     private List<ToriObject> usedObjects;
-    private int currentObjectIndex;
+    public int currentObjectIndex { get; private set; }
 
+
+    [Header("Games")]
+    [Header("Chest")]
     public Animator chestLidAnimator;
     public Animator parallelObjectAnimator;
+
+    [Header("Catch")]
+    public ClampController clampController;
 
     [Header("Test")]
     public bool isTest;
@@ -60,7 +65,10 @@ public class QuizManager : MonoBehaviour
 
     public void LoadObjects ( int listNumber )
     {
-        currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(listNumber);
+        if (isTest)
+            currentObjects = quizTester.subject.toriObjects;
+        else
+            currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(listNumber);
     }
 
 
@@ -74,7 +82,10 @@ public class QuizManager : MonoBehaviour
 
     public List<ToriObject> GetAllSubjectObjects ()
     {
-        return SubjectsManager.Instance.selectedSubject.toriObjects;
+        if (isTest)
+            return quizTester.subject.toriObjects;
+        else
+            return SubjectsManager.Instance.selectedSubject.toriObjects;
     }
 
     public ToriObject GetCurrentObject ()
@@ -87,7 +98,6 @@ public class QuizManager : MonoBehaviour
     public void MoveToNextObject ()
     {
         ResetQuestionState();
-        ResetToriEmoji();
         currentObjectIndex++;
     }
 
@@ -131,6 +141,9 @@ public class QuizManager : MonoBehaviour
     public void CorrectAnswer ()
     {
         quiz.CorrectAnswer();
+
+        if (currentObjectIndex + 1 >= currentObjects.Count)
+            CompleteQuiz();
     }
 
     public void WrongAnswer ()
@@ -154,27 +167,6 @@ public class QuizManager : MonoBehaviour
         quiz.AnswerClicked(isCorrect);
     }
 
-    public void OnFeedbackClicked ()
-    {
-        switch (currentQuestionState)
-        {
-            case QuestionState.Correct:
-                if (usedObjects.Count < currentObjects.Count)
-                    quiz.CorrectFeedbackClicked();
-                else
-                    CompleteQuiz();
-                break;
-
-            case QuestionState.Wrong:
-                quiz.WrongFeedbackClicked();
-                break;
-
-            case QuestionState.Pending:
-                dialogManager.StartTalking();
-                break;
-
-        }
-    }
 
     private void CompleteQuiz ()
     {
@@ -182,10 +174,6 @@ public class QuizManager : MonoBehaviour
         quiz.CompleteQuiz();
     }
 
-    private void ResetToriEmoji ()
-    {
-        dialogManager.toriTheCat.SetEmotion("Default");
-    }
 
     public void ResetQuiz ()
     {
@@ -196,6 +184,16 @@ public class QuizManager : MonoBehaviour
         quiz.InitiateQuiz();
         quizSummary.ResetStickers();
         quizSummary.HideSummary();
+    }
+
+    public void ShowLoadingScreen ()
+    {
+        LoadingScreen.Instance.ShowLoadingScreen();
+    }
+
+    public void HideLoadingScreen ()
+    {
+        LoadingScreen.Instance.HideLoadingScreen();
     }
 
 

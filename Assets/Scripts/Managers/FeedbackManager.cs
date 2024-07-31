@@ -4,72 +4,76 @@ using UnityEngine;
 
 public class FeedbackManager : MonoBehaviour
 {
-    [SerializeField] private DialogManager dialogManager;
     [SerializeField] private ToriTheCat toriTheCat;
 
-    [SerializeField] private List<Line> positiveFeedback;
-    [SerializeField] private List<Line> encouragementFeedback;
+    [SerializeField] private List<AudioClip> RightFeedback;
+    [SerializeField] private List<AudioClip> WrongFeedback;
+
+    [SerializeField] private List<ParticleSystem> particleSystems;
+
+    private AudioSource audioSource;
 
     private int previousFeedbackIndex = -1;
 
-
-    private Line RandomFeedback ( List<Line> feedbackList )
+    public enum FeedbackType
     {
-        if (feedbackList.Count == 0)
-        {
-            Debug.LogWarning("Feedback list is empty.");
-            return null; // Handle the case where the list is empty
-        }
+        Right,
+        Wrong,
+        Celebrate
+    }
 
+    private void Awake ()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    // Gets a random feedback clip from the provided list, ensuring it is not the same as the previous one.
+    private AudioClip GetRandomFeedback ( List<AudioClip> feedbackList )
+    {
         int newIndex;
         do
         {
             newIndex = Random.Range(0, feedbackList.Count);
         } while (newIndex == previousFeedbackIndex && feedbackList.Count > 1);
 
-        //Debug.Log($"Selected feedback index: {newIndex} (previous: {previousFeedbackIndex})");
-
         previousFeedbackIndex = newIndex;
-
-        feedbackList[newIndex].type = Line.Type.Feedback;
-
         return feedbackList[newIndex];
     }
 
-    public void SendFeedback ( int feedbackType )
+    // Sends feedback based on the feedback type.
+    public void SetFeedback ( FeedbackType feedbackType )
     {
-        Line feedback = null;
+        AudioClip feedback = null;
 
         switch (feedbackType)
         {
-            case 0:
-                feedback = RandomFeedback(positiveFeedback);
+            case FeedbackType.Right:
+                feedback = GetRandomFeedback(RightFeedback);
                 toriTheCat.SetEmotion("Like");
+                PlayConfetti();
                 break;
-            case 1:
-                feedback = RandomFeedback(encouragementFeedback);
+            case FeedbackType.Wrong:
+                feedback = GetRandomFeedback(WrongFeedback);
                 toriTheCat.SetEmotion("Default");
                 break;
-            case 2:
-                feedback = RandomFeedback(positiveFeedback);
+            case FeedbackType.Celebrate:
+                feedback = GetRandomFeedback(RightFeedback);
                 toriTheCat.SetEmotion("Celebrate");
                 break;
-
             default:
                 Debug.LogError("Invalid feedback type");
                 return;
         }
 
-        if (feedback != null)
+        audioSource.clip = feedback;
+        audioSource.Play();
+    }
+
+    public void PlayConfetti ()
+    {
+        foreach (ParticleSystem particleSystem in particleSystems)
         {
-            List<Line> lineList = new List<Line> { feedback };
-            dialogManager.SetLinesAndPlay(lineList);
+            particleSystem.Play();
         }
     }
-
-    public void ClearDialog ()
-    {
-        dialogManager.ClearDialog();
-    }
-
 }

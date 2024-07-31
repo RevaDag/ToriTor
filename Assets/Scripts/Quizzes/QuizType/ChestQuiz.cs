@@ -168,7 +168,7 @@ public class ChestQuiz : IQuiz
 
     public void CorrectAnswer ()
     {
-        quizManager.feedbackManager.SendFeedback(0);
+        quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         quizManager.SetQuestionState(QuestionState.Correct);
 
         lidAnimator.SetBool("isOpen", true);
@@ -188,7 +188,7 @@ public class ChestQuiz : IQuiz
 
     public void WrongAnswer ()
     {
-        quizManager.feedbackManager.SendFeedback(1);
+        quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Wrong);
     }
 
     private void ResetAnswers ()
@@ -196,7 +196,7 @@ public class ChestQuiz : IQuiz
         quizManager.answersManager.ResetAnswers();
     }
 
-    public void CorrectFeedbackClicked ()
+    public void NextQuestion ()
     {
         ResetAnswers();
 
