@@ -12,6 +12,8 @@ public class QuizSummary : MonoBehaviour
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private List<Sticker> stickers;
 
+    [SerializeField] private List<ParticleSystem> starConfetties;
+
     private void Start ()
     {
         SetStickers();
@@ -55,9 +57,18 @@ public class QuizSummary : MonoBehaviour
         }
     }
 
+    private void PlayStarConfetties ()
+    {
+        foreach (ParticleSystem stars in starConfetties)
+        {
+            stars.Play();
+        }
+    }
+
     public void ShowSummary ()
     {
         SummaryCanvasFader.FadeIn();
+        PlayStarConfetties();
     }
 
     public void HideSummary ()

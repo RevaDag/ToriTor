@@ -13,7 +13,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     [SerializeField] private RandomMoveUI randomMoveUI;
 
-
+    private Vector2 originalPosition;
+    private Vector2 dragOffset;
 
     void Awake ()
     {
@@ -24,6 +25,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         canvas = GetComponentInParent<Canvas>();
     }
+
 
     public void OnBeginDrag ( PointerEventData eventData )
     {
@@ -36,13 +38,24 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             randomMoveUI.PauseMovement();
         }
+
+        // Store the initial position and calculate the drag offset
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), eventData.position, eventData.pressEventCamera, out dragOffset);
+        dragOffset = rectTransform.anchoredPosition - dragOffset;
     }
 
     public void OnDrag ( PointerEventData eventData )
     {
         if (!isDraggable) return;
 
-        Vector2 newPos = rectTransform.anchoredPosition + eventData.delta / canvas.scaleFactor;
+        // Convert the screen point to local point in rectangle
+        Vector2 localPointerPosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), eventData.position, eventData.pressEventCamera, out localPointerPosition);
+
+        // Apply the drag offset
+        Vector2 newPos = localPointerPosition + dragOffset;
+
+        // Get the canvas RectTransform to calculate bounds
         RectTransform canvasRect = canvas.GetComponent<RectTransform>();
 
         // Calculate bounds based on the size of the canvas and the size of the draggable object
@@ -51,11 +64,16 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         float minY = (canvasRect.rect.height * -0.5f) + (rectTransform.rect.height * 0.5f);
         float maxY = (canvasRect.rect.height * 0.5f) - (rectTransform.rect.height * 0.5f);
 
+        // Clamp the new position within the bounds
         newPos.x = Mathf.Clamp(newPos.x, minX, maxX);
         newPos.y = Mathf.Clamp(newPos.y, minY, maxY);
 
+        // Set the new position
         rectTransform.anchoredPosition = newPos;
     }
+
+
+
 
     public void OnEndDrag ( PointerEventData eventData )
     {
