@@ -6854,10 +6854,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4431342273132712159, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4686859086911020164, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: m_Name
       value: SummaryPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
+      propertyPath: quizManager
+      value: 
+      objectReference: {fileID: 295099225}
+    - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
+      propertyPath: sceneLoader
+      value: 
+      objectReference: {fileID: 1368323340}
     - target: {fileID: 8683785675245598181, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: levelNumber
       value: 2
@@ -6882,7 +6894,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2104529014 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8683785675245598181, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
   m_PrefabInstance: {fileID: 2104529012}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

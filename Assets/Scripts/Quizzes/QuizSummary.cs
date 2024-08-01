@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class QuizSummary : MonoBehaviour
 {
-    [SerializeField] private Fader SummaryCanvasFader;
+    [SerializeField] private QuizManager quizManager;
+
+    [SerializeField] private Fader summaryCanvasFader;
     [SerializeField] private Sticker stickerPrefab;
     [SerializeField] private Transform stickersParent;
     [SerializeField] private int levelNumber;
@@ -13,6 +15,13 @@ public class QuizSummary : MonoBehaviour
     [SerializeField] private List<Sticker> stickers;
 
     [SerializeField] private List<ParticleSystem> starConfetties;
+
+    private AudioSource audioSource;
+
+    private void Awake ()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void Start ()
     {
@@ -67,18 +76,26 @@ public class QuizSummary : MonoBehaviour
 
     public void ShowSummary ()
     {
-        SummaryCanvasFader.FadeIn();
+        summaryCanvasFader.FadeIn();
         PlayStarConfetties();
     }
 
     public void HideSummary ()
     {
-        SummaryCanvasFader.FadeOut();
+        summaryCanvasFader.FadeOut();
     }
 
     public void OnCheckButtonClicked ()
     {
+        audioSource.Play();
         GameManager.Instance.ProgressToNextLevel();
         sceneLoader.LoadPreviousScene();
+    }
+
+    public void OnResetClicked ()
+    {
+        audioSource.Play();
+        quizManager.ResetQuiz();
+        summaryCanvasFader.FadeOut();
     }
 }

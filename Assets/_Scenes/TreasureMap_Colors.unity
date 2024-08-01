@@ -1468,7 +1468,7 @@ GameObject:
   - component: {fileID: 765585227}
   - component: {fileID: 765585226}
   m_Layer: 0
-  m_Name: Click AudioSource
+  m_Name: SceneAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

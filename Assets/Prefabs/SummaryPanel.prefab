@@ -121,9 +121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: QuizManager, Assembly-CSharp
-        m_MethodName: ResetQuiz
+      - m_Target: {fileID: 5326642207357880796}
+        m_TargetAssemblyTypeName: QuizSummary, Assembly-CSharp
+        m_MethodName: OnResetClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5236,7 +5236,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8683785675245598181}
+      - m_Target: {fileID: 5326642207357880796}
         m_TargetAssemblyTypeName: QuizSummary, Assembly-CSharp
         m_MethodName: OnCheckButtonClicked
         m_Mode: 1
@@ -5411,6 +5411,8 @@ GameObject:
   - component: {fileID: 9202634941425997294}
   - component: {fileID: 1336157295078736992}
   - component: {fileID: 4958952941229073468}
+  - component: {fileID: 5326642207357880796}
+  - component: {fileID: 5195730832480628780}
   m_Layer: 5
   m_Name: SummaryPanel
   m_TagString: Untagged
@@ -5503,6 +5505,127 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1336157295078736992}
   fadeDuration: 1
+--- !u!114 &5326642207357880796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4686859086911020164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b03e800c14675c946a57d1e1e6c23ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quizManager: {fileID: 0}
+  summaryCanvasFader: {fileID: 4958952941229073468}
+  stickerPrefab: {fileID: 1178401712073169068, guid: 645a872431f1e274e958a7b8b527284c, type: 3}
+  stickersParent: {fileID: 2568651893247715909}
+  levelNumber: 2
+  sceneLoader: {fileID: 0}
+  stickers:
+  - {fileID: 832676600854376863}
+  - {fileID: 1160878081979380215}
+  - {fileID: 3470959765418475705}
+  starConfetties:
+  - {fileID: 1409175757949954073}
+  - {fileID: 0}
+--- !u!82 &5195730832480628780
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4686859086911020164}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b8088b4995ccf0c49a09af26c34224ee, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6644607008927526429
 GameObject:
   m_ObjectHideFlags: 0
@@ -5813,7 +5936,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1914311276057825052}
   - component: {fileID: 6689972151638703384}
-  - component: {fileID: 8683785675245598181}
   m_Layer: 5
   m_Name: SummaryPopup
   m_TagString: Untagged
@@ -5854,30 +5976,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7081371783598905906}
   m_CullTransparentMesh: 1
---- !u!114 &8683785675245598181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7081371783598905906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b03e800c14675c946a57d1e1e6c23ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SummaryCanvasFader: {fileID: 4958952941229073468}
-  stickerPrefab: {fileID: 1178401712073169068, guid: 645a872431f1e274e958a7b8b527284c, type: 3}
-  stickersParent: {fileID: 2568651893247715909}
-  levelNumber: 1
-  sceneLoader: {fileID: 0}
-  stickers:
-  - {fileID: 832676600854376863}
-  - {fileID: 1160878081979380215}
-  - {fileID: 3470959765418475705}
-  starConfetties:
-  - {fileID: 1409175757949954073}
-  - {fileID: 0}
 --- !u!1 &8390117984928972209
 GameObject:
   m_ObjectHideFlags: 0
