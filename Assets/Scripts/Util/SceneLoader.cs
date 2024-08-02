@@ -14,6 +14,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadPreviousScene ()
     {
+        MusicManager.Instance.PlayAudioClip(MusicManager.Instance.mainMusic);
         LoadingScreen.Instance.LoadPreviousScene();
     }
 }

@@ -18,7 +18,7 @@ public class QuizManager : MonoBehaviour
     public QuestionState currentQuestionState;
 
     public FeedbackManager feedbackManager;
-    public Stepper stepper;
+    //    public Stepper stepper;
     public QuizSummary quizSummary;
 
     [SerializeField] private GameType gameType;
@@ -26,6 +26,12 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private Question question;
 
     public AnswersManager answersManager;
+
+    [Header("Audio")]
+    public AudioClip correctClip;
+    public AudioClip successClip;
+    public AudioClip bubbles;
+    private AudioSource audioSource;
 
     public List<ToriObject> currentObjects { get; private set; }
     private List<ToriObject> usedObjects;
@@ -44,6 +50,11 @@ public class QuizManager : MonoBehaviour
     [Header("Test")]
     public bool isTest;
     public QuizTester quizTester;
+
+    private void Awake ()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Start ()
     {
@@ -142,6 +153,15 @@ public class QuizManager : MonoBehaviour
     public void CorrectAnswer ()
     {
         quiz.CorrectAnswer();
+
+        PlayClip(correctClip);
+    }
+
+
+    public void PlayClip ( AudioClip _clip )
+    {
+        audioSource.clip = _clip;
+        audioSource.Play();
     }
 
     public void WrongAnswer ()
@@ -168,6 +188,8 @@ public class QuizManager : MonoBehaviour
 
     public void CompleteQuiz ()
     {
+        PlayClip(successClip);
+
         quizSummary.ShowSummary();
         quiz.CompleteQuiz();
     }
@@ -184,6 +206,8 @@ public class QuizManager : MonoBehaviour
         quizSummary.HideSummary();
     }
 
+    #region Hide & Show Loading Screen
+
     public void ShowLoadingScreen ()
     {
         LoadingScreen.Instance.ShowLoadingScreen();
@@ -193,6 +217,8 @@ public class QuizManager : MonoBehaviour
     {
         LoadingScreen.Instance.HideLoadingScreen();
     }
+
+    #endregion
 
 
 }

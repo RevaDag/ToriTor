@@ -64,7 +64,7 @@ public class SpeechQuiz : IQuiz
         }
     }
 
- 
+
     public void DeployAnswers ()
     {
         List<Answer> answers = quizManager.answersManager.GetAnswers();
@@ -127,7 +127,7 @@ public class SpeechQuiz : IQuiz
         quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         quizManager.SetQuestionState(QuestionState.Correct);
         FadeOutAnswers();
-        quizManager.stepper.activateNextStep();
+        //quizManager.stepper.activateNextStep();
     }
 
     public void WrongAnswer ()

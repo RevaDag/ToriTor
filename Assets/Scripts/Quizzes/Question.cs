@@ -18,6 +18,11 @@ public class Question : MonoBehaviour
         audioSource.clip = _clip;
     }
 
+    public void PlayAudioSouce ()
+    {
+        audioSource.Play();
+    }
+
     public void SetImage ( Sprite _sprite )
     {
         imageSprite.sprite = _sprite;

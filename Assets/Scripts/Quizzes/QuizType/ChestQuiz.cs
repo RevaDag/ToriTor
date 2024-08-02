@@ -169,7 +169,7 @@ public class ChestQuiz : IQuiz
         ParallelObjectAnimation(true);
         FadeOutAnswers();
 
-        quizManager.stepper.activateNextStep();
+        //quizManager.stepper.activateNextStep();
     }
 
     public void ParallelObjectAnimation ( bool isOut )

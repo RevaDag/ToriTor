@@ -72,7 +72,7 @@ public class Answer : MonoBehaviour
 
     public void PlayerAnswerCorrect ()
     {
-        audioSource.Play();
+        //audioSource.Play();
         answersManager.SetCurrentAnswer(this);
         quizManager.CorrectAnswer();
     }

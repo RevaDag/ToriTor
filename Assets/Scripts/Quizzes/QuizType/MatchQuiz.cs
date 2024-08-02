@@ -77,6 +77,7 @@ public class MatchQuiz : IQuiz
         correctAnswer.SetAsCorrect();
         correctAnswer.SetTarget(currentQuestion.target);
 
+
         // Deploy wrong answers to the remaining positions
         int wrongObjectIndex = 0;
         for (int i = 0; i < shuffledAnswers.Count; i++)
@@ -119,7 +120,7 @@ public class MatchQuiz : IQuiz
         quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         quizManager.SetQuestionState(QuestionState.Correct);
         FadeOutAnswers();
-        quizManager.stepper.activateNextStep();
+        //quizManager.stepper.activateNextStep();
     }
 
     public void WrongAnswer ()

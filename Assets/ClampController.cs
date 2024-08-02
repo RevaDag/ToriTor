@@ -6,8 +6,12 @@ public class ClampController : MonoBehaviour
 {
     [SerializeField] private Fader closeClampFader;
     [SerializeField] private Fader openClampFader;
-   // public Transform target;
 
+
+    private void Start ()
+    {
+        MusicManager.Instance.PlayAudioClip(MusicManager.Instance.underwaterMusic);
+    }
     public void OpenClamp ()
     {
         openClampFader.FadeIn();

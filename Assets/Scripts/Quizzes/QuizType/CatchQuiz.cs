@@ -87,9 +87,10 @@ public class CatchQuiz : IQuiz
             case "Shapes":
                 currentQuestion.SetImage(toriObject.sprite);
                 break;
-
-
         }
+
+        currentQuestion.SetAudioClip(toriObject.clip);
+        currentQuestion.PlayAudioSouce();
     }
 
 
@@ -124,6 +125,8 @@ public class CatchQuiz : IQuiz
         List<Answer> shuffledAnswers = new List<Answer>(answers);
         ShuffleList(shuffledAnswers);
         SetAnswerAsTutorial(shuffledAnswers[0]);
+
+        quizManager.PlayClip(quizManager.bubbles);
 
         for (int i = 0; i < shuffledAnswers.Count; i++)
         {
