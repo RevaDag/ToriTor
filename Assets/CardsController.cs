@@ -17,6 +17,7 @@ public class CardsController : MonoBehaviour
 
     private void Start ()
     {
+        _ = LoadingScreen.Instance.HideLoadingScreen();
         SetCard();
     }
 

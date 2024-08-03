@@ -6,33 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/OLD/SubjectSelection.unity
-    guid: 9d9cfd81464874843b44ba58909b6d0e
-  - enabled: 1
-    path: Assets/_Scenes/OLD/Subjects/ColorsSelection.unity
-    guid: bbe382a8a6190ef46934018adaf443e3
-  - enabled: 1
-    path: Assets/_Scenes/OLD/TreasureMap.unity
-    guid: 911491aee3e006846a8af94cbdbfc4df
-  - enabled: 1
-    path: Assets/_Scenes/OLD/Games/TreasureChest.unity
-    guid: f954884889669b0498620b40f2aa8ad8
-  - enabled: 1
-    path: Assets/_Scenes/OLD/Games/SpeechAndObject.unity
-    guid: e8584ef077133a34587af3aee1b8db7e
-  - enabled: 1
-    path: Assets/_Scenes/OLD/Games/MatchingGame.unity
-    guid: 132bb151194973348bdf4016b539c7ad
-  - enabled: 1
-    path: Assets/_Scenes/OLD/Books/Book.unity
-    guid: 9e6f645798ace804da14cc297123f9b5
-  - enabled: 1
-    path: Assets/_Scenes/OLD/Subjects/ShapesSelector.unity
-    guid: fae435bf50dd5ac4d8b9bc4f85c3804c
-  - enabled: 1
-    path: Assets/_Scenes/OLD/Books/StickerBook.unity
-    guid: 9a815c3d87b3caa4081d17a1d322b94a
-  - enabled: 1
     path: Assets/_Scenes/PirateIsland.unity
     guid: 7bb274a4eb9682644958e17dfc518903
   - enabled: 1

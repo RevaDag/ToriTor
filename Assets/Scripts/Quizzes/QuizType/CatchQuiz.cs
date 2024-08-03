@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using static QuizManager;
 
@@ -31,6 +32,8 @@ public class CatchQuiz : IQuiz
         quizManager.SetAnswersQuizManager();
         ResetAnswers();
         LoadCurrentQuestion();
+
+
         DeployAnswers();
 
         quizManager.clampController.OpenClamp();

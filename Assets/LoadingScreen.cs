@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -43,8 +44,6 @@ public class LoadingScreen : MonoBehaviour
         ShowLoadingScreen();
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneName);
-        yield return new WaitForSeconds(2);
-        HideLoadingScreen();
     }
 
 
@@ -75,8 +74,9 @@ public class LoadingScreen : MonoBehaviour
         fader.FadeIn();
     }
 
-    public void HideLoadingScreen ()
+    public async Task HideLoadingScreen ()
     {
+        await Task.Delay(2000);
         fader.FadeOut();
     }
 

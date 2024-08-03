@@ -92,6 +92,11 @@ public class QuizSummary : MonoBehaviour
         sceneLoader.LoadPreviousScene();
     }
 
+    public void PlayMainMusic ()
+    {
+        MusicManager.Instance.PlayAudioClip(MusicManager.Instance.mainMusic);
+    }
+
     public void OnResetClicked ()
     {
         audioSource.Play();

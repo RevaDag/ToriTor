@@ -64,6 +64,9 @@ public class QuizManager : MonoBehaviour
         usedObjects = new List<ToriObject>();
 
         InitiateQuiz();
+
+        _ = LoadingScreen.Instance.HideLoadingScreen();
+
         SetAnswersQuizManager();
     }
 

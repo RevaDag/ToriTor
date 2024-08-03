@@ -1,28 +1,68 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    public GameObject[] levelObjects;
+    public List<Fader> levelFaders;
+    [SerializeField] private List<GameObject> levelStars;
 
 
     void Start ()
     {
-        UpdateMap();
+        FadeOutAllLevels();
+        DeactivateAllStars();
+
+        _ = LoadingScreen.Instance.HideLoadingScreen();
+        _ = InitiateMap();
     }
 
-    public void UpdateMap ()
+    private async Task InitiateMap ()
+    {
+        await Task.Delay(3000);
+        UpdateStars();
+        _ = UpdateMap();
+    }
+
+    private void DeactivateAllStars ()
+    {
+        foreach (GameObject levelStar in levelStars)
+        {
+            levelStar.SetActive(false);
+        }
+    }
+
+    private void FadeOutAllLevels ()
+    {
+        foreach (var levelFader in levelFaders)
+        {
+            levelFader.FadeOut();
+        }
+    }
+
+    private void UpdateStars ()
     {
         int currentLevel = GameManager.Instance.currentLevel;
 
-        for (int i = 0; i < levelObjects.Length; i++)
+        for (int i = 0; i < levelStars.Count - 1; i++)
+        {
+            if (i < currentLevel)
+            {
+                levelStars[i].SetActive(true);
+            }
+        }
+    }
+
+    public async Task UpdateMap ()
+    {
+        int currentLevel = GameManager.Instance.currentLevel;
+
+        for (int i = 0; i < levelFaders.Count; i++)
         {
             if (i <= currentLevel)
             {
-                levelObjects[i].SetActive(true);
-            }
-            else
-            {
-                levelObjects[i].SetActive(false);
+                levelFaders[i].FadeIn();
+                await Task.Delay(500);
             }
         }
     }
@@ -32,11 +72,17 @@ public class MapController : MonoBehaviour
         GameManager.Instance.ResetLevel();
     }
 
-    public void UnlockAllLevel ()
+    public void UnlockAllLevels ()
     {
-        for (int i = 0; i < levelObjects.Length; i++)
+        _ = UnlockAllLevelsAsync();
+    }
+
+    private async Task UnlockAllLevelsAsync ()
+    {
+        for (int i = 0; i < levelFaders.Count; i++)
         {
-            levelObjects[i].SetActive(true);
+            levelFaders[i].FadeIn();
+            await Task.Delay(500);
         }
     }
 }
