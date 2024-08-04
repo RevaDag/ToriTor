@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class AnswersManager : MonoBehaviour
 {
-
+    public QuizManager quizManager;
     [SerializeField] private List<Answer> answers;
     [SerializeField] private Answer answerPrefab;
     [SerializeField] private Canvas canvas;
@@ -110,6 +110,8 @@ public class AnswersManager : MonoBehaviour
     private Answer InstantiateAnswer ()
     {
         Answer answerInstance = Instantiate(answerPrefab, pearlsParent);
+        answerInstance.SetAnswersManager(this);
+
         RectTransform rectTransform = answerInstance.GetComponent<RectTransform>();
 
         rectTransform.position = target.position;

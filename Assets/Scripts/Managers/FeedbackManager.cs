@@ -27,18 +27,30 @@ public class FeedbackManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Gets a random feedback clip from the provided list, ensuring it is not the same as the previous one.
     private AudioClip GetRandomFeedback ( List<AudioClip> feedbackList )
     {
+        if (feedbackList == null || feedbackList.Count == 0)
+        {
+            Debug.LogError("Feedback list is empty or null.");
+            return null;
+        }
+
+        if (feedbackList.Count == 1)
+        {
+            previousFeedbackIndex = 0;
+            return feedbackList[0];
+        }
+
         int newIndex;
         do
         {
             newIndex = Random.Range(0, feedbackList.Count);
-        } while (newIndex == previousFeedbackIndex && feedbackList.Count > 1);
+        } while (newIndex == previousFeedbackIndex);
 
         previousFeedbackIndex = newIndex;
         return feedbackList[newIndex];
     }
+
 
     // Sends feedback based on the feedback type.
     public void SetFeedback ( FeedbackType feedbackType )

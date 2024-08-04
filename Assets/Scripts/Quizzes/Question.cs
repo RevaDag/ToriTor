@@ -12,6 +12,19 @@ public class Question : MonoBehaviour
     [SerializeField] private Image imageToColor;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private TMP_Text tmpText;
+    [SerializeField] private Animator animator;
+
+    [Header("Faders")]
+    [SerializeField] private Fader questionFader;
+    [SerializeField] private Fader checkFader;
+
+    public ToriObject toriObject { get; private set; }
+
+    public void SetObject ( ToriObject obj )
+    {
+        toriObject = obj;
+    }
+
 
     public void SetAudioClip ( AudioClip _clip )
     {
@@ -34,4 +47,23 @@ public class Question : MonoBehaviour
         imageToColor.color = _color;
     }
 
+    public void FadeIn ()
+    {
+        questionFader.FadeIn();
+    }
+
+    public void FadeOut ()
+    {
+        questionFader.FadeOut();
+    }
+
+    public void FadeInCheckMark ()
+    {
+        checkFader.FadeIn();
+    }
+
+    public void FlipCard ()
+    {
+        animator.SetTrigger("Flip");
+    }
 }

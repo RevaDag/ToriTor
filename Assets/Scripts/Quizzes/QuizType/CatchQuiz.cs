@@ -7,7 +7,7 @@ using static QuizManager;
 
 public class CatchQuiz : IQuiz
 {
-    private Question currentQuestion;
+    private Question question;
     private QuizManager quizManager;
     private ToriObject currentToriObject;
 
@@ -29,8 +29,9 @@ public class CatchQuiz : IQuiz
 
         await InstantiateAnswers();
 
-        quizManager.SetAnswersQuizManager();
         ResetAnswers();
+
+        GetQuestion();
         LoadCurrentQuestion();
 
 
@@ -61,15 +62,15 @@ public class CatchQuiz : IQuiz
 
     private void GetSubjectFromManager ()
     {
-        if (quizManager.isTest)
+        if (quizManager.quizTester.isTest)
             subject = quizManager.quizTester.subject;
         else
             subject = SubjectsManager.Instance.selectedSubject;
     }
 
-    public void SetQuestion ( Question question )
+    public void GetQuestion ()
     {
-        currentQuestion = question;
+        question = quizManager.questions[0];
     }
 
 
@@ -85,15 +86,15 @@ public class CatchQuiz : IQuiz
         switch (subject.name)
         {
             case "Colors":
-                currentQuestion.ColorImage(toriObject.color);
+                question.ColorImage(toriObject.color);
                 break;
             case "Shapes":
-                currentQuestion.SetImage(toriObject.sprite);
+                question.SetImage(toriObject.sprite);
                 break;
         }
 
-        currentQuestion.SetAudioClip(toriObject.clip);
-        currentQuestion.PlayAudioSouce();
+        question.SetAudioClip(toriObject.clip);
+        question.PlayAudioSouce();
     }
 
 
@@ -142,7 +143,7 @@ public class CatchQuiz : IQuiz
             if (isCorrect)
             {
                 answer.SetAsCorrect();
-                answer.SetTarget(currentQuestion.target);
+                answer.SetTarget(question.target);
             }
         }
     }
@@ -201,10 +202,9 @@ public class CatchQuiz : IQuiz
     }
 
 
-    public void CorrectAnswer ()
+    public void CorrectAnswer ( Answer answer )
     {
-        Answer currentAnswer = quizManager.answersManager.currentAnswer;
-        quizManager.answersManager.FadeOutAnswer(currentAnswer);
+        answer.FadeOut();
 
         if (correctAnswersCounter == 0)
         {

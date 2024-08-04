@@ -30,7 +30,8 @@ public class QuizSummary : MonoBehaviour
 
     public void SetStickers ()
     {
-        List<ToriObject> toriObjects = SubjectsManager.Instance.GetObjectsByListNumber(levelNumber);
+        List<ToriObject> toriObjects = new List<ToriObject>();
+        toriObjects = GetObjects();
 
         for (int i = 0; i < toriObjects.Count; i++)
         {
@@ -57,6 +58,38 @@ public class QuizSummary : MonoBehaviour
             stickers[i].gameObject.SetActive(false);
         }
     }
+
+    private List<ToriObject> GetObjects ()
+    {
+        List<ToriObject> toriObjects = new List<ToriObject>();
+
+        // Check if quizManager exists
+        if (quizManager != null)
+        {
+            // Check if quizTester exists and is in test mode
+            if (quizManager.quizTester != null && quizManager.quizTester.isTest)
+            {
+                toriObjects = quizManager.quizTester.selectedObjects;
+                return toriObjects;
+            }
+        }
+
+
+        // Check if SubjectsManager.Instance exists
+        if (SubjectsManager.Instance != null)
+        {
+            toriObjects = SubjectsManager.Instance.GetObjectsByListNumber(levelNumber);
+        }
+        else
+        {
+            Debug.LogWarning("SubjectsManager.Instance is null.");
+        }
+
+        return toriObjects;
+    }
+
+
+
 
     public void ResetStickers ()
     {
@@ -88,7 +121,6 @@ public class QuizSummary : MonoBehaviour
     public void OnCheckButtonClicked ()
     {
         audioSource.Play();
-        GameManager.Instance.ProgressToNextLevel();
         sceneLoader.LoadPreviousScene();
     }
 

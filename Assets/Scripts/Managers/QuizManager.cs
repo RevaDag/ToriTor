@@ -23,7 +23,7 @@ public class QuizManager : MonoBehaviour
 
     [SerializeField] private GameType gameType;
     private Subject subject;
-    [SerializeField] private Question question;
+    public List<Question> questions;
 
     public AnswersManager answersManager;
 
@@ -48,7 +48,6 @@ public class QuizManager : MonoBehaviour
     public DraggingTutorial draggingTutorial;
 
     [Header("Test")]
-    public bool isTest;
     public QuizTester quizTester;
 
     private void Awake ()
@@ -67,37 +66,31 @@ public class QuizManager : MonoBehaviour
 
         _ = LoadingScreen.Instance.HideLoadingScreen();
 
-        SetAnswersQuizManager();
     }
 
     private void InitiateQuiz ()
     {
         quiz.SetQuizManager(this);
-        quiz.SetQuestion(question);
 
         quiz.InitiateQuiz();
     }
 
-    public void LoadObjects ( int listNumber )
+
+
+    public List<ToriObject> LoadObjects ( int listNumber )
     {
-        if (isTest)
-            currentObjects = quizTester.subject.toriObjects;
+        if (quizTester.isTest)
+            currentObjects = quizTester.selectedObjects;
         else
             currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(listNumber);
+
+        return currentObjects;
     }
 
-
-    public void SetAnswersQuizManager ()
-    {
-        foreach (var answer in answersManager.GetActiveAnswers())
-        {
-            answer.SetQuizManager(this);
-        }
-    }
 
     public List<ToriObject> GetAllSubjectObjects ()
     {
-        if (isTest)
+        if (quizTester.isTest)
             return quizTester.subject.toriObjects;
         else
             return SubjectsManager.Instance.selectedSubject.toriObjects;
@@ -153,9 +146,9 @@ public class QuizManager : MonoBehaviour
         return objList;
     }
 
-    public void CorrectAnswer ()
+    public void CorrectAnswer ( Answer answer )
     {
-        quiz.CorrectAnswer();
+        quiz.CorrectAnswer(answer);
 
         PlayClip(correctClip);
     }
@@ -183,18 +176,14 @@ public class QuizManager : MonoBehaviour
         currentQuestionState = questionState;
     }
 
-    public void AnswerClicked ( bool isCorrect )
-    {
-        quiz.AnswerClicked(isCorrect);
-    }
-
-
     public void CompleteQuiz ()
     {
         PlayClip(successClip);
 
         quizSummary.ShowSummary();
         quiz.CompleteQuiz();
+
+        GameManager.Instance.ProgressToNextLevel();
     }
 
 
@@ -218,7 +207,7 @@ public class QuizManager : MonoBehaviour
 
     public void HideLoadingScreen ()
     {
-        LoadingScreen.Instance.HideLoadingScreen();
+        _ = LoadingScreen.Instance.HideLoadingScreen();
     }
 
     #endregion

@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using static QuizManager;
 
 public class FindQuiz : IQuiz
 {
-    private Question currentQuestion;
     private QuizManager quizManager;
-    private ToriObject currentToriObject;
+
+    private List<Question> questions;
+    private List<ToriObject> currentObjects;
 
     private Subject subject;
     private int correctAnswersCounter;
@@ -19,20 +21,24 @@ public class FindQuiz : IQuiz
     public void InitiateQuiz ()
     {
         LoadObjects();
-        GetSubjectFromManager();
+        GetSubject();
 
-        quizManager.SetAnswersQuizManager();
         ResetAnswers();
-        LoadCurrentQuestion();
+
+        GetQuestions();
+        DeployQuestions(currentObjects);
+
         InitializeAnswers();
         DeployAnswers();
+
+        quizManager.HideLoadingScreen();
 
         FadeInAnswers();
     }
 
     private void LoadObjects ()
     {
-        quizManager.LoadObjects(levelNumber);
+        currentObjects = quizManager.LoadObjects(levelNumber);
     }
 
     public void SetQuizManager ( QuizManager _quizManager )
@@ -40,39 +46,44 @@ public class FindQuiz : IQuiz
         this.quizManager = _quizManager;
     }
 
-    private void GetSubjectFromManager ()
+    private void GetSubject ()
     {
-        subject = SubjectsManager.Instance.selectedSubject;
+        if (quizManager.quizTester.isTest)
+            subject = quizManager.quizTester.subject;
+        else
+            subject = SubjectsManager.Instance.selectedSubject;
     }
 
 
-    public void SetQuestion ( Question question )
+    public void GetQuestions ()
     {
-        currentQuestion = question;
+        questions = quizManager.questions;
     }
 
 
-    public void LoadCurrentQuestion ()
+    public void DeployQuestions ( List<ToriObject> objects )
     {
-        currentToriObject = quizManager.GetCurrentObject();
-
-        DeployQuestion(currentToriObject);
+        for (int i = 0; i < objects.Count; i++)
+        {
+            DeployQuestion(objects[i], questions[i]);
+        }
     }
 
-    public void DeployQuestion ( ToriObject toriObject )
+    public void DeployQuestion ( ToriObject toriObject, Question question )
     {
         switch (subject.name)
         {
             case "Colors":
-                currentQuestion.SetImage(toriObject.sprite);
-                currentQuestion.ColorImage(toriObject.color);
+                question.SetObject(toriObject);
+                question.SetImage(toriObject.sprite);
+                question.ColorImage(toriObject.color);
                 break;
             case "Shapes":
-                currentQuestion.SetImage(toriObject.sprite);
+                question.SetImage(toriObject.sprite);
                 break;
         }
 
-        currentQuestion.SetAudioClip(toriObject.clip);
+        question.SetAudioClip(toriObject.clip);
     }
 
     private void InitializeAnswers ()
@@ -81,69 +92,75 @@ public class FindQuiz : IQuiz
     }
 
 
-    public void AnswerClicked ( bool isCorrect )
-    {
-        if (isCorrect)
-        {
-            quizManager.CorrectAnswer();
-            Debug.Log("CORRECT!");
-        }
-        else
-        {
-            quizManager.WrongAnswer();
-            Debug.Log("WRONG!");
-        }
-    }
-
-
     public void DeployAnswers ()
     {
         List<Answer> answers = quizManager.answersManager.GetAnswers();
-
-
-        if (answers == null)
+        if (answers == null || answers.Count < 7)
         {
             Debug.LogError("Insufficient number of answers available.");
             return;
         }
 
-        ToriObject correctObject = quizManager.GetCurrentObject();
-        List<ToriObject> wrongObjects = quizManager.GetRandomObjects(2, correctObject);
+        List<ToriObject> allObjects = new List<ToriObject>(quizManager.GetAllSubjectObjects());
 
-        // Shuffle the answers list to randomize the position of the correct answer
-        List<Answer> shuffledAnswers = new List<Answer>(answers);
-        ShuffleList(shuffledAnswers);
-
-        // Deploy the correct answer to a random position
-        int correctAnswerIndex = Random.Range(0, shuffledAnswers.Count);
-        Answer correctAnswer = shuffledAnswers[correctAnswerIndex];
-        DeployAnswer(correctAnswer, correctObject);
-        correctAnswer.SetAsCorrect();
-
-        // Deploy wrong answers to the remaining positions
-        int wrongObjectIndex = 0;
-        for (int i = 0; i < shuffledAnswers.Count; i++)
+        // Remove the current objects from the list of all objects using object names for comparison
+        foreach (ToriObject currentObject in currentObjects)
         {
-            if (i != correctAnswerIndex)
+            allObjects.RemoveAll(obj => obj.objectName == currentObject.objectName);
+        }
+
+        // List to store the final answer objects
+        List<ToriObject> answerObjects = new List<ToriObject>();
+
+        // Add each correct object (up to 3)
+        foreach (ToriObject correctObject in currentObjects)
+        {
+            if (answerObjects.Count < 3)
             {
-                DeployAnswer(shuffledAnswers[i], wrongObjects[wrongObjectIndex]);
-                wrongObjectIndex++;
+                answerObjects.Add(correctObject);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        // Select and add unique wrong answers from the remaining objects
+        while (answerObjects.Count < 7 && allObjects.Count > 0)
+        {
+            ToriObject randomObject = GetRandomObject(allObjects);
+            if (!answerObjects.Contains(randomObject))
+            {
+                answerObjects.Add(randomObject);
+                allObjects.Remove(randomObject);
+            }
+        }
+
+
+        // Shuffle the answers list
+        ShuffleList(answerObjects);
+
+        for (int i = 0; i < answers.Count; i++)
+        {
+            Answer answer = answers[i];
+            ToriObject toriObject = answerObjects[i];
+            bool isCorrect = currentObjects.Contains(toriObject);
+
+            DeployAnswer(answer, toriObject);
+
+            if (isCorrect)
+            {
+                answer.SetAsCorrect();
             }
         }
     }
 
-    private List<ToriObject> GetRandomObjects ( List<ToriObject> objects, int count )
+    private ToriObject GetRandomObject ( List<ToriObject> objects )
     {
-        List<ToriObject> randomObjects = new List<ToriObject>();
-
-        for (int i = 0; i < count; i++)
-        {
-            int randomIndex = Random.Range(0, objects.Count);
-            randomObjects.Add(objects[randomIndex]);
-        }
-
-        return randomObjects;
+        int randomIndex = UnityEngine.Random.Range(0, objects.Count);
+        return objects[randomIndex];
     }
+
 
     private void ShuffleList<T> ( List<T> list )
     {
@@ -160,19 +177,72 @@ public class FindQuiz : IQuiz
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
         answer.SetImage(toriObject.parallelObjectSprite);
+        answer.SetObject(toriObject);
 
         answer.SetAudioClip(toriObject.parallelObjectClip);
     }
 
 
-    public void CorrectAnswer ()
+    public void CorrectAnswer ( Answer answer )
     {
-        ResetAnswers();
-        quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
-        quizManager.SetQuestionState(QuestionState.Correct);
-        FadeOutAnswers();
+        //quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
+        //quizManager.SetQuestionState(QuestionState.Correct);
+        answer.FadeOut();
+
+        _ = ChangeImageToParallelAndShowCheckmark(answer.toriObject);
+
+        if (correctAnswersCounter == 2)
+        {
+            _ = CelebrateAsync();
+        }
+        else
+        {
+            correctAnswersCounter++;
+        }
+
     }
 
+    private async Task CelebrateAsync ()
+    {
+        correctAnswersCounter = 0;
+        await Task.Delay(3000);
+        quizManager.CompleteQuiz();
+    }
+
+    private async Task ChangeImageToParallelAndShowCheckmark ( ToriObject toriObject )
+    {
+        Question question = GetQuestionWithToriObject(toriObject);
+
+        question.FadeOut();
+        question.FlipCard();
+        await Task.Delay(1000);
+
+        question.SetAudioClip(toriObject.parallelObjectClip);
+        question.SetImage(toriObject.parallelObjectSprite);
+        question.ColorImage(Color.white);
+
+        question.FadeIn();
+        await Task.Delay(1000);
+        ShowCheckMark(toriObject);
+    }
+
+    private void ShowCheckMark ( ToriObject toriObject )
+    {
+        Question question = GetQuestionWithToriObject(toriObject);
+        question.FadeInCheckMark();
+    }
+
+    private Question GetQuestionWithToriObject ( ToriObject toriObject )
+    {
+        foreach (Question question in questions)
+        {
+            if (question.toriObject == toriObject) // Assuming Question has a property toriObject
+            {
+                return question;
+            }
+        }
+        return null; // Return null if no matching question is found
+    }
 
 
     public void WrongAnswer ()
@@ -190,11 +260,6 @@ public class FindQuiz : IQuiz
         quizManager.ResetUnusedAnswersList();
         quizManager.MoveToNextObject();
         InitiateQuiz();
-    }
-
-    public void WrongFeedbackClicked ()
-    {
-        DeployQuestion(currentToriObject);
     }
 
     public void CompleteQuiz ()

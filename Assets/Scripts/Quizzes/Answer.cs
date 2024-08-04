@@ -18,8 +18,7 @@ public class Answer : MonoBehaviour
     private Fader fader;
 
     public ToriObject toriObject { get; private set; }
-    public QuizManager quizManager { get; private set; }
-    private AnswersManager answersManager;
+    [SerializeField] private AnswersManager answersManager;
 
     private void Awake ()
     {
@@ -29,6 +28,16 @@ public class Answer : MonoBehaviour
         initialParent = transform.parent;
         initialScale = rectTransform.localScale;
         initialPosition = rectTransform.anchoredPosition;
+    }
+
+    public void SetAnswersManager ( AnswersManager _answersManager )
+    {
+        this.answersManager = _answersManager;
+    }
+
+    public void SetObject ( ToriObject obj )
+    {
+        toriObject = obj;
     }
 
     public void SetAudioClip ( AudioClip _clip )
@@ -47,14 +56,6 @@ public class Answer : MonoBehaviour
         image.color = _color;
     }
 
-    public void SetQuizManager ( QuizManager _quizManager )
-    {
-        if (quizManager == null)
-            quizManager = _quizManager;
-
-        answersManager = _quizManager.answersManager;
-    }
-
     public void SetAsCorrect () { isCorrect = true; }
 
     public void SetTarget ( RectTransform target )
@@ -66,15 +67,17 @@ public class Answer : MonoBehaviour
     {
         audioSource.Play();
 
-        quizManager.AnswerClicked(isCorrect);
+        if (isCorrect)
+        {
+            PlayerAnswerCorrect();
+        }
 
     }
 
     public void PlayerAnswerCorrect ()
     {
-        //audioSource.Play();
         answersManager.SetCurrentAnswer(this);
-        quizManager.CorrectAnswer();
+        answersManager.quizManager.CorrectAnswer(this);
     }
 
     public void ResetAnswer ()

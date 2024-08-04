@@ -29,7 +29,7 @@ public class SpeechQuiz : IQuiz
 
     }
 
-    public void SetQuestion ( Question question )
+    public void SetQuestions ( Question question )
     {
         currentQuestion = question;
     }
@@ -49,21 +49,6 @@ public class SpeechQuiz : IQuiz
     {
         quizManager.answersManager.InitializeAnswers();
     }
-
-    public void AnswerClicked ( bool isCorrect )
-    {
-        if (isCorrect)
-        {
-            quizManager.CorrectAnswer();
-            Debug.Log("CORRECT!");
-        }
-        else
-        {
-            quizManager.WrongAnswer();
-            Debug.Log("WRONG!");
-        }
-    }
-
 
     public void DeployAnswers ()
     {
@@ -121,13 +106,12 @@ public class SpeechQuiz : IQuiz
     }
 
 
-    public void CorrectAnswer ()
+    public void CorrectAnswer ( Answer answer )
     {
         ResetAnswers();
         quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         quizManager.SetQuestionState(QuestionState.Correct);
         FadeOutAnswers();
-        //quizManager.stepper.activateNextStep();
     }
 
     public void WrongAnswer ()

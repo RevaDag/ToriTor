@@ -48,7 +48,7 @@ public class ChestQuiz : IQuiz
         subject = SubjectsManager.Instance.selectedSubject;
     }
 
-    public void SetQuestion ( Question question )
+    public void SetQuestions ( Question question )
     {
         currentQuestion = question;
     }
@@ -86,11 +86,6 @@ public class ChestQuiz : IQuiz
     {
         parallelObjectSticker.SetImage(toriObject.parallelObjectSprite);
         parallelObjectSticker.SetAudio(toriObject.parallelObjectClip);
-    }
-
-    public void AnswerClicked ( bool isCorrect )
-    {
-
     }
 
     public void DeployAnswers ()
@@ -160,7 +155,7 @@ public class ChestQuiz : IQuiz
     }
 
 
-    public void CorrectAnswer ()
+    public void CorrectAnswer ( Answer answer )
     {
         quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         quizManager.SetQuestionState(QuestionState.Correct);
@@ -168,8 +163,6 @@ public class ChestQuiz : IQuiz
         lidAnimator.SetBool("isOpen", true);
         ParallelObjectAnimation(true);
         FadeOutAnswers();
-
-        //quizManager.stepper.activateNextStep();
     }
 
     public void ParallelObjectAnimation ( bool isOut )

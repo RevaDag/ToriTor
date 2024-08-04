@@ -29,7 +29,7 @@ public class MatchQuiz : IQuiz
         subject = _subject;
     }
 
-    public void SetQuestion ( Question question )
+    public void SetQuestions ( Question question )
     {
         currentQuestion = question;
     }
@@ -109,18 +109,12 @@ public class MatchQuiz : IQuiz
         answer.SetAudioClip(toriObject.clip);
     }
 
-    public void AnswerClicked ( bool isCorrect )
-    {
 
-    }
-
-
-    public void CorrectAnswer ()
+    public void CorrectAnswer ( Answer answer )
     {
         quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         quizManager.SetQuestionState(QuestionState.Correct);
         FadeOutAnswers();
-        //quizManager.stepper.activateNextStep();
     }
 
     public void WrongAnswer ()
