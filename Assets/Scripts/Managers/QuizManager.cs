@@ -18,7 +18,6 @@ public class QuizManager : MonoBehaviour
     public QuestionState currentQuestionState;
 
     public FeedbackManager feedbackManager;
-    //    public Stepper stepper;
     public QuizSummary quizSummary;
 
     [SerializeField] private GameType gameType;
@@ -28,6 +27,7 @@ public class QuizManager : MonoBehaviour
     public AnswersManager answersManager;
 
     [Header("Audio")]
+    [SerializeField] private AudioClip levelThemeMusic;
     public AudioClip correctClip;
     public AudioClip successClip;
     public AudioClip bubbles;
@@ -57,6 +57,9 @@ public class QuizManager : MonoBehaviour
 
     void Start ()
     {
+        MusicManager.Instance.PlayAudioClip(levelThemeMusic);
+
+
         quizFactory = new QuizFactory();
         quiz = quizFactory.CreateQuiz(gameType);
 
@@ -181,9 +184,9 @@ public class QuizManager : MonoBehaviour
         PlayClip(successClip);
 
         quizSummary.ShowSummary();
-        quiz.CompleteQuiz();
+        answersManager.FadeOutAnswers();
 
-        GameManager.Instance.ProgressToNextLevel();
+        GameManager.Instance.CompleteLevelAndProgressToNextLevel(quizSummary.levelNumber);
     }
 
 

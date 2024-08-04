@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class QuizSummary : MonoBehaviour
 {
+    public int levelNumber;
+
     [SerializeField] private QuizManager quizManager;
 
     [SerializeField] private Fader summaryCanvasFader;
     [SerializeField] private Sticker stickerPrefab;
     [SerializeField] private Transform stickersParent;
-    [SerializeField] private int levelNumber;
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private List<Sticker> stickers;
 
@@ -126,7 +127,7 @@ public class QuizSummary : MonoBehaviour
 
     public void PlayMainMusic ()
     {
-        MusicManager.Instance.PlayAudioClip(MusicManager.Instance.mainMusic);
+        MusicManager.Instance.PlayThemeSong();
     }
 
     public void OnResetClicked ()

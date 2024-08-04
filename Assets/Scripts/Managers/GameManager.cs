@@ -61,9 +61,14 @@ public class GameManager : MonoBehaviour
         currentSubject = subject;
     }
 
-    public void ProgressToNextLevel ()
+
+    public void CompleteLevelAndProgressToNextLevel ( int level )
     {
-        currentLevel++;
+        if (level >= currentLevel)
+        {
+            currentLevel = level;
+            SaveProgress();
+        }
     }
 
     #region Progress

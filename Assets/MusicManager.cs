@@ -9,7 +9,7 @@ public class MusicManager : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip mainMusic;
-    public AudioClip underwaterMusic;
+
 
     private void Awake ()
     {
@@ -26,6 +26,11 @@ public class MusicManager : MonoBehaviour
         }
 
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void PlayThemeSong ()
+    {
+        PlayAudioClip(mainMusic);
     }
 
 

@@ -65,7 +65,7 @@ public class CardsController : MonoBehaviour
         else
         {
             quizSummary.ShowSummary();
-            GameManager.Instance.ProgressToNextLevel();
+            GameManager.Instance.CompleteLevelAndProgressToNextLevel(quizSummary.levelNumber);
         }
     }
 

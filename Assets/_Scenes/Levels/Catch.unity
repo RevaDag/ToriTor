@@ -159,6 +159,7 @@ MonoBehaviour:
   questions:
   - {fileID: 4420997338006377656}
   answersManager: {fileID: 857112742}
+  levelThemeMusic: {fileID: 8300000, guid: 58d679f12819f6341bab65d2abab3229, type: 3}
   correctClip: {fileID: 8300000, guid: 93c8028d8e2df004784af638a7e4136b, type: 3}
   successClip: {fileID: 8300000, guid: add8d948dcf67234db2e4eec1dd27770, type: 3}
   bubbles: {fileID: 8300000, guid: e9b71f2ce3338ce4b96dbed4ffb062e1, type: 3}
@@ -7067,6 +7068,10 @@ PrefabInstance:
       propertyPath: sceneLoader
       value: 
       objectReference: {fileID: 1368323340}
+    - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
+      propertyPath: starConfetties.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8683785675245598181, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: levelNumber
       value: 2

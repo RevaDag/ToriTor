@@ -98,11 +98,6 @@ public class CatchQuiz : IQuiz
     }
 
 
-    public void AnswerClicked ( bool isCorrect )
-    {
-
-    }
-
     public void DeployAnswers ()
     {
         List<Answer> answers = quizManager.answersManager.GetAnswers();
@@ -262,12 +257,6 @@ public class CatchQuiz : IQuiz
     public void WrongFeedbackClicked ()
     {
         DeployQuestion(currentToriObject);
-    }
-
-    public void CompleteQuiz ()
-    {
-        FadeOutAnswers();
-        GameManager.Instance.SaveProgress();
     }
 
     public void FadeInAnswers ()
