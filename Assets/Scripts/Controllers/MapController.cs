@@ -6,20 +6,22 @@ public class MapController : MonoBehaviour
 {
     public List<Fader> levelFaders;
     [SerializeField] private List<GameObject> levelStars;
+    [SerializeField] private SceneLoader sceneLoader;
 
 
     void Start ()
     {
-        FadeOutAllLevels();
+        HideAllLevels();
         DeactivateAllStars();
 
-        _ = LoadingScreen.Instance.HideLoadingScreen();
+        LoadingScreen.Instance.HideLoadingScreen();
         _ = InitiateMap();
     }
 
+
     private async Task InitiateMap ()
     {
-        await Task.Delay(3000);
+        await Task.Delay(1000);
         UpdateStars();
         _ = UpdateMap();
     }
@@ -32,13 +34,14 @@ public class MapController : MonoBehaviour
         }
     }
 
-    private void FadeOutAllLevels ()
+    private void HideAllLevels ()
     {
-        foreach (var levelFader in levelFaders)
+        foreach (Fader level in levelFaders)
         {
-            levelFader.FadeOut();
+            level.HideObject();
         }
     }
+
 
     private void UpdateStars ()
     {
@@ -84,5 +87,10 @@ public class MapController : MonoBehaviour
             levelFaders[i].FadeIn();
             await Task.Delay(500);
         }
+    }
+
+    public void LoadMainScene ()
+    {
+        sceneLoader.LoadSceneAndHideLoadingScreen("PirateIsland", 2);
     }
 }

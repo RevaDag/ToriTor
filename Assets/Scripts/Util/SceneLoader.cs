@@ -8,7 +8,12 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene ( string sceneName )
     {
-        LoadingScreen.Instance.LoadScene(sceneName);
+        LoadSceneAndHideLoadingScreen(sceneName);
+    }
+
+    public void LoadSceneAndHideLoadingScreen ( string sceneName, float hideTime = -1f )
+    {
+        LoadingScreen.Instance.LoadScene(sceneName, hideTime);
     }
 
 

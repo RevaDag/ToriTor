@@ -16,7 +16,6 @@ public class CatchQuiz : IQuiz
 
     private int levelNumber = 2;
 
-
     public void InitiateQuiz ()
     {
         InitiateQuizCoroutine();
@@ -30,6 +29,8 @@ public class CatchQuiz : IQuiz
         await InstantiateAnswers();
 
         ResetAnswers();
+
+        quizManager.HideLoadingScreen();
 
         GetQuestion();
         LoadCurrentQuestion();
@@ -125,7 +126,7 @@ public class CatchQuiz : IQuiz
         ShuffleList(shuffledAnswers);
         SetAnswerAsTutorial(shuffledAnswers[0]);
 
-        quizManager.PlayClip(quizManager.bubbles);
+        quizManager.PlayClip(quizManager.bubbles, 1f);
 
         for (int i = 0; i < shuffledAnswers.Count; i++)
         {

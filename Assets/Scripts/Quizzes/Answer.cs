@@ -65,12 +65,18 @@ public class Answer : MonoBehaviour
 
     public void OnClickAnswer ()
     {
-        audioSource.Play();
+        PlayClip();
 
         if (isCorrect)
         {
             PlayerAnswerCorrect();
         }
+
+    }
+
+    public void PlayClip ()
+    {
+        audioSource.Play();
 
     }
 

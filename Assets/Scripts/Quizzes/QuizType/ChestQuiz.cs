@@ -14,19 +14,23 @@ public class ChestQuiz : IQuiz
 
     private Subject subject;
 
+    private int correctAnswersCounter;
+
     private int levelNumber = 4;
 
 
     public void InitiateQuiz ()
     {
         LoadObjects();
-        GetSubjectFromManager();
-
-
+        GetSubject();
         ResetAnswers();
+        GetQuestion();
         LoadCurrentQuestion();
         InitializeAnswers();
         DeployAnswers();
+
+        quizManager.HideLoadingScreen();
+
         FadeInAnswers();
     }
 
@@ -43,15 +47,19 @@ public class ChestQuiz : IQuiz
         quizManager.LoadObjects(levelNumber);
     }
 
-    private void GetSubjectFromManager ()
+    private void GetSubject ()
     {
-        subject = SubjectsManager.Instance.selectedSubject;
+        if (quizManager.quizTester.isTest)
+            subject = quizManager.quizTester.subject;
+        else
+            subject = SubjectsManager.Instance.selectedSubject;
     }
 
-    public void SetQuestions ( Question question )
+    public void GetQuestion ()
     {
-        currentQuestion = question;
+        currentQuestion = quizManager.questions[0];
     }
+
 
 
     public void LoadCurrentQuestion ()
@@ -59,18 +67,18 @@ public class ChestQuiz : IQuiz
         currentToriObject = quizManager.GetCurrentObject();
         lidAnimator.SetBool("isOpen", false);
 
-        DeployQuestion(currentToriObject);
+        DeployQuestion(currentQuestion, currentToriObject);
     }
 
-    public void DeployQuestion ( ToriObject toriObject )
+    public void DeployQuestion ( Question question, ToriObject toriObject )
     {
         switch (subject.name)
         {
             case "Colors":
-                currentQuestion.ColorImage(toriObject.color);
+                question.ColorImage(toriObject.color);
                 break;
             case "Shapes":
-                currentQuestion.SetImage(toriObject.sprite);
+                question.SetImage(toriObject.sprite);
                 break;
 
 
@@ -157,8 +165,10 @@ public class ChestQuiz : IQuiz
 
     public void CorrectAnswer ( Answer answer )
     {
-        quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
+        answer.PlayClip();
+
         quizManager.SetQuestionState(QuestionState.Correct);
+        correctAnswersCounter++;
 
         lidAnimator.SetBool("isOpen", true);
         ParallelObjectAnimation(true);
@@ -185,24 +195,25 @@ public class ChestQuiz : IQuiz
 
     public void NextQuestion ()
     {
-        ResetAnswers();
+        if (correctAnswersCounter >= 3)
+            CompleteQuiz();
+        else
+        {
+            ResetAnswers();
 
-        ParallelObjectAnimation(false);
-        quizManager.ResetUnusedAnswersList();
-        quizManager.MoveToNextObject();
-        InitiateQuiz();
+            ParallelObjectAnimation(false);
+            quizManager.ResetUnusedAnswersList();
+            quizManager.MoveToNextObject();
+            InitiateQuiz();
+        }
+
     }
 
-    public void WrongFeedbackClicked ()
-    {
-        DeployQuestion(currentToriObject);
-    }
 
     public void CompleteQuiz ()
     {
         ParallelObjectAnimation(false);
-
-        GameManager.Instance.SaveProgress();
+        quizManager.CompleteQuiz();
     }
 
     public void FadeInAnswers ()

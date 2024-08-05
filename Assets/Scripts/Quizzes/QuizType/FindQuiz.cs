@@ -262,11 +262,6 @@ public class FindQuiz : IQuiz
         InitiateQuiz();
     }
 
-    public void CompleteQuiz ()
-    {
-        FadeOutAnswers();
-        GameManager.Instance.SaveProgress();
-    }
 
     public void FadeInAnswers ()
     {

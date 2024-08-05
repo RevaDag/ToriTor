@@ -16,6 +16,18 @@ public class Fader : MonoBehaviour
         }
     }
 
+    public void ShowObject ()
+    {
+        canvasGroup.alpha = 1;
+        EnableInteractions(true);
+    }
+
+    public void HideObject ()
+    {
+        canvasGroup.alpha = 0;
+        EnableInteractions(false);
+    }
+
     public void FadeIn ()
     {
         if (fadeCoroutine != null)

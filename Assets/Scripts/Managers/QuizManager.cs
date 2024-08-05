@@ -37,6 +37,8 @@ public class QuizManager : MonoBehaviour
     private List<ToriObject> usedObjects;
     public int currentObjectIndex { get; private set; }
 
+    private bool firstLoad = true;
+
 
     [Header("Games")]
     [Header("Chest")]
@@ -57,7 +59,8 @@ public class QuizManager : MonoBehaviour
 
     void Start ()
     {
-        MusicManager.Instance.PlayAudioClip(levelThemeMusic);
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.PlayAudioClip(levelThemeMusic);
 
 
         quizFactory = new QuizFactory();
@@ -65,10 +68,8 @@ public class QuizManager : MonoBehaviour
 
         usedObjects = new List<ToriObject>();
 
+
         InitiateQuiz();
-
-        _ = LoadingScreen.Instance.HideLoadingScreen();
-
     }
 
     private void InitiateQuiz ()
@@ -153,13 +154,14 @@ public class QuizManager : MonoBehaviour
     {
         quiz.CorrectAnswer(answer);
 
-        PlayClip(correctClip);
+        PlayClip(correctClip, .3f);
     }
 
 
-    public void PlayClip ( AudioClip _clip )
+    public void PlayClip ( AudioClip _clip, float _volume )
     {
         audioSource.clip = _clip;
+        audioSource.volume = _volume;
         audioSource.Play();
     }
 
@@ -181,7 +183,7 @@ public class QuizManager : MonoBehaviour
 
     public void CompleteQuiz ()
     {
-        PlayClip(successClip);
+        PlayClip(successClip, 1f);
 
         quizSummary.ShowSummary();
         answersManager.FadeOutAnswers();
@@ -201,6 +203,11 @@ public class QuizManager : MonoBehaviour
         quizSummary.HideSummary();
     }
 
+    public void OnParallelObjectClick ()
+    {
+        quiz.NextQuestion();
+    }
+
     #region Hide & Show Loading Screen
 
     public void ShowLoadingScreen ()
@@ -210,7 +217,11 @@ public class QuizManager : MonoBehaviour
 
     public void HideLoadingScreen ()
     {
-        _ = LoadingScreen.Instance.HideLoadingScreen();
+        if (firstLoad)
+        {
+            firstLoad = false;
+            LoadingScreen.Instance.HideLoadingScreen();
+        }
     }
 
     #endregion

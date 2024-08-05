@@ -8,6 +8,7 @@ public class CardsController : MonoBehaviour
     [SerializeField] private Sticker sticker;
     [SerializeField] private Animator cardAnimator;
     [SerializeField] private QuizSummary quizSummary;
+    [SerializeField] private Fader tutorialFader;
 
     private bool isParallel;
 
@@ -15,10 +16,13 @@ public class CardsController : MonoBehaviour
     private int currentObjectIndex;
     private int maxObjects = 3;
 
+    private bool clicked;
+
     private void Start ()
     {
-        _ = LoadingScreen.Instance.HideLoadingScreen();
+        LoadingScreen.Instance.HideLoadingScreen();
         SetCard();
+        tutorialFader.FadeIn();
     }
 
     private void SetCard ()
@@ -33,6 +37,9 @@ public class CardsController : MonoBehaviour
 
     public async void OnClick ()
     {
+        if (clicked) return;
+
+        clicked = true;
         sticker.PlayAudio();
         await Task.Delay(1000);
 
@@ -44,6 +51,9 @@ public class CardsController : MonoBehaviour
         {
             ShowParallel();
         }
+
+        await Task.Delay(1000);
+        clicked = false;
     }
 
     public void ShowParallel ()
@@ -57,6 +67,9 @@ public class CardsController : MonoBehaviour
 
     public void NextObject ()
     {
+        if (currentObjectIndex == 0)
+            tutorialFader.FadeOut();
+
         if (currentObjectIndex < maxObjects - 1)
         {
             currentObjectIndex++;

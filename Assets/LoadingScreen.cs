@@ -15,6 +15,7 @@ public class LoadingScreen : MonoBehaviour
     [SerializeField] private List<string> loadingTexts;
 
     private string previousScene;
+    private int loadingTextIndex = 0;
 
 
 
@@ -30,35 +31,39 @@ public class LoadingScreen : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public void LoadScene ( string sceneName )
+    public void LoadScene ( string sceneName, float hideTime = -1f )
     {
         previousScene = SceneManager.GetActiveScene().name;
 
-        StartCoroutine(LoadSceneCoroutine(sceneName));
+        StartCoroutine(LoadSceneCoroutine(sceneName, hideTime));
     }
 
-    private IEnumerator LoadSceneCoroutine ( string sceneName )
+    private IEnumerator LoadSceneCoroutine ( string sceneName, float hideTime )
     {
-        SetRandomLoadingText();
+        SetLoadingText();
         ShowLoadingScreen();
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneName);
-    }
 
+        if (hideTime > 0)
+        {
+            yield return new WaitForSeconds(hideTime);
+            HideLoadingScreen();
+        }
+    }
 
     public void LoadPreviousScene ()
     {
         LoadScene(previousScene);
     }
 
-    private void SetRandomLoadingText ()
+    private void SetLoadingText ()
     {
         if (loadingTexts != null && loadingTexts.Count > 0)
         {
-            int randomIndex = Random.Range(0, loadingTexts.Count);
-            string randomText = loadingTexts[randomIndex];
-            loadingText.text = randomText;
+            string textToDisplay = loadingTexts[loadingTextIndex];
+            loadingText.text = textToDisplay;
+            loadingTextIndex = (loadingTextIndex + 1) % loadingTexts.Count; // Increment the index and reset if it reaches the end
         }
         else
         {
@@ -74,9 +79,8 @@ public class LoadingScreen : MonoBehaviour
         fader.FadeIn();
     }
 
-    public async Task HideLoadingScreen ()
+    public void HideLoadingScreen ()
     {
-        await Task.Delay(2000);
         fader.FadeOut();
     }
 
