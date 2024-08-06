@@ -14,7 +14,7 @@ public class Sticker : MonoBehaviour
 
     [SerializeField] private BookPagesController bookController;
 
-    private ToriObject toriObject;
+    public ToriObject toriObject { get; private set; }
 
     public void SetToriObject ( ToriObject _toriObject )
     {
@@ -53,8 +53,9 @@ public class Sticker : MonoBehaviour
         canvasGroup.alpha = isActive ? 1f : 0.5f;
     }
 
-    public void PlayAudio ()
+    public void PlayAudio ( float _volume = 1f )
     {
+        audioSource.volume = _volume;
         audioSource.Play();
     }
 

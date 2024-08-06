@@ -234,8 +234,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183454029836304020}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 172}
-  m_LocalScale: {x: 50, y: 50.000034, z: 50.000023}
+  m_LocalPosition: {x: 0, y: 0, z: 150}
+  m_LocalScale: {x: 25, y: 25, z: 25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8291911348906192030}
@@ -5593,11 +5593,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03e800c14675c946a57d1e1e6c23ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNumber: 2
   quizManager: {fileID: 0}
   summaryCanvasFader: {fileID: 4958952941229073468}
   stickerPrefab: {fileID: 1178401712073169068, guid: 645a872431f1e274e958a7b8b527284c, type: 3}
   stickersParent: {fileID: 2568651893247715909}
-  levelNumber: 2
   sceneLoader: {fileID: 0}
   stickers:
   - {fileID: 832676600854376863}
@@ -5606,6 +5606,8 @@ MonoBehaviour:
   starConfetties:
   - {fileID: 1409175757949954073}
   - {fileID: 0}
+  buttonsSFX: {fileID: 0}
+  success: {fileID: 8300000, guid: add8d948dcf67234db2e4eec1dd27770, type: 3}
 --- !u!82 &5195730832480628780
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5616,7 +5618,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b8088b4995ccf0c49a09af26c34224ee, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

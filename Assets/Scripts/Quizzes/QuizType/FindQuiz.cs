@@ -48,10 +48,7 @@ public class FindQuiz : IQuiz
 
     private void GetSubject ()
     {
-        if (quizManager.quizTester.isTest)
-            subject = quizManager.quizTester.subject;
-        else
-            subject = SubjectsManager.Instance.selectedSubject;
+        quizManager.LoadSubject();
     }
 
 
@@ -185,8 +182,6 @@ public class FindQuiz : IQuiz
 
     public void CorrectAnswer ( Answer answer )
     {
-        //quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
-        //quizManager.SetQuestionState(QuestionState.Correct);
         answer.FadeOut();
 
         _ = ChangeImageToParallelAndShowCheckmark(answer.toriObject);

@@ -4,13 +4,15 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class LoadingScreen : MonoBehaviour
 {
     public static LoadingScreen Instance { get; private set; }
-    [SerializeField] private GameObject loadingScreen;
+    //[SerializeField] private GameObject loadingScreen;
     [SerializeField] private Fader fader;
     [SerializeField] private TMP_Text loadingText;
+    [SerializeField] private VideoPlayer videoPlayer;
 
     [SerializeField] private List<string> loadingTexts;
 
@@ -42,7 +44,11 @@ public class LoadingScreen : MonoBehaviour
     {
         SetLoadingText();
         ShowLoadingScreen();
-        yield return new WaitForSeconds(1);
+
+        videoPlayer.time = 0;
+        videoPlayer.Play();
+
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(sceneName);
 
         if (hideTime > 0)

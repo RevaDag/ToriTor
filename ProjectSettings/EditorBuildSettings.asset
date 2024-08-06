@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/_Scenes/PirateIsland.unity
     guid: 7bb274a4eb9682644958e17dfc518903
   - enabled: 1
-    path: Assets/_Scenes/TreasureMap_Colors.unity
+    path: Assets/_Scenes/Maps/TreasureMap_Colors.unity
     guid: 06bb02dd1d9484046bff603850b8348e
+  - enabled: 1
+    path: Assets/_Scenes/Maps/TreasureMap_Shapes.unity
+    guid: 5b8c714c0e526184094718134b035c4b
   - enabled: 1
     path: Assets/_Scenes/Levels/Cards.unity
     guid: 234173266b36f7943add38dc10e02123

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class RandomMoveUI : MonoBehaviour
@@ -12,6 +11,7 @@ public class RandomMoveUI : MonoBehaviour
     private bool isMoving;
     private bool isPaused;
     private Coroutine moveCoroutine;
+    private RectTransform canvasRectTransform;
 
     void Start ()
     {
@@ -19,22 +19,33 @@ public class RandomMoveUI : MonoBehaviour
         {
             uiElement = GetComponent<RectTransform>();
         }
+
+        canvasRectTransform = uiElement.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
+
         CalculateScreenBounds();
         moveCoroutine = StartCoroutine(MoveRandomly());
     }
 
     void CalculateScreenBounds ()
     {
-        Vector2 screenSize = new Vector2(Screen.width, Screen.height);
-        Vector2 elementSize = uiElement.rect.size;
-        screenBounds = screenSize - elementSize;
+        Vector3[] canvasCorners = new Vector3[4];
+        canvasRectTransform.GetWorldCorners(canvasCorners);
+        Vector2 bottomLeftCorner = RectTransformUtility.WorldToScreenPoint(null, canvasCorners[0]);
+        Vector2 topRightCorner = RectTransformUtility.WorldToScreenPoint(null, canvasCorners[2]);
+        screenBounds = topRightCorner - bottomLeftCorner;
     }
 
     Vector2 GetRandomPositionWithinBounds ()
     {
-        float randomX = Random.Range(0, screenBounds.x);
-        float randomY = Random.Range(0, screenBounds.y);
-        return new Vector2(randomX, randomY);
+        Vector3[] canvasCorners = new Vector3[4];
+        canvasRectTransform.GetWorldCorners(canvasCorners);
+        Vector2 bottomLeftCorner = RectTransformUtility.WorldToScreenPoint(null, canvasCorners[0]);
+        Vector2 topRightCorner = RectTransformUtility.WorldToScreenPoint(null, canvasCorners[2]);
+
+        float randomX = Random.Range(bottomLeftCorner.x + uiElement.rect.width / 2, topRightCorner.x - uiElement.rect.width / 2);
+        float randomY = Random.Range(bottomLeftCorner.y + uiElement.rect.height / 2, topRightCorner.y - uiElement.rect.height / 2);
+
+        return RectTransformUtility.ScreenPointToWorldPointInRectangle(canvasRectTransform, new Vector2(randomX, randomY), null, out Vector3 worldPoint) ? worldPoint : Vector2.zero;
     }
 
     IEnumerator MoveRandomly ()

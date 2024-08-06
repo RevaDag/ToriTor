@@ -29,7 +29,6 @@ public class QuizManager : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip levelThemeMusic;
     public AudioClip correctClip;
-    public AudioClip successClip;
     public AudioClip bubbles;
     private AudioSource audioSource;
 
@@ -89,6 +88,16 @@ public class QuizManager : MonoBehaviour
             currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(listNumber);
 
         return currentObjects;
+    }
+
+    public Subject LoadSubject ()
+    {
+        if (quizTester.isTest)
+            subject = quizTester.subject;
+        else
+            subject = SubjectsManager.Instance.selectedSubject;
+
+        return subject;
     }
 
 
@@ -183,8 +192,6 @@ public class QuizManager : MonoBehaviour
 
     public void CompleteQuiz ()
     {
-        PlayClip(successClip, 1f);
-
         quizSummary.ShowSummary();
         answersManager.FadeOutAnswers();
 
@@ -217,7 +224,7 @@ public class QuizManager : MonoBehaviour
 
     public void HideLoadingScreen ()
     {
-        if (firstLoad)
+        if (LoadingScreen.Instance != null && firstLoad)
         {
             firstLoad = false;
             LoadingScreen.Instance.HideLoadingScreen();

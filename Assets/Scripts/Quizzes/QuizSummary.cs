@@ -15,8 +15,12 @@ public class QuizSummary : MonoBehaviour
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private List<Sticker> stickers;
 
+
     [SerializeField] private List<ParticleSystem> starConfetties;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource buttonsSFX;
+    [SerializeField] private AudioClip success;
     private AudioSource audioSource;
 
     private void Awake ()
@@ -108,9 +112,16 @@ public class QuizSummary : MonoBehaviour
         }
     }
 
+    private void PlaySuccessAudioClip ()
+    {
+        audioSource.clip = success;
+        audioSource.Play();
+    }
+
     public void ShowSummary ()
     {
         summaryCanvasFader.FadeIn();
+        PlaySuccessAudioClip();
         PlayStarConfetties();
     }
 
@@ -121,7 +132,7 @@ public class QuizSummary : MonoBehaviour
 
     public void OnCheckButtonClicked ()
     {
-        audioSource.Play();
+        buttonsSFX.Play();
         sceneLoader.LoadPreviousScene();
     }
 
@@ -132,7 +143,7 @@ public class QuizSummary : MonoBehaviour
 
     public void OnResetClicked ()
     {
-        audioSource.Play();
+        buttonsSFX.Play();
         quizManager.ResetQuiz();
         summaryCanvasFader.FadeOut();
     }

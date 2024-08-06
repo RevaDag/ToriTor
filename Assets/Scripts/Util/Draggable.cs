@@ -26,7 +26,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         canvas = GetComponentInParent<Canvas>();
     }
 
-
     public void OnBeginDrag ( PointerEventData eventData )
     {
         if (!isDraggable) return;
@@ -72,14 +71,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         rectTransform.anchoredPosition = newPos;
     }
 
-
-
-
     public void OnEndDrag ( PointerEventData eventData )
     {
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
-
 
         if (answer)
         {
@@ -92,7 +87,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
     }
 
-
     public void SetTarget ( RectTransform target )
     {
         this.target = target;
@@ -100,15 +94,31 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void CheckTarget ( PointerEventData eventData )
     {
-        if (RectTransformUtility.RectangleContainsScreenPoint(target, Input.mousePosition, null))
+        // Debugging output to help diagnose the issue
+        Debug.Log("Checking target");
+
+        if (target == null)
         {
+            Debug.LogError("Target is not set.");
+            return;
+        }
+
+        Vector2 localPointerPosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), eventData.position, eventData.pressEventCamera, out localPointerPosition);
+
+        if (RectTransformUtility.RectangleContainsScreenPoint(target, eventData.position, eventData.pressEventCamera))
+        {
+            Debug.Log("Dropped on target");
             this.transform.SetParent(target);
             this.transform.localPosition = Vector3.zero;
             answer.PlayerAnswerCorrect();
             DisableDrag();
         }
+        else
+        {
+            Debug.Log("Not on target");
+        }
     }
-
 
     public void DisableDrag ()
     {
