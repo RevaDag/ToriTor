@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Levels/Find.unity
     guid: 1bd90a8b5915cd441ba51f1dd17b6ba9
+  - enabled: 1
+    path: Assets/_Scenes/Levels/Memory.unity
+    guid: 74ab629700bfd8944b6f3a1b33162e7c
   m_configObjects: {}

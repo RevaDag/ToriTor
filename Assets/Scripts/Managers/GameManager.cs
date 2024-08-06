@@ -19,10 +19,7 @@ public class GameManager : MonoBehaviour
 
     public enum GameType
     {
-        Book,
         Chest,
-        Speech,
-        Matching,
         Catch,
         Find
     }

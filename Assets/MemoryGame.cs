@@ -29,6 +29,9 @@ public class MemoryGame : MonoBehaviour
         GetSubject();
         LoadObjects();
         DeployCards();
+
+        LoadingScreen.Instance.HideLoadingScreen();
+
         RevealAllCards();
 
         yield return new WaitForSeconds(4f);
@@ -107,11 +110,11 @@ public class MemoryGame : MonoBehaviour
         if (firstRevealed.sticker.toriObject == secondRevealed.sticker.toriObject)
         {
             yield return new WaitForSeconds(2.0f);
-            MatchCards();
+            StartCoroutine(MatchCards());
         }
         else
         {
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(3.0f);
             firstRevealed.HideObject();
             secondRevealed.HideObject();
         }
@@ -120,18 +123,21 @@ public class MemoryGame : MonoBehaviour
         secondRevealed = null;
     }
 
-    private void MatchCards ()
+    private IEnumerator MatchCards ()
     {
         firstRevealed.ShowParallel();
         secondRevealed.ShowParallel();
 
         matchedCouples++;
 
-        if (matchedCouples <= 3)
+        yield return new WaitForSeconds(2.0f);
+
+
+        if (matchedCouples >= 3)
             CompleteGame();
     }
 
-    private void CompleteGame()
+    private void CompleteGame ()
     {
         quizSummary.ShowSummary();
 

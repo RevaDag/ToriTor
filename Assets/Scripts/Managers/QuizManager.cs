@@ -78,17 +78,17 @@ public class QuizManager : MonoBehaviour
         quiz.InitiateQuiz();
     }
 
-
-
-    public List<ToriObject> LoadObjects ( int listNumber )
+    public List<ToriObject> LoadLevelObjects ()
     {
         if (quizTester.isTest)
             currentObjects = quizTester.selectedObjects;
         else
-            currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(listNumber);
+            currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(quizSummary.levelNumber);
 
         return currentObjects;
+
     }
+
 
     public Subject LoadSubject ()
     {

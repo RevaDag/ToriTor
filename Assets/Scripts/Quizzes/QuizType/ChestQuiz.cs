@@ -16,12 +16,9 @@ public class ChestQuiz : IQuiz
 
     private int correctAnswersCounter;
 
-    private int levelNumber = 4;
-
-
     public void InitiateQuiz ()
     {
-        LoadObjects();
+        quizManager.LoadLevelObjects();
         GetSubject();
         ResetAnswers();
         GetQuestion();
@@ -42,10 +39,6 @@ public class ChestQuiz : IQuiz
         parallelObjectSticker = parallelObjectAnimator.GetComponent<Sticker>();
     }
 
-    private void LoadObjects ()
-    {
-        quizManager.LoadObjects(levelNumber);
-    }
 
     private void GetSubject ()
     {

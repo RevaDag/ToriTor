@@ -14,10 +14,6 @@ public class FindQuiz : IQuiz
     private Subject subject;
     private int correctAnswersCounter;
 
-    private int levelNumber = 3;
-
-
-
     public void InitiateQuiz ()
     {
         LoadObjects();
@@ -38,7 +34,7 @@ public class FindQuiz : IQuiz
 
     private void LoadObjects ()
     {
-        currentObjects = quizManager.LoadObjects(levelNumber);
+        currentObjects = quizManager.LoadLevelObjects();
     }
 
     public void SetQuizManager ( QuizManager _quizManager )

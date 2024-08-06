@@ -14,7 +14,6 @@ public class CatchQuiz : IQuiz
     private Subject subject;
     private int correctAnswersCounter;
 
-    private int levelNumber = 2;
 
     public void InitiateQuiz ()
     {
@@ -23,7 +22,8 @@ public class CatchQuiz : IQuiz
 
     private async void InitiateQuizCoroutine ()
     {
-        LoadObjects();
+        quizManager.LoadLevelObjects();
+
         GetSubjectFromManager();
 
         await InstantiateAnswers();
@@ -49,11 +49,6 @@ public class CatchQuiz : IQuiz
             await quizManager.answersManager.InstantiateAnswersAsync(3);
         else
             await quizManager.answersManager.InstantiateAnswersAsync(8);
-    }
-
-    private void LoadObjects ()
-    {
-        quizManager.LoadObjects(levelNumber);
     }
 
     public void SetQuizManager ( QuizManager _quizManager )

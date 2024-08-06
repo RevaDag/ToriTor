@@ -6,11 +6,6 @@ public class QuizFactory : IQuizFactory
     {
         switch (gameType)
         {
-            case GameType.Speech:
-                return new SpeechQuiz();
-            // Add other cases for different quiz types
-            case GameType.Matching:
-                return new MatchQuiz();
             case GameType.Chest:
                 return new ChestQuiz();
             case GameType.Catch:
