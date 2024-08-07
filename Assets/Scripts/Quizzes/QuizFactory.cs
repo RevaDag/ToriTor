@@ -12,6 +12,8 @@ public class QuizFactory : IQuizFactory
                 return new CatchQuiz();
             case GameType.Find:
                 return new FindQuiz();
+            case GameType.Fix:
+                return new FixQuiz();
             default:
                 throw new System.ArgumentException("Invalid game type");
         }

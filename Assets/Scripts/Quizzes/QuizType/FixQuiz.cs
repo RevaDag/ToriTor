@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using static QuizManager;
 
-public class FindQuiz : IQuiz
+public class FixQuiz : IQuiz
 {
     private QuizManager quizManager;
 
     private List<ToriObject> currentObjects;
 
+    //private Subject subject;
     private int correctAnswersCounter;
 
     public void InitiateQuiz ()
@@ -17,6 +17,8 @@ public class FindQuiz : IQuiz
         LoadObjects();
 
         ResetAnswers();
+
+        quizManager.HideLoadingScreen();
 
         DeployQuestions(currentObjects);
 
@@ -52,12 +54,8 @@ public class FindQuiz : IQuiz
     {
         switch (quizManager.GetSubject().name)
         {
-            case "Colors":
-                question.SetObject(toriObject);
-                question.SetImages(toriObject.sprite);
-                question.ColorImage(toriObject.color);
-                break;
             case "Shapes":
+                question.SetObject(toriObject);
                 question.SetImages(toriObject.sprite);
                 break;
         }
@@ -74,7 +72,7 @@ public class FindQuiz : IQuiz
     public void DeployAnswers ()
     {
         List<Answer> answers = quizManager.answersManager.GetAnswers();
-        if (answers == null || answers.Count < 7)
+        if (answers == null || answers.Count < 3)
         {
             Debug.LogError("Insufficient number of answers available.");
             return;
@@ -105,7 +103,7 @@ public class FindQuiz : IQuiz
         }
 
         // Select and add unique wrong answers from the remaining objects
-        while (answerObjects.Count < 7 && allObjects.Count > 0)
+        while (answerObjects.Count < 3)
         {
             ToriObject randomObject = GetRandomObject(allObjects);
             if (!answerObjects.Contains(randomObject))
@@ -130,6 +128,10 @@ public class FindQuiz : IQuiz
             if (isCorrect)
             {
                 answer.SetAsCorrect();
+
+                Question matchedQuestion = quizManager.GetQuestionWithToriObject(toriObject);
+
+                answer.SetTarget(matchedQuestion.target);
             }
         }
     }
@@ -155,10 +157,10 @@ public class FindQuiz : IQuiz
 
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
-        answer.SetImage(toriObject.parallelObjectSprite);
+        answer.SetImage(toriObject.sprite);
         answer.SetObject(toriObject);
 
-        answer.SetAudioClip(toriObject.parallelObjectClip);
+        answer.SetAudioClip(toriObject.clip);
     }
 
 
@@ -188,7 +190,7 @@ public class FindQuiz : IQuiz
 
     private async Task ChangeImageToParallelAndShowCheckmark ( ToriObject toriObject )
     {
-        Question question = GetQuestionWithToriObject(toriObject);
+        Question question = quizManager.GetQuestionWithToriObject(toriObject);
 
         question.FadeOut();
         question.FlipCard();
@@ -205,21 +207,10 @@ public class FindQuiz : IQuiz
 
     private void ShowCheckMark ( ToriObject toriObject )
     {
-        Question question = GetQuestionWithToriObject(toriObject);
+        Question question = quizManager.GetQuestionWithToriObject(toriObject);
         question.FadeInCheckMark();
     }
 
-    private Question GetQuestionWithToriObject ( ToriObject toriObject )
-    {
-        foreach (Question question in quizManager.questions)
-        {
-            if (question.toriObject == toriObject) // Assuming Question has a property toriObject
-            {
-                return question;
-            }
-        }
-        return null; // Return null if no matching question is found
-    }
 
 
     public void WrongAnswer ()

@@ -8,7 +8,7 @@ public class Question : MonoBehaviour
 {
     public RectTransform target;
 
-    [SerializeField] private Image imageSprite;
+    [SerializeField] private List<Image> imageSprites;
     [SerializeField] private Image imageToColor;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private TMP_Text tmpText;
@@ -36,11 +36,15 @@ public class Question : MonoBehaviour
         audioSource.Play();
     }
 
-    public void SetImage ( Sprite _sprite )
+    public void SetImages ( Sprite _sprite )
     {
-        imageSprite.sprite = _sprite;
-        imageSprite.SetNativeSize();
+        foreach (Image image in imageSprites)
+        {
+            image.sprite = _sprite;
+            image.SetNativeSize();
+        }
     }
+
 
     public void ColorImage ( Color _color )
     {

@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     {
         Chest,
         Catch,
-        Find
+        Find,
+        Fix
     }
 
     void Awake ()

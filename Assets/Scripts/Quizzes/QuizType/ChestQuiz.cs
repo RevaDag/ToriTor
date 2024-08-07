@@ -5,23 +5,18 @@ using static QuizManager;
 
 public class ChestQuiz : IQuiz
 {
-    private Question currentQuestion;
     private QuizManager quizManager;
     private ToriObject currentToriObject;
     private Animator lidAnimator;
     private Animator parallelObjectAnimator;
     private Sticker parallelObjectSticker;
 
-    private Subject subject;
-
     private int correctAnswersCounter;
 
     public void InitiateQuiz ()
     {
         quizManager.LoadLevelObjects();
-        GetSubject();
         ResetAnswers();
-        GetQuestion();
         LoadCurrentQuestion();
         InitializeAnswers();
         DeployAnswers();
@@ -40,38 +35,24 @@ public class ChestQuiz : IQuiz
     }
 
 
-    private void GetSubject ()
-    {
-        if (quizManager.quizTester.isTest)
-            subject = quizManager.quizTester.subject;
-        else
-            subject = SubjectsManager.Instance.selectedSubject;
-    }
-
-    public void GetQuestion ()
-    {
-        currentQuestion = quizManager.questions[0];
-    }
-
-
 
     public void LoadCurrentQuestion ()
     {
         currentToriObject = quizManager.GetCurrentObject();
         lidAnimator.SetBool("isOpen", false);
 
-        DeployQuestion(currentQuestion, currentToriObject);
+        DeployQuestion(quizManager.questions[0], currentToriObject);
     }
 
     public void DeployQuestion ( Question question, ToriObject toriObject )
     {
-        switch (subject.name)
+        switch (quizManager.GetSubject().name)
         {
             case "Colors":
                 question.ColorImage(toriObject.color);
                 break;
             case "Shapes":
-                question.SetImage(toriObject.sprite);
+                question.SetImages(toriObject.sprite);
                 break;
 
 
@@ -113,7 +94,7 @@ public class ChestQuiz : IQuiz
         DeployAnswer(correctAnswer, correctObject);
 
         correctAnswer.SetAsCorrect();
-        correctAnswer.SetTarget(currentQuestion.target);
+        correctAnswer.SetTarget(quizManager.questions[0].target);
 
         // Deploy wrong answers to the remaining positions
         int wrongObjectIndex = 0;
@@ -141,7 +122,7 @@ public class ChestQuiz : IQuiz
 
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
-        switch (subject.name)
+        switch (quizManager.GetSubject().name)
         {
             case "Colors":
                 answer.SetColor(toriObject.color);

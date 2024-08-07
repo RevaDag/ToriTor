@@ -7,11 +7,9 @@ using static QuizManager;
 
 public class CatchQuiz : IQuiz
 {
-    private Question question;
     private QuizManager quizManager;
     private ToriObject currentToriObject;
 
-    private Subject subject;
     private int correctAnswersCounter;
 
 
@@ -24,17 +22,13 @@ public class CatchQuiz : IQuiz
     {
         quizManager.LoadLevelObjects();
 
-        GetSubjectFromManager();
-
         await InstantiateAnswers();
 
         ResetAnswers();
 
         quizManager.HideLoadingScreen();
 
-        GetQuestion();
         LoadCurrentQuestion();
-
 
         DeployAnswers();
 
@@ -56,20 +50,6 @@ public class CatchQuiz : IQuiz
         this.quizManager = _quizManager;
     }
 
-    private void GetSubjectFromManager ()
-    {
-        if (quizManager.quizTester.isTest)
-            subject = quizManager.quizTester.subject;
-        else
-            subject = SubjectsManager.Instance.selectedSubject;
-    }
-
-    public void GetQuestion ()
-    {
-        question = quizManager.questions[0];
-    }
-
-
     public void LoadCurrentQuestion ()
     {
         currentToriObject = quizManager.GetCurrentObject();
@@ -79,18 +59,21 @@ public class CatchQuiz : IQuiz
 
     public void DeployQuestion ( ToriObject toriObject )
     {
-        switch (subject.name)
+        Question currentQuestion = quizManager.questions[0];
+
+
+        switch (quizManager.GetSubject().name)
         {
             case "Colors":
-                question.ColorImage(toriObject.color);
+                currentQuestion.ColorImage(toriObject.color);
                 break;
             case "Shapes":
-                question.SetImage(toriObject.sprite);
+                currentQuestion.SetImages(toriObject.sprite);
                 break;
         }
 
-        question.SetAudioClip(toriObject.clip);
-        question.PlayAudioSouce();
+        currentQuestion.SetAudioClip(toriObject.clip);
+        currentQuestion.PlayAudioSouce();
     }
 
 
@@ -134,7 +117,7 @@ public class CatchQuiz : IQuiz
             if (isCorrect)
             {
                 answer.SetAsCorrect();
-                answer.SetTarget(question.target);
+                answer.SetTarget(quizManager.questions[0].target);
             }
         }
     }
@@ -178,7 +161,7 @@ public class CatchQuiz : IQuiz
 
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
-        switch (subject.name)
+        switch (quizManager.GetSubject().name)
         {
             case "Colors":
                 answer.SetColor(toriObject.color);

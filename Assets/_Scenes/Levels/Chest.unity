@@ -230,7 +230,7 @@ MonoBehaviour:
   currentQuestionState: 0
   feedbackManager: {fileID: 506312354}
   quizSummary: {fileID: 1065632066}
-  gameType: 1
+  gameType: 0
   questions:
   - {fileID: 4420997338006377656}
   answersManager: {fileID: 2069366475}
@@ -7608,7 +7608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2985510174558907768}
-  imageSprite: {fileID: 3208583540716495766}
+  imageSprites: []
   imageToColor: {fileID: 3153739195613169469}
   audioSource: {fileID: 0}
   tmpText: {fileID: 0}

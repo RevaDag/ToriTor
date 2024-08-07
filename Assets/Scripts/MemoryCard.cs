@@ -84,5 +84,11 @@ public class MemoryCard : MonoBehaviour
         sticker.PlayAudio(.5f);
     }
 
+    public void ResetCard ()
+    {
+        isClicked = false;
+        isMatched = false;
+    }
+
 
 }

@@ -3,7 +3,7 @@ using static SubjectsManager;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuizManager : MonoBehaviour
+public class QuizManager : MonoBehaviour, IGame
 {
     private IQuizFactory quizFactory;
     private IQuiz quiz;
@@ -74,7 +74,7 @@ public class QuizManager : MonoBehaviour
     private void InitiateQuiz ()
     {
         quiz.SetQuizManager(this);
-
+        quizSummary.SetGameInterface(this);
         quiz.InitiateQuiz();
     }
 
@@ -90,7 +90,7 @@ public class QuizManager : MonoBehaviour
     }
 
 
-    public Subject LoadSubject ()
+    public Subject GetSubject ()
     {
         if (quizTester.isTest)
             subject = quizTester.subject;
@@ -115,6 +115,7 @@ public class QuizManager : MonoBehaviour
         AddObjectToUsuedObjectList(obj);
         return obj;
     }
+
 
     public void MoveToNextObject ()
     {
@@ -159,6 +160,19 @@ public class QuizManager : MonoBehaviour
         return objList;
     }
 
+    public Question GetQuestionWithToriObject ( ToriObject toriObject )
+    {
+        foreach (Question question in questions)
+        {
+            if (question.toriObject == toriObject) // Assuming Question has a property toriObject
+            {
+                return question;
+            }
+        }
+        return null; // Return null if no matching question is found
+    }
+
+
     public void CorrectAnswer ( Answer answer )
     {
         quiz.CorrectAnswer(answer);
@@ -194,12 +208,11 @@ public class QuizManager : MonoBehaviour
     {
         quizSummary.ShowSummary();
         answersManager.FadeOutAnswers();
-
         GameManager.Instance.CompleteLevelAndProgressToNextLevel(quizSummary.levelNumber);
     }
 
 
-    public void ResetQuiz ()
+    public void ResetGame ()
     {
         usedObjects.Clear();
         answersManager.ResetUnusedAnswersList();

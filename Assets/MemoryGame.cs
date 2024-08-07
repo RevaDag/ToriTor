@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class MemoryGame : MonoBehaviour
+public class MemoryGame : MonoBehaviour, IGame
 {
     [SerializeField] private QuizSummary quizSummary;
 
@@ -21,24 +21,16 @@ public class MemoryGame : MonoBehaviour
 
     private void Start ()
     {
-        StartCoroutine(InitiateGame());
-    }
-
-    private IEnumerator InitiateGame ()
-    {
         GetSubject();
         LoadObjects();
         DeployCards();
+        quizSummary.SetGameInterface(this);
 
-        LoadingScreen.Instance.HideLoadingScreen();
+        if (LoadingScreen.Instance != null)
+            LoadingScreen.Instance.HideLoadingScreen();
 
-        RevealAllCards();
-
-        yield return new WaitForSeconds(4f);
-
-        HideAllCards();
+        StartCoroutine(RevealAndHide());
     }
-
 
 
     private void LoadObjects ()
@@ -56,7 +48,6 @@ public class MemoryGame : MonoBehaviour
             subject = quizTester.subject;
         else
             subject = SubjectsManager.Instance.selectedSubject;
-
     }
 
     private void DeployCards ()
@@ -163,5 +154,31 @@ public class MemoryGame : MonoBehaviour
         {
             memoryCard.RevealObject();
         }
+    }
+
+    public void ResetGame ()
+    {
+        matchedCouples = 0;
+        HideAllCards();
+        ResetAllCards();
+        DeployCards();
+        StartCoroutine(RevealAndHide());
+    }
+
+    private void ResetAllCards ()
+    {
+        foreach (MemoryCard memoryCard in cards)
+        {
+            memoryCard.ResetCard();
+        }
+    }
+
+    public IEnumerator RevealAndHide ()
+    {
+        RevealAllCards();
+
+        yield return new WaitForSeconds(4f);
+
+        HideAllCards();
     }
 }

@@ -7,7 +7,8 @@ public class QuizSummary : MonoBehaviour
 {
     public int levelNumber;
 
-    [SerializeField] private QuizManager quizManager;
+    private IGame gameInterface;
+    [SerializeField] private QuizTester quizTester;
 
     [SerializeField] private Fader summaryCanvasFader;
     [SerializeField] private Sticker stickerPrefab;
@@ -31,6 +32,11 @@ public class QuizSummary : MonoBehaviour
     private void Start ()
     {
         SetStickers();
+    }
+
+    public void SetGameInterface ( IGame _gameInterface )
+    {
+        this.gameInterface = _gameInterface;
     }
 
     public void SetStickers ()
@@ -68,16 +74,14 @@ public class QuizSummary : MonoBehaviour
     {
         List<ToriObject> toriObjects = new List<ToriObject>();
 
-        // Check if quizManager exists
-        if (quizManager != null)
+
+        // Check if quizTester exists and is in test mode
+        if (quizTester != null && quizTester.isTest)
         {
-            // Check if quizTester exists and is in test mode
-            if (quizManager.quizTester != null && quizManager.quizTester.isTest)
-            {
-                toriObjects = quizManager.quizTester.selectedObjects;
-                return toriObjects;
-            }
+            toriObjects = quizTester.selectedObjects;
+            return toriObjects;
         }
+
 
 
         // Check if SubjectsManager.Instance exists
@@ -144,7 +148,8 @@ public class QuizSummary : MonoBehaviour
     public void OnResetClicked ()
     {
         buttonsSFX.Play();
-        quizManager.ResetQuiz();
+        gameInterface.ResetGame();
+
         summaryCanvasFader.FadeOut();
     }
 }

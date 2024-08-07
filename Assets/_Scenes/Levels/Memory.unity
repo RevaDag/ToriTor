@@ -3647,7 +3647,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     parallelObjectSprite: {fileID: 21300000, guid: c418aa13ecd8ee343979025e45d306c4, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: 7b8f6212181ff2542af46ad9e6bdf0f6, type: 3}
-  isTest: 1
+  isTest: 0
 --- !u!4 &1795193271
 Transform:
   m_ObjectHideFlags: 0
@@ -4920,6 +4920,10 @@ PrefabInstance:
       propertyPath: buttonsSFX
       value: 
       objectReference: {fileID: 2089415216}
+    - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
+      propertyPath: quizTester
+      value: 
+      objectReference: {fileID: 1795193270}
     - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: levelNumber
       value: 1

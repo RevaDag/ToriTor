@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  imageSprite: {fileID: 102255879}
+  imageSprites: []
   imageToColor: {fileID: 102255879}
   audioSource: {fileID: 102255877}
   tmpText: {fileID: 0}
@@ -762,7 +762,7 @@ MonoBehaviour:
   currentQuestionState: 0
   feedbackManager: {fileID: 1947465315}
   quizSummary: {fileID: 1065632066}
-  gameType: 5
+  gameType: 2
   questions:
   - {fileID: 102255878}
   - {fileID: 1295535744}
@@ -6716,7 +6716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  imageSprite: {fileID: 1295535746}
+  imageSprites: []
   imageToColor: {fileID: 1295535746}
   audioSource: {fileID: 1295535745}
   tmpText: {fileID: 0}
@@ -7851,7 +7851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  imageSprite: {fileID: 1736272425}
+  imageSprites: []
   imageToColor: {fileID: 1736272425}
   audioSource: {fileID: 1736272424}
   tmpText: {fileID: 0}

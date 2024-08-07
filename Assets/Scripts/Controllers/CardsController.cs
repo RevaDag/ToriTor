@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class CardsController : MonoBehaviour
+public class CardsController : MonoBehaviour, IGame
 {
     [SerializeField] private Sticker sticker;
     [SerializeField] private Animator cardAnimator;
@@ -21,6 +21,7 @@ public class CardsController : MonoBehaviour
     private void Start ()
     {
         LoadingScreen.Instance.HideLoadingScreen();
+        quizSummary.SetGameInterface(this);
         SetCard();
         tutorialFader.FadeIn();
     }
@@ -80,6 +81,12 @@ public class CardsController : MonoBehaviour
             quizSummary.ShowSummary();
             GameManager.Instance.CompleteLevelAndProgressToNextLevel(quizSummary.levelNumber);
         }
+    }
+
+    public void ResetGame ()
+    {
+        currentObjectIndex = 0;
+        SetCard();
     }
 
 }
