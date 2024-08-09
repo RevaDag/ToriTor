@@ -1365,7 +1365,7 @@ GameObject:
   - component: {fileID: 612253019}
   - component: {fileID: 612253018}
   m_Layer: 5
-  m_Name: Title Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1410,8 +1410,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u05D4\u05D0\u05DD \u05D0\u05EA\u05D4 \u05D1\u05D8\u05D5\u05D7 \u05E9\u05EA\u05E8\u05E6\u05D4
-    \u05DC\u05D7\u05D6\u05D5\u05E8 \u05DC\u05D0\u05D9 \u05D4\u05E4\u05D9\u05E8\u05D0\u05D8\u05D9\u05DD?"
+  m_text: "\u05D4\u05D0\u05DD \u05D0\u05EA\u05DD \u05D1\u05D8\u05D5\u05D7\u05D9\u05DD
+    \u05E9\u05EA\u05E8\u05E6\u05D5 \u05DC\u05D7\u05D6\u05D5\u05E8 \u05DC\u05D0\u05D9
+    \u05D4\u05E4\u05D9\u05E8\u05D0\u05D8\u05D9\u05DD?"
   m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: 8d9fc07f70639b04ea44b895abe099c3, type: 2}
   m_sharedMaterial: {fileID: 5782709278261280972, guid: 8d9fc07f70639b04ea44b895abe099c3, type: 2}
