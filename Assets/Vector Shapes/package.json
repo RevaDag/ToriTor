@@ -1,0 +1,19 @@
+{
+  "name": "ch.mariov.vectorshapes",
+  "displayName": "Vector Shapes",
+  "version": "0.1.2",
+  "unity": "2021.3",
+  "description": "Vector Shapes",
+  "keywords": [],
+  "category": "",
+  "samples": [
+    {
+      "displayName": "Basics",
+      "description": "Basic Sample",
+      "path": "Samples~/Basics"
+    }
+  ],
+  "dependencies": {
+    "com.unity.collections": "1.3.1"
+  }
+}

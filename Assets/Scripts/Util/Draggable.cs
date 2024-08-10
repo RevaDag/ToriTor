@@ -1,20 +1,22 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEngine.GraphicsBuffer;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private Answer answer;
+    [SerializeField] private Canvas canvas;
     [SerializeField] private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
-    private Canvas canvas;
     private bool isDraggable = true;
     private RectTransform target;
 
     [SerializeField] private RandomMoveUI randomMoveUI;
+    [SerializeField] private ShapeHandler shapeHandler; // Reference to the ShapeHandler script
+    [SerializeField] private LineRendererHandler lineRendererHandler; // Reference to the LineRendererHandler script
 
-    private Vector2 originalPosition;
+
     private Vector2 dragOffset;
+    private Vector3[] shapePoints;
 
     void Awake ()
     {
@@ -23,7 +25,18 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         if (canvasGroup == null)
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
 
-        canvas = GetComponentInParent<Canvas>();
+        if (canvas == null)
+            canvas = GetComponentInParent<Canvas>();
+
+        if (shapeHandler != null)
+        {
+            shapeHandler.Initialize();
+            shapePoints = shapeHandler.GetShapePoints();
+        }
+        else
+        {
+            Debug.LogWarning("ShapeHandler is not assigned.");
+        }
     }
 
     public void OnBeginDrag ( PointerEventData eventData )
@@ -38,37 +51,62 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             randomMoveUI.PauseMovement();
         }
 
-        // Store the initial position and calculate the drag offset
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), eventData.position, eventData.pressEventCamera, out dragOffset);
         dragOffset = rectTransform.anchoredPosition - dragOffset;
+
+
+        if (lineRendererHandler != null)
+            lineRendererHandler.StartLine(rectTransform.position);
     }
 
     public void OnDrag ( PointerEventData eventData )
     {
         if (!isDraggable) return;
 
-        // Convert the screen point to local point in rectangle
+        // Check if the pointer is still over the draggable object
+        if (!RectTransformUtility.RectangleContainsScreenPoint(rectTransform, eventData.position, eventData.pressEventCamera))
+        {
+            return; // Stop dragging if the pointer is not over the object
+        }
+
+        // Use OnShapeDrag if the shape is set
+        if (shapeHandler != null)
+        {
+            OnShapeDrag(eventData);
+        }
+        else
+        {
+            OnFreeDrag(eventData);
+        }
+    }
+
+    private void OnShapeDrag ( PointerEventData eventData )
+    {
         Vector2 localPointerPosition;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), eventData.position, eventData.pressEventCamera, out localPointerPosition);
 
-        // Apply the drag offset
+        Vector2 newPos = localPointerPosition + dragOffset;
+        Vector3 closestPoint = shapeHandler.GetClosestPoint(newPos);
+
+        Vector2 canvasPosition = WorldToCanvasPosition(canvas, closestPoint);
+
+        // Set the new position constrained to the shape stroke
+        rectTransform.anchoredPosition = canvasPosition;
+
+        if (lineRendererHandler != null)
+            lineRendererHandler.AddPoint(rectTransform.position);
+
+    }
+
+    private void OnFreeDrag ( PointerEventData eventData )
+    {
+        Vector2 localPointerPosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), eventData.position, eventData.pressEventCamera, out localPointerPosition);
+
         Vector2 newPos = localPointerPosition + dragOffset;
 
-        // Get the canvas RectTransform to calculate bounds
-        RectTransform canvasRect = canvas.GetComponent<RectTransform>();
-
-        // Calculate bounds based on the size of the canvas and the size of the draggable object
-        float minX = (canvasRect.rect.width * -0.5f) + (rectTransform.rect.width * 0.5f);
-        float maxX = (canvasRect.rect.width * 0.5f) - (rectTransform.rect.width * 0.5f);
-        float minY = (canvasRect.rect.height * -0.5f) + (rectTransform.rect.height * 0.5f);
-        float maxY = (canvasRect.rect.height * 0.5f) - (rectTransform.rect.height * 0.5f);
-
-        // Clamp the new position within the bounds
-        newPos.x = Mathf.Clamp(newPos.x, minX, maxX);
-        newPos.y = Mathf.Clamp(newPos.y, minY, maxY);
-
-        // Set the new position
-        rectTransform.anchoredPosition = newPos;
+        // Clamp the position within the bounds
+        rectTransform.anchoredPosition = ClampToCanvasBounds(newPos);
     }
 
     public void OnEndDrag ( PointerEventData eventData )
@@ -87,6 +125,28 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
     }
 
+    private Vector2 WorldToCanvasPosition ( Canvas canvas, Vector3 worldPosition )
+    {
+        Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(Camera.main, worldPosition);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), screenPosition, canvas.worldCamera, out Vector2 canvasPosition);
+        return canvasPosition;
+    }
+
+    private Vector2 ClampToCanvasBounds ( Vector2 newPos )
+    {
+        RectTransform canvasRect = canvas.GetComponent<RectTransform>();
+
+        float minX = (canvasRect.rect.width * -0.5f) + (rectTransform.rect.width * 0.5f);
+        float maxX = (canvasRect.rect.width * 0.5f) - (rectTransform.rect.width * 0.5f);
+        float minY = (canvasRect.rect.height * -0.5f) + (rectTransform.rect.height * 0.5f);
+        float maxY = (canvasRect.rect.height * 0.5f) - (rectTransform.rect.height * 0.5f);
+
+        newPos.x = Mathf.Clamp(newPos.x, minX, maxX);
+        newPos.y = Mathf.Clamp(newPos.y, minY, maxY);
+
+        return newPos;
+    }
+
     public void SetTarget ( RectTransform target )
     {
         this.target = target;
@@ -94,29 +154,18 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void CheckTarget ( PointerEventData eventData )
     {
-        // Debugging output to help diagnose the issue
-        Debug.Log("Checking target");
-
         if (target == null)
         {
             Debug.LogError("Target is not set.");
             return;
         }
 
-        Vector2 localPointerPosition;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), eventData.position, eventData.pressEventCamera, out localPointerPosition);
-
         if (RectTransformUtility.RectangleContainsScreenPoint(target, eventData.position, eventData.pressEventCamera))
         {
-            Debug.Log("Dropped on target");
             this.transform.SetParent(target);
             this.transform.localPosition = Vector3.zero;
             answer.PlayerAnswerCorrect();
             DisableDrag();
-        }
-        else
-        {
-            Debug.Log("Not on target");
         }
     }
 

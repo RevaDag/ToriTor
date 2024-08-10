@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d20e865d91d14bbfb1fed5da7f6febb, type: 3}
+  m_Name: Triangle
+  m_EditorClassIdentifier: 
+  shapeData:
+    shapeType: 2
+    polyDimension: 0
+    isPolygonStrokeClosed: 1
+    polyPointTypes: 000000000000000000000000
+    polyPointPositions:
+    - {x: 250, y: -250, z: 0}
+    - {x: 0, y: 250, z: 0}
+    - {x: -250, y: -249.99998, z: 0}
+    polyPointInTangents:
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    polyPointOutTangents:
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    polyPointStrokeColors:
+    - {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+    - {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+    - {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+    polyPointStrokeWidths:
+    - 0.02
+    - 0.02
+    - 0.02
+    shapeOffset: {x: 0, y: 0, z: 0}
+    shapeSize: {x: 1, y: 1}
+    strokeColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+    strokeWidth: 0.02
+    isFillEnabled: 0
+    fillColor: {r: 1, g: 1, b: 1, a: 1}
+    fillNormal: {x: 0, y: 0, z: 1}
+    fillTextureMode: 0
+    fillTextureOffset: {x: 0, y: 0}
+    fillTextureTiling: {x: 1, y: 1}
+    isStrokeEnabled: 1
+    strokeCornerType: 1
+    strokeRenderType: 1
+    strokeTextureType: 1
+    strokeMiterLimit: 3
+    strokeTextureTiling: 0
+    strokeTextureOffset: 0
+    hasVariableStrokeWidth: 0
+    hasVariableStrokeColor: 0
