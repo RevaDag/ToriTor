@@ -6,10 +6,15 @@ public class ShapeHandler : MonoBehaviour
 {
     public Shape shape; // Reference to the Shape component
     public int segments = 36; // Number of segments to generate
+    public int completionThreshold = 2; // Number of points that can be missed
 
     private Vector3[] shapePoints;
     private int currentIndex = 0;
 
+    private bool[] pointsCovered;
+    private bool isDraggingComplete = false;
+
+    public GameObject arrow; // Reference to the arrow object
 
     public void Initialize ()
     {
@@ -17,6 +22,7 @@ public class ShapeHandler : MonoBehaviour
         {
             ShapeData shapeData = shape.ShapeData;
             shapePoints = GenerateInterpolatedPoints(shapeData);
+            pointsCovered = new bool[shapePoints.Length];
         }
         else
         {
@@ -53,8 +59,8 @@ public class ShapeHandler : MonoBehaviour
                     Vector3 start = corners[i];
                     Vector3 end = corners[(i + 1) % corners.Count]; // Wrap around to create a closed loop
 
-                    // Generate points between start and end
-                    for (int j = 0; j <= segments; j++)
+                    // Generate points between start and end, excluding the start (corner) point
+                    for (int j = 1; j <= segments; j++)  // Start j from 1 to exclude the corner point
                     {
                         float t = j / (float)segments;
                         Vector3 point = Vector3.Lerp(start, end, t);
@@ -87,53 +93,72 @@ public class ShapeHandler : MonoBehaviour
         return points;
     }
 
-    /*    public Vector3 GetClosestPoint ( Vector2 position )
-        {
-            Vector3 closestPoint = shapePoints[currentIndex];  // Start with the current index
-            float closestDistanceSqr = (closestPoint - (Vector3)position).sqrMagnitude;
-
-            // Iterate through the points starting from the next index
-            for (int i = currentIndex + 1; i < shapePoints.Length; i++)
-            {
-                float dSqrToTarget = (shapePoints[i] - (Vector3)position).sqrMagnitude;
-
-                // If the distance increases, break the loop to avoid skipping points
-                if (dSqrToTarget > closestDistanceSqr)
-                {
-                    break;
-                }
-
-                // Update the closest point and index if this point is closer
-                closestDistanceSqr = dSqrToTarget;
-                closestPoint = shapePoints[i];
-                currentIndex = i;
-            }
-
-            return closestPoint;
-        }*/
 
     public Vector3 GetClosestPoint ( Vector2 position )
     {
         Vector3 closestPoint = shapePoints[currentIndex];  // Start with the current index
         float closestDistanceSqr = (closestPoint - (Vector3)position).sqrMagnitude;
 
-        // Iterate through the points starting from the current index and wrapping around if necessary
+        // Iterate through the points to find the closest one
         for (int i = 0; i < shapePoints.Length; i++)
         {
-            int indexToCheck = (currentIndex + i) % shapePoints.Length;
-            float dSqrToTarget = (shapePoints[indexToCheck] - (Vector3)position).sqrMagnitude;
+            float dSqrToTarget = (shapePoints[i] - (Vector3)position).sqrMagnitude;
 
             if (dSqrToTarget < closestDistanceSqr)
             {
                 closestDistanceSqr = dSqrToTarget;
-                closestPoint = shapePoints[indexToCheck];
-                currentIndex = indexToCheck; // Update the current index to the best match
+                closestPoint = shapePoints[i];
+                currentIndex = i; // Update the current index to the closest match
             }
         }
+
+        // Mark the current point as covered
+        pointsCovered[currentIndex] = true;
+
+        // Update the arrow direction to point to the next point in the array
+        UpdateArrowDirection();
+
+        CheckIfDragIsComplete();
 
         return closestPoint;
     }
 
+    private void UpdateArrowDirection ()
+    {
+        if (arrow != null && shapePoints.Length > 0)
+        {
+            // Calculate the next point index
+            int nextIndex = (currentIndex + 3) % shapePoints.Length;
+
+            // Calculate the direction to the next point
+            Vector3 directionToNextPoint = shapePoints[nextIndex] - shapePoints[currentIndex + 2];
+
+            // Set the arrow's rotation to point towards the next point
+            arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, directionToNextPoint.normalized);
+        }
+    }
 
 
+    private void CheckIfDragIsComplete ()
+    {
+        if (!isDraggingComplete)
+        {
+            // Check how many points are covered
+            int uncoveredPoints = 0;
+            foreach (bool covered in pointsCovered)
+            {
+                if (!covered)
+                {
+                    uncoveredPoints++;
+                }
+            }
+
+            // Consider the drag complete if the number of uncovered points is within the threshold
+            if (uncoveredPoints <= completionThreshold)
+            {
+                Debug.Log("Dragging complete. Player has covered enough points.");
+                isDraggingComplete = true;
+            }
+        }
+    }
 }

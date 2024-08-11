@@ -39,7 +39,7 @@ public class LineRendererHandler : MonoBehaviour
         lineRenderer.positionCount = pointIndex + 1;
         lineRenderer.SetPosition(pointIndex, worldPosition);
         pointIndex++;
-        Debug.Log($"Adding point at world position: {worldPosition}");
+        //Debug.Log($"Adding point at world position: {worldPosition}");
     }
 
 
