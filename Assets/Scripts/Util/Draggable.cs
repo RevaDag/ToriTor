@@ -6,10 +6,16 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     [SerializeField] private Answer answer;
     [SerializeField] private Canvas canvas;
     [SerializeField] private CanvasGroup canvasGroup;
+
+    [SerializeField] private float dragThreshold = 50f; // Threshold in pixels
+    private bool isWithinThreshold = true;
+
     private RectTransform rectTransform;
     private bool isDraggable = true;
     private RectTransform target;
 
+
+    [Header("Additionals")]
     [SerializeField] private RandomMoveUI randomMoveUI;
     [SerializeField] private ShapeHandler shapeHandler; // Reference to the ShapeHandler script
     [SerializeField] private LineRendererHandler lineRendererHandler; // Reference to the LineRendererHandler script
@@ -63,10 +69,20 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         if (!isDraggable) return;
 
-        // Check if the pointer is still over the draggable object
-        if (!RectTransformUtility.RectangleContainsScreenPoint(rectTransform, eventData.position, eventData.pressEventCamera))
+        Vector2 localPointerPosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), eventData.position, eventData.pressEventCamera, out localPointerPosition);
+
+        // Calculate the distance from the current position to the pointer position
+        float distanceToPointer = Vector2.Distance(rectTransform.anchoredPosition, localPointerPosition);
+
+        if (distanceToPointer > dragThreshold)
         {
-            return; // Stop dragging if the pointer is not over the object
+            isWithinThreshold = false;
+            return; // Stop dragging if the pointer is outside the threshold
+        }
+        else
+        {
+            isWithinThreshold = true; // Reset the threshold flag
         }
 
         // Use OnShapeDrag if the shape is set
@@ -79,6 +95,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             OnFreeDrag(eventData);
         }
     }
+
 
     private void OnShapeDrag ( PointerEventData eventData )
     {
@@ -114,7 +131,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
-        if (answer)
+        if (isWithinThreshold && answer)
         {
             CheckTarget(eventData);
         }
@@ -124,6 +141,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             randomMoveUI.ResumeMovement();
         }
     }
+
 
     private Vector2 WorldToCanvasPosition ( Canvas canvas, Vector3 worldPosition )
     {

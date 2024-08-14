@@ -12,8 +12,6 @@ public class Sticker : MonoBehaviour
     [SerializeField] private TMP_Text text;
     [SerializeField] private CanvasGroup canvasGroup;
 
-    [SerializeField] private BookPagesController bookController;
-
     public ToriObject toriObject { get; private set; }
 
     public void SetToriObject ( ToriObject _toriObject )
@@ -59,9 +57,4 @@ public class Sticker : MonoBehaviour
         audioSource.Play();
     }
 
-    public void OnStickerClicked ()
-    {
-        bookController.SetSelectedObject(toriObject);
-        bookController.ShowBook(BookPagesController.BookType.Objects);
-    }
 }

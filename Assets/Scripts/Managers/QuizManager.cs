@@ -18,7 +18,7 @@ public class QuizManager : MonoBehaviour, IGame
     public QuestionState currentQuestionState;
 
     public FeedbackManager feedbackManager;
-    public QuizSummary quizSummary;
+    public GameSummary quizSummary;
 
     [SerializeField] private GameType gameType;
     private Subject subject;

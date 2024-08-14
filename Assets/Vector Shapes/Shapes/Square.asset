@@ -16,36 +16,36 @@ MonoBehaviour:
     shapeType: 2
     polyDimension: 0
     isPolygonStrokeClosed: 1
-    polyPointTypes: 00000000000000000000000000000000
+    polyPointTypes: 02000000020000000200000002000000
     polyPointPositions:
     - {x: -250, y: 250, z: 0}
     - {x: 250, y: 250, z: 0}
     - {x: 250, y: -250, z: 0}
     - {x: -250, y: -250, z: 0}
     polyPointInTangents:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
+    - {x: -10, y: -10, z: 0}
+    - {x: -10, y: 10, z: 0}
+    - {x: 10, y: 10, z: 0}
+    - {x: 10, y: -10, z: 0}
     polyPointOutTangents:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
+    - {x: 10, y: 10, z: -0}
+    - {x: 10, y: -10, z: -0}
+    - {x: -10, y: -10, z: -0}
+    - {x: -10, y: 10, z: -0}
     polyPointStrokeColors:
     - {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
     - {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
     - {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
     - {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
     polyPointStrokeWidths:
-    - 0.02
-    - 0.02
-    - 0.02
-    - 0.02
+    - 0.05
+    - 0.05
+    - 0.05
+    - 0.05
     shapeOffset: {x: 0, y: 0, z: 0}
     shapeSize: {x: 1, y: 1}
     strokeColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
-    strokeWidth: 0.02
+    strokeWidth: 0.05
     isFillEnabled: 0
     fillColor: {r: 1, g: 1, b: 1, a: 1}
     fillNormal: {x: 0, y: 0, z: 1}

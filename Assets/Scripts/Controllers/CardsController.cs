@@ -7,7 +7,7 @@ public class CardsController : MonoBehaviour, IGame
 {
     [SerializeField] private Sticker sticker;
     [SerializeField] private Animator cardAnimator;
-    [SerializeField] private QuizSummary quizSummary;
+    [SerializeField] private GameSummary quizSummary;
     [SerializeField] private Fader tutorialFader;
 
     private bool isParallel;
