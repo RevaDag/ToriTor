@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8979503261800604773}
   - component: {fileID: 6967645317590728221}
   - component: {fileID: 3138373566443433346}
+  - component: {fileID: 8231084888469886933}
   - component: {fileID: 1720592965584709240}
   - component: {fileID: 3814127703352258308}
-  - component: {fileID: 3965916848987042147}
-  - component: {fileID: 8231084888469886933}
   - component: {fileID: 2636192247756132441}
+  - component: {fileID: 3965916848987042147}
   m_Layer: 5
   m_Name: PearlCatchAnswer
   m_TagString: Untagged
@@ -63,6 +63,22 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &8231084888469886933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173041744544151420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5974a892fcf4a147a6d4a882dcb2d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiElement: {fileID: 8979503261800604773}
+  moveInterval: 2
+  maxMoveSpeed: 150
+  answer: {fileID: 3814127703352258308}
 --- !u!114 &1720592965584709240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,8 +92,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   answer: {fileID: 3814127703352258308}
+  canvas: {fileID: 0}
   canvasGroup: {fileID: 3138373566443433346}
+  dragThreshold: 50
   randomMoveUI: {fileID: 8231084888469886933}
+  shapeHandler: {fileID: 0}
+  lineRendererHandler: {fileID: 0}
 --- !u!114 &3814127703352258308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +114,22 @@ MonoBehaviour:
   audioSource: {fileID: 3965916848987042147}
   draggable: {fileID: 1720592965584709240}
   target: {fileID: 0}
+  answersManager: {fileID: 0}
+  randomMoveUI: {fileID: 8231084888469886933}
+--- !u!114 &2636192247756132441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173041744544151420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a986201daa2f06d4d8f1940e4a1b7332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 3138373566443433346}
+  fadeDuration: 1
 --- !u!82 &3965916848987042147
 AudioSource:
   m_ObjectHideFlags: 0
@@ -190,35 +226,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8231084888469886933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173041744544151420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5974a892fcf4a147a6d4a882dcb2d8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiElement: {fileID: 8979503261800604773}
-  moveInterval: 2
-  maxMoveSpeed: 150
---- !u!114 &2636192247756132441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173041744544151420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a986201daa2f06d4d8f1940e4a1b7332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 3138373566443433346}
-  fadeDuration: 1
 --- !u!1 &6249112372971490889
 GameObject:
   m_ObjectHideFlags: 0

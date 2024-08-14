@@ -20,7 +20,9 @@ public class Answer : MonoBehaviour
     public ToriObject toriObject { get; private set; }
     [SerializeField] private AnswersManager answersManager;
 
-    private void Awake ()
+    [SerializeField] private RandomMoveUI randomMoveUI;
+
+    public void Initialize ()
     {
         rectTransform = GetComponent<RectTransform>();
         fader = GetComponent<Fader>();
@@ -28,11 +30,19 @@ public class Answer : MonoBehaviour
         initialParent = transform.parent;
         initialScale = rectTransform.localScale;
         initialPosition = rectTransform.anchoredPosition;
+
+        if (randomMoveUI != null)
+            randomMoveUI.Initialize();
     }
 
     public void SetAnswersManager ( AnswersManager _answersManager )
     {
         this.answersManager = _answersManager;
+    }
+
+    public AnswersManager GetAnswersManager ()
+    {
+        return answersManager;
     }
 
     public void SetObject ( ToriObject obj )

@@ -39,10 +39,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             shapeHandler.Initialize();
             shapePoints = shapeHandler.GetShapePoints();
         }
-        else
-        {
-            Debug.LogWarning("ShapeHandler is not assigned.");
-        }
+
     }
 
     public void OnBeginDrag ( PointerEventData eventData )

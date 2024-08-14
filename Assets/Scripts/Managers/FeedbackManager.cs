@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class FeedbackManager : MonoBehaviour
 {
-    //[SerializeField] private ToriTheCat toriTheCat;
-
     [SerializeField] private List<AudioClip> RightFeedback;
     [SerializeField] private List<AudioClip> WrongFeedback;
 
@@ -61,16 +59,13 @@ public class FeedbackManager : MonoBehaviour
         {
             case FeedbackType.Right:
                 feedback = GetRandomFeedback(RightFeedback);
-                //toriTheCat.SetEmotion("Like");
                 PlayConfetti();
                 break;
             case FeedbackType.Wrong:
                 feedback = GetRandomFeedback(WrongFeedback);
-                //toriTheCat.SetEmotion("Default");
                 break;
             case FeedbackType.Celebrate:
                 feedback = GetRandomFeedback(RightFeedback);
-                //toriTheCat.SetEmotion("Celebrate");
                 break;
             default:
                 Debug.LogError("Invalid feedback type");

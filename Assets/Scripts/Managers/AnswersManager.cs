@@ -9,8 +9,8 @@ public class AnswersManager : MonoBehaviour
     public QuizManager quizManager;
     [SerializeField] private List<Answer> answers;
     [SerializeField] private Answer answerPrefab;
-    [SerializeField] private Canvas canvas;
-    [SerializeField] private RectTransform pearlsParent;
+    public Canvas canvas;
+    public RectTransform pearlsParent;
     [SerializeField] private RectTransform target;
 
     private List<Answer> activeAnswers = new List<Answer>();
@@ -21,6 +21,12 @@ public class AnswersManager : MonoBehaviour
     public List<Answer> InitializeAnswers ()
     {
         activeAnswers = new List<Answer>(answers);
+
+        foreach (var answer in activeAnswers)
+        {
+            answer.Initialize();
+        }
+
         ResetUnusedAnswersList();
 
         return activeAnswers;
@@ -109,15 +115,28 @@ public class AnswersManager : MonoBehaviour
 
     private Answer InstantiateAnswer ()
     {
+        // Instantiate the answer prefab as a child of the pearlsParent
         Answer answerInstance = Instantiate(answerPrefab, pearlsParent);
-        answerInstance.SetAnswersManager(this);
 
+        // Set the AnswersManager reference and initialize the answer
+        answerInstance.SetAnswersManager(this);
+        answerInstance.Initialize();
+
+        // Get the RectTransform component of the instantiated answer
         RectTransform rectTransform = answerInstance.GetComponent<RectTransform>();
 
-        rectTransform.position = target.position;
+        // Ensure the UI element is correctly aligned by setting the local position, anchored position, and scale
+        rectTransform.localPosition = Vector3.zero;       // Set local position to (0, 0, 0)
+        rectTransform.anchoredPosition = Vector2.zero;    // Set anchored position to (0, 0)
+        rectTransform.localScale = Vector3.one;           // Reset the scale in case it's affected by the parent
+
+        // Optionally, reset the rotation if it's not supposed to have any
+        rectTransform.localRotation = Quaternion.identity;
 
         return answerInstance;
     }
+
+
 
     #region Fade In & Out
 
@@ -149,4 +168,6 @@ public class AnswersManager : MonoBehaviour
     {
         return new List<Answer>(activeAnswers);
     }
+
+
 }

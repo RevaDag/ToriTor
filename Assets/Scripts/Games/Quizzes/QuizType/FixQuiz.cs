@@ -16,7 +16,7 @@ public class FixQuiz : IQuiz
     {
         LoadObjects();
 
-        ResetAnswers();
+        //ResetAnswers();
 
         quizManager.HideLoadingScreen();
 
@@ -29,6 +29,14 @@ public class FixQuiz : IQuiz
 
         FadeInAnswers();
     }
+
+
+    public void ResetQuiz ()
+    {
+        ResetAnswers();
+        InitiateQuiz();
+    }
+
 
     private void LoadObjects ()
     {

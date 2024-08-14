@@ -6,46 +6,58 @@ public class RandomMoveUI : MonoBehaviour
     public RectTransform uiElement;
     public float moveInterval = 1.0f;
     public float maxMoveSpeed = 100f; // Maximum speed in pixels per second
-    private Vector2 screenBounds;
+    [SerializeField] private Answer answer;
+    private Vector2 screenBoundsMin;
+    private Vector2 screenBoundsMax;
     private Vector2 targetPosition;
     private bool isMoving;
     private bool isPaused;
     private Coroutine moveCoroutine;
     private RectTransform canvasRectTransform;
+    private Camera uiCamera;
 
-    void Start ()
+    public void Initialize ()
     {
         if (uiElement == null)
         {
             uiElement = GetComponent<RectTransform>();
         }
 
-        canvasRectTransform = uiElement.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
+        canvasRectTransform = answer.GetAnswersManager().canvas.GetComponent<RectTransform>();
+        uiCamera = answer.GetAnswersManager().canvas.worldCamera; // Reference to the camera used for the UI
 
         CalculateScreenBounds();
         moveCoroutine = StartCoroutine(MoveRandomly());
     }
 
+    public void SetCanvas ( RectTransform _canvasRectTransform, Camera _uiCamera )
+    {
+        this.canvasRectTransform = _canvasRectTransform;
+        this.uiCamera = _uiCamera;
+        CalculateScreenBounds();
+    }
+
     void CalculateScreenBounds ()
     {
+        // Get the screen bounds in world space
         Vector3[] canvasCorners = new Vector3[4];
         canvasRectTransform.GetWorldCorners(canvasCorners);
-        Vector2 bottomLeftCorner = RectTransformUtility.WorldToScreenPoint(null, canvasCorners[0]);
-        Vector2 topRightCorner = RectTransformUtility.WorldToScreenPoint(null, canvasCorners[2]);
-        screenBounds = topRightCorner - bottomLeftCorner;
+
+        // Convert world space corners to screen space
+        screenBoundsMin = RectTransformUtility.WorldToScreenPoint(uiCamera, canvasCorners[0]); // Bottom-left corner
+        screenBoundsMax = RectTransformUtility.WorldToScreenPoint(uiCamera, canvasCorners[2]); // Top-right corner
     }
 
     Vector2 GetRandomPositionWithinBounds ()
     {
-        Vector3[] canvasCorners = new Vector3[4];
-        canvasRectTransform.GetWorldCorners(canvasCorners);
-        Vector2 bottomLeftCorner = RectTransformUtility.WorldToScreenPoint(null, canvasCorners[0]);
-        Vector2 topRightCorner = RectTransformUtility.WorldToScreenPoint(null, canvasCorners[2]);
+        float randomX = Random.Range(screenBoundsMin.x + uiElement.rect.width / 2, screenBoundsMax.x - uiElement.rect.width / 2);
+        float randomY = Random.Range(screenBoundsMin.y + uiElement.rect.height / 2, screenBoundsMax.y - uiElement.rect.height / 2);
 
-        float randomX = Random.Range(bottomLeftCorner.x + uiElement.rect.width / 2, topRightCorner.x - uiElement.rect.width / 2);
-        float randomY = Random.Range(bottomLeftCorner.y + uiElement.rect.height / 2, topRightCorner.y - uiElement.rect.height / 2);
+        // Convert screen space position to local position relative to the canvas
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, new Vector2(randomX, randomY), uiCamera, out localPoint);
 
-        return RectTransformUtility.ScreenPointToWorldPointInRectangle(canvasRectTransform, new Vector2(randomX, randomY), null, out Vector3 worldPoint) ? worldPoint : Vector2.zero;
+        return localPoint;
     }
 
     IEnumerator MoveRandomly ()
@@ -71,21 +83,21 @@ public class RandomMoveUI : MonoBehaviour
     IEnumerator MoveToPosition ( Vector2 target )
     {
         isMoving = true;
-        Vector2 startPosition = uiElement.position;
+        Vector2 startPosition = uiElement.anchoredPosition;
         float distance = Vector2.Distance(startPosition, target);
         float duration = distance / maxMoveSpeed;
         float elapsedTime = 0;
 
         while (elapsedTime < duration && !isPaused)
         {
-            uiElement.position = Vector2.Lerp(startPosition, target, elapsedTime / duration);
+            uiElement.anchoredPosition = Vector2.Lerp(startPosition, target, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         if (!isPaused)
         {
-            uiElement.position = target;
+            uiElement.anchoredPosition = target;
         }
         isMoving = false;
     }
@@ -106,7 +118,18 @@ public class RandomMoveUI : MonoBehaviour
 
     void OnDisable ()
     {
-        StopAllCoroutines();
-        moveCoroutine = null;
+        if (moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+            moveCoroutine = null;
+        }
+
+        StopAllCoroutines();  // Make sure all coroutines are stopped
+
+        if (gameObject != null)
+        {
+            Destroy(gameObject);  // Destroy the object, but ensure it's not being accessed afterward
+        }
     }
+
 }

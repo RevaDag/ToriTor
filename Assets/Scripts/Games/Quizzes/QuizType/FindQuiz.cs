@@ -16,7 +16,7 @@ public class FindQuiz : IQuiz
     {
         LoadObjects();
 
-        ResetAnswers();
+        // ResetAnswers();
 
         DeployQuestions(currentObjects);
 
@@ -26,6 +26,23 @@ public class FindQuiz : IQuiz
         quizManager.HideLoadingScreen();
 
         FadeInAnswers();
+    }
+
+
+    public void ResetQuiz ()
+    {
+        ResetCards();
+        ResetAnswers();
+        InitiateQuiz();
+    }
+
+    private void ResetCards ()
+    {
+        List<Question> questions = quizManager.questions;
+        foreach (Question question in questions)
+        {
+            question.findCard.ResetCard();
+        }
     }
 
     private void LoadObjects ()
@@ -191,7 +208,7 @@ public class FindQuiz : IQuiz
         Question question = GetQuestionWithToriObject(toriObject);
 
         question.FadeOut();
-        question.FlipCard();
+        question.findCard.FlipCard();
         await Task.Delay(1000);
 
         question.SetAudioClip(toriObject.parallelObjectClip);
@@ -206,7 +223,7 @@ public class FindQuiz : IQuiz
     private void ShowCheckMark ( ToriObject toriObject )
     {
         Question question = GetQuestionWithToriObject(toriObject);
-        question.FadeInCheckMark();
+        question.findCard.FadeInCheckMark();
     }
 
     private Question GetQuestionWithToriObject ( ToriObject toriObject )

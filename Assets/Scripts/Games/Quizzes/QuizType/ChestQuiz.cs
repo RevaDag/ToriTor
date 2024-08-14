@@ -16,7 +16,7 @@ public class ChestQuiz : IQuiz
     public void InitiateQuiz ()
     {
         quizManager.LoadLevelObjects();
-        ResetAnswers();
+        //ResetAnswers();
         LoadCurrentQuestion();
         InitializeAnswers();
         DeployAnswers();
@@ -24,6 +24,13 @@ public class ChestQuiz : IQuiz
         quizManager.HideLoadingScreen();
 
         FadeInAnswers();
+    }
+
+    public void ResetQuiz ()
+    {
+        correctAnswersCounter = 0;
+        ResetAnswers();
+        InitiateQuiz();
     }
 
     public void SetQuizManager ( QuizManager _quizManager )

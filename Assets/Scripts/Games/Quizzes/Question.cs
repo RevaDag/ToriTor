@@ -12,11 +12,12 @@ public class Question : MonoBehaviour
     [SerializeField] private Image imageToColor;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private TMP_Text tmpText;
-    [SerializeField] private Animator animator;
 
-    [Header("Faders")]
     [SerializeField] private Fader questionFader;
-    [SerializeField] private Fader checkFader;
+
+    [Header("Additionals")]
+    public FindCard findCard;
+
 
     public ToriObject toriObject { get; private set; }
 
@@ -61,13 +62,4 @@ public class Question : MonoBehaviour
         questionFader.FadeOut();
     }
 
-    public void FadeInCheckMark ()
-    {
-        checkFader.FadeIn();
-    }
-
-    public void FlipCard ()
-    {
-        animator.SetTrigger("Flip");
-    }
 }

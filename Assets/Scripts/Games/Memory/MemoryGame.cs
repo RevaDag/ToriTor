@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class MemoryGame : MonoBehaviour, IGame
 {
-    [SerializeField] private GameSummary quizSummary;
+    [SerializeField] private GameSummary gameSummary;
+    [SerializeField] private FeedbackManager feedbackManager;
 
     [SerializeField] private List<MemoryCard> cards;
     private MemoryCard firstRevealed;
@@ -24,7 +25,7 @@ public class MemoryGame : MonoBehaviour, IGame
         GetSubject();
         LoadObjects();
         DeployCards();
-        quizSummary.SetGameInterface(this);
+        gameSummary.SetGameInterface(this);
 
         if (LoadingScreen.Instance != null)
             LoadingScreen.Instance.HideLoadingScreen();
@@ -38,7 +39,7 @@ public class MemoryGame : MonoBehaviour, IGame
         if (quizTester.isTest)
             currentObjects = quizTester.selectedObjects;
         else
-            currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(quizSummary.levelNumber);
+            currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(gameSummary.levelNumber);
 
     }
 
@@ -121,6 +122,8 @@ public class MemoryGame : MonoBehaviour, IGame
 
         matchedCouples++;
 
+        feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
+
         yield return new WaitForSeconds(2.0f);
 
 
@@ -130,9 +133,9 @@ public class MemoryGame : MonoBehaviour, IGame
 
     private void CompleteGame ()
     {
-        quizSummary.ShowSummary();
+        gameSummary.ShowSummary();
 
-        GameManager.Instance.CompleteLevelAndProgressToNextLevel(quizSummary.levelNumber);
+        GameManager.Instance.CompleteLevelAndProgressToNextLevel(gameSummary.levelNumber);
     }
 
     public bool CanRevealCard ()

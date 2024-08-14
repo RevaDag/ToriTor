@@ -218,7 +218,7 @@ public class QuizManager : MonoBehaviour, IGame
         answersManager.ResetUnusedAnswersList();
         currentObjectIndex = 0;
         ResetQuestionState();
-        quiz.InitiateQuiz();
+        quiz.ResetQuiz();
         quizSummary.ResetStickers();
         quizSummary.HideSummary();
     }

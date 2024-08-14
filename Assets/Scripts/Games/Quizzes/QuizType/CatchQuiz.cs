@@ -24,7 +24,7 @@ public class CatchQuiz : IQuiz
 
         await InstantiateAnswers();
 
-        ResetAnswers();
+        // ResetAnswers();
 
         quizManager.HideLoadingScreen();
 
@@ -35,6 +35,14 @@ public class CatchQuiz : IQuiz
         quizManager.clampController.OpenClamp();
         FadeInAnswers();
     }
+
+
+    public void ResetQuiz ()
+    {
+        ResetAnswers();
+        InitiateQuiz();
+    }
+
 
     private async Task InstantiateAnswers ()
     {
