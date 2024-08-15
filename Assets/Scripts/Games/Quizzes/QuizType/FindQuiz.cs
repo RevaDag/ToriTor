@@ -16,8 +16,6 @@ public class FindQuiz : IQuiz
     {
         LoadObjects();
 
-        // ResetAnswers();
-
         DeployQuestions(currentObjects);
 
         InitializeAnswers();
@@ -68,13 +66,14 @@ public class FindQuiz : IQuiz
     public void DeployQuestion ( ToriObject toriObject, Question question )
     {
         question.SetObject(toriObject);
-        question.SetImages(toriObject.sprite);
-        question.SetAudioClip(toriObject.clip);
+        question.sticker.ResetScale();
+        question.sticker.SetImage(toriObject.sprite);
+        question.sticker.SetAudio(toriObject.clip);
 
         switch (quizManager.GetSubject().name)
         {
             case "Colors":
-                question.ColorImage(toriObject.color);
+                question.sticker.SetColor(toriObject.color);
                 break;
         }
 
@@ -209,9 +208,11 @@ public class FindQuiz : IQuiz
         question.findCard.FlipCard();
         await Task.Delay(1000);
 
-        question.SetAudioClip(toriObject.parallelObjectClip);
-        question.SetImages(toriObject.parallelObjectSprite);
-        question.ColorImage(Color.white);
+        Vector3 parallelScale = new Vector3(.25f, .25f, .25f);
+        question.sticker.ResizeImageScale(parallelScale);
+        question.sticker.SetAudio(toriObject.parallelObjectClip);
+        question.sticker.SetImage(toriObject.parallelObjectSprite);
+        question.sticker.SetColor(Color.white);
 
         question.FadeIn();
         await Task.Delay(1000);

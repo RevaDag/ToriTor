@@ -6,13 +6,18 @@ using UnityEngine.UI;
 
 public class Sticker : MonoBehaviour
 {
-
     [SerializeField] private Image image;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private TMP_Text text;
     [SerializeField] private CanvasGroup canvasGroup;
 
     public ToriObject toriObject { get; private set; }
+
+    private Vector3 originalScale;
+
+    private void Awake ()
+    {
+        originalScale = GetComponent<RectTransform>().localScale;
+    }
 
     public void SetToriObject ( ToriObject _toriObject )
     {
@@ -45,10 +50,6 @@ public class Sticker : MonoBehaviour
         return image.color;
     }
 
-    public void SetText ( string _text )
-    {
-        text.text = _text;
-    }
 
     public void ActivateGroupCanvas ( bool isActive )
     {
@@ -60,6 +61,11 @@ public class Sticker : MonoBehaviour
     {
         audioSource.volume = _volume;
         audioSource.Play();
+    }
+
+    public void ResetScale ()
+    {
+        ResizeImageScale(originalScale);
     }
 
 }

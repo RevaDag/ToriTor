@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 102255880}
   - component: {fileID: 102255879}
   - component: {fileID: 102255878}
+  - component: {fileID: 102255884}
   - component: {fileID: 102255882}
   - component: {fileID: 102255883}
   - component: {fileID: 102255877}
@@ -494,9 +495,9 @@ MonoBehaviour:
   - {fileID: 102255879}
   imageToColor: {fileID: 102255879}
   audioSource: {fileID: 102255877}
-  tmpText: {fileID: 0}
   questionFader: {fileID: 102255882}
   findCard: {fileID: 431524880}
+  sticker: {fileID: 102255884}
 --- !u!114 &102255879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,6 +618,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &102255884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102255875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520faa3b7b9dcd345ac73e349350defd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 102255879}
+  audioSource: {fileID: 102255877}
+  canvasGroup: {fileID: 102255883}
 --- !u!1 &111643332
 GameObject:
   m_ObjectHideFlags: 0
@@ -6876,6 +6892,7 @@ GameObject:
   - component: {fileID: 1295535748}
   - component: {fileID: 1295535746}
   - component: {fileID: 1295535744}
+  - component: {fileID: 1295535752}
   - component: {fileID: 1295535750}
   - component: {fileID: 1295535751}
   - component: {fileID: 1295535745}
@@ -6904,9 +6921,9 @@ MonoBehaviour:
   - {fileID: 1295535746}
   imageToColor: {fileID: 1295535746}
   audioSource: {fileID: 1295535745}
-  tmpText: {fileID: 0}
   questionFader: {fileID: 1295535750}
   findCard: {fileID: 1602672115}
+  sticker: {fileID: 1295535752}
 --- !u!82 &1295535745
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7142,6 +7159,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1295535752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295535743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520faa3b7b9dcd345ac73e349350defd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1295535746}
+  audioSource: {fileID: 1295535745}
+  canvasGroup: {fileID: 1295535751}
 --- !u!1 &1303866049 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2675504201579814052, guid: 622432292f843474abd52bc425590f3e, type: 3}
@@ -7929,6 +7961,7 @@ GameObject:
   - component: {fileID: 1736272427}
   - component: {fileID: 1736272425}
   - component: {fileID: 1736272423}
+  - component: {fileID: 1736272431}
   - component: {fileID: 1736272429}
   - component: {fileID: 1736272430}
   - component: {fileID: 1736272424}
@@ -7957,9 +7990,9 @@ MonoBehaviour:
   - {fileID: 1736272425}
   imageToColor: {fileID: 1736272425}
   audioSource: {fileID: 1736272424}
-  tmpText: {fileID: 0}
   questionFader: {fileID: 1736272429}
   findCard: {fileID: 32875895}
+  sticker: {fileID: 1736272431}
 --- !u!82 &1736272424
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8195,6 +8228,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1736272431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736272422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520faa3b7b9dcd345ac73e349350defd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1736272425}
+  audioSource: {fileID: 1736272424}
+  canvasGroup: {fileID: 1736272430}
 --- !u!1 &1738606484
 GameObject:
   m_ObjectHideFlags: 0
@@ -8990,7 +9038,7 @@ MonoBehaviour:
     color: {r: 0.9433962, g: 0.8957994, b: 0.022249907, a: 1}
     parallelObjectSprite: {fileID: 21300000, guid: 49f31e1949ff5d74abb1a0cf0a65e138, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
-  isTest: 0
+  isTest: 1
 --- !u!4 &1982093222
 Transform:
   m_ObjectHideFlags: 0

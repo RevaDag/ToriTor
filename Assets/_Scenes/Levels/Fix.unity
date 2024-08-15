@@ -233,9 +233,9 @@ MonoBehaviour:
   - {fileID: 554504784}
   imageToColor: {fileID: 0}
   audioSource: {fileID: 152238647}
-  tmpText: {fileID: 0}
   questionFader: {fileID: 0}
   findCard: {fileID: 0}
+  sticker: {fileID: 0}
 --- !u!224 &152238646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -268,7 +268,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -12447,9 +12447,9 @@ MonoBehaviour:
   - {fileID: 2135595526}
   imageToColor: {fileID: 0}
   audioSource: {fileID: 1982579590}
-  tmpText: {fileID: 0}
   questionFader: {fileID: 0}
   findCard: {fileID: 0}
+  sticker: {fileID: 0}
 --- !u!224 &1982579589
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12482,7 +12482,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -13253,9 +13253,9 @@ MonoBehaviour:
   - {fileID: 3208583540716495766}
   imageToColor: {fileID: 0}
   audioSource: {fileID: 4420997338006377657}
-  tmpText: {fileID: 0}
   questionFader: {fileID: 0}
   findCard: {fileID: 0}
+  sticker: {fileID: 0}
 --- !u!82 &4420997338006377657
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13267,7 +13267,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

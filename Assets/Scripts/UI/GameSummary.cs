@@ -66,12 +66,6 @@ public class GameSummary : MonoBehaviour
             sticker.SetAudio(toriObjects[i].clip);
             sticker.SetColor(toriObjects[i].color);
         }
-
-        /*        // Deactivate any extra stickers
-                for (int i = toriObjects.Count; i < stickers.Count; i++)
-                {
-                    stickers[i].gameObject.SetActive(false);
-                }*/
     }
 
     private List<ToriObject> GetObjects ()
@@ -99,17 +93,6 @@ public class GameSummary : MonoBehaviour
         }
 
         return toriObjects;
-    }
-
-
-
-
-    public void ResetStickers ()
-    {
-        for (int i = stickers.Count - 1; i >= 0; i--)
-        {
-            stickers[i].gameObject.SetActive(false); // Deactivate instead of destroy
-        }
     }
 
     private void PlayStarConfetties ()

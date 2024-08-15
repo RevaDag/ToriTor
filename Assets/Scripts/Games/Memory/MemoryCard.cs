@@ -39,7 +39,6 @@ public class MemoryCard : MonoBehaviour
         }
         else if (memoryGame.CanRevealCard())
         {
-            isClicked = true;
             RevealObject();
             memoryGame.CardRevealed(this);
             sticker.PlayAudio();
@@ -51,6 +50,8 @@ public class MemoryCard : MonoBehaviour
     {
         animator.SetTrigger("Flip");
         imageFader.FadeIn();
+
+        isClicked = true;
     }
 
     public void HideObject ()

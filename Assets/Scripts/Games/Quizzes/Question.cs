@@ -11,12 +11,13 @@ public class Question : MonoBehaviour
     [SerializeField] private List<Image> imageSprites;
     [SerializeField] private Image imageToColor;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private TMP_Text tmpText;
 
     [SerializeField] private Fader questionFader;
 
+
     [Header("Additionals")]
     public FindCard findCard;
+    public Sticker sticker;
 
 
     public ToriObject toriObject { get; private set; }
