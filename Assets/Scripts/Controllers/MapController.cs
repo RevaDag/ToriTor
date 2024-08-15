@@ -47,9 +47,10 @@ public class MapController : MonoBehaviour
     {
         int currentLevel = GameManager.Instance.currentLevel;
 
-        for (int i = 0; i < levelStars.Count - 1; i++)
+        for (int i = 0; i < levelStars.Count; i++)
         {
-            if (i < currentLevel)
+            // If its the previous level
+            if (i < currentLevel - 1)
             {
                 levelStars[i].SetActive(true);
             }
@@ -62,7 +63,7 @@ public class MapController : MonoBehaviour
 
         for (int i = 0; i < levelFaders.Count; i++)
         {
-            if (i <= currentLevel)
+            if (i < currentLevel)
             {
                 levelFaders[i].FadeIn();
                 await Task.Delay(500);

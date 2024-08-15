@@ -18,17 +18,19 @@ public class ShapeHandler : MonoBehaviour
     [SerializeField] private AudioSource parallelAudio;
 
     private Vector3[] shapePoints;
-    private int currentIndex = 0;
+    private int currentPointIndex = 0;
 
     private bool[] pointsCovered;
     private bool isDraggingComplete = false;
 
+    public RectTransform drag;
     public GameObject arrow; // Reference to the arrow object
     public Fader parentFader;
     private float fadeDuration = 1.0f;
     private Coroutine fadeCoroutine;
 
     private Color initialStrokeColor;
+    private Vector3 dragInitialPos;
 
 
 
@@ -40,6 +42,9 @@ public class ShapeHandler : MonoBehaviour
             shapePoints = GenerateInterpolatedPoints(shapeData);
             pointsCovered = new bool[shapePoints.Length];
             initialStrokeColor = shapeData.GetStrokeColor();
+            dragInitialPos = drag.localPosition;
+
+            currentPointIndex = FindClosestPointIndex(dragInitialPos);
         }
         else
         {
@@ -78,7 +83,6 @@ public class ShapeHandler : MonoBehaviour
         {
             // Assuming PolyPointPositions gives us the corners in order for non-circle shapes
             List<Vector3> corners = shapeData.GetPolyPointPositions();
-
             if (corners != null && corners.Count > 1)
             {
                 for (int i = 0; i < corners.Count; i++)
@@ -120,10 +124,30 @@ public class ShapeHandler : MonoBehaviour
         return points;
     }
 
+    private int FindClosestPointIndex ( Vector3 position )
+    {
+        int closestIndex = 0;
+        float closestDistanceSqr = (shapePoints[0] - position).sqrMagnitude;
+
+        for (int i = 1; i < shapePoints.Length; i++)
+        {
+            float distanceSqr = (shapePoints[i] - position).sqrMagnitude;
+
+            if (distanceSqr < closestDistanceSqr)
+            {
+                closestDistanceSqr = distanceSqr;
+                closestIndex = i;
+            }
+        }
+
+        return closestIndex;
+    }
+
+
 
     public Vector3 GetClosestPoint ( Vector2 position )
     {
-        Vector3 closestPoint = shapePoints[currentIndex];  // Start with the current index
+        Vector3 closestPoint = shapePoints[currentPointIndex];  // Start with the current index
         float closestDistanceSqr = (closestPoint - (Vector3)position).sqrMagnitude;
 
         // Iterate through the points to find the closest one
@@ -135,12 +159,12 @@ public class ShapeHandler : MonoBehaviour
             {
                 closestDistanceSqr = dSqrToTarget;
                 closestPoint = shapePoints[i];
-                currentIndex = i; // Update the current index to the closest match
+                currentPointIndex = i; // Update the current index to the closest match
             }
         }
 
         // Mark the current point as covered
-        pointsCovered[currentIndex] = true;
+        pointsCovered[currentPointIndex] = true;
 
         // Update the arrow direction to point to the next point in the array
         UpdateArrowDirection();
@@ -155,10 +179,10 @@ public class ShapeHandler : MonoBehaviour
         if (arrow != null && shapePoints.Length > 0)
         {
             // Calculate the next point index
-            int nextIndex = (currentIndex + 1) % shapePoints.Length;
+            int nextIndex = (currentPointIndex + 2) % shapePoints.Length;
 
             // Calculate the direction to the next point
-            Vector3 directionToNextPoint = shapePoints[nextIndex] - shapePoints[currentIndex];
+            Vector3 directionToNextPoint = shapePoints[nextIndex] - shapePoints[currentPointIndex];
 
             // Set the arrow's rotation to point towards the next point
             arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, directionToNextPoint.normalized);
@@ -212,6 +236,38 @@ public class ShapeHandler : MonoBehaviour
     {
         parallelFader.FadeOut();
     }
+
+    public void ResetShape ()
+    {
+        // Reset all points to not covered
+        for (int i = 0; i < pointsCovered.Length; i++)
+        {
+            pointsCovered[i] = false;
+        }
+
+        // Reset the dragging completion state
+        isDraggingComplete = false;
+
+        // Reset the color of the shape to the initial color
+        if (shape != null)
+            shape.ShapeData.SetStrokeColor(initialStrokeColor);
+
+        parallelFader.FadeOut();
+
+        drag.localPosition = dragInitialPos;
+        currentPointIndex = FindClosestPointIndex(drag.localPosition);
+        UpdateArrowDirection();
+
+
+        // If you have any other UI elements that need resetting, do that here
+        if (lineRendererHandler != null)
+        {
+            lineRendererHandler.ResetLine();
+        }
+
+        Debug.Log("Shape has been reset.");
+    }
+
 
     #region Faders
 

@@ -1750,26 +1750,6 @@ PrefabInstance:
       propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1935739937596211194, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 400.99997
-      objectReference: {fileID: 0}
-    - target: {fileID: 1935739937596211194, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 423.10367
-      objectReference: {fileID: 0}
-    - target: {fileID: 1935739937596211194, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1935739937596211194, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1935739937596211194, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.35
-      objectReference: {fileID: 0}
     - target: {fileID: 2184501700609507826, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1832,7 +1812,7 @@ PrefabInstance:
       objectReference: {fileID: 1424048483}
     - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: levelNumber
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: quizManager
@@ -12996,7 +12976,7 @@ MonoBehaviour:
   answer: {fileID: 1279208250127081584}
   canvas: {fileID: 0}
   canvasGroup: {fileID: 0}
-  dragThreshold: 50
+  dragThreshold: 100
   randomMoveUI: {fileID: 0}
   shapeHandler: {fileID: 0}
   lineRendererHandler: {fileID: 0}
@@ -13069,7 +13049,7 @@ MonoBehaviour:
   answer: {fileID: 3855385620873415242}
   canvas: {fileID: 0}
   canvasGroup: {fileID: 0}
-  dragThreshold: 50
+  dragThreshold: 100
   randomMoveUI: {fileID: 0}
   shapeHandler: {fileID: 0}
   lineRendererHandler: {fileID: 0}
@@ -13088,7 +13068,7 @@ MonoBehaviour:
   answer: {fileID: 3855385622169453743}
   canvas: {fileID: 0}
   canvasGroup: {fileID: 0}
-  dragThreshold: 50
+  dragThreshold: 100
   randomMoveUI: {fileID: 0}
   shapeHandler: {fileID: 0}
   lineRendererHandler: {fileID: 0}

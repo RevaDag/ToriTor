@@ -25,6 +25,11 @@ public class Sticker : MonoBehaviour
         image.SetNativeSize();
     }
 
+    public void ResizeImageScale ( Vector3 _scale )
+    {
+        image.GetComponent<RectTransform>().localScale = _scale;
+    }
+
     public void SetAudio ( AudioClip clip )
     {
         audioSource.clip = clip;

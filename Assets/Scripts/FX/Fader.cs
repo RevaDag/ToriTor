@@ -44,8 +44,8 @@ public class Fader : MonoBehaviour
         {
             StopCoroutine(fadeCoroutine);
         }
-        fadeCoroutine = StartCoroutine(Fade(1.0f, 0.0f));
         EnableInteractions(false);
+        fadeCoroutine = StartCoroutine(Fade(1.0f, 0.0f));
     }
 
     private IEnumerator Fade ( float startAlpha, float endAlpha )

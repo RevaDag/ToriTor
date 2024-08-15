@@ -15,9 +15,9 @@ public class GameSummary : MonoBehaviour
     [SerializeField] private Transform stickersParent;
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private List<Sticker> stickers;
-
-
     [SerializeField] private List<ParticleSystem> starConfetties;
+
+    [SerializeField] private List<ToriObject> predefinedObjects;
 
     [Header("Audio")]
     [SerializeField] private AudioSource buttonsSFX;
@@ -42,7 +42,11 @@ public class GameSummary : MonoBehaviour
     public void SetStickers ()
     {
         List<ToriObject> toriObjects = new List<ToriObject>();
-        toriObjects = GetObjects();
+
+        if (predefinedObjects.Count == 0)
+            toriObjects = GetObjects();
+        else
+            toriObjects = predefinedObjects;
 
         for (int i = 0; i < toriObjects.Count; i++)
         {
@@ -63,11 +67,11 @@ public class GameSummary : MonoBehaviour
             sticker.SetColor(toriObjects[i].color);
         }
 
-        // Deactivate any extra stickers
-        for (int i = toriObjects.Count; i < stickers.Count; i++)
-        {
-            stickers[i].gameObject.SetActive(false);
-        }
+        /*        // Deactivate any extra stickers
+                for (int i = toriObjects.Count; i < stickers.Count; i++)
+                {
+                    stickers[i].gameObject.SetActive(false);
+                }*/
     }
 
     private List<ToriObject> GetObjects ()

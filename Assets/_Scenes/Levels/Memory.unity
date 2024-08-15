@@ -276,7 +276,7 @@ RectTransform:
   m_GameObject: {fileID: 84026445}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1313110154}
@@ -284,7 +284,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 607, y: 592}
+  m_SizeDelta: {x: 137, y: 118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &84026448
 MonoBehaviour:
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
+  m_Sprite: {fileID: -673122853, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -982,7 +982,7 @@ RectTransform:
   m_GameObject: {fileID: 360129613}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 675372454}
@@ -990,7 +990,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 607, y: 592}
+  m_SizeDelta: {x: 137, y: 118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &360129616
 MonoBehaviour:
@@ -1012,7 +1012,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
+  m_Sprite: {fileID: -673122853, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1069,8 +1069,6 @@ GameObject:
   - component: {fileID: 400850519}
   - component: {fileID: 400850521}
   - component: {fileID: 400850522}
-  - component: {fileID: 400850524}
-  - component: {fileID: 400850523}
   m_Layer: 5
   m_Name: Card6
   m_TagString: Untagged
@@ -1248,32 +1246,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!225 &400850523
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400850517}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!114 &400850524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400850517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a986201daa2f06d4d8f1940e4a1b7332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
-  fadeDuration: 1
 --- !u!1 &461817156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,8 +1730,6 @@ GameObject:
   - component: {fileID: 580284862}
   - component: {fileID: 580284865}
   - component: {fileID: 580284864}
-  - component: {fileID: 580284867}
-  - component: {fileID: 580284866}
   m_Layer: 5
   m_Name: Card5
   m_TagString: Untagged
@@ -1937,32 +1907,6 @@ MonoBehaviour:
   audioSource: {fileID: 580284864}
   text: {fileID: 0}
   canvasGroup: {fileID: 0}
---- !u!225 &580284866
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580284860}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!114 &580284867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580284860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a986201daa2f06d4d8f1940e4a1b7332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
-  fadeDuration: 1
 --- !u!1 &650240951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,8 +2052,6 @@ GameObject:
   - component: {fileID: 675372455}
   - component: {fileID: 675372458}
   - component: {fileID: 675372457}
-  - component: {fileID: 675372460}
-  - component: {fileID: 675372459}
   m_Layer: 5
   m_Name: Card3
   m_TagString: Untagged
@@ -2287,32 +2229,6 @@ MonoBehaviour:
   audioSource: {fileID: 675372457}
   text: {fileID: 0}
   canvasGroup: {fileID: 0}
---- !u!225 &675372459
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675372453}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!114 &675372460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675372453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a986201daa2f06d4d8f1940e4a1b7332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
-  fadeDuration: 1
 --- !u!224 &734797421 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 352071430309913234, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
@@ -7581,7 +7497,7 @@ RectTransform:
   m_GameObject: {fileID: 1259065751}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1853299196}
@@ -7589,7 +7505,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 607, y: 592}
+  m_SizeDelta: {x: 137, y: 118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1259065754
 MonoBehaviour:
@@ -7611,7 +7527,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
+  m_Sprite: {fileID: -673122853, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7653,7 +7569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a986201daa2f06d4d8f1940e4a1b7332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
+  canvasGroup: {fileID: 1259065756}
   fadeDuration: 1
 --- !u!1 &1271597727
 GameObject:
@@ -7989,8 +7905,6 @@ GameObject:
   - component: {fileID: 1313110155}
   - component: {fileID: 1313110158}
   - component: {fileID: 1313110157}
-  - component: {fileID: 1313110160}
-  - component: {fileID: 1313110159}
   m_Layer: 5
   m_Name: Card4
   m_TagString: Untagged
@@ -8168,32 +8082,6 @@ MonoBehaviour:
   audioSource: {fileID: 1313110157}
   text: {fileID: 0}
   canvasGroup: {fileID: 0}
---- !u!225 &1313110159
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1313110153}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!114 &1313110160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1313110153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a986201daa2f06d4d8f1940e4a1b7332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
-  fadeDuration: 1
 --- !u!1 &1517296960
 GameObject:
   m_ObjectHideFlags: 0
@@ -8332,8 +8220,6 @@ GameObject:
   - component: {fileID: 1613915108}
   - component: {fileID: 1613915111}
   - component: {fileID: 1613915110}
-  - component: {fileID: 1613915113}
-  - component: {fileID: 1613915112}
   m_Layer: 5
   m_Name: Card2
   m_TagString: Untagged
@@ -8511,32 +8397,6 @@ MonoBehaviour:
   audioSource: {fileID: 1613915110}
   text: {fileID: 0}
   canvasGroup: {fileID: 0}
---- !u!225 &1613915112
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613915106}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!114 &1613915113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613915106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a986201daa2f06d4d8f1940e4a1b7332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
-  fadeDuration: 1
 --- !u!1 &1720465950
 GameObject:
   m_ObjectHideFlags: 0
@@ -8840,7 +8700,7 @@ RectTransform:
   m_GameObject: {fileID: 1801865546}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 400850518}
@@ -8848,7 +8708,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 607, y: 592}
+  m_SizeDelta: {x: 137, y: 118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1801865549
 MonoBehaviour:
@@ -8870,7 +8730,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
+  m_Sprite: {fileID: -673122853, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9002,8 +8862,6 @@ GameObject:
   - component: {fileID: 1853299198}
   - component: {fileID: 1853299200}
   - component: {fileID: 1853299199}
-  - component: {fileID: 1853299202}
-  - component: {fileID: 1853299201}
   m_Layer: 5
   m_Name: Card1
   m_TagString: Untagged
@@ -9181,32 +9039,6 @@ MonoBehaviour:
   audioSource: {fileID: 1853299199}
   text: {fileID: 0}
   canvasGroup: {fileID: 0}
---- !u!225 &1853299201
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1853299195}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!114 &1853299202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1853299195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a986201daa2f06d4d8f1940e4a1b7332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
-  fadeDuration: 1
 --- !u!1 &1867227029
 GameObject:
   m_ObjectHideFlags: 0
@@ -14385,7 +14217,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -14452,7 +14284,7 @@ RectTransform:
   m_GameObject: {fileID: 2023163200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1613915107}
@@ -14460,7 +14292,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 607, y: 592}
+  m_SizeDelta: {x: 137, y: 118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2023163203
 MonoBehaviour:
@@ -14482,7 +14314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
+  m_Sprite: {fileID: -673122853, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14751,7 +14583,7 @@ RectTransform:
   m_GameObject: {fileID: 2142221964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 580284861}
@@ -14759,7 +14591,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 607, y: 592}
+  m_SizeDelta: {x: 137, y: 118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2142221967
 MonoBehaviour:
@@ -14781,7 +14613,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
+  m_Sprite: {fileID: -673122853, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14927,7 +14759,7 @@ PrefabInstance:
       objectReference: {fileID: 1795193270}
     - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: levelNumber
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: sceneLoader

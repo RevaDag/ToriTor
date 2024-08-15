@@ -18,17 +18,17 @@ MonoBehaviour:
     isPolygonStrokeClosed: 1
     polyPointTypes: 020000000200000002000000
     polyPointPositions:
-    - {x: 250, y: -250, z: 0}
     - {x: 0, y: 250, z: 0}
+    - {x: 250, y: -250, z: 0}
     - {x: -250, y: -249.99998, z: 0}
     polyPointInTangents:
-    - {x: -10, y: -10, z: 0}
-    - {x: 20, y: 0, z: 0}
-    - {x: -10, y: 10, z: 0}
+    - {x: -20, y: 0, z: 0}
+    - {x: 10, y: 10, z: 0}
+    - {x: 10, y: -10, z: 0}
     polyPointOutTangents:
-    - {x: 10, y: 10, z: -0}
-    - {x: -20, y: -0, z: -0}
-    - {x: 10, y: -10, z: -0}
+    - {x: 20, y: -0, z: -0}
+    - {x: -10, y: -10, z: -0}
+    - {x: -10, y: 10, z: -0}
     polyPointStrokeColors:
     - {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
     - {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}

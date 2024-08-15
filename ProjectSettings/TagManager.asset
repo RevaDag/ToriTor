@@ -47,3 +47,6 @@ TagManager:
   - name: DragLayer
     uniqueID: 1145286867
     locked: 0
+  - name: LoadingScreen
+    uniqueID: 946242481
+    locked: 0

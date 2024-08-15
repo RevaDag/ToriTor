@@ -219,7 +219,7 @@ public class QuizManager : MonoBehaviour, IGame
         currentObjectIndex = 0;
         ResetQuestionState();
         quiz.ResetQuiz();
-        quizSummary.ResetStickers();
+        //quizSummary.ResetStickers();
         quizSummary.HideSummary();
     }
 

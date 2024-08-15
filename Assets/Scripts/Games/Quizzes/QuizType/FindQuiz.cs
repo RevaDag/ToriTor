@@ -67,19 +67,17 @@ public class FindQuiz : IQuiz
 
     public void DeployQuestion ( ToriObject toriObject, Question question )
     {
+        question.SetObject(toriObject);
+        question.SetImages(toriObject.sprite);
+        question.SetAudioClip(toriObject.clip);
+
         switch (quizManager.GetSubject().name)
         {
             case "Colors":
-                question.SetObject(toriObject);
-                question.SetImages(toriObject.sprite);
                 question.ColorImage(toriObject.color);
-                break;
-            case "Shapes":
-                question.SetImages(toriObject.sprite);
                 break;
         }
 
-        question.SetAudioClip(toriObject.clip);
     }
 
     private void InitializeAnswers ()

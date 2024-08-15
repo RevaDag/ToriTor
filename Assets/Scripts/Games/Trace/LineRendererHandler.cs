@@ -89,9 +89,26 @@ public class LineRendererHandler : MonoBehaviour
         lineRenderer.endColor = finalColor;
     }
 
-    public void ClearLine ()
+    public void ResetLine ()
     {
+        // Stop any running fade coroutines
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+        }
+
+        // Clear the line renderer, which resets the position count and point index
         lineRenderer.positionCount = 0;
         pointIndex = 0;
+
+        // Optionally reset the LineRenderer's colors to their initial values (if needed)
+        Color initialColor = new Color(lineRenderer.startColor.r, lineRenderer.startColor.g, lineRenderer.startColor.b, 1.0f);
+        lineRenderer.startColor = initialColor;
+        lineRenderer.endColor = initialColor;
+
+        // Optionally, reset any other properties related to the LineRenderer as needed
+
+        Debug.Log("LineRenderer has been reset.");
     }
+
 }
