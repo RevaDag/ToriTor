@@ -7,6 +7,7 @@ public class MapController : MonoBehaviour
     public List<Fader> levelFaders;
     [SerializeField] private List<GameObject> levelStars;
     [SerializeField] private SceneLoader sceneLoader;
+    [SerializeField] private MapSummary mapSummary;
 
 
     void Start ()
@@ -68,6 +69,14 @@ public class MapController : MonoBehaviour
                 levelFaders[i].FadeIn();
                 await Task.Delay(500);
             }
+        }
+
+        Debug.Log(currentLevel);
+
+        if (currentLevel >= 5)
+        {
+            Debug.Log("Current level is 5 or higher, calling PlayMapSummary()");
+            mapSummary.PlayMapSummary();
         }
     }
 

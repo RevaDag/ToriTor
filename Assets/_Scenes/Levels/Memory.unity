@@ -1148,7 +1148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1801865549}
   audioSource: {fileID: 400850522}
-  text: {fileID: 0}
   canvasGroup: {fileID: 0}
 --- !u!82 &400850522
 AudioSource:
@@ -1905,7 +1904,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2142221967}
   audioSource: {fileID: 580284864}
-  text: {fileID: 0}
   canvasGroup: {fileID: 0}
 --- !u!1 &650240951
 GameObject:
@@ -2227,7 +2225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 360129616}
   audioSource: {fileID: 675372457}
-  text: {fileID: 0}
   canvasGroup: {fileID: 0}
 --- !u!224 &734797421 stripped
 RectTransform:
@@ -2643,7 +2640,7 @@ RectTransform:
   m_GameObject: {fileID: 1224425304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 202098054}
@@ -8080,7 +8077,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 84026448}
   audioSource: {fileID: 1313110157}
-  text: {fileID: 0}
   canvasGroup: {fileID: 0}
 --- !u!1 &1517296960
 GameObject:
@@ -8395,7 +8391,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2023163203}
   audioSource: {fileID: 1613915110}
-  text: {fileID: 0}
   canvasGroup: {fileID: 0}
 --- !u!1 &1720465950
 GameObject:
@@ -8655,7 +8650,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     parallelObjectSprite: {fileID: 21300000, guid: c418aa13ecd8ee343979025e45d306c4, type: 3}
     parallelObjectClip: {fileID: 8300000, guid: 7b8f6212181ff2542af46ad9e6bdf0f6, type: 3}
-  isTest: 1
+  isTest: 0
 --- !u!4 &1795193271
 Transform:
   m_ObjectHideFlags: 0
@@ -9037,7 +9032,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1259065754}
   audioSource: {fileID: 1853299199}
-  text: {fileID: 0}
   canvasGroup: {fileID: 0}
 --- !u!1 &1867227029
 GameObject:

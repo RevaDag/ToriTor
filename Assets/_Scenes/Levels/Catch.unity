@@ -5648,7 +5648,7 @@ RectTransform:
   m_GameObject: {fileID: 1139043638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1500734931}
@@ -12304,9 +12304,9 @@ MonoBehaviour:
   imageSprites: []
   imageToColor: {fileID: 3153739195613169469}
   audioSource: {fileID: 4420997338006377657}
-  tmpText: {fileID: 0}
   questionFader: {fileID: 0}
   findCard: {fileID: 0}
+  sticker: {fileID: 0}
 --- !u!82 &4420997338006377657
 AudioSource:
   m_ObjectHideFlags: 0
