@@ -1066,6 +1066,113 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830646680}
   m_CullTransparentMesh: 1
+--- !u!1 &985494956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985494958}
+  - component: {fileID: 985494957}
+  m_Layer: 0
+  m_Name: QuizTester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &985494957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985494956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c174e379bd42455468ca900436552462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subject:
+    name: Animals
+    hebrewName: "\u05D7\u05D9\u05D5\u05EA"
+    sprite: {fileID: 21300000, guid: c27d132e41037b247b853c5006479b41, type: 3}
+    toriObjects:
+    - objectName: "\u05D7\u05EA\u05D5\u05DC"
+      sprite: {fileID: 21300000, guid: a33cf7398acf4604ba2de591a2fb293f, type: 3}
+      clip: {fileID: 8300000, guid: 89519c1987966b64ca3d9800cfe23410, type: 3}
+      objectSoundClip: {fileID: 8300000, guid: 106ae98387a1e3c4a93eb7f1f0ce20b2, type: 3}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      parallelObjectSprite: {fileID: 0}
+      parallelObjectClip: {fileID: 0}
+    - objectName: "\u05DB\u05DC\u05D1"
+      sprite: {fileID: 21300000, guid: 000103b4574498e4f8cca2097c54693a, type: 3}
+      clip: {fileID: 8300000, guid: be29993cda18a4e46a8f21d0c69ecb54, type: 3}
+      objectSoundClip: {fileID: 8300000, guid: 271d291b067ff964faf0c0fe347ccd73, type: 3}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      parallelObjectSprite: {fileID: 0}
+      parallelObjectClip: {fileID: 0}
+    - objectName: "\u05E4\u05E8\u05D4"
+      sprite: {fileID: 21300000, guid: 4ac740d68cc514d4891fc0829fccfe85, type: 3}
+      clip: {fileID: 8300000, guid: 65dc0e807d97b7349b4b3536711701c0, type: 3}
+      objectSoundClip: {fileID: 8300000, guid: 23d8954bf333e4a49b0d9ddce9f650b2, type: 3}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      parallelObjectSprite: {fileID: 0}
+      parallelObjectClip: {fileID: 0}
+    - objectName: "\u05EA\u05E8\u05E0\u05D2\u05D5\u05DC"
+      sprite: {fileID: 21300000, guid: 045960b1fa1ec96468746d04bd073a74, type: 3}
+      clip: {fileID: 8300000, guid: feaa9a6bdad0eb64db320b482b39717f, type: 3}
+      objectSoundClip: {fileID: 8300000, guid: 8e8343dbeef78a14f86e954638b01150, type: 3}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      parallelObjectSprite: {fileID: 0}
+      parallelObjectClip: {fileID: 0}
+  selectedObjects:
+  - objectName: "\u05D7\u05EA\u05D5\u05DC"
+    sprite: {fileID: 21300000, guid: a33cf7398acf4604ba2de591a2fb293f, type: 3}
+    clip: {fileID: 8300000, guid: 89519c1987966b64ca3d9800cfe23410, type: 3}
+    objectSoundClip: {fileID: 8300000, guid: 106ae98387a1e3c4a93eb7f1f0ce20b2, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    parallelObjectSprite: {fileID: 0}
+    parallelObjectClip: {fileID: 0}
+  - objectName: "\u05DB\u05DC\u05D1"
+    sprite: {fileID: 21300000, guid: 000103b4574498e4f8cca2097c54693a, type: 3}
+    clip: {fileID: 8300000, guid: be29993cda18a4e46a8f21d0c69ecb54, type: 3}
+    objectSoundClip: {fileID: 8300000, guid: 271d291b067ff964faf0c0fe347ccd73, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    parallelObjectSprite: {fileID: 0}
+    parallelObjectClip: {fileID: 0}
+  - objectName: "\u05E4\u05E8\u05D4"
+    sprite: {fileID: 21300000, guid: 4ac740d68cc514d4891fc0829fccfe85, type: 3}
+    clip: {fileID: 8300000, guid: 65dc0e807d97b7349b4b3536711701c0, type: 3}
+    objectSoundClip: {fileID: 8300000, guid: 23d8954bf333e4a49b0d9ddce9f650b2, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    parallelObjectSprite: {fileID: 0}
+    parallelObjectClip: {fileID: 0}
+  - objectName: "\u05EA\u05E8\u05E0\u05D2\u05D5\u05DC"
+    sprite: {fileID: 21300000, guid: 045960b1fa1ec96468746d04bd073a74, type: 3}
+    clip: {fileID: 8300000, guid: feaa9a6bdad0eb64db320b482b39717f, type: 3}
+    objectSoundClip: {fileID: 8300000, guid: 8e8343dbeef78a14f86e954638b01150, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    parallelObjectSprite: {fileID: 0}
+    parallelObjectClip: {fileID: 0}
+  isTest: 1
+--- !u!4 &985494958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985494956}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1019222786
 GameObject:
   m_ObjectHideFlags: 0
@@ -11085,7 +11192,7 @@ RectTransform:
   m_GameObject: {fileID: 1259065751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1093958161}
@@ -11093,7 +11200,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 607, y: 592}
+  m_SizeDelta: {x: 404.66666, y: 394.66666}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1259065753
 MonoBehaviour:
@@ -11715,6 +11822,7 @@ MonoBehaviour:
   cardAnimator: {fileID: 1853299197}
   quizSummary: {fileID: 7138652974729551626}
   tutorialFader: {fileID: 1100445446}
+  quizTester: {fileID: 985494957}
 --- !u!4 &2119077731
 Transform:
   m_ObjectHideFlags: 0
@@ -12009,3 +12117,4 @@ SceneRoots:
   - {fileID: 2119077731}
   - {fileID: 819416233}
   - {fileID: 384137108}
+  - {fileID: 985494958}

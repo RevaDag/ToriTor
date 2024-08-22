@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MapSummary : MonoBehaviour
 {
-    [SerializeField] private CustomSpriteAnimator animator;
+    [SerializeField] private Animator animator;
     [SerializeField] private Fader fader;
+    [SerializeField] private ParticleSystem particaleSystem;
+    [SerializeField] private Fader textButtonFader;
 
     public void PlayMapSummary ()
     {
@@ -17,12 +19,12 @@ public class MapSummary : MonoBehaviour
         fader.FadeIn();
         yield return new WaitForSeconds(1);
 
-        PlayAnimation();
+        animator.SetTrigger("Open");
+        yield return new WaitForSeconds(1);
+
+        particaleSystem.Play();
+        textButtonFader.FadeIn();
     }
 
 
-    public void PlayAnimation ()
-    {
-        animator.StartAnimation();
-    }
 }

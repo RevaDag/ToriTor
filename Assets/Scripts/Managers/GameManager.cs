@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
         Chest,
         Catch,
         Find,
-        Fix
+        Fix,
+        SoundMatch
     }
 
     void Awake ()

@@ -14,6 +14,8 @@ public class QuizFactory : IQuizFactory
                 return new FindQuiz();
             case GameType.Fix:
                 return new FixQuiz();
+            case GameType.SoundMatch:
+                return new SoundMatchQuiz();
             default:
                 throw new System.ArgumentException("Invalid game type");
         }

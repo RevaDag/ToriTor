@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 172472556}
   - component: {fileID: 172472555}
   - component: {fileID: 172472557}
+  - component: {fileID: 172472558}
   m_Layer: 5
   m_Name: SubjectButton - Animals
   m_TagString: Untagged
@@ -385,18 +386,34 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 692049262}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+      - m_Target: {fileID: 172472558}
+        m_TargetAssemblyTypeName: SubjectButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MushroomGarden
+          m_StringArgument: TreasureMap_Animals
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &172472558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172472553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ad34099b385f347b3e1a4c1d3e43ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subjectName: Animals
+  nextSceneName: TreasureMap_Animals
+  sceneLoader: {fileID: 692049262}
+  buttonSFX: {fileID: 341122093}
 --- !u!1 &287647672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,7 +1473,35 @@ MonoBehaviour:
   - name: Animals
     hebrewName: "\u05D7\u05D9\u05D5\u05EA"
     sprite: {fileID: 21300000, guid: a33cf7398acf4604ba2de591a2fb293f, type: 3}
-    toriObjects: []
+    toriObjects:
+    - objectName: "\u05D7\u05EA\u05D5\u05DC"
+      sprite: {fileID: 21300000, guid: a33cf7398acf4604ba2de591a2fb293f, type: 3}
+      clip: {fileID: 8300000, guid: 89519c1987966b64ca3d9800cfe23410, type: 3}
+      objectSoundClip: {fileID: 8300000, guid: 106ae98387a1e3c4a93eb7f1f0ce20b2, type: 3}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      parallelObjectSprite: {fileID: 21300000, guid: e861fb992a08272438a08ef36720387c, type: 3}
+      parallelObjectClip: {fileID: 0}
+    - objectName: "\u05DB\u05DC\u05D1"
+      sprite: {fileID: 21300000, guid: 000103b4574498e4f8cca2097c54693a, type: 3}
+      clip: {fileID: 8300000, guid: be29993cda18a4e46a8f21d0c69ecb54, type: 3}
+      objectSoundClip: {fileID: 8300000, guid: 271d291b067ff964faf0c0fe347ccd73, type: 3}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      parallelObjectSprite: {fileID: 21300000, guid: 89c2cfc51e7aa0b48a0eaf650a5ab208, type: 3}
+      parallelObjectClip: {fileID: 0}
+    - objectName: "\u05E4\u05E8\u05D4"
+      sprite: {fileID: 21300000, guid: 4ac740d68cc514d4891fc0829fccfe85, type: 3}
+      clip: {fileID: 8300000, guid: 65dc0e807d97b7349b4b3536711701c0, type: 3}
+      objectSoundClip: {fileID: 8300000, guid: 23d8954bf333e4a49b0d9ddce9f650b2, type: 3}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      parallelObjectSprite: {fileID: 1384151951, guid: f16332da6b0eb2544ab436554e66eb88, type: 3}
+      parallelObjectClip: {fileID: 0}
+    - objectName: "\u05EA\u05E8\u05E0\u05D2\u05D5\u05DC"
+      sprite: {fileID: 21300000, guid: 045960b1fa1ec96468746d04bd073a74, type: 3}
+      clip: {fileID: 8300000, guid: feaa9a6bdad0eb64db320b482b39717f, type: 3}
+      objectSoundClip: {fileID: 8300000, guid: 8e8343dbeef78a14f86e954638b01150, type: 3}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      parallelObjectSprite: {fileID: 21300000, guid: 20d566d009b876446a80f7a816775023, type: 3}
+      parallelObjectClip: {fileID: 0}
   toriObjects1: []
   toriObjects2: []
   toriObjects3: []
@@ -2422,7 +2467,7 @@ MonoBehaviour:
     hebrewName: 
     sprite: {fileID: 0}
     toriObjects: []
-  currentLevel: 1
+  currentLevel: 5
 --- !u!4 &2037425472
 Transform:
   m_ObjectHideFlags: 0

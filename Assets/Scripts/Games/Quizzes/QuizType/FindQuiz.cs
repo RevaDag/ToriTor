@@ -31,6 +31,7 @@ public class FindQuiz : IQuiz
     {
         ResetCards();
         ResetAnswers();
+        FadeInObjects();
         InitiateQuiz();
     }
 
@@ -169,10 +170,21 @@ public class FindQuiz : IQuiz
 
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
-        answer.SetImage(toriObject.parallelObjectSprite);
         answer.SetObject(toriObject);
 
-        answer.SetAudioClip(toriObject.parallelObjectClip);
+        switch (quizManager.GetSubject().name)
+        {
+            case "Colors":
+                answer.SetImage(toriObject.parallelObjectSprite);
+                answer.SetAudioClip(toriObject.parallelObjectClip);
+                break;
+            case "Animals":
+                answer.SetImage(toriObject.sprite);
+                answer.SetAudioClip(toriObject.objectSoundClip);
+                break;
+        }
+
+
     }
 
 
@@ -266,4 +278,13 @@ public class FindQuiz : IQuiz
         quizManager.answersManager.FadeOutAnswers();
     }
 
+    private void FadeInObjects ()
+    {
+        List<Fader> faders = quizManager.objectFaders;
+
+        foreach (Fader fader in faders)
+        {
+            fader.FadeIn();
+        }
+    }
 }

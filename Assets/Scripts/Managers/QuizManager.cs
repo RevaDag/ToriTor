@@ -48,6 +48,9 @@ public class QuizManager : MonoBehaviour, IGame
     public ClampController clampController;
     public DraggingTutorial draggingTutorial;
 
+    [Header("Find")]
+    public List<Fader> objectFaders;
+
     [Header("Test")]
     public QuizTester quizTester;
 

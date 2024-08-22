@@ -9,6 +9,7 @@ public class CardsController : MonoBehaviour, IGame
     [SerializeField] private Animator cardAnimator;
     [SerializeField] private GameSummary quizSummary;
     [SerializeField] private Fader tutorialFader;
+    [SerializeField] private QuizTester quizTester;
 
     private bool isParallel;
 
@@ -20,7 +21,9 @@ public class CardsController : MonoBehaviour, IGame
 
     private void Start ()
     {
-        LoadingScreen.Instance.HideLoadingScreen();
+        if (LoadingScreen.Instance != null)
+            LoadingScreen.Instance.HideLoadingScreen();
+
         quizSummary.SetGameInterface(this);
         SetCard();
         tutorialFader.FadeIn();
@@ -29,11 +32,19 @@ public class CardsController : MonoBehaviour, IGame
     private void SetCard ()
     {
         isParallel = false;
+        GetCurrentObject();
         cardAnimator.SetTrigger("Flip");
-        currentObject = SubjectsManager.Instance.toriObjects1[currentObjectIndex];
         sticker.SetImage(currentObject.sprite);
         sticker.SetColor(currentObject.color);
         sticker.SetAudio(currentObject.clip);
+    }
+
+    private void GetCurrentObject ()
+    {
+        if (quizTester.isTest)
+            currentObject = quizTester.selectedObjects[currentObjectIndex];
+        else
+            currentObject = SubjectsManager.Instance.toriObjects1[currentObjectIndex];
     }
 
     public async void OnClick ()

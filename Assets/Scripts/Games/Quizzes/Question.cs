@@ -18,6 +18,7 @@ public class Question : MonoBehaviour
     [Header("Additionals")]
     public FindCard findCard;
     public Sticker sticker;
+    public Animator animator;
 
 
     public ToriObject toriObject { get; private set; }

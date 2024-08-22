@@ -9,7 +9,6 @@ using UnityEngine.Video;
 public class LoadingScreen : MonoBehaviour
 {
     public static LoadingScreen Instance { get; private set; }
-    //[SerializeField] private GameObject loadingScreen;
     [SerializeField] private Fader fader;
     [SerializeField] private TMP_Text loadingText;
     [SerializeField] private VideoPlayer videoPlayer;
@@ -54,8 +53,9 @@ public class LoadingScreen : MonoBehaviour
         if (hideTime > 0)
         {
             yield return new WaitForSeconds(hideTime);
-            HideLoadingScreen();
         }
+        HideLoadingScreen();
+
     }
 
     public void LoadPreviousScene ()
