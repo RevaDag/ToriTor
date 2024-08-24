@@ -59,23 +59,9 @@ public class SoundMatchQuiz : IQuiz
 
     public void DeployQuestion ( Question question, ToriObject toriObject )
     {
-        switch (quizManager.GetSubject().name)
-        {
-            case "Colors":
-                question.ColorImage(toriObject.color);
-                break;
-            case "Shapes":
-                question.SetImages(toriObject.sprite);
-                break;
-            case "Animals":
-                question.ColorImage(Color.black);
-                question.SetImages(toriObject.sprite);
-                question.SetAudioClip(toriObject.objectSoundClip);
-
-                break;
-
-
-        }
+        question.ColorImage(Color.black);
+        question.SetImages(toriObject.sprite);
+        question.SetAudioClip(toriObject.objectSoundClip);
     }
 
     private void InitializeAnswers ()
@@ -134,21 +120,7 @@ public class SoundMatchQuiz : IQuiz
 
     private void DeployAnswer ( Answer answer, ToriObject toriObject )
     {
-        switch (quizManager.GetSubject().name)
-        {
-            case "Colors":
-                answer.SetColor(toriObject.color);
-                break;
-            case "Shapes":
-                answer.SetImage(toriObject.sprite);
-                break;
-            case "Animals":
-                answer.SetImage(toriObject.sprite);
-                answer.SetAudioClip(toriObject.clip);
-                break;
-
-        }
-
+        answer.SetImage(toriObject.sprite);
         answer.SetAudioClip(toriObject.clip);
     }
 
@@ -166,7 +138,7 @@ public class SoundMatchQuiz : IQuiz
 
         await Task.Delay(1000);
 
-        quizManager.SetQuestionState(QuestionState.Correct);
+        quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         correctAnswersCounter++;
 
         currentQuestion.FadeOut();

@@ -16,7 +16,6 @@ public class ChestQuiz : IQuiz
     public void InitiateQuiz ()
     {
         quizManager.LoadLevelObjects();
-        //ResetAnswers();
         LoadCurrentQuestion();
         InitializeAnswers();
         DeployAnswers();
@@ -148,7 +147,6 @@ public class ChestQuiz : IQuiz
     {
         answer.PlayClip();
 
-        quizManager.SetQuestionState(QuestionState.Correct);
         correctAnswersCounter++;
 
         lidAnimator.SetBool("isOpen", true);

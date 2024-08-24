@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
         Catch,
         Find,
         Fix,
-        SoundMatch
+        SoundMatch,
+        Feed
     }
 
     void Awake ()

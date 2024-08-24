@@ -8,15 +8,11 @@ public class FixQuiz : IQuiz
     private QuizManager quizManager;
 
     private List<ToriObject> currentObjects;
-
-    //private Subject subject;
     private int correctAnswersCounter;
 
     public void InitiateQuiz ()
     {
         LoadObjects();
-
-        //ResetAnswers();
 
         quizManager.HideLoadingScreen();
 
@@ -60,14 +56,8 @@ public class FixQuiz : IQuiz
 
     public void DeployQuestion ( ToriObject toriObject, Question question )
     {
-        switch (quizManager.GetSubject().name)
-        {
-            case "Shapes":
-                question.SetObject(toriObject);
-                question.SetImages(toriObject.sprite);
-                break;
-        }
-
+        question.SetObject(toriObject);
+        question.SetImages(toriObject.sprite);
         question.SetAudioClip(toriObject.clip);
     }
 

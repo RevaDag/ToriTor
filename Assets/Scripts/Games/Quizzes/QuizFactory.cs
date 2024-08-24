@@ -16,6 +16,8 @@ public class QuizFactory : IQuizFactory
                 return new FixQuiz();
             case GameType.SoundMatch:
                 return new SoundMatchQuiz();
+            case GameType.Feed:
+                return new FeedQuiz();
             default:
                 throw new System.ArgumentException("Invalid game type");
         }

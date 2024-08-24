@@ -24,8 +24,6 @@ public class CatchQuiz : IQuiz
 
         await InstantiateAnswers();
 
-        // ResetAnswers();
-
         quizManager.HideLoadingScreen();
 
         LoadCurrentQuestion();
@@ -208,7 +206,6 @@ public class CatchQuiz : IQuiz
     {
         quizManager.answersManager.DestroyAllAnswers();
         quizManager.clampController.CloseClamp();
-        quizManager.SetQuestionState(QuestionState.Correct);
         quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         correctAnswersCounter = 0;
         await Task.Delay(3000);

@@ -42,11 +42,7 @@ public class GameSummary : MonoBehaviour
     public void SetStickers ()
     {
         List<ToriObject> toriObjects = new List<ToriObject>();
-
-        if (predefinedObjects.Count == 0)
-            toriObjects = GetObjects();
-        else
-            toriObjects = predefinedObjects;
+        toriObjects = GetObjects();
 
         for (int i = 0; i < toriObjects.Count; i++)
         {
@@ -72,25 +68,19 @@ public class GameSummary : MonoBehaviour
     {
         List<ToriObject> toriObjects = new List<ToriObject>();
 
-
-        // Check if quizTester exists and is in test mode
-        if (quizTester != null && quizTester.isTest)
+        if (predefinedObjects.Count == 0)
         {
-            toriObjects = quizTester.selectedObjects;
-            return toriObjects;
-        }
+            // Check if quizTester exists and is in test mode
+            if (quizTester != null && quizTester.isTest)
+                toriObjects = quizTester.selectedObjects;
 
-
-
-        // Check if SubjectsManager.Instance exists
-        if (SubjectsManager.Instance != null)
-        {
-            toriObjects = SubjectsManager.Instance.GetObjectsByListNumber(levelNumber);
+            if (SubjectsManager.Instance != null)
+                toriObjects = SubjectsManager.Instance.GetObjectsByListNumber(levelNumber);
+            else
+                Debug.LogWarning("SubjectsManager.Instance is null.");
         }
         else
-        {
-            Debug.LogWarning("SubjectsManager.Instance is null.");
-        }
+            toriObjects = predefinedObjects;
 
         return toriObjects;
     }

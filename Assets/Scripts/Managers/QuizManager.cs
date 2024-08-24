@@ -8,15 +8,6 @@ public class QuizManager : MonoBehaviour, IGame
     private IQuizFactory quizFactory;
     private IQuiz quiz;
 
-    public enum QuestionState
-    {
-        Pending,
-        Correct,
-        Wrong
-    }
-
-    public QuestionState currentQuestionState;
-
     public FeedbackManager feedbackManager;
     public GameSummary quizSummary;
 
@@ -122,7 +113,6 @@ public class QuizManager : MonoBehaviour, IGame
 
     public void MoveToNextObject ()
     {
-        ResetQuestionState();
         currentObjectIndex++;
     }
 
@@ -193,19 +183,9 @@ public class QuizManager : MonoBehaviour, IGame
 
     public void WrongAnswer ()
     {
-        SetQuestionState(QuestionState.Wrong);
         quiz.WrongAnswer();
     }
 
-    public void ResetQuestionState ()
-    {
-        SetQuestionState(QuestionState.Pending);
-    }
-
-    public void SetQuestionState ( QuestionState questionState )
-    {
-        currentQuestionState = questionState;
-    }
 
     public void CompleteQuiz ()
     {
@@ -220,7 +200,6 @@ public class QuizManager : MonoBehaviour, IGame
         usedObjects.Clear();
         answersManager.ResetUnusedAnswersList();
         currentObjectIndex = 0;
-        ResetQuestionState();
         quiz.ResetQuiz();
         quizSummary.HideSummary();
     }
