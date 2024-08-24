@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameSummary : MonoBehaviour
 {
-    public int levelNumber;
+    //private int levelNumber;
 
     private IGame gameInterface;
     [SerializeField] private QuizTester quizTester;
@@ -75,7 +75,10 @@ public class GameSummary : MonoBehaviour
                 toriObjects = quizTester.selectedObjects;
 
             if (SubjectsManager.Instance != null)
+            {
+                int levelNumber = GameManager.Instance.currentlevel;
                 toriObjects = SubjectsManager.Instance.GetObjectsByListNumber(levelNumber);
+            }
             else
                 Debug.LogWarning("SubjectsManager.Instance is null.");
         }

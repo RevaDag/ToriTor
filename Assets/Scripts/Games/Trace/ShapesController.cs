@@ -72,7 +72,7 @@ public class ShapesController : MonoBehaviour, IGame
         gameSummary.ShowSummary();
 
         if (GameManager.Instance != null)
-            GameManager.Instance.CompleteLevelAndProgressToNextLevel(gameSummary.levelNumber);
+            GameManager.Instance.CompleteLevelAndProgressToNextLevel();
     }
 
     public void ResetGame ()

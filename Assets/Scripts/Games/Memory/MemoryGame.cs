@@ -39,7 +39,10 @@ public class MemoryGame : MonoBehaviour, IGame
         if (quizTester.isTest)
             currentObjects = quizTester.selectedObjects;
         else
-            currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(gameSummary.levelNumber);
+        {
+            int levelNumber = GameManager.Instance.currentlevel;
+            currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(levelNumber);
+        }
 
     }
 
@@ -135,7 +138,7 @@ public class MemoryGame : MonoBehaviour, IGame
     {
         gameSummary.ShowSummary();
 
-        GameManager.Instance.CompleteLevelAndProgressToNextLevel(gameSummary.levelNumber);
+        GameManager.Instance.CompleteLevelAndProgressToNextLevel();
     }
 
     public bool CanRevealCard ()

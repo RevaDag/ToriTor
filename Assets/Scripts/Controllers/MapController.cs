@@ -46,7 +46,7 @@ public class MapController : MonoBehaviour
 
     private void UpdateStars ()
     {
-        int currentLevel = GameManager.Instance.currentLevel;
+        int currentLevel = GameManager.Instance.nextLevel;
 
         for (int i = 0; i < levelStars.Count; i++)
         {
@@ -60,7 +60,7 @@ public class MapController : MonoBehaviour
 
     public async Task UpdateMap ()
     {
-        int currentLevel = GameManager.Instance.currentLevel;
+        int currentLevel = GameManager.Instance.nextLevel;
 
         for (int i = 0; i < levelFaders.Count; i++)
         {
@@ -83,6 +83,12 @@ public class MapController : MonoBehaviour
     public void ResetMap ()
     {
         GameManager.Instance.ResetLevel();
+    }
+
+    public void SetSelectedLevel ( int _levelNumber )
+    {
+        if (GameManager.Instance != null)
+            GameManager.Instance.SetCurrentLevel(_levelNumber);
     }
 
     public void UnlockAllLevels ()

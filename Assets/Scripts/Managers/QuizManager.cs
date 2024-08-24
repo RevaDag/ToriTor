@@ -77,7 +77,10 @@ public class QuizManager : MonoBehaviour, IGame
         if (quizTester.isTest)
             currentObjects = quizTester.selectedObjects;
         else
-            currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(quizSummary.levelNumber);
+        {
+            int levelNumber = GameManager.Instance.currentlevel;
+            currentObjects = SubjectsManager.Instance.GetObjectsByListNumber(levelNumber);
+        }
 
         return currentObjects;
 
@@ -191,7 +194,7 @@ public class QuizManager : MonoBehaviour, IGame
     {
         quizSummary.ShowSummary();
         answersManager.FadeOutAnswers();
-        GameManager.Instance.CompleteLevelAndProgressToNextLevel(quizSummary.levelNumber);
+        GameManager.Instance.CompleteLevelAndProgressToNextLevel();
     }
 
 

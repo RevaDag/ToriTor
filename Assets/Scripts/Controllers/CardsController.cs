@@ -90,7 +90,7 @@ public class CardsController : MonoBehaviour, IGame
         else
         {
             quizSummary.ShowSummary();
-            GameManager.Instance.CompleteLevelAndProgressToNextLevel(quizSummary.levelNumber);
+            GameManager.Instance.CompleteLevelAndProgressToNextLevel();
         }
     }
 

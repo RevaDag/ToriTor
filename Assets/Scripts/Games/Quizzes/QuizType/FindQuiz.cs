@@ -178,6 +178,10 @@ public class FindQuiz : IQuiz
                 answer.SetImage(toriObject.parallelObjectSprite);
                 answer.SetAudioClip(toriObject.parallelObjectClip);
                 break;
+            case "Shapes":
+                answer.SetImage(toriObject.parallelObjectSprite);
+                answer.SetAudioClip(toriObject.parallelObjectClip);
+                break;
             case "Animals":
                 answer.SetImage(toriObject.sprite);
                 answer.SetAudioClip(toriObject.objectSoundClip);

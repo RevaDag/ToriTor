@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
 
     public List<ToriObject> selectedObjects;
     public Subject currentSubject;
-    public int currentLevel = 1;
+    public int currentlevel { get; private set; }
+    public int nextLevel = 1;
 
     [Header("Player Progress")]
     private string saveFilePath;
@@ -61,10 +62,15 @@ public class GameManager : MonoBehaviour
         currentSubject = subject;
     }
 
-
-    public void CompleteLevelAndProgressToNextLevel ( int level )
+    public void SetCurrentLevel ( int _levelNumber )
     {
-        currentLevel = level + 1;
+        currentlevel = _levelNumber;
+    }
+
+
+    public void CompleteLevelAndProgressToNextLevel ()
+    {
+        nextLevel = currentlevel + 1;
         SaveProgress();
 
     }
@@ -136,13 +142,14 @@ public class GameManager : MonoBehaviour
 
     public void ResetLevel ()
     {
-        currentLevel = 1;
+        nextLevel = 1;
+        SaveProgress();
     }
 
     [ContextMenu("Reset Progress")]
     public void ResetProgress ()
     {
-        currentLevel = 1;
+        nextLevel = 1;
         learnedSubjects.Clear();
         SaveProgress();
         LoadProgress();
