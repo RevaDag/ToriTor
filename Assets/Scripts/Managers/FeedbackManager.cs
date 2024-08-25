@@ -73,7 +73,7 @@ public class FeedbackManager : MonoBehaviour
         }
 
         audioSource.clip = feedback;
-        audioSource.Play();
+        //audioSource.Play();
     }
 
     public void PlayConfetti ()

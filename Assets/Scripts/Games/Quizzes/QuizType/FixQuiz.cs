@@ -165,6 +165,7 @@ public class FixQuiz : IQuiz
     public void CorrectAnswer ( Answer answer )
     {
         quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
+        answer.PlayClip();
 
         if (correctAnswersCounter == 2)
         {
@@ -180,7 +181,7 @@ public class FixQuiz : IQuiz
     private async Task CelebrateAsync ()
     {
         correctAnswersCounter = 0;
-        await Task.Delay(3000);
+        await Task.Delay(2000);
         quizManager.CompleteQuiz();
     }
 

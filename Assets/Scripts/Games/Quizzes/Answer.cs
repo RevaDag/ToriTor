@@ -20,7 +20,9 @@ public class Answer : MonoBehaviour
     public ToriObject toriObject { get; private set; }
     [SerializeField] private AnswersManager answersManager;
 
+    [Header("Additionals")]
     [SerializeField] private RandomMoveUI randomMoveUI;
+    public RandomSprite randomSprite;
 
     public void Initialize ()
     {

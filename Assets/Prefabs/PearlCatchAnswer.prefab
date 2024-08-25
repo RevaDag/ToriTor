@@ -32,7 +32,7 @@ RectTransform:
   m_GameObject: {fileID: 173041744544151420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2733407348474456193}
@@ -116,6 +116,7 @@ MonoBehaviour:
   target: {fileID: 0}
   answersManager: {fileID: 0}
   randomMoveUI: {fileID: 8231084888469886933}
+  randomSprite: {fileID: 0}
 --- !u!114 &2636192247756132441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +239,7 @@ GameObject:
   - component: {fileID: 5481551033780992722}
   - component: {fileID: 4007648449327543893}
   m_Layer: 5
-  m_Name: KeyImage
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

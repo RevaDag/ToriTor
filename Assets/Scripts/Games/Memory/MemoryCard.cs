@@ -22,7 +22,6 @@ public class MemoryCard : MonoBehaviour
     {
         toriObject = _cardObject;
 
-        sticker.ResizeImageScale(Vector3.one);
         sticker.SetToriObject(_cardObject);
         sticker.SetImage(_cardObject.sprite);
         sticker.SetAudio(_cardObject.clip);
@@ -72,8 +71,6 @@ public class MemoryCard : MonoBehaviour
     {
         HideObject();
         yield return new WaitForSeconds(1);
-        Vector3 parallelSize = new Vector3(0.25f, 0.25f, 0.25f);
-        sticker.ResizeImageScale(parallelSize);
         sticker.SetImage(toriObject.parallelObjectSprite);
         sticker.SetAudio(toriObject.parallelObjectClip);
         RevealObject();

@@ -30,7 +30,9 @@ public class CatchQuiz : IQuiz
 
         DeployAnswers();
 
-        quizManager.clampController.OpenClamp();
+        if (quizManager.clampController != null)
+            quizManager.clampController.OpenClamp();
+
         FadeInAnswers();
     }
 
@@ -46,7 +48,7 @@ public class CatchQuiz : IQuiz
     {
         // If this is a tutorial 
         if (quizManager.currentObjectIndex == 0)
-            await quizManager.answersManager.InstantiateAnswersAsync(3);
+            await quizManager.answersManager.InstantiateAnswersAsync();
         else
             await quizManager.answersManager.InstantiateAnswersAsync(8);
     }
@@ -68,15 +70,8 @@ public class CatchQuiz : IQuiz
         Question currentQuestion = quizManager.questions[0];
 
 
-        switch (quizManager.GetSubject().name)
-        {
-            case "Colors":
-                currentQuestion.ColorImage(toriObject.color);
-                break;
-            case "Shapes":
-                currentQuestion.SetImages(toriObject.sprite);
-                break;
-        }
+        if (quizManager.GetSubject().name == "Colors")
+            currentQuestion.ColorImage(toriObject.color);
 
         currentQuestion.SetAudioClip(toriObject.clip);
         currentQuestion.PlayAudioSouce();
@@ -118,13 +113,8 @@ public class CatchQuiz : IQuiz
             Answer answer = shuffledAnswers[i];
             ToriObject toriObject = answerObjects[i];
 
-            DeployAnswer(answer, toriObject);
+            DeployAnswer(answer, toriObject, isCorrect);
 
-            if (isCorrect)
-            {
-                answer.SetAsCorrect();
-                answer.SetTarget(quizManager.questions[0].target);
-            }
         }
     }
 
@@ -165,7 +155,7 @@ public class CatchQuiz : IQuiz
     }
 
 
-    private void DeployAnswer ( Answer answer, ToriObject toriObject )
+    private void DeployAnswer ( Answer answer, ToriObject toriObject, bool isCorrect )
     {
         switch (quizManager.GetSubject().name)
         {
@@ -175,7 +165,18 @@ public class CatchQuiz : IQuiz
             case "Shapes":
                 answer.SetImage(toriObject.sprite);
                 break;
+            case "Animals":
+                answer.SetImage(toriObject.sprite);
+                break;
+        }
 
+
+        if (isCorrect)
+        {
+            answer.SetAsCorrect();
+            answer.SetTarget(quizManager.questions[0].target);
+            if (answer.randomSprite != null)
+                answer.randomSprite.SetRandomSprite();
         }
 
         answer.SetAudioClip(toriObject.clip);
@@ -191,21 +192,23 @@ public class CatchQuiz : IQuiz
             quizManager.draggingTutorial.StopMoving();
         }
 
-        if (correctAnswersCounter == 2)
+        correctAnswersCounter++;
+
+        if (correctAnswersCounter == quizManager.correctAnswersRequired)
         {
             _ = CelebrateAsync();
         }
-        else
-        {
-            correctAnswersCounter++;
-        }
 
+        Debug.Log(correctAnswersCounter);
     }
 
     private async Task CelebrateAsync ()
     {
         quizManager.answersManager.DestroyAllAnswers();
-        quizManager.clampController.CloseClamp();
+
+        if (quizManager.clampController != null)
+            quizManager.clampController.CloseClamp();
+
         quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         correctAnswersCounter = 0;
         await Task.Delay(3000);

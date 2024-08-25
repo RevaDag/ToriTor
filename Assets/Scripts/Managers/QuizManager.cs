@@ -38,6 +38,7 @@ public class QuizManager : MonoBehaviour, IGame
     [Header("Catch")]
     public ClampController clampController;
     public DraggingTutorial draggingTutorial;
+    public int correctAnswersRequired = 3;
 
     [Header("Find")]
     public List<Fader> objectFaders;

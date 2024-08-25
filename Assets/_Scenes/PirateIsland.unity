@@ -1733,63 +1733,63 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 72fc25c08a0a31d4091ca0c387b443c4, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 0, b: 0, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 88c423508b9d75241a8bc45816d73ec1, type: 3}
+      parallelObjectSprite: {fileID: 648558440, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: cd459827c8cdeba4fafc2792f1c0b290, type: 3}
     - objectName: "\u05DB\u05D7\u05D5\u05DC"
       sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
       clip: {fileID: 8300000, guid: ab7c9c67ee0900f459a8877f1bbae4a5, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 0, g: 0.004989147, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: a5fc075174099a647981ab467adba3c9, type: 3}
+      parallelObjectSprite: {fileID: -2077546682, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: df82c7f62ce39a648969294fb29a86b6, type: 3}
     - objectName: "\u05E6\u05D4\u05D5\u05D1"
       sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
       clip: {fileID: 8300000, guid: 8cf25e391b2040048851ec595d9f2290, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 0.9433962, g: 0.8957994, b: 0.022249907, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 49f31e1949ff5d74abb1a0cf0a65e138, type: 3}
+      parallelObjectSprite: {fileID: -567181869, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 2defa5d6516dc0542811bbfc1ad260dc, type: 3}
     - objectName: "\u05D9\u05E8\u05D5\u05E7"
       sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
       clip: {fileID: 8300000, guid: b4859006f745e24419338fb1bafa824a, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 0.017627195, g: 0.6792453, b: 0, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 05ebf4964e47b784185697353f2843cd, type: 3}
+      parallelObjectSprite: {fileID: -503265882, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 634244bbfe1cd2b4f901b9484bfd407f, type: 3}
     - objectName: "\u05DB\u05EA\u05D5\u05DD"
       sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
       clip: {fileID: 8300000, guid: c60cef973c3f64840ae47bb05d472abd, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 0.5589785, b: 0, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 6efca6e3b950ac349b0e6912a79e9d65, type: 3}
+      parallelObjectSprite: {fileID: 1956039556, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 338a56e07b63da3439312a756f3dfbe7, type: 3}
     - objectName: "\u05E1\u05D2\u05D5\u05DC"
       sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
       clip: {fileID: 8300000, guid: e23f8697c4d7b77449435ed13826fa25, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 0.59720945, g: 0, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 34442bb6133c31340a32327038670020, type: 3}
+      parallelObjectSprite: {fileID: -1549852311, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: a7e27e9d2af8aea49851c8beeaa58953, type: 3}
     - objectName: "\u05D5\u05E8\u05D5\u05D3"
       sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
       clip: {fileID: 8300000, guid: 5a451e4700a83e4409bf8fedba25c0b4, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 0.5235849, b: 0.9009803, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 8e579cca573068442ab90b0d18eba61e, type: 3}
+      parallelObjectSprite: {fileID: 2081149710, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: cfec37f1edc73744a80602604ca0a1a2, type: 3}
     - objectName: "\u05D7\u05D5\u05DD"
       sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
       clip: {fileID: 8300000, guid: a8ec6df672c37f84bbd5915c89c9b168, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 0.3962264, g: 0.26395237, b: 0.12148452, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: c24e1345a8db46340b442ab5a0f4c7f9, type: 3}
+      parallelObjectSprite: {fileID: -1864737700, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 693c3f1744001944ab980fd0e8f7d11e, type: 3}
     - objectName: "\u05E9\u05D7\u05D5\u05E8"
       sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
       clip: {fileID: 8300000, guid: d97351f2461e2c34f8cd6b5da9c07cfd, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 0, g: 0, b: 0, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 35f90b2e19edcbb4c8628024d6949e2b, type: 3}
+      parallelObjectSprite: {fileID: -1651606290, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 19a9ef4eb47d8d74a97cb9d390ffd964, type: 3}
     - objectName: "\u05DC\u05D1\u05DF"
       sprite: {fileID: 21300000, guid: f42723902d31ec543bf0cea8ab9a2661, type: 3}
@@ -1807,102 +1807,102 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 23280cc77023dff4f96488a29d224698, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 016425409f977864a8f3868e1b9d271c, type: 3}
+      parallelObjectSprite: {fileID: -932092916, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 9850a849530c97346810fd0df2e2bf86, type: 3}
     - objectName: "\u05DE\u05E9\u05D5\u05DC\u05E9"
       sprite: {fileID: -673122853, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
       clip: {fileID: 8300000, guid: 06fec2b86644520419c85f590b013640, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 252ecadb949a3014a9472345829cc0a9, type: 3}
+      parallelObjectSprite: {fileID: 60167288, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 2721fc6399d8abc4d8053853ff8890d1, type: 3}
     - objectName: "\u05E2\u05D9\u05D2\u05D5\u05DC"
       sprite: {fileID: 252129147, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
       clip: {fileID: 8300000, guid: d7050097f4e67624681e23caa5439098, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: c418aa13ecd8ee343979025e45d306c4, type: 3}
+      parallelObjectSprite: {fileID: -296936811, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 7b8f6212181ff2542af46ad9e6bdf0f6, type: 3}
     - objectName: "\u05DE\u05DC\u05D1\u05DF"
       sprite: {fileID: -594847074, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
       clip: {fileID: 8300000, guid: 5d487d3db3557a540a98e9aa44187587, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 71cfd538c0349734a979070137931a15, type: 3}
+      parallelObjectSprite: {fileID: 1107520781, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 2be9f7432bd57ef49a3c1de08ed6b7f4, type: 3}
     - objectName: "\u05DE\u05E2\u05D5\u05D9\u05D9\u05DF"
       sprite: {fileID: -1285528834, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
       clip: {fileID: 8300000, guid: 31c1c330385301749af0e091c4e41404, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: b6f5e825757b29543b1b9e76b5696e97, type: 3}
+      parallelObjectSprite: {fileID: -1515367193, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: c51f6bfd0e1dc4b4f93ce542dc95375f, type: 3}
     - objectName: "\u05D0\u05DC\u05D9\u05E4\u05E1\u05D4"
       sprite: {fileID: -1135065086, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
       clip: {fileID: 8300000, guid: cbe1f8ecad99fcc4c9000a5233d2be49, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 9d2b39ca34517334ba18f26c747bb26a, type: 3}
+      parallelObjectSprite: {fileID: 784807605, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: dc1fdb5e715bee64ebe106548206eb6a, type: 3}
     - objectName: "\u05DC\u05D1"
       sprite: {fileID: -231476302, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
       clip: {fileID: 8300000, guid: 5f5d7b7deb4167345a00e438510ac4df, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 4c67a999f8771a94dbbf507f2d0c5bfc, type: 3}
+      parallelObjectSprite: {fileID: -1309186364, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: 5f5d7b7deb4167345a00e438510ac4df, type: 3}
     - objectName: "\u05DB\u05D5\u05DB\u05D1"
       sprite: {fileID: -714375584, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
       clip: {fileID: 8300000, guid: f2c67565c62baff448258b574358bc88, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 6beb59a33784ba941923bf0e35c925a0, type: 3}
+      parallelObjectSprite: {fileID: -1913153114, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: f2c67565c62baff448258b574358bc88, type: 3}
     - objectName: "\u05DE\u05E9\u05D5\u05E9\u05D4"
       sprite: {fileID: -1233804323, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
       clip: {fileID: 8300000, guid: 06bed449718065940be182f170e34554, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 55ee1e06bb9b0a147ac7209ee7baccb1, type: 3}
+      parallelObjectSprite: {fileID: -2045098817, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: e13eac5dfdd229446bfa43f2f63d45fa, type: 3}
     - objectName: "\u05D7\u05E5"
       sprite: {fileID: 795066585, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
       clip: {fileID: 8300000, guid: cc340149208bafa4f9e68c4679c409c1, type: 3}
       objectSoundClip: {fileID: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 1222419171440d84aaf475aa9fd72b88, type: 3}
+      parallelObjectSprite: {fileID: -131589275, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 8300000, guid: cc340149208bafa4f9e68c4679c409c1, type: 3}
   - name: Animals
     hebrewName: "\u05D7\u05D9\u05D5\u05EA"
     sprite: {fileID: 21300000, guid: a33cf7398acf4604ba2de591a2fb293f, type: 3}
     toriObjects:
     - objectName: "\u05D7\u05EA\u05D5\u05DC"
-      sprite: {fileID: 21300000, guid: a33cf7398acf4604ba2de591a2fb293f, type: 3}
+      sprite: {fileID: 469017460, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       clip: {fileID: 8300000, guid: 89519c1987966b64ca3d9800cfe23410, type: 3}
       objectSoundClip: {fileID: 8300000, guid: 106ae98387a1e3c4a93eb7f1f0ce20b2, type: 3}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: e861fb992a08272438a08ef36720387c, type: 3}
+      parallelObjectSprite: {fileID: -1642855902, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 0}
     - objectName: "\u05DB\u05DC\u05D1"
-      sprite: {fileID: 21300000, guid: 000103b4574498e4f8cca2097c54693a, type: 3}
+      sprite: {fileID: -1249440982, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       clip: {fileID: 8300000, guid: be29993cda18a4e46a8f21d0c69ecb54, type: 3}
       objectSoundClip: {fileID: 8300000, guid: 271d291b067ff964faf0c0fe347ccd73, type: 3}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 89c2cfc51e7aa0b48a0eaf650a5ab208, type: 3}
+      parallelObjectSprite: {fileID: 1903180654, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 0}
     - objectName: "\u05E4\u05E8\u05D4"
-      sprite: {fileID: 21300000, guid: 4ac740d68cc514d4891fc0829fccfe85, type: 3}
+      sprite: {fileID: -411417304, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       clip: {fileID: 8300000, guid: 65dc0e807d97b7349b4b3536711701c0, type: 3}
       objectSoundClip: {fileID: 8300000, guid: 23d8954bf333e4a49b0d9ddce9f650b2, type: 3}
       color: {r: 1, g: 1, b: 1, a: 1}
       parallelObjectSprite: {fileID: 1384151951, guid: f16332da6b0eb2544ab436554e66eb88, type: 3}
       parallelObjectClip: {fileID: 0}
     - objectName: "\u05EA\u05E8\u05E0\u05D2\u05D5\u05DC"
-      sprite: {fileID: 21300000, guid: 045960b1fa1ec96468746d04bd073a74, type: 3}
+      sprite: {fileID: -814201009, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       clip: {fileID: 8300000, guid: feaa9a6bdad0eb64db320b482b39717f, type: 3}
       objectSoundClip: {fileID: 8300000, guid: 8e8343dbeef78a14f86e954638b01150, type: 3}
       color: {r: 1, g: 1, b: 1, a: 1}
-      parallelObjectSprite: {fileID: 21300000, guid: 20d566d009b876446a80f7a816775023, type: 3}
+      parallelObjectSprite: {fileID: 1542611414, guid: dd61eea076d193b49aac7aefdfb5fa7a, type: 3}
       parallelObjectClip: {fileID: 0}
   toriObjects1: []
   toriObjects2: []
@@ -3002,7 +3002,7 @@ MonoBehaviour:
     hebrewName: 
     sprite: {fileID: 0}
     toriObjects: []
-  currentLevel: 5
+  nextLevel: 1
 --- !u!4 &2037425472
 Transform:
   m_ObjectHideFlags: 0

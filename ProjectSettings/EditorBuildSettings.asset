@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/Levels/Cards.unity
     guid: 234173266b36f7943add38dc10e02123
   - enabled: 1
-    path: Assets/_Scenes/Levels/Catch.unity
+    path: Assets/_Scenes/Levels/Shell.unity
     guid: 14b5a6ed1938d6d47a05877915ba261a
   - enabled: 1
     path: Assets/_Scenes/Levels/Chest.unity
@@ -41,4 +41,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Levels/SoundMatch.unity
     guid: 72ee7b2f45c6a2b4e941c7daff4f3f37
+  - enabled: 1
+    path: Assets/_Scenes/Levels/Feed.unity
+    guid: e0830ab17ca3c13479ae1d2abdc31146
+  - enabled: 1
+    path: Assets/_Scenes/Levels/Chicks.unity
+    guid: 04693fc1b2ef4de45af3105e82304fd0
   m_configObjects: {}

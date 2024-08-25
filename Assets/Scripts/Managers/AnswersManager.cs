@@ -18,6 +18,8 @@ public class AnswersManager : MonoBehaviour
 
     public Answer currentAnswer { get; private set; }
 
+    public int numberOfAnswers;
+
     public List<Answer> InitializeAnswers ()
     {
         activeAnswers = new List<Answer>(answers);
@@ -95,8 +97,11 @@ public class AnswersManager : MonoBehaviour
         }
     }
 
-    public async Task InstantiateAnswersAsync ( int desiredAnswerCount )
+    public async Task InstantiateAnswersAsync ( int desiredAnswerCount = -1 )
     {
+        if (desiredAnswerCount < 0)
+            desiredAnswerCount = numberOfAnswers;
+
         while (activeAnswers.Count < desiredAnswerCount)
         {
             Answer newAnswer = InstantiateAnswer();
@@ -128,7 +133,7 @@ public class AnswersManager : MonoBehaviour
         // Ensure the UI element is correctly aligned by setting the local position, anchored position, and scale
         rectTransform.localPosition = Vector3.zero;       // Set local position to (0, 0, 0)
         rectTransform.anchoredPosition = Vector2.zero;    // Set anchored position to (0, 0)
-        rectTransform.localScale = Vector3.one;           // Reset the scale in case it's affected by the parent
+        //rectTransform.localScale = Vector3.one;           // Reset the scale in case it's affected by the parent
 
         // Optionally, reset the rotation if it's not supposed to have any
         rectTransform.localRotation = Quaternion.identity;

@@ -187,8 +187,6 @@ public class FindQuiz : IQuiz
                 answer.SetAudioClip(toriObject.objectSoundClip);
                 break;
         }
-
-
     }
 
 
@@ -245,12 +243,12 @@ public class FindQuiz : IQuiz
     {
         foreach (Question question in quizManager.questions)
         {
-            if (question.toriObject == toriObject) // Assuming Question has a property toriObject
+            if (question.toriObject == toriObject) 
             {
                 return question;
             }
         }
-        return null; // Return null if no matching question is found
+        return null; 
     }
 
 
