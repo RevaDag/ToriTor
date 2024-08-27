@@ -6251,7 +6251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6561943980739453341, guid: d088497329ef5a34cbb78b1561740156, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 15.333091
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 6561943980739453341, guid: d088497329ef5a34cbb78b1561740156, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9673,15 +9673,15 @@ PrefabInstance:
     - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: predefinedObjects.Array.data[0].sprite
       value: 
-      objectReference: {fileID: -759512506, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
+      objectReference: {fileID: -1065442217, guid: 665472c7e713e4c49ba6f7d30f01d56a, type: 3}
     - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: predefinedObjects.Array.data[1].sprite
       value: 
-      objectReference: {fileID: -673122853, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
+      objectReference: {fileID: -2051079788, guid: 665472c7e713e4c49ba6f7d30f01d56a, type: 3}
     - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: predefinedObjects.Array.data[2].sprite
       value: 
-      objectReference: {fileID: 252129147, guid: 5610bd2bb0eb0a64e993f57ce9c98ebe, type: 3}
+      objectReference: {fileID: 1613921221, guid: 665472c7e713e4c49ba6f7d30f01d56a, type: 3}
     - target: {fileID: 5326642207357880796, guid: 237b93476d841b54db4c48c42a81c0ad, type: 3}
       propertyPath: predefinedObjects.Array.data[3].sprite
       value: 

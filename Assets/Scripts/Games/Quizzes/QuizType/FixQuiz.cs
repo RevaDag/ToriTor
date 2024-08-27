@@ -23,6 +23,7 @@ public class FixQuiz : IQuiz
 
         quizManager.HideLoadingScreen();
 
+        FadeInQuestions();
         FadeInAnswers();
     }
 
@@ -164,6 +165,11 @@ public class FixQuiz : IQuiz
 
     public void CorrectAnswer ( Answer answer )
     {
+        // Fade Out Question
+        Question currentQuestion = quizManager.GetQuestionWithToriObject(answer.toriObject);
+        if (currentQuestion != null)
+            currentQuestion.FadeOut();
+
         quizManager.feedbackManager.SetFeedback(FeedbackManager.FeedbackType.Right);
         answer.PlayClip();
 
@@ -212,6 +218,17 @@ public class FixQuiz : IQuiz
     public void FadeOutAnswers ()
     {
         quizManager.answersManager.FadeOutAnswers();
+    }
+
+    private void FadeInQuestions ()
+    {
+        List<Question> questions = new List<Question>();
+        questions = quizManager.questions;
+
+        foreach (Question question in questions)
+        {
+            question.FadeIn();
+        }
     }
 
 }

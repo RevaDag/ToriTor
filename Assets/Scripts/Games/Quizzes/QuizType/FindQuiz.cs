@@ -222,8 +222,6 @@ public class FindQuiz : IQuiz
         question.findCard.FlipCard();
         await Task.Delay(1000);
 
-        Vector3 parallelScale = new Vector3(.25f, .25f, .25f);
-        question.sticker.ResizeImageScale(parallelScale);
         question.sticker.SetAudio(toriObject.parallelObjectClip);
         question.sticker.SetImage(toriObject.parallelObjectSprite);
         question.sticker.SetColor(Color.white);
@@ -243,12 +241,12 @@ public class FindQuiz : IQuiz
     {
         foreach (Question question in quizManager.questions)
         {
-            if (question.toriObject == toriObject) 
+            if (question.toriObject == toriObject)
             {
                 return question;
             }
         }
-        return null; 
+        return null;
     }
 
 
