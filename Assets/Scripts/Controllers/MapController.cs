@@ -71,8 +71,6 @@ public class MapController : MonoBehaviour
             }
         }
 
-        Debug.Log(currentLevel);
-
         if (currentLevel >= 5)
         {
             Debug.Log("Current level is 5 or higher, calling PlayMapSummary()");

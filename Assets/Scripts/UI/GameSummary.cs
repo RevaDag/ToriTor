@@ -46,17 +46,7 @@ public class GameSummary : MonoBehaviour
 
         for (int i = 0; i < toriObjects.Count; i++)
         {
-            Sticker sticker;
-            if (i < stickers.Count)
-            {
-                sticker = stickers[i];
-                sticker.gameObject.SetActive(true); // Make sure the sticker is active
-            }
-            else
-            {
-                sticker = Instantiate(stickerPrefab, stickersParent);
-                stickers.Add(sticker);
-            }
+            Sticker sticker = stickers[i];
 
             sticker.SetImage(toriObjects[i].sprite);
             sticker.SetAudio(toriObjects[i].clip);

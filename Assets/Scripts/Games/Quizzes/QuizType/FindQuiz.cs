@@ -194,7 +194,7 @@ public class FindQuiz : IQuiz
     {
         answer.FadeOut();
 
-        _ = ChangeImageToParallelAndShowCheckmark(answer.toriObject);
+        _ = FlipObjectCard(answer);
 
         if (correctAnswersCounter == 2)
         {
@@ -214,27 +214,53 @@ public class FindQuiz : IQuiz
         quizManager.CompleteQuiz();
     }
 
-    private async Task ChangeImageToParallelAndShowCheckmark ( ToriObject toriObject )
+    private async Task FlipObjectCard ( Answer answer )
     {
-        Question question = GetQuestionWithToriObject(toriObject);
+        Question question = GetQuestionWithToriObject(answer.toriObject);
 
-        question.FadeOut();
-        question.findCard.FlipCard();
-        await Task.Delay(1000);
+        await FlipCard(question);
 
+        switch (quizManager.GetSubject().name)
+        {
+            case "Colors":
+                ShowParallelObject(question.toriObject, question);
+                _ = FadeInAndShowCheckmark(question);
+                break;
+
+            case "Shapes":
+                ShowParallelObject(question.toriObject, question);
+                _ = FadeInAndShowCheckmark(question);
+                break;
+
+            case "Animals":
+                question.PlayAudioSouce();
+                _ = FadeInAndShowCheckmark(question);
+                break;
+
+        }
+    }
+
+    private void ShowParallelObject ( ToriObject toriObject, Question question )
+    {
         question.sticker.SetAudio(toriObject.parallelObjectClip);
         question.sticker.SetImage(toriObject.parallelObjectSprite);
         question.sticker.SetColor(Color.white);
-
-        question.FadeIn();
-        await Task.Delay(1000);
-        ShowCheckMark(toriObject);
     }
 
-    private void ShowCheckMark ( ToriObject toriObject )
+
+    private async Task FadeInAndShowCheckmark ( Question question )
     {
-        Question question = GetQuestionWithToriObject(toriObject);
+        question.FadeIn();
+        await Task.Delay(1000);
         question.findCard.FadeInCheckMark();
+    }
+
+
+    private static async Task FlipCard ( Question question )
+    {
+        question.FadeOut();
+        question.findCard.FlipCard();
+        await Task.Delay(1000);
     }
 
     private Question GetQuestionWithToriObject ( ToriObject toriObject )

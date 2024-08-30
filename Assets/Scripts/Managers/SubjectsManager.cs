@@ -133,48 +133,32 @@ public class SubjectsManager : MonoBehaviour
         // Distribute tori objects into the lists
         for (int i = 0; i < indices.Count; i++)
         {
-            int targetList = i % 5;
+            int targetList = i % 4;
             ToriObject toriObject = selectedSubject.toriObjects[indices[i]];
 
             switch (targetList)
             {
                 case 0:
-                    toriObjects1.Add(toriObject);
+                    if (toriObjects1.Count < 3)
+                        toriObjects1.Add(toriObject);
                     break;
                 case 1:
-                    toriObjects2.Add(toriObject);
+                    if (toriObjects2.Count < 3)
+                        toriObjects2.Add(toriObject);
                     break;
                 case 2:
-                    toriObjects3.Add(toriObject);
+                    if (toriObjects3.Count < 3)
+                        toriObjects3.Add(toriObject);
                     break;
                 case 3:
-                    toriObjects4.Add(toriObject);
+                    if (toriObjects4.Count < 3)
+                        toriObjects4.Add(toriObject);
                     break;
             }
-        }
 
-        // Ensure each list has at least 3 items by repeating items if necessary
-        EnsureMinimumItems(toriObjects1);
-        EnsureMinimumItems(toriObjects2);
-        EnsureMinimumItems(toriObjects3);
-        EnsureMinimumItems(toriObjects4);
-    }
-
-    private void EnsureMinimumItems ( List<ToriObject> toriObjectsList )
-    {
-        int attempts = 0;
-        while (toriObjectsList.Count < 3 && attempts < selectedSubject.toriObjects.Count)
-        {
-            foreach (var toriObject in selectedSubject.toriObjects)
-            {
-                if (!toriObjectsList.Contains(toriObject))
-                {
-                    toriObjectsList.Add(toriObject);
-                    if (toriObjectsList.Count >= 3)
-                        break;
-                }
-                attempts++;
-            }
+            // Exit loop if all lists have 3 items
+            if (toriObjects1.Count >= 3 && toriObjects2.Count >= 3 && toriObjects3.Count >= 3 && toriObjects4.Count >= 3)
+                break;
         }
     }
 }
